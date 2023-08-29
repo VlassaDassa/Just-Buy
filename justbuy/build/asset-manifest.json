@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f38711ee.css",
+    "main.js": "/static/js/main.7e28ed09.js",
+    "static/media/qr_code.svg": "/static/media/qr_code.5af30544e8278d30b84818441d092208.svg",
+    "static/media/book_1.jpg": "/static/media/book_1.6f7e158ae1b99427e6b8.jpg",
+    "static/media/heart.svg": "/static/media/heart.32159b462c0330618de60c88452ceac7.svg",
+    "static/media/instagram.svg": "/static/media/instagram.c9f561255a2f8a3bf45574925c64012b.svg",
+    "static/media/cart-fill.svg": "/static/media/cart-fill.26b2769906c499916977f93ddcaf56c9.svg",
+    "static/media/vk.svg": "/static/media/vk.c7bfa6ce8cf67e1fcd22f832c1d44173.svg",
+    "static/media/youtube.svg": "/static/media/youtube.4a673e89bf756d446992487472273a8f.svg",
+    "static/media/cart.svg": "/static/media/cart.065993c42ed1cb9791ac733defda6980.svg",
+    "static/media/arrow_left.svg": "/static/media/arrow_left.1e2927c51eaa2d9f804c83633d840ab1.svg",
+    "static/media/star.svg": "/static/media/star.63f2283c538b5acb828b9bb7fe0b0d43.svg",
+    "static/media/star_fill.svg": "/static/media/star_fill.d2fd6999afeb1a5355ae5540afad3536.svg",
+    "static/media/loup.svg": "/static/media/loup.dac0fdbff4533c23fa9faf09cba3fe2c.svg",
+    "static/media/profile.svg": "/static/media/profile.534daa7cb6927081461c68368aa9035b.svg",
+    "static/media/burger.svg": "/static/media/burger.ff10bf6d3ba5fb328b77ef21d28ce41b.svg",
+    "index.html": "/index.html",
+    "static/media/heart-small-fill.svg": "/static/media/heart-small-fill.4a5ad8ef12ff4d2c9f20bac28164a2c2.svg",
+    "static/media/menu_btn.svg": "/static/media/menu_btn.37c25bfd4e0fae615be37792459b0f03.svg",
+    "static/media/arrow.svg": "/static/media/arrow.72c02103c248fcdfc2cef8f11940b949.svg",
+    "main.f38711ee.css.map": "/static/css/main.f38711ee.css.map",
+    "main.7e28ed09.js.map": "/static/js/main.7e28ed09.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f38711ee.css",
+    "static/js/main.7e28ed09.js"
+  ]
+}

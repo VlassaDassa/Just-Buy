@@ -1,0 +1,48 @@
+@import './../../assets/styles/variables';
+
+
+
+.products_button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.products_button__btn {
+    padding: 10px 25px;
+    background: rgba($accent, 0.8);
+    border-radius: 15px;
+    box-shadow: $_box_shadow;
+    
+    text-align: center;
+
+    filter: brightness(1);
+
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        filter: brightness(0.9);
+    }
+}
+
+
+@media (max-width: 768px) {
+    .products_button {
+        margin-top: 10px;
+        margin-bottom: 50px;
+    }
+
+    
+    .products_button__btn {
+        padding: 10px 15px;
+        font-size: 16px;
+        font-weight: $regular;
+
+        &:hover {
+            filter: brightness(1);
+        }
+    
+    }
+}

@@ -1,0 +1,206 @@
+@import '../../../assets/styles/variables';
+
+
+
+
+
+.profile_bar,
+.profile_bar__wrapper_1,
+.profile_bar__wrapper_2,
+.profile_bar__location_wrapper {
+    display: flex;
+    align-items: center;
+}
+
+
+.profile_bar {
+    justify-content: space-between;
+
+    background: $base;
+    height: 80px;
+
+    border-radius: $_border_radius;
+    box-shadow: $_box_shadow;
+
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    padding: 0 100px;
+}
+
+
+.profile_bar__wrapper_1 {
+    column-gap: 20px;
+    font-size: 24px;
+    
+    ;
+    a {
+        position: relative;
+    }
+}
+
+
+.profile_bar__become_seller {
+    font-size: 16px;
+    font-weight: $light;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+
+.profile_bar__city {
+    font-size: 20px;
+    font-weight: $regular;
+}
+
+
+.profile_bar__wrapper_2 {
+    font-size: 16px;
+    font-weight: $extra_ligth;
+
+    column-gap: 50px;
+}
+
+
+.profile_bar__location_wrapper {
+    column-gap: 10px;
+}
+
+
+  
+.profile_bar__notification-active {
+    content: "";
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: $accent;
+    z-index: 0;
+}
+
+.profile_bar__icon_wrapper {
+    position: relative;
+    display: flex;
+    column-gap: 30px;
+}
+
+/* ./Profile bar */
+
+
+/* Medium profile bar */
+.medium_profile_bar {
+    display: none;
+}
+/* ./Medium profile bar */
+
+
+/* Mobile profile bar */
+.mobile_profile_bar {
+    display: none;
+    margin-top: 50px;
+}
+
+.mobile_profile_bar__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $base;
+    height: 80px;
+
+    border-radius: $_border_radius;
+    box-shadow: $_box_shadow;
+
+    margin-bottom: 20px;
+
+    padding: 0 20px;
+
+    // width: 100%;
+}
+
+
+.mobile_profile_bar__icon_wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+/* ./Mobile profile bar */
+
+
+
+@media (max-width: 1024px) {
+    .profile_bar {
+        padding: 0 30px;
+    }
+}
+
+
+
+
+@media (max-width: 768px) {
+    .profile_bar {
+        display: none;
+    }
+
+    .medium_profile_bar {
+        display: block;
+        margin-top: 50px;
+    }
+
+    .profile_bar__wrapper_1,
+    .profile_bar__wrapper_2 {
+        justify-content: space-between;
+        background: $base;
+        height: 80px;
+
+        border-radius: $_border_radius;
+        box-shadow: $_box_shadow;
+
+        margin-bottom: 20px;
+
+        padding: 0 30px;
+
+        column-gap: 20px;
+    }
+
+    .profile_bar__become_seller {
+        font-size: 20px;
+    }
+}
+
+
+@media (max-width: 400px) {
+    .profile_bar {
+        display: none;
+    }
+
+    .medium_profile_bar {
+        display: none;
+    }
+
+    .mobile_profile_bar {
+        display: block;
+    }
+
+    .profile_bar__wrapper_1 {
+        width: auto;
+    }
+
+    
+    .icon {
+        position: relative;
+    }
+
+    .profile_bar__notification,
+    .profile_bar__likes {
+        height: 35px;
+    }
+
+    .profile_bar__become_seller {
+        font-size: 24px;
+    }
+
+}

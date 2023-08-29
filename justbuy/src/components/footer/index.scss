@@ -1,0 +1,165 @@
+
+@import './../../assets/styles/variables';
+
+
+
+.footer {
+    height: 320px;
+    width: 100%;
+
+    box-shadow: $_box_shadow;
+    background: $base;
+    border-top-right-radius: 50px;
+    border-top-left-radius: 50px;
+
+    padding: 40px 0;
+
+    overflow: hidden;
+    box-sizing: border-box;
+
+    margin-top: auto;
+
+}
+
+
+.defualt_footer_wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    overflow: hidden;
+}
+
+
+.social_networks__list {
+    display: flex;
+    column-gap: 10px;
+
+    justify-content: center;
+}
+
+
+.footer_item {
+    width: 267px;
+
+    display: flex;
+    flex-direction: column;
+
+    font-size: 24px;
+    text-align: center;
+
+}
+
+
+.footer__title {
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+
+.footer__item + .footer__item {
+    margin-top: 10px;
+}
+
+
+.social_networks__item {
+    display: inline-block;
+}
+
+
+.qr_code_wrapper {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+}
+
+
+.qr_code_wrapper__google_icon {
+    position: absolute;
+
+    bottom: 3px;
+
+    left: 45%;
+}
+
+
+.mobile_footer_wrapper {
+    display: none;
+}
+
+
+.mobile_footer_wrapper__list {
+    transition: all 0.3s ease-in-out;
+    height: 0;
+    overflow: hidden;
+}
+
+
+.mobile_footer_wrapper__title {
+    font-size: 23px;
+    font-weight: 400;
+    text-transform: uppercase;
+
+    padding: 5px 0;
+    margin-bottom: 5px;
+
+    width: 100%;
+
+    cursor: pointer;
+}
+
+
+.mobile_footer_wrapper__item {
+    padding: 10px 0; 
+    border-bottom: 1px solid rgba($gray, 0.5);
+
+    &:last-child {
+        border: none;
+    }
+}
+
+.mobile_footer_wrapper_mobile_app__link {
+    display: flex;
+    align-items: center;
+
+    column-gap: 10px;
+}
+
+
+.mobile_footer_wrapper__link {
+    font-size: 24px;
+}
+
+
+.mobile_footer_wrapper__link + .mobile_footer_wrapper__link {
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .defualt_footer_wrapper {
+        display: none;
+    }
+
+    .mobile_footer_wrapper {
+        display: block;
+    }
+
+    .footer {
+        height: auto;
+
+        padding: 20px 0;
+
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+    }
+
+}
+
+
+
+
+
+
+
+
+

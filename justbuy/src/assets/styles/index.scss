@@ -1,0 +1,220 @@
+@import './variables';
+
+
+
+html {
+    // font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-family: 'Montserrat', sans-serif;;
+    font-size: calc(100vw/1920);
+    scroll-behavior: smooth;
+
+    @media (max-width: 1280px) {
+        font-size: calc(100vw/1920 + (28rem/1920));
+    }
+
+    @media (max-width: 1024px) {
+        font-size: calc(100vw/1920 + (48rem/1920));
+    }
+
+    @media (max-width: 600px) {
+        font-size: calc(100vw/1920 + (74rem/1920));
+    }
+
+    @media (max-width: 370px) {
+        font-size: calc(100vw/1920 + (44rem/1920));
+    }
+
+}
+
+
+body {
+    background: $secondary;
+    font-weight: 100;
+    font-size: 20px;
+    color: $white;
+
+    display: flex;
+    flex-direction: column;
+    
+    overflow-x: hidden;
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+
+.App {
+    min-height: 1500px;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+.container {
+    max-width: 1600px;   
+    min-width: 350px;
+    padding: 0 75px;
+    height: 100%;
+    margin: 0 auto;
+    width: 100%;
+
+    box-sizing: border-box;
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    color: inherit;
+
+    @media (max-width: 1280px) {
+        max-width: 1280px;
+        padding: 0 75px;
+    }
+
+    @media (max-width: 800px) { 
+        padding: 0 35px;
+    }
+
+    @media (max-width: 800px) { 
+        padding: 0 20px;
+    }
+}
+
+
+@media (hover: none) {
+    *
+    {
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    img:focus {
+        outline: none;
+      }
+
+
+}
+
+
+.icon {
+    transition: all .5s ease-in-out;
+    cursor: pointer;
+    
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+
+.no_section {
+    font-size: 26px;
+    font-weight: $regular;
+    text-align: center;
+
+    padding: 40px 0;
+
+    width: 100%;
+
+    background: $base;
+    border-radius: 25px;
+    box-shadow: $_box_shadow;
+
+    margin-bottom: 50px;
+}
+
+
+.btn {
+    background: $accent;
+    border-radius: 25px;
+    font-weight: $regular;
+    text-align: center;
+    
+    padding: 10px 30px;
+
+    display: block;
+    margin: 20px auto;
+
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        background: rgba($accent, 0.8);
+
+        @media (max-width: 800px) {
+            background: $accent;
+        }
+    }
+}
+
+
+.hidden-input {
+    display: none;
+}
+
+
+
+.btn_previous,
+.btn_next,
+.btn_save {
+    background: transparent;
+
+    width: 150px;
+    height: 70px;
+
+    border-radius: 15px;
+    border: 3px solid $white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        background: $secondary;
+    }
+}
+
+
+/* Plus */
+.circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: $accent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 0;
+}
+  
+.plus {
+    width: 60%;
+    height: 4px;
+    background-color: $gray;
+    position: relative;
+}
+  
+.plus::before,
+.plus::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: #fff;
+    border-radius: 50px;
+}
+  
+.plus::before {
+    transform: translateY(-50%);
+}
+  
+.plus::after {
+    transform: translateY(-50%) rotate(90deg);
+}
+/* ./Plus */
