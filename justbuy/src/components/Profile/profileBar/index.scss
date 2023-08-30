@@ -92,62 +92,16 @@
 /* ./Profile bar */
 
 
-/* Medium profile bar */
-.medium_profile_bar {
-    display: none;
-}
-/* ./Medium profile bar */
-
-
-/* Mobile profile bar */
-.mobile_profile_bar {
-    display: none;
-    margin-top: 50px;
-}
-
-.mobile_profile_bar__wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: $base;
-    height: 80px;
-
-    border-radius: $_border_radius;
-    box-shadow: $_box_shadow;
-
-    margin-bottom: 20px;
-
-    padding: 0 20px;
-
-    // width: 100%;
-}
-
-
-.mobile_profile_bar__icon_wrapper {
-    display: flex;
-    justify-content: space-between;
-}
-/* ./Mobile profile bar */
-
-
-
-@media (max-width: 1024px) {
-    .profile_bar {
-        padding: 0 30px;
-    }
-}
 
 
 
 
-@media (max-width: 768px) {
+
+
+
+@media (max-width: 1170px) {
     .profile_bar {
         display: none;
-    }
-
-    .medium_profile_bar {
-        display: block;
-        margin-top: 50px;
     }
 
     .profile_bar__wrapper_1,
@@ -164,6 +118,24 @@
         padding: 0 30px;
 
         column-gap: 20px;
+    }
+
+    .profile_bar__become_seller {
+        font-size: 20px;
+    }
+}
+
+
+@media (max-width: 1024px) {
+    .profile_bar {
+        padding: 0 30px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .profile_bar__user_name {
+        font-size: 20px;
     }
 
     .profile_bar__become_seller {
@@ -200,7 +172,7 @@
     }
 
     .profile_bar__become_seller {
-        font-size: 24px;
+        font-size: 18px;
     }
 
 }
