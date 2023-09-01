@@ -1,14 +1,18 @@
 import React from "react";
-import addProductBar from "../../components/addProduct/addProductBar"
+import AddProductBar from "../../components/addProduct/addProductBar";
 
-const addProduct = () => {
+
+
+
+
+const AddProduct = () => {
     return (
         <main className="addProduct">
             <div className="container">
-                <addProductBar />
+                <AddProductBar />
             </div>
         </main>
     )
 }
 
-export default addProduct;
+export default AddProduct;
