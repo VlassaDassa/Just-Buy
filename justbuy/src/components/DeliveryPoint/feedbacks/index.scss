@@ -1,0 +1,120 @@
+@import '../../../assets/styles/variables';
+
+
+/* feedback */
+
+.delivery_point_feedback {
+    margin-top: 60px;
+
+    max-width: 510px;
+}
+
+
+.delivery_point_feedback__header,
+.delivery_point_feedback_item,
+.delivery_point_feedback__btn {
+    box-shadow: $_box_shadow;
+    border-radius: 25px;
+    background: $base;
+}
+
+
+.delivery_point_feedback_item__score_ico,
+.delivery_point_feedback__rating_ico {
+    width: 20px;
+    height: 20px;
+}
+
+
+.delivery_point_feedback__header {
+    max-width: 330px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 17px 30px;
+    margin-bottom: 40px;
+
+    font-weight: $thin;
+}
+
+
+.delivery_point_feedback__numerical_rating {
+    font-size: 24px;
+    margin-bottom: 3px;
+}
+
+
+.delivery_point_feedback__count {
+    font-size: 16px;
+}
+
+
+
+.delivery_point_feedback_item {
+    padding: 30px 20px;
+    padding-top: 20px;
+    max-width: 100%;
+    margin-bottom: 20px;
+
+    font-weight: $thin;
+}
+
+
+.delivery_point_feedback_item__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+}
+
+
+.delivery_point_feedback_item__name {
+    font-size: 28px;
+    margin-bottom: 10px;
+
+    color: rgb($white, 0.8);
+}
+
+
+.delivery_point_feedback_item__date {
+    font-size: 16px;
+
+    color: rgb($white, 0.7);
+}
+
+
+.delivery_point_feedback_item__score_ico {
+    margin-bottom: 10px;
+}
+
+
+.delivery_point_feedback_item__content {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+
+.delivery_point_feedback__btn {
+    padding: 10px 25px;
+    background: $accent;
+
+    font-weight: $regular;
+
+    display: block;
+    margin: 0 auto;
+
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        background-color: rgb($accent, 0.8);
+    }
+}
+
+@media (max-width: 600px) {
+    .delivery_point_feedback__header {
+        padding: 17px 15px;
+    }
+}
+
+/* ./feedback */

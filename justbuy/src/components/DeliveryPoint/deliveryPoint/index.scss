@@ -1,0 +1,13 @@
+@import '../../../assets/styles/variables';
+
+
+
+main {
+    margin-bottom: 150px;
+}
+
+
+/* Blocks */
+@import '../feedbacks/index.scss';
+@import '../info/index.scss';
+@import '../location/index.scss';
