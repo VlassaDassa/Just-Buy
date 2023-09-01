@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@pbe/react-yandex-maps": "^1.2.4",
     "node-sass": "^9.0.0",
     "react-router-dom": "^6.15.0",
     "sass-loader": "^13.3.2"
