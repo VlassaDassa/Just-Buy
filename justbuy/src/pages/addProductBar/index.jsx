@@ -5,7 +5,7 @@ const addProduct = () => {
     return (
         <main className="addProduct">
             <div className="container">
-                <addProductBar/>
+                <addProductBar />
             </div>
         </main>
     )
