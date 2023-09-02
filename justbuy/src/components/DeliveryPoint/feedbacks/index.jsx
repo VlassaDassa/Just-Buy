@@ -1,5 +1,7 @@
 import React from "react";
 import "./index.scss";
+import star from "../../../assets/images/delivery_point/star.svg";
+import star_fill from "../../../assets/images/delivery_point/star_fill.svg"
 
 const Feedbacks = () => {
     return (
@@ -10,11 +12,11 @@ const Feedbacks = () => {
                 </p>
 
                 <div className="delivery_point_feedback__rating">
-                    <img className="delivery_point_feedback__rating_ico" src="icons/dest/general/star_fill.svg"/>
-                    <img className="delivery_point_feedback__rating_ico" src="icons/dest/general/star_fill.svg"/>
-                    <img className="delivery_point_feedback__rating_ico" src="icons/dest/general/star_fill.svg"/>
-                    <img className="delivery_point_feedback__rating_ico" src="icons/dest/general/star_fill.svg"/>
-                    <img className="delivery_point_feedback__rating_ico" src="icons/dest/general/star.svg"/>
+                    <img className="delivery_point_feedback__rating_ico" src={star_fill} alt="..."/>
+                    <img className="delivery_point_feedback__rating_ico" src={star_fill} alt="..."/>
+                    <img className="delivery_point_feedback__rating_ico" src={star_fill} alt="..."/>
+                    <img className="delivery_point_feedback__rating_ico" src={star_fill} alt="..."/>
+                    <img className="delivery_point_feedback__rating_ico" src={star} alt="..."/>
                 </div>
 
                 <p className="delivery_point_feedback__count">2300 отзывов</p>
@@ -29,11 +31,11 @@ const Feedbacks = () => {
                     </div>
 
                     <div className="delivery_point_feedback_item__score">
-                        <img className="delivery_point_feedback_item__score_ico" src="icons/dest/general/star_fill.svg"/>
-                        <img className="delivery_point_feedback_item__score_ico" src="icons/dest/general/star_fill.svg"/>
-                        <img className="delivery_point_feedback_item__score_ico" src="icons/dest/general/star_fill.svg"/>
-                        <img className="delivery_point_feedback_item__score_ico" src="icons/dest/general/star_fill.svg"/>
-                        <img className="delivery_point_feedback_item__score_ico" src="icons/dest/general/star.svg"/>
+                        <img className="delivery_point_feedback_item__score_ico" src={star_fill} alt="..."/>
+                        <img className="delivery_point_feedback_item__score_ico" src={star_fill} alt="..."/>
+                        <img className="delivery_point_feedback_item__score_ico" src={star_fill} alt="..."/>
+                        <img className="delivery_point_feedback_item__score_ico" src={star_fill} alt="..."/>
+                        <img className="delivery_point_feedback_item__score_ico" src={star} alt="..."/>
                     </div>
 
                     <p className="delivery_point_feedback_item__content">
@@ -50,11 +52,11 @@ const Feedbacks = () => {
                     </div>
 
                     <div className="delivery_point_feedback_item__score">
-                        <img className="delivery_point_feedback_item__score_ico" src="icons/dest/general/star_fill.svg"/>
-                        <img className="delivery_point_feedback_item__score_ico" src="icons/dest/general/star_fill.svg"/>
-                        <img className="delivery_point_feedback_item__score_ico" src="icons/dest/general/star_fill.svg"/>
-                        <img className="delivery_point_feedback_item__score_ico" src="icons/dest/general/star_fill.svg"/>
-                        <img className="delivery_point_feedback_item__score_ico" src="icons/dest/general/star_fill.svg"/>
+                        <img className="delivery_point_feedback_item__score_ico" src={star_fill} alt="..."/>
+                        <img className="delivery_point_feedback_item__score_ico" src={star_fill} alt="..."/>
+                        <img className="delivery_point_feedback_item__score_ico" src={star_fill} alt="..."/>
+                        <img className="delivery_point_feedback_item__score_ico" src={star_fill} alt="..."/>
+                        <img className="delivery_point_feedback_item__score_ico" src={star_fill} alt="..."/>
                     </div>
 
                     <p className="delivery_point_feedback_item__content">
@@ -73,11 +75,11 @@ const Feedbacks = () => {
                     </div>
 
                     <div className="delivery_point_feedback_item__score">
-                        <img className="delivery_point_feedback_item__score_ico" src="icons/dest/general/star_fill.svg"/>
-                        <img className="delivery_point_feedback_item__score_ico" src="icons/dest/general/star.svg"/>
-                        <img className="delivery_point_feedback_item__score_ico" src="icons/dest/general/star.svg"/>
-                        <img className="delivery_point_feedback_item__score_ico" src="icons/dest/general/star.svg"/>
-                        <img className="delivery_point_feedback_item__score_ico" src="icons/dest/general/star.svg"/>
+                        <img className="delivery_point_feedback_item__score_ico" src={star_fill} alt="..."/>
+                        <img className="delivery_point_feedback_item__score_ico" src={star} alt="..."/>
+                        <img className="delivery_point_feedback_item__score_ico" src={star} alt="..."/>
+                        <img className="delivery_point_feedback_item__score_ico" src={star} alt="..."/>
+                        <img className="delivery_point_feedback_item__score_ico" src={star} alt="..."/>
                     </div>
 
                     <p className="delivery_point_feedback_item__content">

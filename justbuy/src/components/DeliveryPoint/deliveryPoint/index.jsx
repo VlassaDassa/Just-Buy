@@ -6,13 +6,11 @@ import Feedbacks from "../feedbacks"
 
 const DeliveryPointBar = () => {
     return (
-        <main className="delivery_point">
-            <div className="container">
-                <Location/>
-                <Info/>
-                <Feedbacks/>
-            </div>
-        </main>
+        <>
+            <Location/>
+            <Info/>
+            <Feedbacks/>
+        </>
     )
 }
 

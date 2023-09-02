@@ -5,22 +5,22 @@ import "./index.scss";
 
 const CartBar = () => {
     return (
-        <main className="cart">
-            <div className="container">
-                <div className="cart__header">
-                    <h1 className="cart__title">
-                        Корзина <span className="cart__count_items">5</span>
-                    </h1>
+        
+        <div>
+            <div className="cart__header">
+                <h1 className="cart__title">
+                    Корзина <span className="cart__count_items">5</span>
+                </h1>
 
-                    <label className="cart__checkbox cart__checkbox_all">Всё
-                        <input type="checkbox" />
-                            <span className="cart__checkmark cart__checkmark_all"></span>
-                    </label>
-                </div>
-                <CartProducts/>
-                <CartInfo />
+                <label className="cart__checkbox cart__checkbox_all">Всё
+                    <input type="checkbox" />
+                        <span className="cart__checkmark cart__checkmark_all"></span>
+                </label>
             </div>
-        </main>
+            <CartProducts/>
+            <CartInfo />
+        </div>
+        
     )
 }
 

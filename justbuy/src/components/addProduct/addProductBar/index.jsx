@@ -1,6 +1,8 @@
 import React from 'react';
 import './index.scss';
-
+import GeneralCharact from '../generalCharact';
+import PersonalCharact from '../personalCharact';
+import Photos from '../photos';
 
 
 const AddProductBar = () => {
@@ -13,6 +15,9 @@ const AddProductBar = () => {
                     </h1>
                     
                     <form action="." className="add_prod_form__form">
+                        <Photos/>
+                        <GeneralCharact/>
+                        <PersonalCharact/>
 
                     </form>
                 </section>
