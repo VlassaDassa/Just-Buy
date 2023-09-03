@@ -1,9 +1,8 @@
 import React from "react";
 import "./index.scss";
-import point_1 from "../../../assets/images/delivery_point/point_1.jpg";
-import point_2 from "../../../assets/images/delivery_point/point_2.jpg";
-import point_3 from "../../../assets/images/delivery_point/point_3.jpg";
 import PhotoSlider from "../photoSlider";
+
+
 
 
 
@@ -18,8 +17,9 @@ const Location = () => {
             </h1>
             
             <div className="location_wrapper">
-
+                
                 <PhotoSlider/>
+                
                 {/* <div className="location__photo_slider">
                     <div className="location__photo_wrapper">
 
@@ -41,7 +41,7 @@ const Location = () => {
                         Выбрать пункт выдачи
                     </button>
                 </div>  */}
-
+                
 
                 <div className="map">
                     <div id="map">
