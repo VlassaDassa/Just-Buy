@@ -31,3 +31,13 @@ export const getProducts = (start_limit, count) => {
 export const getAllProducts = () => {
   return axios.get(API_ROUTES.getAllProducts);
 }
+
+// Get delivery slider
+export const getDeliverySlider = () => {
+  return axios.get(API_ROUTES.getDeliverySlider);
+}
+
+// Get comments stars
+export const getCommentsStars = () => {
+  return axios.get(API_ROUTES.getCommentsStars);
+}

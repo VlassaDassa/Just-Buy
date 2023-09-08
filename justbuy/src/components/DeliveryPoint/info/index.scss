@@ -1,0 +1,89 @@
+@import '../../../assets/styles/variables';
+
+
+
+/* info */
+.delivery_point_info,
+.mobile_delivery_point_info {
+    margin-top: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mobile_delivery_point_info {
+    display: none;
+}
+
+
+.delivery_point_info__title {
+    font-weight: $regular;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+
+.delivery_point_info__text {
+    font-size: 20px;
+    font-weight: $extra_ligth;
+    margin-bottom: 40px;
+}
+
+
+.delivery_point_info__paragraph {
+    margin-bottom: 10px;
+}
+
+.delivery_point_info__btn {
+    padding: 10px 25px;
+    background: $accent;
+    border-radius: 25px;
+
+    font-weight: $regular;
+
+    display: none;
+    margin: 0 auto;
+
+    transition: all 0.3s ease-in-out;
+}
+
+
+@media (max-width: 768px) {
+    .delivery_point_info {
+        display: none;
+        margin: auto 0;
+    }
+
+
+    .mobile_delivery_point_info {
+        display: block;
+        margin: auto 0;
+    }
+
+
+    .delivery_point_info__btn {
+        display: block;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+    .mobile_delivery_point_info {
+        display: none;
+    }
+
+    .delivery_point_info {
+        display: block;
+
+        margin-top: 50px;
+    }
+
+    .delivery_point_info__btn {
+        margin: 0 auto;
+        margin-bottom: 100px;
+    }
+}
+
+
+/* ./info */

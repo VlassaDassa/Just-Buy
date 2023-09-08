@@ -1,4 +1,4 @@
-@import '../../../assets/styles/_variables';
+@import '../../../assets/styles/variables';
 
 
 
@@ -100,8 +100,8 @@ select {
 
 
 /* Blocks */
-@import 'blocks/photos';
-@import 'blocks/general_charact';
-@import 'blocks/personal_charact';
+@import '../photos/index.scss';
+@import '../generalCharact/index.scss';
+@import '../personalCharact/index.scss';
 
 /* ./Blocks */

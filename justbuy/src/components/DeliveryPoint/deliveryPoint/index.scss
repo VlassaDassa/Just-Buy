@@ -1,0 +1,13 @@
+@import '../../../assets/styles/variables';
+
+
+
+main {
+    margin-bottom: 150px;
+}
+
+// импортов не должно быть в сасах, если это реакт
+// /* Blocks */
+// @import '../feedbacks/index.scss';
+// @import '../info/index.scss';
+// @import '../location/index.scss';
