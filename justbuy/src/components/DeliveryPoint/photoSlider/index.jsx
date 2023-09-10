@@ -47,7 +47,7 @@ const PhotoSlider = () => {
         <div className="location__photo_slider">
             <div className="location__photo_wrapper">
                 {pointPhoto && pointPhoto.length !== 0 &&
-                    [1, 2, 3].map((number) => (
+                    [0, 1, 2].map((number) => (
                         pointPhoto[number] &&
                         <img
                             onMouseMove={handleMouseMove}
@@ -66,7 +66,7 @@ const PhotoSlider = () => {
                     
             <div className="location__photo_pgn">
                 {pointPhoto && pointPhoto.length !== 0 &&
-                    [1, 2, 3].map((number) => (
+                    [0, 1, 2].map((number) => (
                         pointPhoto[number] &&
                         <img
                             src={pointPhoto[number].photo}

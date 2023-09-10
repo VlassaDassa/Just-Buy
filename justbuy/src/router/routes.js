@@ -3,6 +3,7 @@ import Profile from "../pages/profile";
 import AddProduct from "../pages/addProduct";
 import Cart from "../pages/cart";
 import DeliveryPoint from "../pages/deliveryPoint";
+import BasketProducts from "../components/Cart/basketProducts";
 
 
 
@@ -14,6 +15,7 @@ export const publicRoutes = [
     {path: '/profile', component: Profile, exact: true},
 
     {path: '/addproduct', component: AddProduct, exact: true},
+    // {path: '/cart', component: Cart, exact: true},
     {path: '/cart', component: Cart, exact: true},
     {path: '/deliverypoint', component: DeliveryPoint, exact: true},
 
