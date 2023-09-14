@@ -4,37 +4,37 @@ import "./index.scss";
 
 
 const CartProducts = (props) => {
-    const { id, price, count, name, image, onToggleProduct, onIncrement, onDecrement, onRemove } = props;
+    const { product, handleChange, onIncrement, onDecrement, onRemove, calculateTotal } = props;
 
     return (
 
 
-        <div data-prod-id={id} className="products__item" key={id}>
+        <div data-prod-id={product.id} className="products__item" key={product.id}>
             <div className="products__photo_wrapper">
 
                 <img src={trash} className="products__mobile_trash" alt="..." />
 
                 <label className="cart__checkbox cart__checkbox_item">
-                    <input type="checkbox" onChange={() => onToggleProduct(id)} checked={count > 0}/>
+                    <input type="checkbox" onClick={calculateTotal} name={product.name} onChange={handleChange} checked={product?.isChecked || false}/>
                     <span className="cart__checkmark cart__checkmark_item"></span>
                 </label>
 
-                <img className="products__photo" src={image} alt="..." />
+                <img className="products__photo" src={product.image} alt="..." />
 
             </div>
             <div className="products__description">
 
-                <p className="products__price">{price}</p>
+                <p className="products__price">{product.price} ₽</p>
 
-                <p className="products__name"><a href="product.html">{name}</a></p>
+                <p className="products__name"><a href="product.html">{product.name}</a></p>
                 <div className="products__count">
-                    <span className="products__count-plus" onClick={() => onIncrement(id)}></span>
+                    <span className="products__count-plus" onClick={() => onIncrement(product.id)}></span>
 
-                    <span className="products__count_text">{count}</span>
+                    <span className="products__count_text">{product.count}</span>
 
-                    <span className="products__count-minus" onClick={() => onDecrement(id)}></span>
+                    <span className="products__count-minus" onClick={() => onDecrement(product.id)}></span>
 
-                    <img src={trash} className="products__count-ico" alt="..." onClick={() => onRemove(id)}/>
+                    <img src={trash} className="products__count-ico" alt="..." onClick={() => onRemove(product.id)}/>
                 </div>
 
             </div>

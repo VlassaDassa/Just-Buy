@@ -12,11 +12,11 @@ import "./index.scss";
 
 const CartBar = () => {
     const [products, setProducts] = useState([
-        { id: 1, name: 'Книга / Атлант расправил плечи', price: 373, count: 1, image: book_1, selected: false },
-        { id: 2, name: 'Товар 2', price: 20, count: 1, image: book_2, selected: false },
-        { id: 3, name: 'Товар 2', price: 20, count: 1, image: book_3, selected: false },
-        { id: 4, name: 'Товар 2', price: 20, count: 1, image: book_4, selected: false },
-        { id: 5, name: 'Товар 2', price: 20, count: 1, image: book_5, selected: false },
+        { id: 1, name: 'Книга / Атлант расправил плечи', price: 373, count: 0, image: book_1, isChecked: false },
+        { id: 2, name: 'Книга / Белый ужас', price: 678, count: 0, image: book_2, isChecked: false },
+        { id: 3, name: 'Книга / Ужасная рамка', price: 373, count: 0, image: book_3, isChecked: false },
+        { id: 4, name: 'Книга / Недострой', price: 50000, count: 0, image: book_4, isChecked: false },
+        { id: 5, name: 'Книга / Коричневая книга', price: 4589, count: 0, image: book_5, isChecked: false },
     ]);
 
     const [selectAll, setSelectAll] = useState(false);
@@ -24,32 +24,29 @@ const CartBar = () => {
     const [totalPrice, setTotalPrice] = useState(0);
 
     useEffect(() => {
-        const isAllSelected = products.every((product) => product.count > 0);
-        if (isAllSelected) {
-          setSelectAll(true);
+        calculateTotal(products)
+    }, [])
+
+    useEffect(() => {
+        calculateTotal(products)
+    }, [products])
+
+    const handleChange = (e) => {
+        const { name, checked } = e.target;
+        if (name === "allSelect") {
+            let tempProduct = products.map((product) => {
+                return { ...product, isChecked: checked, count: checked ? 1 : 0};
+            });
+            setProducts(tempProduct);
         } else {
-          setSelectAll(false);
+            let tempProduct = products.map((product) =>
+                product.name === name ? { ...product, isChecked: checked, count: checked ? 1 : 0} : product
+            );
+            setProducts(tempProduct);
         }
-      }, [products]);
-
-    const toggleSelectAll = () => {
-        setSelectAll(!selectAll);
-        const updatedProducts = products.map((product) => ({
-            ...product,
-            count: selectAll ? 0 : product.count === 0 ? 1 : 0,
-        }));
-        setProducts(updatedProducts);
+        calculateTotal(products)
     };
 
-    const toggleProduct = (productId) => {
-        const updatedProducts = products.map((product) => {
-            if (product.id === productId) {
-                return { ...product, count: product.count === 0 ? 1 : 0 };
-            }
-            return product;
-        });
-        setProducts(updatedProducts);
-    };
 
     const incrementProduct = (productId) => {
         const updatedProducts = products.map((product) => {
@@ -63,7 +60,7 @@ const CartBar = () => {
 
     const decrementProduct = (productId) => {
         const updatedProducts = products.map((product) => {
-            if (product.id === productId && product.count > 1) {
+            if (product.id === productId && product.count > 0) {
                 return { ...product, count: product.count - 1 };
             }
             return product;
@@ -74,7 +71,10 @@ const CartBar = () => {
     const removeProduct = (productId) => {
         const updatedProducts = products.filter((product) => product.id !== productId);
         setProducts(updatedProducts);
+        calculateTotal(products)
     };
+
+    // const sortedProducts = products.filter((product) => product.isChecked === true)
 
     const calculateTotal = () => {
         let totalCount = 0;
@@ -98,7 +98,7 @@ const CartBar = () => {
 
 
                 <label className="cart__checkbox cart__checkbox_all"> Всё
-                    <input type="checkbox" onChange={toggleSelectAll} checked={selectAll} />
+                    <input type="checkbox" name="allSelect" onClick={calculateTotal} onChange={handleChange} checked={!products.some((product) => product?.isChecked !== true)} />
                     <span className="cart__checkmark cart__checkmark_all"></span>
                 </label>
             </div>
@@ -106,21 +106,18 @@ const CartBar = () => {
             <div className="products">
                 {products.map((product) => (
                     <CartProducts
+                        product={product}
                         key={product.id}
-                        id={product.id}
-                        price={product.price}
-                        count={product.count}
-                        image={product.image}
-                        name={product.name}
-                        onToggleProduct={toggleProduct}
+                        handleChange={handleChange}
                         onIncrement={incrementProduct}
                         onDecrement={decrementProduct}
                         onRemove={removeProduct}
+                        calculateTotal={calculateTotal}
                     />
                 ))}
 
             </div>
-            <CartInfo/>
+            <CartInfo calculateTotal={calculateTotal} totalCount={totalCount} totalPrice={totalPrice}/>
 
             {/* <div className="cart_info__btn-buy">
                 <button onClick={calculateTotal}>Buy</button>

@@ -1,7 +1,8 @@
 import React from "react";
 import "./index.scss"
+import { Link } from "react-router-dom";
 
-const CartInfo = () => {
+const CartInfo = ({calculateTotal, totalCount, totalPrice}) => {
     return (
         <section className="cart_info">
             <div className="cart_info__item-wrapper cart_info_price">
@@ -10,14 +11,14 @@ const CartInfo = () => {
                 </h1>
 
                 <p className="cart_info_price__count_prod">
-                    Количество товаров: <span className="cart_info_price__count">0 шт</span>
+                    Количество товаров: <span className="cart_info_price__count">{totalCount}шт</span>
                 </p>
 
                 <p className="cart_info_price__total_price">
-                    Итого <span className="cart_info_price__price">0 ₽</span>
+                    Итого <span className="cart_info_price__price">{totalPrice} ₽</span>
                 </p>
 
-                <button className="cart_info__btn cart_info__btn-buy">Купить</button>
+                <button onClick={calculateTotal} className="cart_info__btn cart_info__btn-buy">Купить</button>
             </div> 
 
             <div className="cart_info__item-wrapper cart_info_bank_card">
@@ -29,7 +30,7 @@ const CartInfo = () => {
                     522823*****9136
                 </p>
 
-                <a href="profile.html#footer" className="cart_info__btn cart_info__btn-edit_card">Изменить</a>
+                <a href="creditcard#" className="cart_info__btn cart_info__btn-edit_card">Изменить</a>
             </div> 
 
             <div className="cart_info__item-wrapper cart_point">
@@ -49,7 +50,7 @@ const CartInfo = () => {
                     Улица: Проспект Ленина д.38
                 </p>
 
-                <a href="delivery_point.html" className="cart_info__btn cart_point__btn-edit">Изменить</a>
+                <a href="/deliverypoint" className="cart_info__btn cart_point__btn-edit">Изменить</a>
             </div>
         </section>
     )
