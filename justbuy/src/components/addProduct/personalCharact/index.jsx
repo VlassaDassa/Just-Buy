@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState } from "react";
 import "./index.scss";
 import { category_fields } from "../categoryFields";
@@ -68,29 +67,6 @@ const PersonalCharact = ({ selectedCategory, selectedSubcategory }) => {
                 </div>
             </div>
         </>
-=======
-import React from "react";
-import "./index.scss";
-
-
-const PersonalCharact = () => {
-    return (
-        <div className="personal_characteristics">
-            <div className="personal_characteristics__title">
-                Характеристики товара
-            </div>
-
-            <div className="column_wrapper">
-
-            </div>
-
-            <div className="button_wrapper">
-                <button className="button_wrapper__button">
-                    Сохранить
-                </button>
-            </div>
-        </div>
->>>>>>> main
     )
 }
 
