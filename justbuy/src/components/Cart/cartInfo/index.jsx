@@ -1,6 +1,5 @@
 import React from "react";
 import "./index.scss"
-import { Link } from "react-router-dom";
 
 const CartInfo = ({calculateTotal, totalCount, totalPrice}) => {
     return (
@@ -41,10 +40,6 @@ const CartInfo = ({calculateTotal, totalCount, totalPrice}) => {
                 <p className="cart_point__city">
                     Город: Конаково
                 </p>
-
-                {/* <!-- <p className="cart_point__city no_point">
-                    Не выбран
-                </p> --> */}
 
                 <p className="cart_point__address">
                     Улица: Проспект Ленина д.38

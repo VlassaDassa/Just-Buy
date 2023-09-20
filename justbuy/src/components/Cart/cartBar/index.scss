@@ -1,10 +1,5 @@
 @import '../../../assets/styles/variables';
 
-
-main {
-    margin: 100px 0;
-}
-
 .cart__title {
     font-size: 32px;
     font-weight: $regular;
@@ -72,9 +67,3 @@ main {
     transform: rotate(45deg);
 }
 
-
-
-
-/* Blocks */
-@import '../cartInfo/index.scss';
-@import '../cartProducts/index.scss';

@@ -2,12 +2,6 @@ import React from "react";
 import "./index.scss";
 import PhotoSlider from "../photoSlider";
 
-
-
-
-
-
-
 const Location = () => {
     
     return (
@@ -20,29 +14,6 @@ const Location = () => {
                 
                 <PhotoSlider/>
                 
-                {/* <div className="location__photo_slider">
-                    <div className="location__photo_wrapper">
-
-                        <a href="http://localhost:3000/images/dest/profile/point_1.jpg">
-                            <img src={point_1} className="location__photo location__photo-selected" alt="..."/>
-                            <img src={point_2} className="location__photo" alt="..."/>
-                            <img src={point_3} className="location__photo" alt="..."/>
-                        </a>
-
-                    </div>
-                    
-                    <div className="location__photo_pgn">
-                        <img src={point_1} className="location__photo_pgn_item location__photo_pgn_item-selected" alt="..."/>
-                        <img src={point_2} className="location__photo_pgn_item" alt="..."/>
-                        <img src={point_3} className="location__photo_pgn_item" alt="..."/>
-                    </div>
-
-                    <button className="mobile_map__button">
-                        Выбрать пункт выдачи
-                    </button>
-                </div>  */}
-                
-
                 <div className="map">
                     <div id="map">
                         <button className="map__btn_close">Закрыть</button>

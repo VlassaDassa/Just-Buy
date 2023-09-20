@@ -3,7 +3,6 @@ import "./index.scss";
 import Location from "../location";
 import Info from "../info";
 import Feedbacks from "../feedbacks"
-import RatingPoint from "../ratingPoint";
 
 const DeliveryPointBar = () => {
 

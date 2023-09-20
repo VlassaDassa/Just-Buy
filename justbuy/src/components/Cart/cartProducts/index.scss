@@ -1,22 +1,6 @@
 @import '../../../assets/styles/variables';
 
-.cart__title {
-    font-size: 32px;
-    font-weight: $regular;
-    margin-bottom: 20px;
 
-    display: flex;
-    column-gap: 20px;
-}
-
-
-.cart__count_items {
-    font-weight: $thin;
-}
-
-
-/* Checkbox */
-/* Customize the label (the container) */
 .cart__checkbox {
     display: block;
     position: relative;

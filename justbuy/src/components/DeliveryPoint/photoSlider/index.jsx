@@ -1,13 +1,9 @@
 import React, {useState, useEffect} from "react";
 import useRequest from "../../../hooks/useRequest";
 import { getDeliverySlider } from "../../../api/fetchData";
-
-
+import './index.scss';
 
 const PhotoSlider = () => {
-
-
-
     const [data, isLoading, error] = useRequest(() => getDeliverySlider());
     const [pointPhoto, setPointPhoto] = useState([]);
     const [currentSlider, setCurrentSlider] = useState(1);
@@ -35,13 +31,7 @@ const PhotoSlider = () => {
           photo.style.transformOrigin = `${offsetX * 100}% ${offsetY * 100}%`;
         }
       };
-    
 
-    const nextSlide = () => {
-        setCurrentSlider(currentSlider => (currentSlider + 1 === 3 ? 0 : currentSlider + 1));
-    }
-    
-    
     return (
        
         <div className="location__photo_slider">
@@ -59,9 +49,6 @@ const PhotoSlider = () => {
                         />
                 
                     ))}
-            
-                
-
             </div>
                     
             <div className="location__photo_pgn">
@@ -83,11 +70,6 @@ const PhotoSlider = () => {
                 Выбрать пункт выдачи
             </button>
         </div>
-                
-        )
-    
-
-    
-}
+        )}
 
 export default PhotoSlider;

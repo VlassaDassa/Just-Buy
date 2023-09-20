@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import "./index.scss";
 import trash from '../../../assets/images/cart/trash.svg'
@@ -54,10 +55,18 @@ const Photos = () => {
       };
 
 
+=======
+import React from "react";
+import "./index.scss";
+
+
+const Photos = () => {
+>>>>>>> main
     return (
         <div className="photos">
 
             <div className="wrapper_photo wrapper_photo--plus">
+<<<<<<< HEAD
                 <div onClick={handleAddPhotoClick} className="wrapper_photo__plus">
 
                 </div>
@@ -74,6 +83,14 @@ const Photos = () => {
                 </div>
             ))}
             
+=======
+                <div className="wrapper_photo__plus">
+                    
+                </div>
+            </div>
+
+            <input type="file" className="add_photo" />
+>>>>>>> main
         </div>
     )
 }

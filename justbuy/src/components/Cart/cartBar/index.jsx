@@ -19,7 +19,6 @@ const CartBar = () => {
         { id: 5, name: 'Книга / Коричневая книга', price: 4589, count: 0, image: book_5, isChecked: false },
     ]);
 
-    const [selectAll, setSelectAll] = useState(false);
     const [totalCount, setTotalCount] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
 
@@ -74,8 +73,6 @@ const CartBar = () => {
         calculateTotal(products)
     };
 
-    // const sortedProducts = products.filter((product) => product.isChecked === true)
-
     const calculateTotal = () => {
         let totalCount = 0;
         let totalPrice = 0;
@@ -117,13 +114,11 @@ const CartBar = () => {
                 ))}
 
             </div>
-            <CartInfo calculateTotal={calculateTotal} totalCount={totalCount} totalPrice={totalPrice}/>
-
-            {/* <div className="cart_info__btn-buy">
-                <button onClick={calculateTotal}>Buy</button>
-            </div>
-            <div className="cart_info_price__count">Total Count: {totalCount}</div>
-            <div className="cart_info_price__price">Total Price: {totalPrice}</div> */}
+            <CartInfo 
+            calculateTotal={calculateTotal} 
+            totalCount={totalCount} 
+            totalPrice={totalPrice}
+            />
         </>
     )
 

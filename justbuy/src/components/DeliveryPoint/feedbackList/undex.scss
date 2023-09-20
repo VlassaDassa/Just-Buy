@@ -1,16 +1,7 @@
 @import '../../../assets/styles/variables';
 
-
 /* feedback */
 
-.delivery_point_feedback {
-    margin-top: 60px;
-
-    max-width: 510px;
-}
-
-
-.delivery_point_feedback__header,
 .delivery_point_feedback_item,
 .delivery_point_feedback__btn {
     box-shadow: $_box_shadow;
@@ -19,37 +10,10 @@
 }
 
 
-.delivery_point_feedback_item__score_ico,
-.delivery_point_feedback__rating_ico {
+.delivery_point_feedback_item__score_ico {
     width: 20px;
     height: 20px;
 }
-
-
-.delivery_point_feedback__header {
-    max-width: 330px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 17px 30px;
-    margin-bottom: 40px;
-
-    font-weight: $thin;
-}
-
-
-.delivery_point_feedback__numerical_rating {
-    font-size: 24px;
-    margin-bottom: 3px;
-}
-
-
-.delivery_point_feedback__count {
-    font-size: 16px;
-}
-
 
 
 .delivery_point_feedback_item {
@@ -111,10 +75,3 @@
     }
 }
 
-@media (max-width: 600px) {
-    .delivery_point_feedback__header {
-        padding: 17px 15px;
-    }
-}
-
-/* ./feedback */

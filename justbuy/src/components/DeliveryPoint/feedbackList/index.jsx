@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import star from "../../../assets/images/delivery_point/star.svg";
 import star_fill from "../../../assets/images/delivery_point/star_fill.svg";
 import RatingPoint from "../ratingPoint";
@@ -115,20 +115,17 @@ function FeedbackList() {
   const itemsToShow = Math.min(3, remainingItems);
 
   const showMore = () => {
-    // setStartIndex((startIndex + itemsToShow) % feedbackData.length);
     setVisibleItems(visibleItems + 3);
   };
-//  % feedbackData.length
+
   return (
     <div>
       <RatingPoint averageRating={averageRating} totalReviews={feedbackData.length} />
       <div className="delivery_point_feedback__items">
-        {/* feedbackData.slice(startIndex, startIndex + itemsToShow */}
         {feedbackData.slice(startIndex, startIndex + visibleItems).map((item, index) => (
           <FeedbackItem key={index} itemData={item} />
         ))}
       </div>
-      {/* remainingItems - itemsToShow === 0 ? */}
       {visibleItems >= feedbackData.length ? (
         <button className="delivery_point_feedback__btn" onClick={showMore} disabled>
           Больше отзывов нет
