@@ -41,3 +41,10 @@ export const getDeliverySlider = () => {
 export const getCommentsStars = () => {
   return axios.get(API_ROUTES.getCommentsStars);
 }
+
+
+// Get uploated photo
+export const getUploatedPhoto = () => {
+  return axios.get(API_ROUTES.getUploatedPhoto);
+}
+

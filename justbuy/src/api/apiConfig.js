@@ -9,4 +9,5 @@ export const API_ROUTES = {
     getProducts: API_BASE_URL + 'products/',
     getDeliverySlider: API_BASE_URL + 'deliveryslider/',
     getCommentsStars: API_BASE_URL + 'comments_stars/',
+    getUploatedPhoto: API_BASE_URL + 'uploatedphoto/',
 }

@@ -1,0 +1,58 @@
+@import '../../../assets/styles/variables';
+
+.small_column {
+    width: 550rem;
+    max-width: 550px;
+
+    margin-bottom: 50px;
+}
+
+.add_product__color.circle,
+.add_product__trash {
+    position: absolute;
+
+    right: -45px;
+    bottom: 0;
+}
+
+.add_product__trash {
+    height: 40px;
+
+}
+
+.error {
+    background:  lighten($accent, 10%);
+}
+
+
+@media (max-width: 1280px) {
+    .small_column {
+        max-width: unset;
+        width: 100%;
+    }
+
+    .add_product__color.circle,
+    .add_product__trash {
+        right: 10px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .add_product__color.circle {
+        bottom: 7px;
+    }
+
+    .add_product__trash {
+        bottom: 5px;
+        filter: grayscale(100%) brightness(0%);
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .add_product__color.circle {
+        position: absolute;
+    }
+}
