@@ -1,0 +1,108 @@
+@import './../../../assets/styles/variables';
+
+
+
+
+.bank_cards__item {
+    background: linear-gradient(103deg, #7000FF 4.21%, #8F37FF 54.52%, #AC6AFF 100.81%);
+    box-shadow: $_box_shadow;
+    border-radius: 10px;
+
+    height: 200px;
+    width: calc(100%/12*4 - 48px);
+
+    margin: 0 12px;
+    padding: 12px;
+    margin-bottom: 20px;
+
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    color: white;
+    font-size: 20px;
+
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+
+    &:hover {
+        background: rgba(black, 0.3);
+        
+        .trash {
+            display: block;
+        }
+    }
+}
+
+
+.bank_cards__icon {
+    width: 30px;
+}
+
+
+.bank_cards__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-weight: $bold;
+    font-size: 24px;
+    margin-top: 10px;
+    padding: 0 12px;
+}
+
+
+.trash {
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease-in-out;
+    
+    display: none;
+
+    &:hover {
+        height: 55px;
+        width: 55px;
+    }
+}
+
+
+.bank_cards__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    margin-top: auto;
+    font-size: 24px;
+    font-weight: $medium;
+    margin-bottom: 12px;
+    padding: 0 12px;
+}
+
+
+.bank_cards__date {
+    opacity: 0.5;
+}
+
+
+.bank_cards__bank_ico {
+    width: 40px;
+}
+
+
+.date_wrapper {
+    display: flex;
+    column-gap: 30px;
+}
+
+
+@media (max-width: 1440px) {
+    .bank_cards__item {
+        width: calc(100%/2 - 48px);
+    }
+}

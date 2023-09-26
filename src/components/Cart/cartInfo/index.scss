@@ -1,0 +1,141 @@
+@import '../../../assets/styles/variables';
+
+
+
+.cart_info {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 20px;
+}
+
+
+.cart_info__item-wrapper {
+    background: $base;
+    box-shadow: $_box_shadow;
+    padding: 15px 40px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+
+    p {
+        display: flex;
+        column-gap: 10px;
+
+        &:last-of-type {
+            margin-bottom: 30px;
+        }
+    }
+}
+
+
+.cart_info_price__count_prod,
+.cart_info_price__count,
+.cart_info_price__total_price,
+.cart_info_price__price,
+.cart_info_bank_card__bank_card,
+.cart_point__city,
+.cart_point__address {
+    font-size: 24px;
+    text-align: left;
+}
+
+
+.no_point {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.cart_info_bank_card__bank_card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.cart_info__title {
+    font-size: 32px;
+    font-weight: $extra_ligth;
+    text-align: center;
+
+    margin-bottom: 25px;
+}
+
+
+.cart_info__title-bank {
+    margin-bottom: 0px;
+}
+
+
+.cart_info_price__count_prod {
+    margin-bottom: 5px;
+}
+
+
+.cart_info_price__count,
+.cart_info_price__price {
+    font-weight: $regular;
+}
+
+
+.cart_info__btn {
+    background: $accent;
+    border-radius: 10px;
+    font-size: 24px;
+    color: white;
+    font-weight: $regular;
+    padding: 5px 50px;
+    margin-top: auto; 
+    margin-bottom: 10px; 
+    align-self: center; 
+
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        background: rgba($accent, 0.8);
+    }
+}
+
+
+.cart_info_bank_card__bank_card {
+    justify-content: center;
+
+    margin: 37px 0;
+}
+
+
+.cart_point__city {
+    margin-bottom: 5px;
+}
+
+
+@media (max-width: 1024px) {
+    .cart_info {
+        display: block;
+        margin-top: 50px;
+    }
+
+    .cart_info__item-wrapper {
+        width: calc(100% - 40px * 2);
+        margin-bottom: 20px;
+    }
+}
+
+
+@media (max-width: 400px) {
+    .cart_info_price__count_prod,
+    .cart_info_price__count,
+    .cart_info_price__total_price,
+    .cart_info_price__price,
+    .cart_info_bank_card__bank_card,
+    .cart_point__city,
+    .cart_point__address {
+        font-size: 18px;
+    }
+
+    .cart_info__title {
+        font-size: 28px;
+    }  
+}

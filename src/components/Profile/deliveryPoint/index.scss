@@ -1,0 +1,17 @@
+@import './../../../assets/styles/variables';
+
+
+
+
+.point_wrapper {
+    position: absolute;
+    z-index: 1;
+}
+
+
+@media (max-width: 768px) {
+    .point_wrapper {
+        bottom: 10px;
+        right: 10px;
+    }
+}

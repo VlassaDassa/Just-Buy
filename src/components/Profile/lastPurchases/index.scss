@@ -1,0 +1,29 @@
+@import './../../../assets/styles/variables';
+
+
+
+
+
+.last_purchases {
+    margin-bottom: 50px;
+    margin-top: 100px;
+}
+
+
+.last_purchases__yet_wrapper {
+    text-align: center;
+  }
+  
+  .last_purchases__yet {
+    padding: 10px 30px;
+    background: $accent;
+    font-weight: $regular;
+    font-size: 20px;
+    border-radius: 25px;
+    margin: 20px auto;
+    margin-bottom: 50px;
+    display: inline-block; 
+    text-align: center;
+  }
+
+

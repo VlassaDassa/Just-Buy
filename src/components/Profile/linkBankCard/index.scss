@@ -1,0 +1,285 @@
+@import './../../../assets/styles/variables';
+
+
+
+
+.link_card {
+    position: fixed;
+    z-index: 9999;
+
+    background: $base;
+    border-radius: 20px;
+    box-shadow: $_box_shadow;
+
+    max-width: 1300px;
+    padding: 60px;
+
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+}
+
+
+.link_card--hidden {
+    display: none;
+}
+
+
+.link_card__title {
+    font-size: 32px;
+    font-weight: $regular;
+}
+
+
+.card_container {
+    position: relative;
+
+    width: 610px;
+    height: 270px;
+
+    margin: 30px auto;
+    margin-bottom: 50px;
+}
+
+
+.card_container--desktop--hidden,
+.card_container--mobile--hidden,
+.card_container--mobile {
+    display: none;
+}
+
+
+.input_wrapper--line--low {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.card_container__item {
+    width: calc(400px - 80px);
+    height: calc(225px - 80px);
+    padding: 40px;
+    position: absolute;
+
+    border-radius: 15px;
+    box-shadow: $_box_shadow;
+
+    overflow: hidden;
+}
+
+
+.card_container__item--main_info {
+    background: $secondary;
+
+    top: 0px;
+    left: 0px;
+
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.card_container__item--cvv {
+    background: #505050;
+
+    bottom: 0px;
+    right: 0px;
+}
+
+
+.card_container__line {
+    height: 30px;
+    width: 100%;
+    position: absolute;
+
+    background: $secondary;
+}
+
+
+.input_wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+
+.input_wrapper__input {
+    background: $white;
+    color: $secondary;
+    height: 45px;
+    border-radius: 15px;
+
+    font-size: 24px;
+    font-weight: $extra_ligth;
+
+    padding-left: 10px;
+    width: calc(100% - 10px);
+}
+
+
+.input_wrapper__label {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+
+.input_wrapper--line {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    column-gap: 7px;
+    align-items: center;
+}
+
+
+.slash {
+    font-size: 40px;
+    color: $gray;
+    font-weight: $semi_bold;
+
+    position: relative;
+    bottom: 3px;
+}
+
+
+.input_wrapper--line__input {
+    text-align: center;
+    padding: 0px;
+}
+
+
+.bank_ico {
+    position: absolute;
+    height: 40px;
+    bottom: 4px;
+    right: 5px;
+}
+
+.bank_ico--hidden {
+    display: none;
+}
+
+
+.input_wrapper--line-cvv {
+    margin-top: 50px;
+    margin-left: 70%;
+    width: 20%;
+}
+
+
+.input_wrapper__label--cvv,
+#cvv_mobile,
+#cvv_desktop {
+    text-align: center;
+    width: 100%;
+    padding-left: 0px;
+}
+
+
+.save_card--mobile,
+.save_card--desktop {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 50px;
+    padding-bottom: 14px;
+    font-size: 32px;
+    font-weight: $regular;
+    border-radius: 20px;
+    border: 1px solid $white;
+    transition: all 0.3s ease-in-out;
+    line-height: 1;
+}
+
+
+.save_card--mobile {
+    display: none;
+}
+
+
+.save_card--mobile--activate,
+.save_card--desktop--activate {
+    &:hover {
+        background: $secondary;
+    }
+}
+
+
+
+/* close icon */
+.close-icon {
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+}
+  
+.close-icon:before, .close-icon:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60%;
+    height: 2px;
+    background-color: $white;
+    transform: translate(-50%, -50%) rotate(45deg);
+    border-radius: 20px;
+    height: 4px;
+}
+  
+.close-icon:after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+    border-radius: 20px;
+    height: 4px;
+}
+/* ./close icon */
+
+
+
+@media (max-width: 767px) {
+    #cvv_mobile {
+        width: 30%;
+    }
+
+    .link_card {
+        width: calc(100% - 30px);
+        padding: 60px 15px;
+    }
+
+    .input_wrapper {
+        width: 100%;
+    }
+
+    .card_container {
+        height: unset;
+        width: 100%;
+    }
+
+    .input_wrapper--high {
+        margin-bottom: 30px;
+    }
+
+    .card_container--mobile {
+        display: block;
+    }
+
+
+    .card_container--desktop {
+        display: none;
+    }
+
+    .save_card--mobile {
+        display: block;
+    }
+
+    .save_card--desktop {
+        display: none;
+    }
+
+
+}

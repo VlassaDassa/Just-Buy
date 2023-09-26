@@ -1,0 +1,86 @@
+@import './../../../assets/styles/variables';
+
+
+
+
+.mobile_trash_wrapper {
+    width: 95%;
+    display: block;
+    margin: 0 auto;
+
+    margin-bottom: 50px;
+}
+
+
+.mobile_bank_cards__status_ico {
+    width: 30px;
+}
+
+.mobile_bank_cards__base_data {
+    display: flex;
+    align-items: center;
+
+    column-gap: 20px;
+    line-height: 200%;
+}
+
+
+.mobile_bank_cards__date {
+    opacity: 0.5;
+}
+
+
+.mobile_bank_cards__bank_ico {
+    width: 40px;
+}
+
+
+.mobile_bank_cards__secondary_data {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    
+}
+
+
+.mobile_trash {
+    color: white;
+    padding: 15px 30px;
+    background: #8F39FF;
+    display: inline-block;
+    float: right;
+    border-radius: 25px;
+    margin-top: 10px;
+
+    
+    cursor: pointer;
+}
+
+
+@media (max-width: 800px) {
+    .mobile_bank_cards__bank_ico {
+        width: 40px;
+    }
+}
+
+
+@media (max-width: 670px) {
+    .mobile_bank_cards__bank_ico {
+        margin-top: 5px;
+        margin-bottom: 10px;
+
+        width: 30px;
+    }
+
+
+    .mobile_bank_cards__secondary_data {
+        margin-left: 50px;
+    }
+}
+
+
+@media (max-width: 400px) {
+    .mobile_bank_cards__base_data {
+        column-gap: 10px;
+    }
+}

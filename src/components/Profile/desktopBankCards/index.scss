@@ -1,0 +1,53 @@
+@import './../../../assets/styles/variables';
+
+
+
+
+.bank_cards__wrapper {
+    background: $base;
+    box-shadow: $_box_shadow;
+    border-radius: 25px;
+
+    padding: 25px 12px;
+    margin-bottom: 100px;
+    
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+
+
+.bank_cards__circle_wrapper--loader {
+    width: calc(100%/12*4 - 48px);;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+
+.bank_cards__circle_wrapper {
+    width: calc(100%/12*4 - 48px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    padding: 12px
+}
+
+@media (max-width: 1440px) {
+    .bank_cards__circle_wrapper {
+        width: calc(100%/2 - 24px);
+    }
+}
+
+
+
+
+@media (max-width: 1024px) {
+    .bank_cards__wrapper {
+        display: none;
+    }
+}

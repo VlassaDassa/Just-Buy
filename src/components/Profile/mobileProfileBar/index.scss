@@ -1,0 +1,39 @@
+@import '../../../assets/styles/variables';
+
+
+
+
+
+.mobile_profile_bar {
+    display: none;
+    margin-top: 50px;
+}
+
+
+.mobile_profile_bar__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $base;
+    height: 80px;
+
+    border-radius: $_border_radius;
+    box-shadow: $_box_shadow;
+
+    margin-bottom: 20px;
+
+    padding: 0 20px;
+}
+
+
+.mobile_profile_bar__icon_wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+@media (max-width: 400px) {
+    .mobile_profile_bar {
+        display: block;
+    }
+}

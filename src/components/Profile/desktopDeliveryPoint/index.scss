@@ -1,0 +1,96 @@
+@import './../../../assets/styles/variables';
+
+
+
+
+.point {
+    width: 200px;
+    
+    border-radius: 10px;
+    background: rgba($base, 1);
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(16px);
+    
+    height: 350px;
+    
+    padding: 10px;
+    margin-right: 20px;
+
+    z-index: 1;
+}
+
+
+.point--hidden {
+    display: none;
+}
+
+
+.point__image_wrapper {
+    background: $gray;
+    border-radius: 15px;
+    
+    height: 210px;
+    
+    margin-bottom: 10px;
+    
+    overflow: hidden;
+}
+
+
+.point__image {
+    overflow: hidden;
+    height: 210px;
+
+    transition: all 1s ease-in-out;
+}
+
+
+.point__image:hover {
+    transform: scale(1.5);
+}
+
+
+
+.point__description,
+.point__address,
+.point__schedule {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.point__city {
+    margin-bottom: 10px;
+}
+
+
+.point__description {
+    font-weight: 100;
+    
+    font-size: 22px;
+}
+
+
+.point__address {
+    margin-bottom: 10px;
+}
+
+
+.point__schedule {
+    margin-bottom: 10px;
+}
+
+
+.products__rating {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 10px;
+}
+
+
+@media (max-width: 768px) {
+    .point {
+        display: none;
+    }
+}

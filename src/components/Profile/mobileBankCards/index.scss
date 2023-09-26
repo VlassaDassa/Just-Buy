@@ -1,0 +1,114 @@
+@import './../../../assets/styles/variables';
+
+
+
+
+.mobile_bank_cards__wrapper {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: $base;
+    box-shadow: $_box_shadow;
+    border-radius: 25px;
+
+    padding: 20px;
+    margin-bottom: 100px;
+
+    font-weight: $semi_bold;
+}
+
+
+.mobile_bank_cards__item--loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: $secondary;
+    border-radius: 25px;
+    margin-bottom: 50px;
+}
+
+
+.mobile_card_loader {
+    display: block;
+    left: unset;
+    right: unset;
+    position: relative;
+    margin-left: 48px;
+}
+
+
+.mobile_bank_cards__item {
+    width: 97%;
+
+    background: linear-gradient(90deg, #6F00FF 1.49%, #8D34FF 48.14%, #9D51FF 99.93%);
+    border-radius: 25px;
+
+    padding: 10px 15px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    cursor: pointer;
+
+    color: white;
+
+    font-size: 20px;
+    margin-bottom: 5px;
+    height: 70px;
+
+    &:last-child {
+        margin-bottom: 0px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $secondary;
+    }
+}
+
+
+.circle-mobile {
+    background: $base;
+}
+
+
+.circle--link_card--mobile {
+    box-shadow: $_box_shadow;
+    display: none;
+}
+
+
+@media (max-width: 1024px) {
+    .mobile_bank_cards__wrapper {
+        display: flex;
+    }
+
+
+    .circle--link_card--mobile {
+        box-shadow: $_box_shadow;
+        display: block;
+    }
+}
+
+
+@media (max-width: 800px) {
+    .mobile_bank_cards__item {
+        font-size: 20px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .mobile_bank_cards__item {
+        display: flex;
+        flex-direction: column;
+
+        justify-content: center;
+        align-items: flex-start;
+
+        font-size: 18px;
+    }
+}
