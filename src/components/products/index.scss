@@ -6,11 +6,8 @@
 .products {
     display: flex;
     flex-wrap: wrap;
-
     margin: 0 -22px;
 }
-
-
 
 
 @media (max-width: 1440px) {
@@ -19,7 +16,6 @@
         flex-wrap: wrap;
     
         margin: 0 -11px;
-        
     }
 }
 

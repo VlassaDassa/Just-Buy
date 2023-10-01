@@ -1,36 +1,44 @@
 import React, { useState, useEffect } from "react";
-import CartProducts from "../cartProducts";
+
 import CartInfo from "../cartInfo";
+import Products from "../../products";
+
 import book_1 from "../../../assets/images/cart/book_1.jpg";
 import book_2 from "../../../assets/images/cart/book_2.jpg";
 import book_3 from "../../../assets/images/cart/book_3.jpg";
 import book_4 from "../../../assets/images/cart/book_4.jpg";
 import book_5 from "../../../assets/images/cart/book_5.jpg";
+
 import "./index.scss";
 
 
 
 const CartBar = () => {
     const [products, setProducts] = useState([
-        { id: 1, name: 'Книга / Атлант расправил плечи', price: 373, count: 0, image: book_1, isChecked: false },
-        { id: 2, name: 'Книга / Белый ужас', price: 678, count: 0, image: book_2, isChecked: false },
-        { id: 3, name: 'Книга / Ужасная рамка', price: 373, count: 0, image: book_3, isChecked: false },
-        { id: 4, name: 'Книга / Недострой', price: 50000, count: 0, image: book_4, isChecked: false },
-        { id: 5, name: 'Книга / Коричневая книга', price: 4589, count: 0, image: book_5, isChecked: false },
+        { id: 1, name: 'Книга / Атлант расправил плечи', price: 373, count: 0, product_photo: book_1, isChecked: false },
+        { id: 2, name: 'Книга / Белый ужас', price: 678, count: 0, product_photo: book_2, isChecked: false },
+        { id: 3, name: 'Книга / Ужасная рамка', price: 373, count: 0, product_photo: book_3, isChecked: false },
+        { id: 4, name: 'Книга / Недострой', price: 50000, count: 0, product_photo: book_4, isChecked: false },
+        { id: 5, name: 'Книга / Коричневая книга', price: 4589, count: 0, product_photo: book_5, isChecked: false },
     ]);
 
-    const [selectAll, setSelectAll] = useState(false);
     const [totalCount, setTotalCount] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
 
+
+    // Calculating of the total price on initial render
     useEffect(() => {
         calculateTotal(products)
     }, [])
 
+
+    // Recalculation of the total price, when changing the array with products
     useEffect(() => {
         calculateTotal(products)
     }, [products])
 
+
+    // Changing values on any actions
     const handleChange = (e) => {
         const { name, checked } = e.target;
         if (name === "allSelect") {
@@ -58,6 +66,7 @@ const CartBar = () => {
         setProducts(updatedProducts);
     };
 
+
     const decrementProduct = (productId) => {
         const updatedProducts = products.map((product) => {
             if (product.id === productId && product.count > 0) {
@@ -68,13 +77,13 @@ const CartBar = () => {
         setProducts(updatedProducts);
     };
 
+
     const removeProduct = (productId) => {
         const updatedProducts = products.filter((product) => product.id !== productId);
         setProducts(updatedProducts);
         calculateTotal(products)
     };
 
-    // const sortedProducts = products.filter((product) => product.isChecked === true)
 
     const calculateTotal = () => {
         let totalCount = 0;
@@ -88,6 +97,16 @@ const CartBar = () => {
         setTotalCount(totalCount);
         setTotalPrice(totalPrice);
     };
+
+    
+    // Functions and props for custom products component
+    const cartPageOptions = {
+        'handleChange': handleChange,
+        'onIncrement': incrementProduct,
+        'onDecrement': decrementProduct,
+        'onRemove': removeProduct,
+        'calculateTotal': calculateTotal,
+    }
 
     return (
         <>
@@ -103,27 +122,14 @@ const CartBar = () => {
                 </label>
             </div>
 
-            <div className="products">
-                {products.map((product) => (
-                    <CartProducts
-                        product={product}
-                        key={product.id}
-                        handleChange={handleChange}
-                        onIncrement={incrementProduct}
-                        onDecrement={decrementProduct}
-                        onRemove={removeProduct}
-                        calculateTotal={calculateTotal}
-                    />
-                ))}
 
-            </div>
+            <Products
+                products={products}
+                cartPage={true}
+                cartPageOptions={cartPageOptions}
+            />
+
             <CartInfo calculateTotal={calculateTotal} totalCount={totalCount} totalPrice={totalPrice}/>
-
-            {/* <div className="cart_info__btn-buy">
-                <button onClick={calculateTotal}>Buy</button>
-            </div>
-            <div className="cart_info_price__count">Total Count: {totalCount}</div>
-            <div className="cart_info_price__price">Total Price: {totalPrice}</div> */}
         </>
     )
 

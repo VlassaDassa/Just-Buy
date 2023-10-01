@@ -2,35 +2,31 @@
 
 
 main {
-    margin: 100px 0;
+    margin: 75px 0;
 }
+
 
 .cart__title {
     font-size: 32px;
     font-weight: $regular;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 
     display: flex;
     column-gap: 20px;
 }
 
-.cart__count_items {
-    font-weight: $thin;
-}
 
-.cart__checkbox {
+.cart__checkbox_all {
     display: block;
     position: relative;
     padding-left: 45px;
     margin-bottom: 22px;
     cursor: pointer;
     font-size: 26px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
     width: 30px;
 }
+
 
 .cart__checkbox input {
     position: absolute;
@@ -39,6 +35,7 @@ main {
     height: 0;
     width: 0;
 }
+
 
 .cart__checkmark {
     position: absolute;
@@ -49,17 +46,19 @@ main {
     background-color: $base;
 }
 
+
 .cart__checkmark:after {
     content: "";
     position: absolute;
     display: none;
 }
 
+
 .cart__checkbox input:checked ~ .cart__checkmark:after {
     display: block;
 }
   
-  /* Style the cart__checkmark/indicator */
+
 .cart__checkbox .cart__checkmark:after {
     left: 12px;
     top: 5px;
@@ -75,6 +74,4 @@ main {
 
 
 
-/* Blocks */
-@import '../cartInfo/index.scss';
-@import '../cartProducts/index.scss';
+

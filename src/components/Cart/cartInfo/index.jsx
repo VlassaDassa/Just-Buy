@@ -1,8 +1,13 @@
 import React from "react";
+
 import "./index.scss"
-import { Link } from "react-router-dom";
+
+
+
+
 
 const CartInfo = ({calculateTotal, totalCount, totalPrice}) => {
+
     return (
         <section className="cart_info">
             <div className="cart_info__item-wrapper cart_info_price">
@@ -11,11 +16,11 @@ const CartInfo = ({calculateTotal, totalCount, totalPrice}) => {
                 </h1>
 
                 <p className="cart_info_price__count_prod">
-                    Количество товаров: <span className="cart_info_price__count">{totalCount}шт</span>
+                    Количество товаров: <span className="cart_info_price__count">{totalCount} шт</span>
                 </p>
 
                 <p className="cart_info_price__total_price">
-                    Итого <span className="cart_info_price__price">{totalPrice} ₽</span>
+                    Итого: <span className="cart_info_price__price">{totalPrice} ₽</span>
                 </p>
 
                 <button onClick={calculateTotal} className="cart_info__btn cart_info__btn-buy">Купить</button>
@@ -39,15 +44,11 @@ const CartInfo = ({calculateTotal, totalCount, totalPrice}) => {
                 </h1>
 
                 <p className="cart_point__city">
-                    Город: Конаково
+                    Город: <span className="boldCity">Конаково</span>
                 </p>
 
-                {/* <!-- <p className="cart_point__city no_point">
-                    Не выбран
-                </p> --> */}
-
                 <p className="cart_point__address">
-                    Улица: Проспект Ленина д.38
+                    Улица: <span className="boldAddress">Проспект Ленина д.38</span>
                 </p>
 
                 <a href="/deliverypoint" className="cart_info__btn cart_point__btn-edit">Изменить</a>

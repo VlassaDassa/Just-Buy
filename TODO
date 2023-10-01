@@ -1,0 +1,6 @@
+1. Display data from API;
+2. Set up removing, adding products to cart;
+3. Tweak business logic (calculating general sum for unselect product);
+4. Set up buying (conditional work for button, send products in DB to any tables);
+5. Make a limit on the number of products adding a product;
+6. Resolve error: total price don't calculating for mobile devices;
