@@ -2,28 +2,32 @@ import React, { useState, useEffect } from "react";
 
 import CartInfo from "../cartInfo";
 import Products from "../../products";
+import { showError } from "../../../hooks/showError";
 
-import book_1 from "../../../assets/images/cart/book_1.jpg";
-import book_2 from "../../../assets/images/cart/book_2.jpg";
-import book_3 from "../../../assets/images/cart/book_3.jpg";
-import book_4 from "../../../assets/images/cart/book_4.jpg";
-import book_5 from "../../../assets/images/cart/book_5.jpg";
+import useRequest from "../../../hooks/useRequest";
+import { getCartProducts, removeCartProduct } from "../../../api/fetchData";
+
+
 
 import "./index.scss";
 
 
 
 const CartBar = () => {
-    const [products, setProducts] = useState([
-        { id: 1, name: 'Книга / Атлант расправил плечи', price: 373, count: 0, product_photo: book_1, isChecked: false },
-        { id: 2, name: 'Книга / Белый ужас', price: 678, count: 0, product_photo: book_2, isChecked: false },
-        { id: 3, name: 'Книга / Ужасная рамка', price: 373, count: 0, product_photo: book_3, isChecked: false },
-        { id: 4, name: 'Книга / Недострой', price: 50000, count: 0, product_photo: book_4, isChecked: false },
-        { id: 5, name: 'Книга / Коричневая книга', price: 4589, count: 0, product_photo: book_5, isChecked: false },
-    ]);
+    const [data, loading, error] = useRequest(() => getCartProducts(), []);
+
+    const [products, setProducts] = useState([]);
 
     const [totalCount, setTotalCount] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
+
+    
+    // Products
+    useEffect(() => {
+        if (data && !loading) {
+            setProducts(data)
+        }
+    }, [loading])
 
 
     // Calculating of the total price on initial render
@@ -79,9 +83,19 @@ const CartBar = () => {
 
 
     const removeProduct = (productId) => {
-        const updatedProducts = products.filter((product) => product.id !== productId);
-        setProducts(updatedProducts);
-        calculateTotal(products)
+        removeCartProduct(productId)
+        .then(response => {
+        if (response.status !== 200) {
+            showError('Ошибка при удалении товара')
+        }
+        else {
+            setProducts(products.filter((product) => product.id !== productId));
+            calculateTotal(products)
+        }
+        })
+        .catch(error => {
+        showError('Ошибка при удалении товара')
+        })
     };
 
 

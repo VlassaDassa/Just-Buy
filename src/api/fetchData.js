@@ -5,47 +5,47 @@ import { API_ROUTES } from './apiConfig';
 
 
 
-// Get categories and subcategories for desktop and mobile menu
+// Receiving categories and subcategories for desktop and mobile menu
 export const getMenu = () => {
     return axios.get(API_ROUTES.getMenu);
 }
 
-// Get subcategories for desktop and mobile menu
+// Receiving subcategories for desktop and mobile menu
 export const getMenuSubcategories = (category_id) => {
   return axios.get(API_ROUTES.getMenuSubcategories + category_id + '/');
 }
 
-// Get all photo for slider on the index page
+// Receiving all photo for slider on the index page
 export const getSliderPhoto = () => {
   return axios.get(API_ROUTES.getSliderPhoto);
 }
 
 
-// Get products with limit
+// Receiving products with limit
 export const getProducts = (start_limit, count) => {
   return axios.get(API_ROUTES.getProducts + start_limit + '/' + count + '/');
 }
 
 
-// Get all products
+// Receiving all products
 export const getAllProducts = () => {
   return axios.get(API_ROUTES.getAllProducts);
 }
 
 
-// Get all delivery points
+// Receiving all delivery points
 export const getAllDeliveryPoints = () => {
   return axios.get(API_ROUTES.getAllDeliveryPoints);
 }
 
 
-// Get all bank cards
+// Receiving all bank cards
 export const getAllBankCards = () => {
   return axios.get(API_ROUTES.getAllBankCards);
 }
 
 
-// Add bank card
+// Adding bank card
 export async function addBankCard(data) {
   const config = {
     headers: {
@@ -57,7 +57,7 @@ export async function addBankCard(data) {
 };
 
 
-// Update bank card status
+// Updating bank card status
 export function updateStatusBankCard(id, newValue) {
     const data = {
       id: id,
@@ -68,17 +68,32 @@ export function updateStatusBankCard(id, newValue) {
 }
 
 
-// Delete bank card
+// Deleting bank card
 export function deleteBankCard(id)  {
   return axios.delete(API_ROUTES.deleteBankCard + id + '/')
 }
 
-// Get delivery slider
+
+// Receiving delivery slider
 export const getDeliverySlider = () => {
   return axios.get(API_ROUTES.getDeliverySlider);
 }
 
-// Get comments stars
+
+// Receiving comments stars
 export const getCommentsStars = () => {
   return axios.get(API_ROUTES.getCommentsStars);
 }
+
+
+// Receiving cart products
+export const getCartProducts = () => {
+  return axios.get(API_ROUTES.getCartProducts);
+}
+
+
+// Removing cart product
+export const removeCartProduct = (product_id) => {
+  return axios.delete(API_ROUTES.removeCartProduct + product_id + '/');
+}
+
