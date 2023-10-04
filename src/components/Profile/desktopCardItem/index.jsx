@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 
 import trashIcon from './../../../assets/images/profile/trash.svg';

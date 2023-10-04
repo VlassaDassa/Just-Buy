@@ -118,6 +118,24 @@
 }
 
 
+.btnNoActive {
+    cursor: unset;
+    opacity: 0.5;
+
+    &:hover {
+        background: $accent;
+    }
+}
+
+
+.no_point {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+
 @media (max-width: 1600px) {
     .cart_info_price__count_prod,
     .cart_info_price__count,
@@ -189,3 +207,27 @@
         font-size: 28px;
     }  
 }
+
+
+
+/* Transition group */
+.success-exit {
+    top: 50%;
+    display: none;
+}
+  
+.success-exit-active {
+    top: -50%;
+    transition: all 500ms ease-in;
+}
+  
+/* Пример стиля для плавного появления */
+.success-enter {
+    top: -50%;
+}
+  
+.success-enter-active {
+    top: 50%;
+    transition: all 500ms ease-out;
+}
+/* ./Transition group */

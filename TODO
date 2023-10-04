@@ -1,17 +1,13 @@
-1. Set up removing, adding products to cart;
-2. Tweak business logic (calculating general sum for unselect product);
-3. Set up buying (conditional work for button, send products in DB to any tables);
-4. Make a limit on the number of products adding a product;
-5. Resolve error: total price don't calculating for mobile devices;
+Make on the all pages:
+    - Navigations;
 
 
-Where i stopped:
-    Remake Django model and removing. 
 
 
-Back to index:
-    1. Display status "in cart";
+
+    
+    
+    
 
 
-Reminder:
-    1. Error, if cart products is empty, then button "all" have status "True"
+

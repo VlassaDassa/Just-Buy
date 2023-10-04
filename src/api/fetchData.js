@@ -93,7 +93,36 @@ export const getCartProducts = () => {
 
 
 // Removing cart product
-export const removeCartProduct = (product_id) => {
-  return axios.delete(API_ROUTES.removeCartProduct + product_id + '/');
+export const removeCartProduct = (cartId) => {
+  return axios.delete(API_ROUTES.removeCartProduct + cartId + '/');
 }
 
+
+// Removing cart product from product id
+export const removeCartProductFromProdId = (product_id) => {
+  return axios.delete(API_ROUTES.removeCartProductFromProdId + product_id + '/');
+}
+
+
+// Adding cart product
+export const addCartProduct = (product_id) => {
+  return axios.post(API_ROUTES.addCartProduct + product_id + '/');
+}
+
+
+// Getting current bank card
+export const getCurrentBankCard = () => {
+  return axios.get(API_ROUTES.getCurrentBankCard);
+}
+
+
+// Getting current delivery pount
+export const getCurrentDeliveryPoint = () => {
+  return axios.get(API_ROUTES.getCurrentPoint);
+}
+
+
+// Send purchased goods to the server
+export function sendPurchasedGoods(data) {
+  return axios.post(API_ROUTES.sendPurchasedGoods, data)
+}

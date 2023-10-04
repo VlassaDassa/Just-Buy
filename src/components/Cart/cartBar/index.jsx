@@ -3,10 +3,10 @@ import React, { useState, useEffect } from "react";
 import CartInfo from "../cartInfo";
 import Products from "../../products";
 import { showError } from "../../../hooks/showError";
+import NoSection from "../../noSection";
 
 import useRequest from "../../../hooks/useRequest";
 import { getCartProducts, removeCartProduct } from "../../../api/fetchData";
-
 
 
 import "./index.scss";
@@ -21,7 +21,7 @@ const CartBar = () => {
     const [totalCount, setTotalCount] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
 
-    
+
     // Products
     useEffect(() => {
         if (data && !loading) {
@@ -62,7 +62,7 @@ const CartBar = () => {
 
     const incrementProduct = (productId) => {
         const updatedProducts = products.map((product) => {
-            if (product.id === productId) {
+            if ((product.id === productId) && (product.totalCount != product.count)) {
                 return { ...product, count: product.count + 1 };
             }
             return product;
@@ -104,8 +104,10 @@ const CartBar = () => {
         let totalPrice = 0;
 
         products.forEach((product) => {
-            totalCount += product.count;
-            totalPrice += product.price * product.count;
+            if (product.isChecked) {
+                totalCount += product.count;
+                totalPrice += product.price * product.count;
+            }
         });
 
         setTotalCount(totalCount);
@@ -122,6 +124,10 @@ const CartBar = () => {
         'calculateTotal': calculateTotal,
     }
 
+
+    // Condition for button "All"
+    const isAllChecked = products.length === 0 ? false : !products.some((product) => product?.isChecked !== true);
+
     return (
         <>
             <div className="cart__header">
@@ -131,19 +137,25 @@ const CartBar = () => {
 
 
                 <label className="cart__checkbox cart__checkbox_all"> Всё
-                    <input type="checkbox" name="allSelect" onClick={calculateTotal} onChange={handleChange} checked={!products.some((product) => product?.isChecked !== true)} />
+                    <input type="checkbox" name="allSelect" onClick={calculateTotal} onChange={handleChange} checked={isAllChecked} />
                     <span className="cart__checkmark cart__checkmark_all"></span>
                 </label>
             </div>
 
+            {
+                (!products || products.length === 0) && !loading ?
+                    <NoSection message={'Корзина пуста'} additionalClass={'cartNoSection'} />
+                :
+                    <Products
+                        products={products}
+                        cartPage={true}
+                        cartPageOptions={cartPageOptions}
+                    />
+            }
 
-            <Products
-                products={products}
-                cartPage={true}
-                cartPageOptions={cartPageOptions}
-            />
+            
 
-            <CartInfo calculateTotal={calculateTotal} totalCount={totalCount} totalPrice={totalPrice}/>
+            <CartInfo products={products} totalCount={totalCount} totalPrice={totalPrice} setProducts={setProducts} />
         </>
     )
 

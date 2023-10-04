@@ -72,6 +72,18 @@ main {
 }
 
 
+.cartNoSection {
+    margin-top: 100px;
+    margin-bottom: 500px;
+}
+
+
+@media (max-width: 600px) {
+    .cartNoSection {
+        margin-top: 100px;
+        margin-bottom: 200px;
+    }
+}
 
 
 

@@ -3,9 +3,9 @@ import './index.scss';
 
 
 
-const NoSection = ({ message }) => {
+const NoSection = ({ message, additionalClass={} }) => {
   return (
-    <p className="noSection">
+    <p className={'noSection' + ' ' + additionalClass}>
         {message}
     </p>
   )

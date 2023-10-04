@@ -1,5 +1,4 @@
 const API_BASE_URL = 'http://192.168.0.118:8000/api/';
-// const API_BASE_URL = 'http://192.168.56.1:8000/api/';
 
 export const API_ROUTES = {
     getMenu: API_BASE_URL + 'category/',
@@ -20,5 +19,10 @@ export const API_ROUTES = {
     getCommentsStars: API_BASE_URL + 'comments_stars/',
 
     getCartProducts: API_BASE_URL + 'cart_products/',
-    removeCartProduct: API_BASE_URL + 'delete_cart_product/'
+    removeCartProduct: API_BASE_URL + 'delete_cart_product/',
+    removeCartProductFromProdId: API_BASE_URL + 'delete_cart_product_from_prod_id/',
+    addCartProduct: API_BASE_URL + 'add_cart_product/',
+    getCurrentPoint: API_BASE_URL + 'get_current_point/',
+    getCurrentBankCard: API_BASE_URL + 'get_current_card/',
+    sendPurchasedGoods: API_BASE_URL + 'add_to_on_road/',
 }

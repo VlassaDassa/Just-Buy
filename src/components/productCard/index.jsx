@@ -5,6 +5,9 @@ import heartFill from './../../assets/images/product_card/heart-small-fill.svg';
 import cartImg from './../../assets/images/product_card/cart.svg';
 import cartFill from './../../assets/images/product_card/cart-fill.svg';
 import trash from './../../assets/images/cart/trash.svg'
+import { showError } from '../../hooks/showError';
+
+import { addCartProduct, removeCartProductFromProdId } from '../../api/fetchData';
 
 import './index.scss';
 
@@ -19,6 +22,7 @@ const ProductCard = ({
         rating,
         countFeedback,
         product_id,
+        is_in_cart,
 
         likeShow,
         cartShow,
@@ -44,10 +48,42 @@ const ProductCard = ({
     const activeMobileLike = 'products__icon products__icon-small products__icon-like active'
 
     const [like, setLike] = useState([]);
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState(is_in_cart);
 
 
-    
+    const addToCart = (product_id) => {
+        addCartProduct(product_id)
+        .then(response => {
+            console.log(response)
+            if (response.status !== 200) {
+                showError('Ошибка при добавлении товара')
+            }
+            else {
+                setCart(true)
+            }
+            })
+        .catch(error => {
+            showError('Ошибка при добавлении товара')
+        })
+    }
+
+
+    const removeInCart = (product_id) => {
+        removeCartProductFromProdId(product_id)
+        .then(response => {
+        if (response.status !== 200) {
+            showError('Ошибка при удалении товара')
+        }
+        else {
+            setCart(false);
+        }
+        })
+        .catch(error => {
+        showError('Ошибка при удалении товара')
+        })
+    }
+
+
     return (
         <div className="products__item">
             <div className={`products__photo_wrapper`}>
@@ -97,10 +133,10 @@ const ProductCard = ({
                                     className={like.includes(product_id) ? defaultLikeClass: activeLikeClass}
                                     onClick={() => {
                                         if (like.includes(product_id)) {
-                                        setLike(like.filter(item => item !== product_id));
+                                            setLike(like.filter(item => item !== product_id));
                                         }
                                         else {
-                                        setLike([...like, product_id]);
+                                            setLike([...like, product_id]);
                                         }
                                     }}
                                 />
@@ -108,14 +144,14 @@ const ProductCard = ({
                             
                             {cartShow &&
                                 <img 
-                                    src={cart.includes(product_id) ? cartFill: cartImg} 
-                                    className={cart.includes(product_id) ? defaultCartClass: activeCartClass}
+                                    src={cart ? cartFill: cartImg} 
+                                    className={cart ? defaultCartClass: activeCartClass}
                                     onClick={() => {
-                                        if (cart.includes(product_id)) {
-                                            setCart(cart.filter(item => item !== product_id));
+                                        if (cart) {
+                                            removeInCart(product_id)
                                         }
                                         else {
-                                            setCart([...cart, product_id])
+                                            addToCart(product_id)
                                         }
                                     }}
                                 />
@@ -148,13 +184,13 @@ const ProductCard = ({
                         {cartShow && likeShow && 
                             <div className="products__mobile_btn">
                                 <button 
-                                    className={cart.includes(product_id) ? activeMobileCart : defaultMobileCart}
+                                    className={cart ? activeMobileCart : defaultMobileCart}
                                     onClick={() => {
-                                        if (cart.includes(product_id)) {
-                                            setCart(cart.filter(item => item !== product_id));
+                                        if (cart) {
+                                            removeInCart(product_id)
                                         }
                                         else {
-                                            setCart([...cart, product_id])
+                                            addToCart(product_id)
                                         }
                                     }}
                                 >
