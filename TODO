@@ -1,7 +1,6 @@
-1. Define disadvantages for "Profile", "Index", "Card" pages on Desktop;
-2. Define disadvantages for "Profile", "Index", "Card" pages on Mobile;
-3. Fix "Andrey" branch;
-4. Page AddProduct;
+1. Fix "Andrey" branch;
+2. Fix all branches;
+3. Page AddProduct;
 
 
 
@@ -26,6 +25,7 @@ Reminder:
     Desktop menu:
         - Remove the twitching on the changing categories;
     
-    
+    Mobile menu:
+        - Remove the twitching on the changing categories;
 
 
