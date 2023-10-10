@@ -13,8 +13,8 @@ export const publicRoutes = [
     {path: '/index', component: Index, exact: true},
     {path: '/profile', component: Profile, exact: true},
 
-    {path: '/addproduct', component: AddProduct, exact: true},
+    {path: '/add_product', component: AddProduct, exact: true},
     {path: '/cart', component: Cart, exact: true},
-    {path: '/deliverypoint', component: DeliveryPoint, exact: true},
+    {path: '/delivery_point', component: DeliveryPoint, exact: true},
 
 ]

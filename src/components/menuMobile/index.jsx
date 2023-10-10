@@ -1,17 +1,26 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react-lite';
+import { Link } from 'react-router-dom';
 
 import { getMenu, getMenuSubcategories } from '../../api/fetchData';
 import useRequest from '../../hooks/useRequest';
+import auth from '../../store/auth';
+import overlay from '../../store/overlay';
 
-import './index.scss';
+import mobileMenu from '../../store/mobileMenu';
+import noScroll from '../../store/noScroll';
 
 import arrow_left from './../../assets/images/mobile_menu/arrow_left.svg';
 import profile from './../../assets/images/header/profile.svg';
 import cart from './../../assets/images/header/cart.svg';
 
-import mobileMenu from '../../store/mobileMenu';
-import noScroll from '../../store/noScroll';
+import { authVar } from '../../fakeVar';
+
+import './index.scss';
+
+
+
+
 
 
 const MenuMobile = observer(() => {
@@ -25,6 +34,11 @@ const MenuMobile = observer(() => {
         setHideMobileCategory(true)
         setSelectedCategory(category)
     };
+
+    function toggleAuth() {
+        auth.toggleShow()
+        overlay.toggleShow()
+    }
 
     function close() {
         mobileMenu.toggleShow()
@@ -48,13 +62,18 @@ const MenuMobile = observer(() => {
                 </div>
                 <nav className="mobile_menu__icons">
                     <ul>
-                        {/* <li className="mobile_menu-item mobile_menu-profile"><a href="profile.html"><img src={profile} /></a></li> */}
                         <li 
                             className="mobile_menu-item mobile_menu-profile"
+                            onClick={authVar ? null : () => {toggleAuth(); close()}}
                         >
-                            <img src={profile} />
+                            {
+                                authVar ?
+                                    <Link onClick={close} to="/profile"><img src={profile} /></Link>      
+                                :
+                                    <img src={profile} />
+                            }
                         </li>
-                        <li className="mobile_menu-item mobile_menu-cart"><a href="cart.html"><img src={cart} /></a></li>
+                        <li className="mobile_menu-item mobile_menu-cart"><Link to="/cart" onClick={close}><img src={cart} /></Link></li>
                     </ul>
                 </nav>
 

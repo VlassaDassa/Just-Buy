@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { CSSTransition } from 'react-transition-group';
+import { useLocation } from 'react-router-dom';
 
 import { observer } from 'mobx-react-lite';
-import { BrowserRouter } from 'react-router-dom';
 
 import CriticalErrorMessage from './components/criricalErrorMessage';
 import ErrorMessage from './components/errorMessage';
@@ -29,7 +29,6 @@ import './../src/assets/styles/index.scss'
 
 
 const App = observer(() => {
-  const [showGlobalLoader, setShowGlobalLoader] = useState(true)
   const [hiddenGlobalLoader, setHiddenGlobalLoader] = useState(false)
 
   if (noScroll.scroll) {
@@ -38,21 +37,22 @@ const App = observer(() => {
   else {
       document.body.classList.add('no-scroll')
   }
- 
+
+  const location = useLocation();
+  
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     noScroll.toggleScroll(false)
-
-    setTimeout(() => {
-      setHiddenGlobalLoader(true)
-    }, 500)
+    setHiddenGlobalLoader(false)
+    
 
     setTimeout(() => {
       noScroll.toggleScroll(true)
-      setShowGlobalLoader(false)
+      setHiddenGlobalLoader(true)
     }, 1000)
     
-  }, [])
+  }, [location])
 
 
   // Critical error
@@ -63,15 +63,10 @@ const App = observer(() => {
 
   return (
     <div className="App">
-      {showGlobalLoader ?
-          <GlobalLoader hiddenGlobalLoader={hiddenGlobalLoader}/>
-        :
-          null
-      }
+      <GlobalLoader hiddenGlobalLoader={hiddenGlobalLoader}/>
 
       <ErrorMessage message={'Сделать менеджер ошибок и отображать этот компонент из App.js'} />
-
-      <Header />
+    
       <CSSTransition
         in={menu.show}
         unmountOnExit
@@ -81,23 +76,29 @@ const App = observer(() => {
       >
         <Menu />
       </CSSTransition>
-      
+
+      <Header />
+
       <MobileSearchBar />
+
       <MenuMobile />
-        <Auth />
-        <CSSTransition
-          in={overlay.show}
-          unmountOnExit
-          key={'overlaytrans'}
-          timeout={300}
-          classNames="overlaytrans"
-        >
-          <Overlay />
-        </CSSTransition>
-        <BrowserRouter>
-          <AppRouter/>
-        </BrowserRouter>
-        <ToUp />
+
+      <Auth />
+      
+      <CSSTransition
+        in={overlay.show}
+        unmountOnExit
+        key={'overlaytrans'}
+        timeout={300}
+        classNames="overlaytrans"
+      >
+        <Overlay />
+      </CSSTransition>
+        
+      <AppRouter/>
+        
+      <ToUp />
+
       <Footer />
     </div>
   );

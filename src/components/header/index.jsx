@@ -1,5 +1,5 @@
-import React from 'react'
-import './index.scss';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 import menu from '../../store/menu';
 import auth from '../../store/auth';
@@ -14,7 +14,9 @@ import burger from './../../assets/images/header/burger.svg';
 import profile from './../../assets/images/header/profile.svg';
 import cart from './../../assets/images/header/cart.svg';
 
+import { authVar } from '../../fakeVar';
 
+import './index.scss';
 
 
 
@@ -46,7 +48,7 @@ const Header = () => {
         <header className="header">
             <div className="container">
                 <div className="header_wrapper">
-                    <a href="index.html"><img className="header__logo" src={logo} /></a>
+                    <Link to='/'><img className="header__logo" src={logo} /></Link>
 
                     <input type="text" placeholder="Поиск товаров" name={"random-" + Math.random()} className="header__searchbar-input" autoComplete="off" />
                         
@@ -63,23 +65,29 @@ const Header = () => {
                                 className="header__icons-item header__icons-burger" 
                                 onClick={toggleMobileMenu}
                             >
-                                <a href="#"><img src={burger} /></a>
+                                <img src={burger} />
                             </li>
 
                             <li 
                                 className="header__icons-item header__icons-profile"
-                                onClick={toggleAuth}
+                                onClick={authVar ? null : toggleAuth}
                             >
-                                <img src={profile} />
+                                {
+                                    authVar ?
+                                        <Link to="/profile"><img src={profile} /></Link>      
+                                    :
+                                        <img src={profile} />
+                                }
+                                
                             </li>
 
-                            <li className="header__icons-item header__icons-cart"><a href="cart.html"><img src={cart} /></a></li>
+                            <li className="header__icons-item header__icons-cart"><Link to="/cart"><img src={cart} /></Link></li>
 
                             <li 
                                 className="header__icons-item header__icons-desktop-burger"
                                 onClick={toggleMenu}
                             >
-                                <a href="#"><img src={burger} /></a>
+                                <img src={burger} />
                             </li>
                         </ul>
                     </nav>

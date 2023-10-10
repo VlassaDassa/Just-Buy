@@ -1,13 +1,31 @@
-Make on the all pages:
-    - Navigations;
+1. Define disadvantages for "Profile", "Index", "Card" pages on Desktop;
+2. Define disadvantages for "Profile", "Index", "Card" pages on Mobile;
+3. Fix "Andrey" branch;
+4. Page AddProduct;
 
 
 
 
 
+
+
+
+
+
+
+
+Reminder:
+    General:
+        - Remove the twitching on the transitions by pages;
+        - Make the overlay hide smoothly;
+
+    Profile:
+        - Remove the twitching on the change delivery point;
+        - Make it possible choicing city;
+
+    Desktop menu:
+        - Remove the twitching on the changing categories;
     
     
-    
-
 
 

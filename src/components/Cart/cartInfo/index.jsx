@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 
 import SuccessMessage from "../../SuccessMessage";
@@ -127,7 +128,7 @@ const CartInfo = ({ totalCount, totalPrice, products, setProducts }) => {
                     }
                 </p>
 
-                <a href="creditcard#" className="cart_info__btn cart_info__btn-edit_card">Изменить</a>
+                <Link to="/profile" className="cart_info__btn cart_info__btn-edit_card">Изменить</Link>
             </div> 
 
             <div className="cart_info__item-wrapper cart_point">
@@ -152,7 +153,7 @@ const CartInfo = ({ totalCount, totalPrice, products, setProducts }) => {
                     </>
                 }
                 
-                <a href="/deliverypoint" className="cart_info__btn cart_point__btn-edit">Изменить</a>
+                <Link to="/delivery_point" className="cart_info__btn cart_point__btn-edit">Изменить</Link>
             </div>
         </section>
     )
