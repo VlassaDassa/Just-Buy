@@ -1,8 +1,25 @@
 import React, { useState } from 'react';
-import './index.scss';
-import trash from '../../../assets/images/cart/trash.svg';
 
-const ChoiceColor = ({ onChange, onDelete, selectedField, handleFieldChange, handleAddColorField, index, colorFields, setFirstClick, value, setValue }) => {
+import trash from '../../../assets/images/cart/trash.svg';
+import './index.scss';
+
+
+
+
+
+const ChoiceColor = ({ 
+        onChange, 
+        onDelete, 
+        selectedField, 
+        handleFieldChange, 
+        handleAddColorField, 
+        index, 
+        colorFields, 
+        setFirstClick, 
+        value, 
+        setValue 
+    }) => {
+
     const [valueInput, setValueInput] = useState('')
     const [isInputFilled, setIsInputFilled] = useState(false)
     
@@ -12,6 +29,7 @@ const ChoiceColor = ({ onChange, onDelete, selectedField, handleFieldChange, han
         onChange(e.target.value)
     };
 
+
     const handleValueInputChange = (e) => {
         const inputValue = e.target.value
         setValueInput(e.target.value)
@@ -20,13 +38,14 @@ const ChoiceColor = ({ onChange, onDelete, selectedField, handleFieldChange, han
         setIsInputFilled(inputValue.trim() !== '')
     }
 
+
     const handleDeleteClick = () => {
         onDelete(index)
         setValueInput('')
     };
 
+
     const handleAddColorClick = () => {
-        
         if (isInputFilled) {
             handleAddColorField()
         } else {
@@ -34,18 +53,26 @@ const ChoiceColor = ({ onChange, onDelete, selectedField, handleFieldChange, han
         }
     };
 
+
+
+
+    
     return (
         <div className="small_column__row">
 
             <div className="general_characteristics__item_wrapper">
 
                 <label value={selectedField} onChange={handleFieldChange} className="general_characteristics__label" htmlFor="color">Цвет</label>
+                
                 <select id="color" value={value} onChange={handleValueChange} className="general_characteristics__input">
+                    {/* TODO API */}
                     <option value="yellow">Желтый</option>
                     <option value="red">Красный</option>
                     <option value="black">Черный</option>
                 </select>
+
             </div>
+
             <div className="general_characteristics__item_wrapper">
                 <label className="general_characteristics__label" htmlFor="count">Количество</label>
                 <input
@@ -56,11 +83,13 @@ const ChoiceColor = ({ onChange, onDelete, selectedField, handleFieldChange, han
                     className="general_characteristics__input"
                 />
             </div>
+
             {index === colorFields.length - 1 && (
                 <div className="icon add_product__color circle" onClick={handleAddColorClick}>
                     <div className="add_product__color plus"></div>
                 </div>
             )}
+
             {index === 0 && colorFields.length > 1 && (
                 <img
                 src={trash}
@@ -69,6 +98,7 @@ const ChoiceColor = ({ onChange, onDelete, selectedField, handleFieldChange, han
                 alt='...'
               />
             )}
+
             {index > 0 && index !== colorFields.length - 1 &&(
                 <img
                 src={trash}
@@ -76,10 +106,8 @@ const ChoiceColor = ({ onChange, onDelete, selectedField, handleFieldChange, han
                 onClick={handleDeleteClick}
                 alt='...'
               />
-            )
-            }
-
-
+            )}
+            
         </div>
 
     )

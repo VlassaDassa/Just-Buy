@@ -1,5 +1,9 @@
 @import '../../../assets/styles/variables';
 
+
+
+
+
 .photos {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -9,6 +13,7 @@
     margin-bottom: 70px;
 }
   
+
 .wrapper_photo {
     background: $secondary;
     box-shadow: $_box_shadow;
@@ -30,6 +35,7 @@
     }
 }
   
+
 .wrapper_photo__photo {
     width: 100%;
     height: 100%;
@@ -51,6 +57,7 @@
     transition: all 0.1s ease-in-out;
 }
   
+
 .wrapper_photo--plus {
     background: $secondary;
     box-shadow: $_box_shadow;
@@ -68,7 +75,6 @@
         padding-top: 150%;
     }
 }
-
 
 
 .wrapper_photo--plus {
@@ -129,6 +135,7 @@
     border-radius: 10px;
 }
 /* ./Plus */
+
 
 
 @media (max-width: 1280px) {

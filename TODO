@@ -1,6 +1,18 @@
-1. Fix "Andrey" branch;
-2. Fix all branches;
-3. Page AddProduct;
+1. Fix disadvantages:
+    - Make markup identical first markup, then testing;
+
+    - Markup size fields (button should be in fields in mobile device);
+    - Desktop markup fields "count" and "size";
+    - "count" and "size" fields have identical values - this is problem;
+    - Error message shouldn't be called from "alert" function;
+    - Incorret size images;
+    - Incorrect padding-bottom in description field;
+    - Lack of checking on error;
+    - Check CTRL + F // TODO;
+     
+2. API;
+3. Test on the mobile device;
+4. Test on the desktop device;
 
 
 
@@ -17,6 +29,8 @@ Reminder:
     General:
         - Remove the twitching on the transitions by pages;
         - Make the overlay hide smoothly;
+        - Add favicon;
+        - Add "title" for all pages;
 
     Profile:
         - Remove the twitching on the change delivery point;

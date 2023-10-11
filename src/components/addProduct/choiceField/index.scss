@@ -1,11 +1,16 @@
 @import '../../../assets/styles/variables';
 
+
+
+
+
 .small_column {
     width: 550rem;
     max-width: 550px;
 
     margin-bottom: 50px;
 }
+
 
 .add_product__color.circle,
 .add_product__trash {
@@ -15,10 +20,11 @@
     bottom: 0;
 }
 
+
 .add_product__trash {
     height: 40px;
-
 }
+
 
 .error {
     background:  lighten($accent, 10%);
@@ -46,7 +52,6 @@
         bottom: 5px;
         filter: grayscale(100%) brightness(0%);
     }
-
 }
 
 

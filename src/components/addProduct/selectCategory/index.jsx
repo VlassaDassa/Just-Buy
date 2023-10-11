@@ -1,18 +1,26 @@
 import React, { useState } from 'react';
-import { category_fields } from '../categoryFields';
+
 import ChoiceField from '../choiceField';
-import './index.scss';
+
+import { category_fields } from '../../../fakeVar';
+
+
+
+
+
 
 const SelectCategory = ({ selectedCategory, setSelectedCategory, selectedSubcategory, setSelectedSubcategory }) => {
-
     const [selectedField, setSelectedField] = useState('');
 
     const [colorFieldVisible, setColorFieldVisible] = useState(false);
     const [sizeFieldVisible, setSizeFieldVisible] = useState(false);
 
+
+
     const handleFieldChange = (e) => {
         setSelectedField(e.target.value);
     };
+
 
     const handleCategoryChange = (e) => {
         const newCategory = e.target.value;
@@ -31,19 +39,26 @@ const SelectCategory = ({ selectedCategory, setSelectedCategory, selectedSubcate
         setSelectedField('');
     }
 
+
     const handleSubcategoryChange = (e) => {
         const newSubcategory = e.target.value;
         setSelectedSubcategory(newSubcategory);
         setSelectedField('');
     }
 
+
+
+
+
     return (
         <>
             <div className="general_characteristics__couple_wrapper">
                 <div className="general_characteristics__item_wrapper">
+
                     <label className="general_characteristics__label" htmlFor="category">
                         Категория
                     </label>
+
                     <select
                         value={selectedCategory}
                         onChange={handleCategoryChange}
@@ -56,7 +71,10 @@ const SelectCategory = ({ selectedCategory, setSelectedCategory, selectedSubcate
                             </option>
                         ))}
                     </select>
+
                 </div>
+
+                
                 {selectedCategory && category_fields.find((category) => category.name_category === selectedCategory)?.subcategories && (
                     <div className="general_characteristics__item_wrapper">
                         {selectedSubcategory && (
@@ -64,6 +82,7 @@ const SelectCategory = ({ selectedCategory, setSelectedCategory, selectedSubcate
                                 Подкатегория
                             </label>
                         )}
+
                         {selectedSubcategory && (
                             <select
                                 value={selectedSubcategory}
@@ -74,15 +93,16 @@ const SelectCategory = ({ selectedCategory, setSelectedCategory, selectedSubcate
                                 {category_fields
                                     .find((category) => category.name_category === selectedCategory)
                                     .subcategories.map((subcategory, index) => (
+
                                         <option key={index} value={subcategory.name}>
                                             {subcategory.label_name}
                                         </option>
-                                    ))}
+                                ))}
                             </select>
                         )}
                     </div>
                 )}
-
+                
             </div>
                
              
@@ -92,9 +112,6 @@ const SelectCategory = ({ selectedCategory, setSelectedCategory, selectedSubcate
                 colorFieldVisible={colorFieldVisible}
                 sizeFieldVisible={sizeFieldVisible}
             />
-            
-            
-            
         </>
     );
 };

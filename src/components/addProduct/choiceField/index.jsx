@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
+
 import ChoiceSize from '../choiceSize';
 import ChoiceColor from '../choiceColor';
+
 import './index.scss';
 
-const ChoiceField = ({ selectedField, handleFieldChange, colorFieldVisible, sizeFieldVisible }) => {
 
+
+
+
+const ChoiceField = ({ selectedField, handleFieldChange, colorFieldVisible, sizeFieldVisible }) => {
     const [colorFields, setColorFields] = useState([null])
     const [sizeFields, setSizeFields] = useState([null])
 
@@ -18,9 +23,11 @@ const ChoiceField = ({ selectedField, handleFieldChange, colorFieldVisible, size
         setFirstClick(true)
     }
 
+
     const handleAddSizeField = () => {
         setSizeFields([...sizeFields, null])
     };
+
 
     const handleDeleteColorField = (index) => {
         const newColorFields = [...colorFields]
@@ -28,17 +35,20 @@ const ChoiceField = ({ selectedField, handleFieldChange, colorFieldVisible, size
         setColorFields(newColorFields)
     };
 
+
     const handleDeleteSizeField = (index) => {
         const newSizeFields = [...sizeFields]
         newSizeFields.splice(index, 1)
         setSizeFields(newSizeFields)
     };
 
+
     return (
         <>
             <div className="small_column small_column--color">
                 {colorFieldVisible &&
                     colorFields.map((field, index) => (
+
                         <ChoiceColor
                             value={value}
                             setValue={setValue}
@@ -53,19 +63,22 @@ const ChoiceField = ({ selectedField, handleFieldChange, colorFieldVisible, size
                                 newColorFields[index] = value;
                                 setColorFields(newColorFields)
                             }}
+
                             onDelete={() => {
                                 handleDeleteColorField(index);
                             }}
+
                             setFirstClick={setFirstClick}
                         />
-
 
                     ))}
 
             </div>
+
             <div className="small_column small_column--size">
                 {sizeFieldVisible &&
                     sizeFields.map((field, index) => (
+
                         <ChoiceSize
                             setFirstClick={setFirstClick}
                             value={value}
@@ -81,13 +94,13 @@ const ChoiceField = ({ selectedField, handleFieldChange, colorFieldVisible, size
                                 newSizeFields[index] = value;
                                 setSizeFields(newSizeFields)
                             }}
+
                             onDelete={() => {
                                 handleDeleteSizeField(index)
                             }}
                         />
+
                     ))}
-
-
             </div>
         </>
 

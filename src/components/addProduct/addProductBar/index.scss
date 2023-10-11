@@ -1,14 +1,19 @@
 @import '../../../assets/styles/variables';
 
 
+
+
+
 main {
     margin-bottom: 100px;
 }
+
 
 select {
     cursor: pointer;
     appearance: none;
 }
+
 
 .add_prod_form {
     background: $base;
@@ -19,6 +24,7 @@ select {
     padding: 90px;
     margin-top: 70px;
 }
+
 
 .add_prod_form__title {
     font-size: 32px;
@@ -41,9 +47,11 @@ select {
     font-weight: $regular;
 }
   
+
 .show {
     top: 300px;
 }
+
 
 @media (max-width: 1280px) {
     .add_prod_form__title {
@@ -55,6 +63,8 @@ select {
         padding: 45px;
     }
 }
+
+
 
 @media (max-width: 800px) {
     .add_prod_form__title {

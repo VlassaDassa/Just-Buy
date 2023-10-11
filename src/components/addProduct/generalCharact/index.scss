@@ -2,6 +2,8 @@
 
 
 
+
+
 .general_characteristics {
     margin-bottom: 50px;
 }
@@ -23,10 +25,12 @@
     position: relative;
 
     width: 100%;
-    // max-width: 550px;
 }
+
+
 .general_characteristics__item_wrapper--hidden {
     opacity: 0;
+    width: 100%;
 }
 
 .general_characteristics__label {
@@ -46,9 +50,7 @@
 }
 
 #name {
-    // max-width: calc(100% - 12px);
-    max-width: calc(550px / 2 + 160px);
-    
+    max-width: calc(100% - 12px);
 }
 
 #price {
@@ -95,5 +97,9 @@
     .general_characteristics__label {
         margin-bottom: 10px;
         text-align: left;
+    }
+
+    .general_characteristics__item_wrapper--hidden {
+        display: none;
     }
 }

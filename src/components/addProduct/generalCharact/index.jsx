@@ -1,6 +1,11 @@
 import React from "react";
-import "./index.scss";
+
 import SelectCategory from "../selectCategory";
+
+import "./index.scss";
+
+
+
 
 
 const GeneralCharact = ({ selectedCategory, setSelectedCategory, selectedSubcategory, setSelectedSubcategory }) => {
@@ -20,7 +25,6 @@ const GeneralCharact = ({ selectedCategory, setSelectedCategory, selectedSubcate
                 </div>
             </div>
             
-            
 
             <div className="general_characteristics__couple_wrapper">
                 <div className="general_characteristics__item_wrapper">
@@ -31,7 +35,6 @@ const GeneralCharact = ({ selectedCategory, setSelectedCategory, selectedSubcate
                         <span className="price_ico">₽</span>
                     </div>
                 </div>
-
             </div>
 
             <SelectCategory
@@ -46,9 +49,7 @@ const GeneralCharact = ({ selectedCategory, setSelectedCategory, selectedSubcate
             <textarea name="description" id="description" className="general_characteristics__input" cols="30" rows="10"></textarea>
 
         </div>
-
     )
-
 }
 
 export default GeneralCharact;

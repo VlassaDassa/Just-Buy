@@ -1,30 +1,8 @@
 @import '../../../assets/styles/variables';
 
-.general_characteristics__item_wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
 
-    width: 100%;
-    // max-width: 550px;
-}
 
-.general_characteristics__label {
-    margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: $regular;
-}
 
-.general_characteristics__input {
-    height: 40px;
-    border-radius: 5px;
-    background: $white;
-    color: $base;
-    
-    padding-left: 10px;
-    font-size: 22px;
-}
 
 .personal_characteristics__title {
     font-size: 32px;
@@ -97,9 +75,7 @@
 }
 
 
-
 @media (max-width: 800px) {
-    .general_characteristics__item_wrapper,
     .left_column,
     .right_column
     {
@@ -110,5 +86,4 @@
     .personal_characteristics__title {
         font-size: 28px;
     }
-
 }
