@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import trash from '../../../assets/images/cart/trash.svg';
-import './index.scss';
 
 
 

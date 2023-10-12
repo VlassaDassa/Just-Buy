@@ -75,7 +75,7 @@ const SelectCategory = ({ selectedCategory, setSelectedCategory, selectedSubcate
                 </div>
 
                 
-                {selectedCategory && category_fields.find((category) => category.name_category === selectedCategory)?.subcategories && (
+                {selectedCategory && category_fields.find((category) => category.name_category === selectedCategory)?.subcategories ? (
                     <div className="general_characteristics__item_wrapper">
                         {selectedSubcategory && (
                             <label className="general_characteristics__label" htmlFor="subcategory">
@@ -101,7 +101,22 @@ const SelectCategory = ({ selectedCategory, setSelectedCategory, selectedSubcate
                             </select>
                         )}
                     </div>
-                )}
+                )
+                :
+                (
+                    <div className="general_characteristics__item_wrapper general_characteristics__item_wrapper--hidden">
+                            <label className="general_characteristics__label" htmlFor="subcategory">
+                                Подкатегория
+                            </label>
+
+                            <select>
+                                <option>
+                                    empry
+                                </option>
+                            </select>
+                    </div> 
+                )
+            }
                 
             </div>
                

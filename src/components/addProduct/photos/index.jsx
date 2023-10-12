@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 
+import { showError } from "../../../hooks/showError";
+
 import trash from '../../../assets/images/cart/trash.svg'
-import "./index.scss";
+
 
 
 
@@ -35,8 +37,7 @@ const Photos = () => {
                     const height = image.height;
                     
                     if (width < 516 || height < 688) {
-                        // TODO Выводить ERROR Message
-                        alert('Минимальный размер 516x688');
+                        showError('Минимальный размер 516x688')
                     } 
                     
                     else if (photoCount < 5) {
@@ -46,16 +47,14 @@ const Photos = () => {
                     } 
                     
                     else {
-                        // TODO Выводить ERROR Message
-                        alert('Достигнуто максимальное количество фотографий (5)');
+                        showError('Достигнуто максимальное количество фотографий (5)')
                     }
                 };
             };
         }
         
         else {
-            // TODO Выводить ERROR Message
-            alert('Неверный тип файла');
+            showError('Неверный тип файла')
         }
     };
 

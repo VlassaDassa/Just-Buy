@@ -2,7 +2,6 @@ import React from "react";
 
 import SelectCategory from "../selectCategory";
 
-import "./index.scss";
 
 
 

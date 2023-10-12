@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import ChoiceSize from '../choiceSize';
 import ChoiceColor from '../choiceColor';
 
-import './index.scss';
 
 
 
@@ -48,7 +47,6 @@ const ChoiceField = ({ selectedField, handleFieldChange, colorFieldVisible, size
             <div className="small_column small_column--color">
                 {colorFieldVisible &&
                     colorFields.map((field, index) => (
-
                         <ChoiceColor
                             value={value}
                             setValue={setValue}
@@ -70,7 +68,6 @@ const ChoiceField = ({ selectedField, handleFieldChange, colorFieldVisible, size
 
                             setFirstClick={setFirstClick}
                         />
-
                     ))}
 
             </div>

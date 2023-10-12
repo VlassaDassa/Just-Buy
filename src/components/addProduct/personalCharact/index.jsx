@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import "./index.scss";
+
 import { category_fields } from '../../../fakeVar';
+
+// import "./index.scss";
 
 
 

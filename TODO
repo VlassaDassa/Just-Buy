@@ -1,13 +1,8 @@
 1. Fix disadvantages:
-    - Make markup identical first markup, then testing;
-
-    - Markup size fields (button should be in fields in mobile device);
-    - Desktop markup fields "count" and "size";
     - "count" and "size" fields have identical values - this is problem;
-    - Error message shouldn't be called from "alert" function;
     - Incorret size images;
-    - Incorrect padding-bottom in description field;
     - Lack of checking on error;
+    - .scss file have repeat code;
     - Check CTRL + F // TODO;
      
 2. API;
