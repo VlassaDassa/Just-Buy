@@ -1,7 +1,7 @@
 1. Fix disadvantages:
+    - Lack of checking on error;
     - "count" and "size" fields have identical values - this is problem;
     - Incorret size images;
-    - Lack of checking on error;
     - .scss file have repeat code;
     - Check CTRL + F // TODO;
      

@@ -79,3 +79,9 @@ export function getFileObject(filePath, fileName) {
             throw error;
         });
 }
+
+
+export const containsNumber = (value) => {
+    const regex = /^\d+$/;
+    return regex.test(value)
+}

@@ -17,7 +17,7 @@ const AddProductBar = () => {
     const [selectedSubcategory, setSelectedSubcategory] = useState(category_fields[0].subcategories.length > 0 ? category_fields[0].subcategories[0].name : '');
 
 
-
+    
     return (
         <main className="add_products">
             <div className="container add_products_container">
