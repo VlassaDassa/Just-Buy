@@ -8,24 +8,28 @@ import ChoiceColor from '../choiceColor';
 
 
 
-const ChoiceField = ({ selectedField, handleFieldChange, colorFieldVisible, sizeFieldVisible }) => {
-    const [colorFields, setColorFields] = useState([null])
-    const [sizeFields, setSizeFields] = useState([null])
+const ChoiceField = ({ 
+        selectedField, 
+        handleFieldChange, 
+        colorFieldVisible, 
+        sizeFieldVisible,
+
+        selectColor,
+        setSelectColor,
+
+        selectSize,
+        setSelectSize,
+
+        colorFields,
+        setColorFields,
+
+        sizeFields,
+        setSizeFields,
+
+        selectedCategory,
+    }) => {
 
     const [firstClick, setFirstClick] = useState(false)
-
-    const [value, setValue] = useState('');
-
-
-    const handleAddColorField = () => {
-        setColorFields([...colorFields, null])
-        setFirstClick(true)
-    }
-
-
-    const handleAddSizeField = () => {
-        setSizeFields([...sizeFields, null])
-    };
 
 
     const handleDeleteColorField = (index) => {
@@ -41,21 +45,28 @@ const ChoiceField = ({ selectedField, handleFieldChange, colorFieldVisible, size
         setSizeFields(newSizeFields)
     };
 
-
+    
     return (
         <>
             <div className="small_column small_column--color">
                 {colorFieldVisible &&
                     colorFields.map((field, index) => (
                         <ChoiceColor
-                            value={value}
-                            setValue={setValue}
-                            colorFields={colorFields}
                             index={index}
-                            handleAddColorField={handleAddColorField}
+                            key={index}
+
+                            selectedCategory={selectedCategory}
+
+                            selectColor={selectColor}
+                            setSelectColor={setSelectColor}
+
+                            colorFields={colorFields}
+                            setColorFields={setColorFields}
+
                             selectedField={selectedField}
                             handleFieldChange={handleFieldChange}
-                            key={index}
+
+                            setFirstClick={setFirstClick}
                             onChange={(value) => {
                                 const newColorFields = [...colorFields];
                                 newColorFields[index] = value;
@@ -66,7 +77,6 @@ const ChoiceField = ({ selectedField, handleFieldChange, colorFieldVisible, size
                                 handleDeleteColorField(index);
                             }}
 
-                            setFirstClick={setFirstClick}
                         />
                     ))}
 
@@ -77,15 +87,21 @@ const ChoiceField = ({ selectedField, handleFieldChange, colorFieldVisible, size
                     sizeFields.map((field, index) => (
 
                         <ChoiceSize
-                            setFirstClick={setFirstClick}
-                            value={value}
-                            setValue={setValue}
-                            sizeFields={sizeFields}
                             index={index}
-                            handleAddSizeField={handleAddSizeField}
+                            key={index}
+
+                            selectedCategory={selectedCategory}
+
+                            selectSize={selectSize}
+                            setSelectSize={setSelectSize}
+
+                            sizeFields={sizeFields}
+                            setSizeFields={setSizeFields}
+                            
                             selectedField={selectedField}
                             handleFieldChange={handleFieldChange}
-                            key={index}
+
+                            setFirstClick={setFirstClick}
                             onChange={(value) => {
                                 const newSizeFields = [...sizeFields];
                                 newSizeFields[index] = value;

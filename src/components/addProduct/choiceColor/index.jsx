@@ -1,4 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect} from 'react';
+import { observer } from 'mobx-react-lite';
+
+import { containsNumber } from "../../../services/services";
+import useRegisterInputRefs from "../../../hooks/useRegisterInputRefs";
+import { defineErrorClass } from '../../../services/services';
 
 import trash from '../../../assets/images/cart/trash.svg';
 
@@ -6,35 +11,87 @@ import trash from '../../../assets/images/cart/trash.svg';
 
 
 
-const ChoiceColor = ({ 
+const ChoiceColor = observer(({ 
         onChange, 
         onDelete, 
-        selectedField, 
+        selectedField,
+        setColorFields,
         handleFieldChange, 
-        handleAddColorField, 
         index, 
         colorFields, 
         setFirstClick, 
-        value, 
-        setValue 
+
+        selectColor,
+        setSelectColor,
+
+        selectedCategory,
     }) => {
 
-    const [valueInput, setValueInput] = useState('')
+    const [valueInput, setValueInput] = useState({})
     const [isInputFilled, setIsInputFilled] = useState(false)
-    
 
+
+    // For checking fields
+    const inputRefs = {
+        ['choiceColor_' + index]: useRef()
+    } 
+    useRegisterInputRefs(inputRefs)
+
+
+    // Initial values
+    useEffect(() => {
+        setSelectColor({
+            ...selectColor,
+            ['choiceColor_' + index]: {value: 'yellow', count: ''}
+        })
+    }, [selectedCategory])
+
+
+    // Adding color field with initial values
+    const handleAddColorField = () => {
+        setColorFields([...colorFields, {['choiceColor_' + index]: {value: 'red', count: ''}}])
+        setFirstClick(true)
+    }
+
+
+    // Making dictionary with needed data
+    const setColorValue = (e) => {
+        const newValues = {
+            'value': e.target.value,
+            'count': valueInput['choiceColor_' + index]
+        }
+        
+        setSelectColor({
+            ...selectColor,
+            ['choiceColor_' + index]: newValues
+        });
+    }
+
+
+    // Handling choicing colors
     const handleValueChange = (e) => {
-        setValue(e.target.value)
+        setColorValue(e)
         onChange(e.target.value)
     };
 
 
+    // Handling enter count
     const handleValueInputChange = (e) => {
         const inputValue = e.target.value
-        setValueInput(e.target.value)
-        onChange(e.target.value)
+        if (containsNumber(inputValue)) {
+            const newValues = {
+                'value': selectColor['choiceColor_' + index].value,
+                'count': inputValue
+            }
+            
+            setSelectColor({
+                ...selectColor,
+                ['choiceColor_' + index]: newValues
+            });
 
-        setIsInputFilled(inputValue.trim() !== '')
+            onChange(inputValue)
+            setIsInputFilled(inputValue.trim() !== '')
+        }
     }
 
 
@@ -47,12 +104,12 @@ const ChoiceColor = ({
     const handleAddColorClick = () => {
         if (isInputFilled) {
             handleAddColorField()
-        } else {
+        } 
+        
+        else {
             setFirstClick(true)
         }
     };
-
-
 
 
     
@@ -63,7 +120,7 @@ const ChoiceColor = ({
 
                 <label value={selectedField} onChange={handleFieldChange} className="general_characteristics__label" htmlFor="color">Цвет</label>
                 
-                <select id="color" value={value} onChange={handleValueChange} className="general_characteristics__input">
+                <select id="color" value={selectColor['choiceColor_' + index]?.value || ''} onChange={handleValueChange} className="general_characteristics__input">
                     {/* TODO API */}
                     <option value="yellow">Желтый</option>
                     <option value="red">Красный</option>
@@ -76,10 +133,11 @@ const ChoiceColor = ({
                 <label className="general_characteristics__label" htmlFor="count">Количество</label>
                 <input
                     onChange={handleValueInputChange}
-                    value={valueInput}
+                    value={selectColor['choiceColor_' + index]?.count || ''}
                     type="text"
                     id="count"
-                    className="general_characteristics__input"
+                    ref={inputRefs['choiceColor_' + index]}
+                    className={defineErrorClass('choiceColor_' + index)}
                 />
             </div>
 
@@ -110,6 +168,8 @@ const ChoiceColor = ({
         </div>
 
     )
-}
+})
 
 export default ChoiceColor;
+
+

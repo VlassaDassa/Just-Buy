@@ -1,41 +1,98 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { observer } from 'mobx-react-lite';
+
+import { containsNumber } from "../../../services/services";
+import useRegisterInputRefs from "../../../hooks/useRegisterInputRefs";
+import { defineErrorClass } from '../../../services/services';
 
 import trash from '../../../assets/images/cart/trash.svg';
-// import './index.scss';
 
 
 
 
-
-const ChoiceSize = ({ 
+const ChoiceSize = observer(({ 
         onChange, 
         onDelete, 
         selectedField, 
         handleFieldChange, 
-        handleAddSizeField, 
-        value, 
-        setValue, 
         sizeFields, 
+        setSizeFields,
         index, 
-        setFirstClick 
+        setFirstClick,
+
+        selectedCategory,
+
+        selectSize,
+        setSelectSize,
+
     }) => {
 
     const [valueInput, setValueInput] = useState('')
     const [isInputFilled, setIsInputFilled] = useState(false)
 
 
+    // For checking fields
+    const inputRefs = {
+        ['choiceSize_' + index]: useRef()
+    } 
+    useRegisterInputRefs(inputRefs)
+
+
+    // Initial values
+    useEffect(() => {
+        setSelectSize({
+            ...selectSize,
+            ['choiceSize_' + index]: {value: '1', count: ''}
+        })
+    }, [selectedCategory])
+
+
+    // Adding color field with initial values
+    const handleAddSizeField = () => {
+        setSizeFields([...sizeFields, {['choiceSize_' + index]: {value: '1', count: ''}}])
+        setFirstClick(true)
+    }
+
+
+    // Making dictionary with needed data
+    const setSizeValue = (e) => {
+        const newValues = {
+            'value': e.target.value,
+            'count': valueInput['choiceSize_' + index]
+        }
+        
+        setSelectSize({
+            ...selectSize,
+            ['choiceSize_' + index]: newValues
+        });
+    }
+
+    
+    // Handling choicing sizes
     const handleValueChange = (e) => {
-        setValue(e.target.value);
+        setSizeValue(e);
         onChange(e.target.value);
     };
 
 
+    // Handling enter count
     const handleValueInputChange = (e) => {
         const inputValue = e.target.value
-        setValueInput(e.target.value)
-        onChange(e.target.value)
 
-        setIsInputFilled(inputValue.trim() !== '')
+        if (containsNumber(inputValue)) {
+            const newValues = {
+                'value': selectSize['choiceSize_' + index].value,
+                'count': inputValue
+            }
+            
+            setSelectSize({
+                ...selectSize,
+                ['choiceSize_' + index]: newValues
+            });
+
+            onChange(inputValue)
+            setIsInputFilled(inputValue.trim() !== '')
+        }
     }
 
 
@@ -61,7 +118,7 @@ const ChoiceSize = ({
             <div className="general_characteristics__item_wrapper">
                 <label value={selectedField} onChange={handleFieldChange} className="general_characteristics__label" htmlFor="color">Размер</label>
 
-                <select value={value} onChange={handleValueChange} id="color" className="general_characteristics__input">
+                <select value={selectSize['choiceSize_' + index]?.value || ''} onChange={handleValueChange} id="color" className="general_characteristics__input">
                     {/* TODO API */}
                     <option value="1">41-43</option>
                     <option value="2">39-41</option>
@@ -74,10 +131,11 @@ const ChoiceSize = ({
 
                 <input 
                     onChange={handleValueInputChange}
-                    value={valueInput}
+                    value={selectSize['choiceSize_' + index]?.count || ''}
                     type="text" 
                     id="count" 
-                    className="general_characteristics__input"
+                    ref={inputRefs['choiceSize_' + index]}
+                    className={defineErrorClass('choiceSize_' + index)}
                 />
             </div>
 
@@ -106,6 +164,6 @@ const ChoiceSize = ({
             )}
         </div>
     );
-};
+});
 
 export default ChoiceSize;

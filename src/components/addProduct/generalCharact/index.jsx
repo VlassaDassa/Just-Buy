@@ -1,26 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { observer } from 'mobx-react-lite';
 
 import SelectCategory from "../selectCategory";
 
 import { containsNumber } from "../../../services/services";
+import useRegisterInputRefs from "../../../hooks/useRegisterInputRefs";
+import { defineErrorClass } from "../../../services/services";
 
 
 
 
-
-
-const GeneralCharact = ({ selectedCategory, setSelectedCategory, selectedSubcategory, setSelectedSubcategory }) => {
+const GeneralCharact = observer(({ selectedCategory, setSelectedCategory, selectedSubcategory, setSelectedSubcategory }) => {
     const [isNameValue, setIsNameValue] = useState('')
     const [isPriceValue, setIsPriceValue] = useState('')
     const [isDescriptionValue, setIsDescriptionValue] = useState('')
+
+    const inputRefs = {
+        'name': useRef(),
+        'price': useRef(),
+        'description': useRef(),
+    }
+
+    // Register inputs for error checking
+    useRegisterInputRefs(inputRefs)
+
 
     const handleNameField = (event) => {
         setIsNameValue(event.target.value)
     }
 
+    
     const handleDescriptionField = (event) => {
         setIsDescriptionValue(event.target.value)
     }
+
 
     const handlePriceField = (event) => {
         const value = event.target.value
@@ -30,6 +43,7 @@ const GeneralCharact = ({ selectedCategory, setSelectedCategory, selectedSubcate
         }
     }
 
+
     return (
         <div className="general_characteristics">
             <div className="general_characteristics__couple_wrapper">
@@ -37,8 +51,9 @@ const GeneralCharact = ({ selectedCategory, setSelectedCategory, selectedSubcate
                     <label className="general_characteristics__label" htmlFor="name">Название</label>
                     <input 
                         type="text" 
-                        id="name" 
-                        className="general_characteristics__input" 
+                        id="name"
+                        ref={inputRefs['name']}
+                        className={defineErrorClass('name')} 
                         value={isNameValue} 
                         onChange={() => handleNameField(event)} 
                     />
@@ -58,8 +73,9 @@ const GeneralCharact = ({ selectedCategory, setSelectedCategory, selectedSubcate
                     <div className="input_ico_wrapper">
                         <input 
                             type="text" 
-                            id="price" 
-                            className="general_characteristics__input" 
+                            id="price"
+                            ref={inputRefs['price']}
+                            className={defineErrorClass('price')}
                             value={isPriceValue} 
                             onChange={() => handlePriceField(event)} 
                         />
@@ -80,7 +96,8 @@ const GeneralCharact = ({ selectedCategory, setSelectedCategory, selectedSubcate
                 name="description" 
                 id="description" 
                 value={isDescriptionValue} 
-                className={isDescriptionValue.length > 1 && isDescriptionValue.length < 300 ? "general_characteristics__input error" : "general_characteristics__input"} 
+                className={defineErrorClass('description')} 
+                ref={inputRefs['description']}
                 cols="30" 
                 rows="10"
                 onChange={() => handleDescriptionField(event)}
@@ -89,6 +106,6 @@ const GeneralCharact = ({ selectedCategory, setSelectedCategory, selectedSubcate
 
         </div>
     )
-}
+})
 
 export default GeneralCharact;

@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import addProductChecking from '../store/addProductChecking';
+
 import masterCard from './../assets/images/bankIcons/mastercard.svg';
 import discover from './../assets/images/bankIcons/discover.svg';
 import amex from './../assets/images/bankIcons/amex.svg';
@@ -82,6 +84,45 @@ export function getFileObject(filePath, fileName) {
 
 
 export const containsNumber = (value) => {
-    const regex = /^\d+$/;
+    const regex = /^\d*$/;
     return regex.test(value)
+}
+
+
+
+function isObjectEmpty(obj) {
+    return Object.values(obj).some(value => value === "");
+}
+
+
+// Checking on eror on the page "AddProduct"
+export const checkinOnError = (values) => {
+    const conditionalExpression = !isObjectEmpty(values) && 
+                                values.description.length > 300
+
+    if (addProductChecking.countPhotos > 0) {
+        if (conditionalExpression) {
+            return true
+        }
+
+        else {
+            return false
+        }
+    }
+    
+    return 'photos'
+}
+
+
+// Define class for field on the "addProduct" page
+export const defineErrorClass = (fieldName) => {
+    if (addProductChecking.btnClicked) {
+        const value = addProductChecking?.inputRefs[fieldName]?.value;
+      
+        if (value === '' || (fieldName === 'description' && value.length < 300)) {
+            return 'general_characteristics__input error';
+        }
+    }
+      
+    return 'general_characteristics__input';
 }

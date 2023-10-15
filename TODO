@@ -1,22 +1,23 @@
 1. Fix disadvantages:
-    - Lack of checking on error;
-    - "count" and "size" fields have identical values - this is problem;
-    - Incorret size images;
-    - .scss file have repeat code;
-    - Check CTRL + F // TODO;
+    - Check CTRL + SHIFT + F // TODO;
      
 2. API;
+    - Create or edit exist models, which should contain category, subcategories, fields and values;
+
+
 3. Test on the mobile device;
 4. Test on the desktop device;
 
 
 
+1. Убрать из products поле subcategories и решить вызванные этим проблем;
+2. Добавить внешним ключом модель с характеристиками;
+3. Заполнить модель с характеристиками;
+4. Дополнить модели с продуктами;
+5. Сделать вывод полей в форме addProduct;
+6. Сделать добавление товара;
 
-
-
-
-
-
+2. Поля color и size будут формироваться динамически на клиенте и добавляться в JsonField вместо со значениями
 
 
 
@@ -36,5 +37,11 @@ Reminder:
     
     Mobile menu:
         - Remove the twitching on the changing categories;
+
+    AddProduct:
+        - Add field "count". Sometimes his may be calculate with "size" and "color" fields, but sometimes no;
+
+    Cart:
+        - Set up count product;
 
 

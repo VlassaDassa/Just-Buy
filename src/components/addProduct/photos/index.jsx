@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import { showError } from "../../../hooks/showError";
+import addProductChecking from '../../../store/addProductChecking';
 
 import trash from '../../../assets/images/cart/trash.svg'
 
@@ -12,18 +13,24 @@ import trash from '../../../assets/images/cart/trash.svg'
 const Photos = () => {
     const [photoCount, setPhotoCount] = useState(0);
     const [addedPhoto, setAddedPhoto] = useState([]);
+    const [resetKey, setResetKey] = useState(0)
+
+    const photoField = useRef()
+
+    // Calculate count photos for checking on errors
+    useEffect(() => {
+        addProductChecking.setCountPhotos(addedPhoto.length)
+    }, [addedPhoto])
 
 
     const handleAddPhotoClick = () => {
-        const addPhotoInput = document.getElementById('add_photo');
-        addPhotoInput.click();
+        photoField.current.click();
     };
 
 
     const handleImageChange = (event) => {
         const file = event.target?.files[0];
 
-        // TODO вынести проверку отсюда
         if (file?.type?.match('image.*')) {
             const reader = new FileReader();
             reader.readAsDataURL(file);
@@ -35,10 +42,11 @@ const Photos = () => {
                 image.onload = () => {
                     const width = image.width;
                     const height = image.height;
-                    
-                    if (width < 516 || height < 688) {
-                        showError('Минимальный размер 516x688')
-                    } 
+                    const proportion = height/width
+
+                    if (proportion.toFixed(1) !== String(1.3)) {
+                        showError('Неверная пропорция')
+                    }
                     
                     else if (photoCount < 5) {
                         const newPhotos = [...addedPhoto, e.target.result];
@@ -56,6 +64,9 @@ const Photos = () => {
         else {
             showError('Неверный тип файла')
         }
+
+        // Reset input field with "key"
+        setResetKey(resetKey + 1)
     };
 
 
@@ -76,10 +87,10 @@ const Photos = () => {
                 </div>
             </div>
 
-            <input id="add_photo" onChange={handleImageChange} type="file" className="add_photo" />
+            <input id="add_photo" key={resetKey} onChange={handleImageChange} type="file" className="add_photo" ref={photoField} />
             
             {addedPhoto.map((photo, index) => (
-                <div className="wrapper_photo">
+                <div className="wrapper_photo" key={'photo' + index}>
 
                     <img className="wrapper_photo__photo" key={index} src={photo} />
                     <img onClick={() => handleRemovePhoto(index)} src={trash} className="wrapper_photo__icon icon" />

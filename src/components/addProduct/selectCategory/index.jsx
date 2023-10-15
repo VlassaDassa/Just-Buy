@@ -15,6 +15,11 @@ const SelectCategory = ({ selectedCategory, setSelectedCategory, selectedSubcate
     const [colorFieldVisible, setColorFieldVisible] = useState(false);
     const [sizeFieldVisible, setSizeFieldVisible] = useState(false);
 
+    const [selectColor, setSelectColor] = useState({});
+    const [selectSize, setSelectSize] = useState({});
+
+    const [colorFields, setColorFields] = useState([null])
+    const [sizeFields, setSizeFields] = useState([null])
 
 
     const handleFieldChange = (e) => {
@@ -23,6 +28,13 @@ const SelectCategory = ({ selectedCategory, setSelectedCategory, selectedSubcate
 
 
     const handleCategoryChange = (e) => {
+        // Clear old 'choiceFields'
+        setSelectColor({})
+        setSelectSize({})
+
+        setColorFields([null])
+        setSizeFields([null])
+
         const newCategory = e.target.value;
         setSelectedCategory(newCategory);
 
@@ -45,8 +57,6 @@ const SelectCategory = ({ selectedCategory, setSelectedCategory, selectedSubcate
         setSelectedSubcategory(newSubcategory);
         setSelectedField('');
     }
-
-
 
 
 
@@ -111,7 +121,7 @@ const SelectCategory = ({ selectedCategory, setSelectedCategory, selectedSubcate
 
                             <select>
                                 <option>
-                                    empry
+                                    empty
                                 </option>
                             </select>
                     </div> 
@@ -126,6 +136,20 @@ const SelectCategory = ({ selectedCategory, setSelectedCategory, selectedSubcate
                 handleFieldChange={handleFieldChange} 
                 colorFieldVisible={colorFieldVisible}
                 sizeFieldVisible={sizeFieldVisible}
+
+                selectColor={selectColor}
+                setSelectColor={setSelectColor}
+
+                colorFields={colorFields}
+                setColorFields={setColorFields}
+
+                selectSize={selectSize}
+                setSelectSize={setSelectSize}
+
+                sizeFields={sizeFields}
+                setSizeFields={setSizeFields}
+
+                selectedCategory={selectedCategory}
             />
         </>
     );
