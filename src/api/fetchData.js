@@ -10,6 +10,13 @@ export const getMenu = () => {
     return axios.get(API_ROUTES.getMenu);
 }
 
+
+// Receiving categories and relate subcategories
+export const getCatWithSubcat = () => {
+    return axios.get(API_ROUTES.getCatWithSubcat);
+}
+
+
 // Receiving subcategories for desktop and mobile menu
 export const getMenuSubcategories = (category_id) => {
   return axios.get(API_ROUTES.getMenuSubcategories + category_id + '/');
@@ -125,4 +132,10 @@ export const getCurrentDeliveryPoint = () => {
 // Send purchased goods to the server
 export function sendPurchasedGoods(data) {
   return axios.post(API_ROUTES.sendPurchasedGoods, data)
+}
+
+
+// Get characteristics fields for page "AddProduct"
+export function getCharacteristicsFields(subcategory_id) {
+  return axios.get(API_ROUTES.getCharacteristicsFields + subcategory_id + '/')
 }

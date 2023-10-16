@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import GeneralCharact from '../generalCharact';
 import Photos from '../photos';
 import PersonalCharact from '../personalCharact';
 
+import useRequest from '../../../hooks/useRequest';
+import { getCatWithSubcat, getCharacteristicsFields } from '../../../api/fetchData';
 import { category_fields } from '../../../fakeVar';
 
 import './index.scss';
@@ -15,6 +17,28 @@ import './index.scss';
 const AddProductBar = () => {
     const [selectedCategory, setSelectedCategory] = useState(category_fields[0].name_category);
     const [selectedSubcategory, setSelectedSubcategory] = useState(category_fields[0].subcategories.length > 0 ? category_fields[0].subcategories[0].name : '');
+
+    const [catWithSubcat, catWithSubCatLoader, catWithSubcatError] = useRequest(() => getCatWithSubcat(), [])
+    const [fields, setCharacteristicsFields] = useState()
+
+
+    const [categories, setCategories] = useState({
+        'category_id': 'nonSelect',
+        'category_name': 'Не выбрано'
+    })
+
+    const [currentCategory, setCurrentCategory] = useState('nonSelect')
+    const [currentSubCategory, setCurrentSubCategory] = useState()
+
+
+    // Inital values for fields "Category" and "Subcategory"
+    useEffect(() => {
+        if (catWithSubcat && catWithSubcat.length > 0) {
+            console.log(catWithSubcat)
+        }
+    }, [catWithSubcat, catWithSubCatLoader])
+
+
 
 
     return (
