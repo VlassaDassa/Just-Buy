@@ -15,31 +15,48 @@ import './index.scss';
 
 
 const AddProductBar = () => {
-    const [selectedCategory, setSelectedCategory] = useState(category_fields[0].name_category);
-    const [selectedSubcategory, setSelectedSubcategory] = useState(category_fields[0].subcategories.length > 0 ? category_fields[0].subcategories[0].name : '');
-
-    const [catWithSubcat, catWithSubCatLoader, catWithSubcatError] = useRequest(() => getCatWithSubcat(), [])
-    const [fields, setCharacteristicsFields] = useState()
-
-
-    const [categories, setCategories] = useState({
+    const [categories, setCategories] = useState([{
         'category_id': 'nonSelect',
         'category_name': 'Не выбрано'
-    })
+    }])
+    const [subcategories, setSubcategories] = useState()
+    
+    const [catWithSubcat, catWithSubCatLoader, catWithSubcatError] = useRequest(() => getCatWithSubcat(), [])
+    
+    const [selectedCategory, setSelectedCategory] = useState(categories.find((cat) => cat.category_id === 'nonSelect'));
+    const [selectedSubcategory, setSelectedSubcategory] = useState('');
+    
+    const [fields, setCharacteristicsFields] = useState()
+    
 
-    const [currentCategory, setCurrentCategory] = useState('nonSelect')
-    const [currentSubCategory, setCurrentSubCategory] = useState()
 
 
     // Inital values for fields "Category" and "Subcategory"
     useEffect(() => {
         if (catWithSubcat && catWithSubcat.length > 0) {
-            console.log(catWithSubcat)
+
+            const categoriesArray = catWithSubcat.map(category => ({
+                'category_id': category.category_id,
+                'category_name': category.category_name
+            }));
+
+            setCategories([...categoriesArray, ...categories])
+
+            // catWithSubcat.filter(item => item.category_id)
+            // const particularSubcategory = catWithSubcat.filter(item => item.category_id === 1)[0].subcategory;
         }
     }, [catWithSubcat, catWithSubCatLoader])
 
 
+    // Actions on update "Category" fields
+    useEffect(() => {
+        if (catWithSubcat) {
+            const selectSubCategory = catWithSubcat.filter(item => item.category_id === selectedCategory.category_id)
+            setSelectedSubcategory(selectSubCategory[0].subcategory)
+        }
+    }, [selectedCategory])
 
+    
 
     return (
         <main className="add_products">
@@ -57,12 +74,17 @@ const AddProductBar = () => {
                             setSelectedCategory={setSelectedCategory}
                             selectedSubcategory={selectedSubcategory}
                             setSelectedSubcategory={setSelectedSubcategory}
+
+                            categories={categories}
+
+                            subcategories={subcategories}
+                            setSubcategories={setSubcategories}
                         />
                         
-                        <PersonalCharact
+                        {/* <PersonalCharact
                             selectedCategory={selectedCategory}
                             selectedSubcategory={selectedSubcategory}
-                        />
+                        /> */}
                     </form>
 
                 </section>

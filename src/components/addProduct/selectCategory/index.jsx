@@ -9,7 +9,7 @@ import { category_fields } from '../../../fakeVar';
 
 
 
-const SelectCategory = ({ selectedCategory, setSelectedCategory, selectedSubcategory, setSelectedSubcategory }) => {
+const SelectCategory = ({ selectedCategory, setSelectedCategory, selectedSubcategory, setSelectedSubcategory, categories }) => {
     const [selectedField, setSelectedField] = useState('');
 
     const [colorFieldVisible, setColorFieldVisible] = useState(false);
@@ -35,19 +35,19 @@ const SelectCategory = ({ selectedCategory, setSelectedCategory, selectedSubcate
         setColorFields([null])
         setSizeFields([null])
 
-        const newCategory = e.target.value;
-        setSelectedCategory(newCategory);
+        const newCategory = categories.find((category) => String(category.category_id) === String(e.target.value))
 
-        const category = category_fields.find((category) => category.name_category === newCategory);
-        if (category) {
-            setSelectedSubcategory(category.subcategories && category.subcategories.length > 0 ? category.subcategories[0].name : '');
-            setColorFieldVisible(category.color_field);
-            setSizeFieldVisible(category.size_field);
+        if (newCategory) {
+            setSelectedCategory(newCategory);
+            // setSelectedSubcategory(category.subcategories && category.subcategories.length > 0 ? category.subcategories[0].name : '');
+            // setColorFieldVisible(category.color_field);
+            // setSizeFieldVisible(category.size_field);
         } else {
-            setSelectedSubcategory('');
-            setColorFieldVisible(false);
-            setSizeFieldVisible(false);
+            // setSelectedSubcategory('');
+            // setColorFieldVisible(false);
+            // setSizeFieldVisible(false);
         }
+
         setSelectedField('');
     }
 
@@ -58,6 +58,7 @@ const SelectCategory = ({ selectedCategory, setSelectedCategory, selectedSubcate
         setSelectedField('');
     }
 
+    console.log(selectedSubcategory)
 
 
     return (
@@ -70,46 +71,42 @@ const SelectCategory = ({ selectedCategory, setSelectedCategory, selectedSubcate
                     </label>
 
                     <select
-                        value={selectedCategory}
+                        value={selectedCategory.category_id}
                         onChange={handleCategoryChange}
                         id={selectedCategory && selectedSubcategory ? 'category' : 'category_without_subcategory'}
                         className="general_characteristics__input"
                     >
-                        {category_fields.map((category, index) => (
-                            <option key={index} value={category.name_category}>
-                                {category.label_name}
+                        {categories.map((category) => (
+                            <option key={'category_' + category.category_id} value={category.category_id}>
+                                {category.category_name}
                             </option>
-                        ))}
+                         ))}
                     </select>
 
                 </div>
 
                 
-                {selectedCategory && category_fields.find((category) => category.name_category === selectedCategory)?.subcategories ? (
+                {selectedCategory ? (
                     <div className="general_characteristics__item_wrapper">
-                        {selectedSubcategory && (
-                            <label className="general_characteristics__label" htmlFor="subcategory">
-                                Подкатегория
-                            </label>
-                        )}
+                        <label className="general_characteristics__label" htmlFor="subcategory">
+                            Подкатегория
+                        </label>
 
-                        {selectedSubcategory && (
-                            <select
-                                value={selectedSubcategory}
-                                onChange={handleSubcategoryChange}
-                                id="subcategory"
-                                className="general_characteristics__input"
-                            >
-                                {category_fields
-                                    .find((category) => category.name_category === selectedCategory)
-                                    .subcategories.map((subcategory, index) => (
+                        <select
+                            value={selectedSubcategory}
+                            onChange={handleSubcategoryChange}
+                            id="subcategory"
+                            className="general_characteristics__input"
+                        >
+                            {selectedSubcategory
+                                .find((category) => category.name_category === selectedCategory)
+                                .subcategories.map((subcategory, index) => (
 
-                                        <option key={index} value={subcategory.name}>
-                                            {subcategory.label_name}
-                                        </option>
-                                ))}
-                            </select>
-                        )}
+                                    <option key={index} value={subcategory.name}>
+                                        {subcategory.label_name}
+                                    </option>
+                            ))}
+                        </select>
                     </div>
                 )
                 :

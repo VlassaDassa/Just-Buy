@@ -10,7 +10,13 @@ import { defineErrorClass } from "../../../services/services";
 
 
 
-const GeneralCharact = observer(({ selectedCategory, setSelectedCategory, selectedSubcategory, setSelectedSubcategory }) => {
+const GeneralCharact = observer(({ 
+        selectedCategory, 
+        setSelectedCategory, 
+        selectedSubcategory, 
+        setSelectedSubcategory, 
+        categories 
+    }) => {
     const [isNameValue, setIsNameValue] = useState('')
     const [isPriceValue, setIsPriceValue] = useState('')
     const [isDescriptionValue, setIsDescriptionValue] = useState('')
@@ -89,6 +95,8 @@ const GeneralCharact = observer(({ selectedCategory, setSelectedCategory, select
                 setSelectedCategory={setSelectedCategory}
                 selectedSubcategory={selectedSubcategory}
                 setSelectedSubcategory={setSelectedSubcategory}
+
+                categories={categories}
             />
 
             <label className="general_characteristics__label" htmlFor="description">Описание</label>
