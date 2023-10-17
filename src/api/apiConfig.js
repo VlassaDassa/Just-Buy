@@ -1,5 +1,5 @@
-// const API_BASE_URL = 'http://192.168.0.118:8000/api/';
-const API_BASE_URL = 'http://127.0.0.1:8000/api/';
+const API_BASE_URL = 'http://192.168.0.118:8000/api/';
+// const API_BASE_URL = 'http://127.0.0.1:8000/api/';
 
 export const API_ROUTES = {
     getMenu: API_BASE_URL + 'category/',
@@ -29,4 +29,7 @@ export const API_ROUTES = {
     sendPurchasedGoods: API_BASE_URL + 'add_to_on_road/',
 
     getCharacteristicsFields: API_BASE_URL + 'get_characteristics_fields/',
+
+    getColors: API_BASE_URL + 'get_colors/',
+    getSizes: API_BASE_URL + 'get_sizes/',
 }

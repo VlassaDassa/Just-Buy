@@ -139,3 +139,15 @@ export function sendPurchasedGoods(data) {
 export function getCharacteristicsFields(subcategory_id) {
   return axios.get(API_ROUTES.getCharacteristicsFields + subcategory_id + '/')
 }
+
+
+// Get all colors
+export function getColors() {
+  return axios.get(API_ROUTES.getColors)
+}
+
+
+// Get all sizes
+export function getSizes() {
+  return axios.get(API_ROUTES.getSizes)
+}

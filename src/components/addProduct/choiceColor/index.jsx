@@ -4,6 +4,8 @@ import { observer } from 'mobx-react-lite';
 import { containsNumber } from "../../../services/services";
 import useRegisterInputRefs from "../../../hooks/useRegisterInputRefs";
 import { defineErrorClass } from '../../../services/services';
+import { getColors } from '../../../api/fetchData';
+import useRequest from '../../../hooks/useRequest';
 
 import trash from '../../../assets/images/cart/trash.svg';
 
@@ -29,6 +31,15 @@ const ChoiceColor = observer(({
 
     const [valueInput, setValueInput] = useState({})
     const [isInputFilled, setIsInputFilled] = useState(false)
+    const [data, dataLoder, dataError] = useRequest(() => getColors(), [])
+
+    const [fields, setFields] = useState()
+
+    useEffect(() => {
+        if (data) {
+            setFields(data)
+        }
+    }, [data, dataLoder])
 
 
     // For checking fields
@@ -121,10 +132,11 @@ const ChoiceColor = observer(({
                 <label value={selectedField} onChange={handleFieldChange} className="general_characteristics__label" htmlFor="color">Цвет</label>
                 
                 <select id="color" value={selectColor['choiceColor_' + index]?.value || ''} onChange={handleValueChange} className="general_characteristics__input">
-                    {/* TODO API */}
-                    <option value="yellow">Желтый</option>
-                    <option value="red">Красный</option>
-                    <option value="black">Черный</option>
+                    {fields &&
+                        fields.map((field) => (
+                            <option key={field.color_value} value={field.color_value}>{field.color}</option>
+                        ))
+                    }
                 </select>
 
             </div>

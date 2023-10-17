@@ -3,9 +3,11 @@ import React, { useEffect, useState } from 'react';
 import GeneralCharact from '../generalCharact';
 import Photos from '../photos';
 import PersonalCharact from '../personalCharact';
+import Title from '../../title';
 
 import useRequest from '../../../hooks/useRequest';
 import { getCatWithSubcat, getCharacteristicsFields } from '../../../api/fetchData';
+import { showError } from '../../../hooks/showError';
 
 import './index.scss';
 
@@ -28,8 +30,6 @@ const AddProductBar = () => {
     const [characteristicsFields, setCharacteristicsFields] = useState(null)
 
 
-
-
     // Inital values for fields "Category" and "Subcategory"
     useEffect(() => {
         if (catWithSubcat && catWithSubcat.length > 0) {
@@ -49,28 +49,39 @@ const AddProductBar = () => {
         if (catWithSubcat && selectedCategory.category_id != "nonSelect") {
             const subcat = catWithSubcat.filter(item => item.category_id === selectedCategory.category_id)
             setSubcategories(subcat[0].subcategory)
+
+            setSelectedSubcategory(subcat[0].subcategory[0].subcategory_id)
         }
     }, [selectedCategory])
 
 
     // Actions on update current "SubCategory" fields
     useEffect(() => {
-        if (subcategories) {
-            catWithSubcat.filter(item => item.category_id)
-            const particularSubcategory = catWithSubcat.filter(item => item.category_id === selectedSubcategory.subcategory_id)[0].subcategory;
+        if (subcategories && selectedSubcategory) {
 
-            console.log(particularSubcategory)
+            // Get characteristics relate with selectedSubcategory
+            getCharacteristicsFields(selectedSubcategory)
+            .then(response => {
+                if (response.status === 200) {
+                    setCharacteristicsFields(response.data[0])
+                }
+
+                else {
+                    showError('Неполадки на сервере')
+                }
+            })
+            .catch(error => {
+                showError('Неполадки на сервере')
+            })
         }
-    }, [subcategories])
+    }, [selectedSubcategory])
 
 
     return (
         <main className="add_products">
             <div className="container add_products_container">
                 <section className="add_prod_form">
-                    <h1 className="add_prod_form__title">
-                        Добавить товар
-                    </h1>
+                    <Title title={'Добавить товар'} />
 
                     <Photos />
 
@@ -85,12 +96,22 @@ const AddProductBar = () => {
 
                             subcategories={subcategories}
                             setSubcategories={setSubcategories}
+
+                            characteristicsFields={characteristicsFields}
                         />
                         
-                        {/* <PersonalCharact
-                            selectedCategory={selectedCategory}
-                            selectedSubcategory={selectedSubcategory}
-                        /> */}
+                        {
+                            characteristicsFields && selectedCategory.category_id !== "nonSelect" ?
+                                <PersonalCharact
+                                    characteristicsFields={characteristicsFields}
+                                />
+                            :
+                            <>
+                                <Title title={'Характеристики товара'} className={'personal_characteristics__title'} />
+                                <p>Выберите подкатегорию</p>
+                            </>
+                        }
+                        
                     </form>
 
                 </section>

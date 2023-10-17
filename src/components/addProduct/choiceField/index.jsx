@@ -27,6 +27,8 @@ const ChoiceField = ({
         setSizeFields,
 
         selectedCategory,
+
+        characteristicsFields,
     }) => {
 
     const [firstClick, setFirstClick] = useState(false)

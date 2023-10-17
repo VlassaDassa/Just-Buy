@@ -4,6 +4,8 @@ import { observer } from 'mobx-react-lite';
 import { containsNumber } from "../../../services/services";
 import useRegisterInputRefs from "../../../hooks/useRegisterInputRefs";
 import { defineErrorClass } from '../../../services/services';
+import useRequest from '../../../hooks/useRequest';
+import { getSizes } from '../../../api/fetchData';
 
 import trash from '../../../assets/images/cart/trash.svg';
 
@@ -29,6 +31,15 @@ const ChoiceSize = observer(({
 
     const [valueInput, setValueInput] = useState('')
     const [isInputFilled, setIsInputFilled] = useState(false)
+
+    const [data, dataLoder, dataError] = useRequest(() => getSizes(), [])
+    const [fields, setFields] = useState()
+
+    useEffect(() => {
+        if (data) {
+            setFields(data)
+        }
+    }, [data, dataLoder])
 
 
     // For checking fields
@@ -119,10 +130,11 @@ const ChoiceSize = observer(({
                 <label value={selectedField} onChange={handleFieldChange} className="general_characteristics__label" htmlFor="color">Размер</label>
 
                 <select value={selectSize['choiceSize_' + index]?.value || ''} onChange={handleValueChange} id="color" className="general_characteristics__input">
-                    {/* TODO API */}
-                    <option value="1">41-43</option>
-                    <option value="2">39-41</option>
-                    <option value="3">44-46</option>
+                    {fields &&
+                        fields.map((field) => (
+                            <option key={field.size_value} value={field.size_value}>{field.size}</option>
+                        ))
+                    }
                 </select>
             </div>
 

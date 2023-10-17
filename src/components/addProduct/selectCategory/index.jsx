@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import ChoiceField from '../choiceField';
 
@@ -10,10 +10,14 @@ const SelectCategory = ({
         selectedCategory, 
         setSelectedCategory, 
         selectedSubcategory, 
-        setSelectedSubcategory, 
+        setSelectedSubcategory,
+
         categories, 
+
         subcategories, 
-        setSubcategories 
+        setSubcategories,
+
+        characteristicsFields,
     }) => {
 
 
@@ -34,7 +38,22 @@ const SelectCategory = ({
         setSelectedField(e.target.value);
     };
 
-    console.log(selectedField)
+
+    useEffect(() => {
+        if (characteristicsFields?.color) {
+            setColorFieldVisible(true)
+        }
+        else {
+            setColorFieldVisible(false)
+        }
+
+        if (characteristicsFields?.size) {
+            setSizeFieldVisible(true)
+        }
+        else {
+            setSizeFieldVisible(false)
+        }
+    }, [characteristicsFields])
 
 
     // Handling category field
@@ -55,17 +74,6 @@ const SelectCategory = ({
         if (String(e.target.value) === "nonSelect") {
             setSubcategories(null)
         }
-
-        // if (newCategory) {
-        //     setSelectedCategory(newCategory);
-            // setSelectedSubcategory(category.subcategories && category.subcategories.length > 0 ? category.subcategories[0].name : '');
-            // setColorFieldVisible(category.color_field);
-            // setSizeFieldVisible(category.size_field);
-        // } else {
-            // setSelectedSubcategory('');
-            // setColorFieldVisible(false);
-            // setSizeFieldVisible(false);
-        // }
 
         setSelectedField('');
     }
@@ -164,6 +172,8 @@ const SelectCategory = ({
                 setSizeFields={setSizeFields}
 
                 selectedCategory={selectedCategory}
+
+                characteristicsFields={characteristicsFields}
             />
         </>
     );

@@ -6,6 +6,7 @@ import SelectCategory from "../selectCategory";
 import { containsNumber } from "../../../services/services";
 import useRegisterInputRefs from "../../../hooks/useRegisterInputRefs";
 import { defineErrorClass } from "../../../services/services";
+import addProductChecking from '../../../store/addProductChecking';
 
 
 
@@ -19,6 +20,8 @@ const GeneralCharact = observer(({
 
         subcategories,
         setSubcategories,
+
+        characteristicsFields,
     }) => {
     const [isNameValue, setIsNameValue] = useState('')
     const [isPriceValue, setIsPriceValue] = useState('')
@@ -32,7 +35,6 @@ const GeneralCharact = observer(({
 
     // Register inputs for error checking
     useRegisterInputRefs(inputRefs)
-
 
     const handleNameField = (event) => {
         setIsNameValue(event.target.value)
@@ -102,6 +104,8 @@ const GeneralCharact = observer(({
                 categories={categories}
                 subcategories={subcategories}
                 setSubcategories={setSubcategories}
+
+                characteristicsFields={characteristicsFields}
             />
 
             <label className="general_characteristics__label" htmlFor="description">Описание</label>
