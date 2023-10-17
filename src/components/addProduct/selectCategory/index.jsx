@@ -2,14 +2,21 @@ import React, { useState } from 'react';
 
 import ChoiceField from '../choiceField';
 
-import { category_fields } from '../../../fakeVar';
 
 
 
 
+const SelectCategory = ({ 
+        selectedCategory, 
+        setSelectedCategory, 
+        selectedSubcategory, 
+        setSelectedSubcategory, 
+        categories, 
+        subcategories, 
+        setSubcategories 
+    }) => {
 
 
-const SelectCategory = ({ selectedCategory, setSelectedCategory, selectedSubcategory, setSelectedSubcategory, categories }) => {
     const [selectedField, setSelectedField] = useState('');
 
     const [colorFieldVisible, setColorFieldVisible] = useState(false);
@@ -22,11 +29,15 @@ const SelectCategory = ({ selectedCategory, setSelectedCategory, selectedSubcate
     const [sizeFields, setSizeFields] = useState([null])
 
 
+    // Handling photo field
     const handleFieldChange = (e) => {
         setSelectedField(e.target.value);
     };
 
+    console.log(selectedField)
 
+
+    // Handling category field
     const handleCategoryChange = (e) => {
         // Clear old 'choiceFields'
         setSelectColor({})
@@ -39,26 +50,34 @@ const SelectCategory = ({ selectedCategory, setSelectedCategory, selectedSubcate
 
         if (newCategory) {
             setSelectedCategory(newCategory);
+        }
+
+        if (String(e.target.value) === "nonSelect") {
+            setSubcategories(null)
+        }
+
+        // if (newCategory) {
+        //     setSelectedCategory(newCategory);
             // setSelectedSubcategory(category.subcategories && category.subcategories.length > 0 ? category.subcategories[0].name : '');
             // setColorFieldVisible(category.color_field);
             // setSizeFieldVisible(category.size_field);
-        } else {
+        // } else {
             // setSelectedSubcategory('');
             // setColorFieldVisible(false);
             // setSizeFieldVisible(false);
-        }
+        // }
 
         setSelectedField('');
     }
 
 
+    // Handling subcategory field
     const handleSubcategoryChange = (e) => {
         const newSubcategory = e.target.value;
         setSelectedSubcategory(newSubcategory);
         setSelectedField('');
     }
 
-    console.log(selectedSubcategory)
 
 
     return (
@@ -73,7 +92,7 @@ const SelectCategory = ({ selectedCategory, setSelectedCategory, selectedSubcate
                     <select
                         value={selectedCategory.category_id}
                         onChange={handleCategoryChange}
-                        id={selectedCategory && selectedSubcategory ? 'category' : 'category_without_subcategory'}
+                        id={selectedCategory ? 'category' : 'category_without_subcategory'}
                         className="general_characteristics__input"
                     >
                         {categories.map((category) => (
@@ -82,11 +101,10 @@ const SelectCategory = ({ selectedCategory, setSelectedCategory, selectedSubcate
                             </option>
                          ))}
                     </select>
-
                 </div>
 
                 
-                {selectedCategory ? (
+                {subcategories ? (
                     <div className="general_characteristics__item_wrapper">
                         <label className="general_characteristics__label" htmlFor="subcategory">
                             Подкатегория
@@ -98,14 +116,13 @@ const SelectCategory = ({ selectedCategory, setSelectedCategory, selectedSubcate
                             id="subcategory"
                             className="general_characteristics__input"
                         >
-                            {selectedSubcategory
-                                .find((category) => category.name_category === selectedCategory)
-                                .subcategories.map((subcategory, index) => (
-
-                                    <option key={index} value={subcategory.name}>
-                                        {subcategory.label_name}
+                            {
+                                subcategories.map((subcategory, index) => (
+                                    <option key={index} value={subcategory.subcategory_id}>
+                                        {subcategory.subcategory_name}
                                     </option>
-                            ))}
+                                ))
+                            }
                         </select>
                     </div>
                 )

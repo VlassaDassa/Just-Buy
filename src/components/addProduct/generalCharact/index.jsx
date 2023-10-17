@@ -15,7 +15,10 @@ const GeneralCharact = observer(({
         setSelectedCategory, 
         selectedSubcategory, 
         setSelectedSubcategory, 
-        categories 
+        categories,
+
+        subcategories,
+        setSubcategories,
     }) => {
     const [isNameValue, setIsNameValue] = useState('')
     const [isPriceValue, setIsPriceValue] = useState('')
@@ -77,7 +80,7 @@ const GeneralCharact = observer(({
                     <label className="general_characteristics__label" htmlFor="price">Цена за 1 шт.</label>
 
                     <div className="input_ico_wrapper">
-                        <input 
+                        <input
                             type="text" 
                             id="price"
                             ref={inputRefs['price']}
@@ -97,6 +100,8 @@ const GeneralCharact = observer(({
                 setSelectedSubcategory={setSelectedSubcategory}
 
                 categories={categories}
+                subcategories={subcategories}
+                setSubcategories={setSubcategories}
             />
 
             <label className="general_characteristics__label" htmlFor="description">Описание</label>

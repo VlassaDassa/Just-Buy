@@ -6,7 +6,6 @@ import PersonalCharact from '../personalCharact';
 
 import useRequest from '../../../hooks/useRequest';
 import { getCatWithSubcat, getCharacteristicsFields } from '../../../api/fetchData';
-import { category_fields } from '../../../fakeVar';
 
 import './index.scss';
 
@@ -19,15 +18,15 @@ const AddProductBar = () => {
         'category_id': 'nonSelect',
         'category_name': 'Не выбрано'
     }])
-    const [subcategories, setSubcategories] = useState()
+    const [subcategories, setSubcategories] = useState(null)
     
     const [catWithSubcat, catWithSubCatLoader, catWithSubcatError] = useRequest(() => getCatWithSubcat(), [])
     
     const [selectedCategory, setSelectedCategory] = useState(categories.find((cat) => cat.category_id === 'nonSelect'));
     const [selectedSubcategory, setSelectedSubcategory] = useState('');
     
-    const [fields, setCharacteristicsFields] = useState()
-    
+    const [characteristicsFields, setCharacteristicsFields] = useState(null)
+
 
 
 
@@ -41,22 +40,29 @@ const AddProductBar = () => {
             }));
 
             setCategories([...categoriesArray, ...categories])
-
-            // catWithSubcat.filter(item => item.category_id)
-            // const particularSubcategory = catWithSubcat.filter(item => item.category_id === 1)[0].subcategory;
         }
     }, [catWithSubcat, catWithSubCatLoader])
 
 
     // Actions on update "Category" fields
     useEffect(() => {
-        if (catWithSubcat) {
-            const selectSubCategory = catWithSubcat.filter(item => item.category_id === selectedCategory.category_id)
-            setSelectedSubcategory(selectSubCategory[0].subcategory)
+        if (catWithSubcat && selectedCategory.category_id != "nonSelect") {
+            const subcat = catWithSubcat.filter(item => item.category_id === selectedCategory.category_id)
+            setSubcategories(subcat[0].subcategory)
         }
     }, [selectedCategory])
 
-    
+
+    // Actions on update current "SubCategory" fields
+    useEffect(() => {
+        if (subcategories) {
+            catWithSubcat.filter(item => item.category_id)
+            const particularSubcategory = catWithSubcat.filter(item => item.category_id === selectedSubcategory.subcategory_id)[0].subcategory;
+
+            console.log(particularSubcategory)
+        }
+    }, [subcategories])
+
 
     return (
         <main className="add_products">
