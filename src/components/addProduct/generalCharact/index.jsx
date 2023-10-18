@@ -6,7 +6,6 @@ import SelectCategory from "../selectCategory";
 import { containsNumber } from "../../../services/services";
 import useRegisterInputRefs from "../../../hooks/useRegisterInputRefs";
 import { defineErrorClass } from "../../../services/services";
-import addProductChecking from '../../../store/addProductChecking';
 
 
 
@@ -23,23 +22,36 @@ const GeneralCharact = observer(({
 
         characteristicsFields,
     }) => {
+
     const [isNameValue, setIsNameValue] = useState('')
     const [isPriceValue, setIsPriceValue] = useState('')
+    const [isCountValue, setIsCountValue] = useState('')
     const [isDescriptionValue, setIsDescriptionValue] = useState('')
 
     const inputRefs = {
         'name': useRef(),
         'price': useRef(),
         'description': useRef(),
+        'count': useRef(),
     }
+
+    
 
     // Register inputs for error checking
     useRegisterInputRefs(inputRefs)
+
 
     const handleNameField = (event) => {
         setIsNameValue(event.target.value)
     }
 
+    const handleCountField = (event) => {
+        const value = event.target.value
+        
+        if (containsNumber(value)) {
+            setIsCountValue(value)
+        }
+    }
     
     const handleDescriptionField = (event) => {
         setIsDescriptionValue(event.target.value)
@@ -94,6 +106,30 @@ const GeneralCharact = observer(({
                     </div>
                 </div>
             </div>
+
+
+            {
+                !characteristicsFields?.color && !characteristicsFields?.size ?
+            
+                    <div className="general_characteristics__couple_wrapper">
+                        <div className="general_characteristics__item_wrapper">
+                            <label className="general_characteristics__label" htmlFor="price">Количество</label>
+
+                            <div className="input_ico_wrapper">
+                                <input
+                                    type="text" 
+                                    id="price"
+                                    ref={inputRefs['count']}
+                                    className={defineErrorClass('count')}
+                                    value={isCountValue} 
+                                    onChange={() => handleCountField(event)} 
+                                />
+                            </div>
+                        </div>
+                    </div>
+                :
+                    null
+            }
 
             <SelectCategory
                 selectedCategory={selectedCategory}

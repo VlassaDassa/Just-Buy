@@ -7,8 +7,7 @@ import Title from "../../title";
 
 import useRegisterInputRefs from "../../../hooks/useRegisterInputRefs";
 import addProductChecking from '../../../store/addProductChecking';
-import { checkinOnError } from "../../../services/services";
-import { defineErrorClass } from "../../../services/services";
+import { checkinOnError, defineErrorClass, product_data } from "../../../services/services";
 
 import { showError } from "../../../hooks/showError";
 
@@ -39,18 +38,17 @@ const PersonalCharact = observer(({ characteristicsFields }) => {
     
     // Register refs
     useRegisterInputRefs(inputRefs)
-
-
+    
+    
 
     // Error checking and add product
     const handleSaveBtn = (e) => {
         e.preventDefault()
         addProductChecking.setBtnClicked(true);
 
-        const fieldValues = {};
-        for (const fieldName in addProductChecking.inputRefs) {
-            fieldValues[fieldName] = addProductChecking.inputRefs[fieldName].value;
-        }
+        // Data for send to server
+        // const fieldValues = product_data(characteristicsFields.color, characteristicsFields.size)
+
 
         // Checking on error
         if (checkinOnError(fieldValues) === 'photos') {

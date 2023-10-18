@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toJS } from "mobx";
 
 import addProductChecking from '../store/addProductChecking';
 
@@ -125,4 +126,28 @@ export const defineErrorClass = (fieldName) => {
     }
       
     return 'general_characteristics__input';
+}
+
+
+// Product data
+export const product_data = (colorVisible, sizeVisible) => {
+    const fieldValues = {}
+    const inputRefs = toJS(addProductChecking.inputRefs);
+
+
+    Object.keys(inputRefs).map((fieldName) => {
+        if (inputRefs[fieldName]?.value) {
+            fieldValues[fieldName] = inputRefs[fieldName].value
+        }
+
+        else {
+            fieldValues[fieldName] = ''
+        }
+    })  
+
+    if (colorVisible && sizeVisible) {
+        delete fieldValues['count']
+    }
+
+    return fieldValues
 }

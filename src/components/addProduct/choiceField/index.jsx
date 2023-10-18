@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { observer } from 'mobx-react-lite';
 
 import ChoiceSize from '../choiceSize';
 import ChoiceColor from '../choiceColor';
@@ -7,8 +8,7 @@ import ChoiceColor from '../choiceColor';
 
 
 
-
-const ChoiceField = ({ 
+const ChoiceField = observer(({ 
         selectedField, 
         handleFieldChange, 
         colorFieldVisible, 
@@ -32,6 +32,7 @@ const ChoiceField = ({
     }) => {
 
     const [firstClick, setFirstClick] = useState(false)
+    
 
 
     const handleDeleteColorField = (index) => {
@@ -120,6 +121,6 @@ const ChoiceField = ({
         </>
 
     );
-};
+});
 
 export default ChoiceField;

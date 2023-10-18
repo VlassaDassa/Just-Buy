@@ -37,7 +37,6 @@ const MobileCardItem = ({ card, cards, setCards, mainCard, setMainCard }) => {
     updateStatusBankCard(card.id, true)
     .then(response => {
       if (response.status !== 200) {
-        console.log(response)
         showError('Ошибка при выборе карты')
       }
       else {
@@ -45,7 +44,6 @@ const MobileCardItem = ({ card, cards, setCards, mainCard, setMainCard }) => {
       }
     })
     .catch(error => {
-      console.log(error)
       showError('Ошибка при выборе карты')
     })
   }

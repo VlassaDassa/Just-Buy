@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { observer } from 'mobx-react-lite';
+
+import addProductChecking from '../../../store/addProductChecking';
 
 import ChoiceField from '../choiceField';
 
@@ -6,7 +9,7 @@ import ChoiceField from '../choiceField';
 
 
 
-const SelectCategory = ({ 
+const SelectCategory = observer(({ 
         selectedCategory, 
         setSelectedCategory, 
         selectedSubcategory, 
@@ -40,24 +43,27 @@ const SelectCategory = ({
 
 
     useEffect(() => {
-        if (characteristicsFields?.color) {
+        if (characteristicsFields?.color && selectedCategory.category_id != 'nonSelect') {
             setColorFieldVisible(true)
         }
         else {
             setColorFieldVisible(false)
         }
 
-        if (characteristicsFields?.size) {
+        if (characteristicsFields?.size && selectedCategory.category_id != 'nonSelect') {
             setSizeFieldVisible(true)
         }
         else {
             setSizeFieldVisible(false)
         }
-    }, [characteristicsFields])
+    }, [characteristicsFields, selectedCategory])
 
+    
 
     // Handling category field
     const handleCategoryChange = (e) => {
+        addProductChecking.setBtnClicked(false);
+
         // Clear old 'choiceFields'
         setSelectColor({})
         setSelectSize({})
@@ -81,6 +87,8 @@ const SelectCategory = ({
 
     // Handling subcategory field
     const handleSubcategoryChange = (e) => {
+        addProductChecking.setBtnClicked(false);
+
         const newSubcategory = e.target.value;
         setSelectedSubcategory(newSubcategory);
         setSelectedField('');
@@ -177,6 +185,6 @@ const SelectCategory = ({
             />
         </>
     );
-};
+});
 
 export default SelectCategory;

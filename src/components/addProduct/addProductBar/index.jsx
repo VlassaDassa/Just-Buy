@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { observer } from 'mobx-react-lite';
 
 import GeneralCharact from '../generalCharact';
 import Photos from '../photos';
@@ -15,7 +16,7 @@ import './index.scss';
 
 
 
-const AddProductBar = () => {
+const AddProductBar = observer(() => {
     const [categories, setCategories] = useState([{
         'category_id': 'nonSelect',
         'category_name': 'Не выбрано'
@@ -118,6 +119,6 @@ const AddProductBar = () => {
             </div>
         </main>
     )
-}
+})
 
 export default AddProductBar;

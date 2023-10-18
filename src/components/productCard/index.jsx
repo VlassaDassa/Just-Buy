@@ -54,7 +54,6 @@ const ProductCard = ({
     const addToCart = (product_id) => {
         addCartProduct(product_id)
         .then(response => {
-            console.log(response)
             if (response.status !== 200) {
                 showError('Ошибка при добавлении товара')
             }
