@@ -343,9 +343,37 @@ select {
         .wrapper_photo__icon {
             opacity: 1;
         }
+
+        .makeMainPhoto {
+            opacity: 1;
+        }
     }
 }
-  
+
+
+.makeMainPhoto {
+    background: $accent;
+    border-radius: 5px;
+    width: 95%;
+    padding: 10px 0;
+    
+    
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-size: 16px;
+    font-weight: $semi_bold;
+    text-align: center;
+    
+    opacity: 0;
+
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+
+
 .wrapper_photo__photo {
     position: absolute;
     top: 0;
@@ -653,3 +681,9 @@ select {
     } 
 }
 
+
+@media (max-width: 400px) {
+    .makeMainPhoto {
+        font-size: 10px;
+    }
+}

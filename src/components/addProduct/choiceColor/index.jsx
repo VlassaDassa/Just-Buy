@@ -44,7 +44,8 @@ const ChoiceColor = observer(({
 
     // For checking fields
     const inputRefs = {
-        ['choiceColor_' + index]: useRef()
+        ['choiceColor_' + index]: useRef(),
+        ['countColor_' + index]: useRef()
     } 
     useRegisterInputRefs(inputRefs)
 
@@ -131,7 +132,13 @@ const ChoiceColor = observer(({
 
                 <label value={selectedField} onChange={handleFieldChange} className="general_characteristics__label" htmlFor="color">Цвет</label>
                 
-                <select id="color" value={selectColor['choiceColor_' + index]?.value || ''} onChange={handleValueChange} className="general_characteristics__input">
+                <select 
+                    id="color" 
+                    value={selectColor['choiceColor_' + index]?.value || ''} 
+                    onChange={handleValueChange} 
+                    className="general_characteristics__input"
+                    ref={inputRefs['choiceColor_' + index]}
+                >
                     {fields &&
                         fields.map((field) => (
                             <option key={field.color_value} value={field.color_value}>{field.color}</option>
@@ -148,7 +155,7 @@ const ChoiceColor = observer(({
                     value={selectColor['choiceColor_' + index]?.count || ''}
                     type="text"
                     id="count"
-                    ref={inputRefs['choiceColor_' + index]}
+                    ref={inputRefs['countColor_' + index]}
                     className={defineErrorClass('choiceColor_' + index)}
                 />
             </div>

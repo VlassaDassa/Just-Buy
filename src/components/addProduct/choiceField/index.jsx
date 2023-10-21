@@ -52,7 +52,7 @@ const ChoiceField = observer(({
     return (
         <>
             <div className="small_column small_column--color">
-                {colorFieldVisible &&
+                {colorFieldVisible && characteristicsFields.color &&
                     colorFields.map((field, index) => (
                         <ChoiceColor
                             index={index}
@@ -86,7 +86,7 @@ const ChoiceField = observer(({
             </div>
 
             <div className="small_column small_column--size">
-                {sizeFieldVisible &&
+                {sizeFieldVisible && characteristicsFields.size &&
                     sizeFields.map((field, index) => (
 
                         <ChoiceSize

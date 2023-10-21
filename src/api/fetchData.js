@@ -151,3 +151,28 @@ export function getColors() {
 export function getSizes() {
   return axios.get(API_ROUTES.getSizes)
 }
+
+
+// Add product
+export function addProduct(data) {
+    const formData = new FormData();
+
+    formData.append('name', data.name);
+    formData.append('price', data.price);
+    formData.append('count', data.count);
+    formData.append('subcategory', data.subcategory);
+    formData.append('description', data.description);
+    formData.append('characteristics', data.characteristics);
+
+    // Add photos
+    data.photos.forEach((photo, index) => {
+      formData.append('product_photo', photo);
+    });
+
+
+    return axios.post(API_ROUTES.addProduct, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+}

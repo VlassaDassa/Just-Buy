@@ -4,31 +4,33 @@
 2. API;
 
 
+
 3. Test on the mobile device;
 4. Test on the desktop device;
+
 5. Correct divided on the columns;
-6. У контейнера с плюсиком меняется высота, когда я выбираю фотку;
-
-
-2. Обработать ошибки на функциях API, которые без useRequest;
-3. Попробовать почистить код;
-
-Старые inputRefs остаются и не перезаписываются. Нужно либо перезаписывать их, либо формировать данные для отправки на сервер как-то иначе
-Мб прокинуть с addProductBar на всю глубину какой-нибудь пропс или создать новый store. Который будет без рефов
-4. Добавление товара;
+6. Markup button "Add photo" have incorrect height on add photo;
+7. Add "List" field in "Product" model;
 
 
 
+Остановился на:
+    Засунуть поле главного поля в основной объект, который отправляется на сервер
+    Добавить поле главного поля в продукт
+    Добавлять главное фото в модель продукта
+    Отображать главное фото в модели продукта
+
+    Ещё раз затестить на проверку ошибок;
+    Подумать о возможныъ ошибках;
+    Исправлять текущую страницу;
+    Почистить код;
+    Вернуться на предыдущие страницы для исправления ошибок;
+
+    Данные обновляются только после перезапуска сервера;
+    Страница Cart сломалась;
 
 
-Принцип работы:
-    1. Когда я выбираю какую-то категорию или подкатегорию, делается запрос на сервер, я получаю из модели ProductCharacteristics
-        поля для частных характеристик, также с сервера возвращаются поля из таблиц Color и Size, если они разрешены в ProductCharacteristics
-        
-        На клиенте пользователь заполняет все эти поля и отправляет на сервер. Общие настройки залезают в обычные поля модели Product, а персональные
-        формируются в JSON формат и отправляются в JSONfield. 
 
-        Затем на странице продукта, эти данные распаршиваются и отображаются в виде цветов и прочего
 
 
 
@@ -38,7 +40,6 @@ Reminder:
         - Make the overlay hide smoothly;
         - Add favicon;
         - Add "title" for all pages;
-        - Some private characteristics depence of category or    subcategory
         - Finish fillin in the fields;
 
     Profile:
@@ -52,7 +53,7 @@ Reminder:
         - Remove the twitching on the changing categories;
 
     AddProduct:
-        - Add field "count". Sometimes his may be calculate with "size" and "color" fields, but sometimes no;
+        - Add choice base photo; (А пока я буду брать первое попавшееся изображение)
 
     Cart:
         - Set up count product;

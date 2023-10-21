@@ -44,7 +44,8 @@ const ChoiceSize = observer(({
 
     // For checking fields
     const inputRefs = {
-        ['choiceSize_' + index]: useRef()
+        ['choiceSize_' + index]: useRef(),
+        ['countSize_' + index]: useRef()
     } 
     useRegisterInputRefs(inputRefs)
 
@@ -129,7 +130,13 @@ const ChoiceSize = observer(({
             <div className="general_characteristics__item_wrapper">
                 <label value={selectedField} onChange={handleFieldChange} className="general_characteristics__label" htmlFor="color">Размер</label>
 
-                <select value={selectSize['choiceSize_' + index]?.value || ''} onChange={handleValueChange} id="color" className="general_characteristics__input">
+                <select 
+                    value={selectSize['choiceSize_' + index]?.value || ''} 
+                    onChange={handleValueChange} 
+                    id="color" 
+                    className="general_characteristics__input"
+                    ref={inputRefs['choiceSize_' + index]}
+                >
                     {fields &&
                         fields.map((field) => (
                             <option key={field.size_value} value={field.size_value}>{field.size}</option>
@@ -146,7 +153,7 @@ const ChoiceSize = observer(({
                     value={selectSize['choiceSize_' + index]?.count || ''}
                     type="text" 
                     id="count" 
-                    ref={inputRefs['choiceSize_' + index]}
+                    ref={inputRefs['countSize_' + index]}
                     className={defineErrorClass('choiceSize_' + index)}
                 />
             </div>

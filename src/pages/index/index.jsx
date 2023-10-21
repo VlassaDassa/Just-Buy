@@ -30,6 +30,7 @@ const Index = () => {
       }
     }, [data, loading])
 
+    console.log(products)
 
 
     return (

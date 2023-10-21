@@ -9,6 +9,7 @@ import Title from '../../title';
 import useRequest from '../../../hooks/useRequest';
 import { getCatWithSubcat, getCharacteristicsFields } from '../../../api/fetchData';
 import { showError } from '../../../hooks/showError';
+import addProductChecking from '../../../store/addProductChecking';
 
 import './index.scss';
 
@@ -47,6 +48,7 @@ const AddProductBar = observer(() => {
 
     // Actions on update "Category" fields
     useEffect(() => {
+        addProductChecking.resetInputRefs();
         if (catWithSubcat && selectedCategory.category_id != "nonSelect") {
             const subcat = catWithSubcat.filter(item => item.category_id === selectedCategory.category_id)
             setSubcategories(subcat[0].subcategory)
@@ -58,6 +60,7 @@ const AddProductBar = observer(() => {
 
     // Actions on update current "SubCategory" fields
     useEffect(() => {
+        addProductChecking.resetInputRefs();
         if (subcategories && selectedSubcategory) {
 
             // Get characteristics relate with selectedSubcategory

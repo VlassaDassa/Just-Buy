@@ -8,6 +8,7 @@ import Title from "../../title";
 import useRegisterInputRefs from "../../../hooks/useRegisterInputRefs";
 import addProductChecking from '../../../store/addProductChecking';
 import { checkinOnError, defineErrorClass, product_data } from "../../../services/services";
+import { addProduct } from "../../../api/fetchData";
 
 import { showError } from "../../../hooks/showError";
 
@@ -45,10 +46,16 @@ const PersonalCharact = observer(({ characteristicsFields }) => {
     const handleSaveBtn = (e) => {
         e.preventDefault()
         addProductChecking.setBtnClicked(true);
+        
+        const productData = {
+            'categoryId': characteristicsFields.category,
+            'subcategoryId': characteristicsFields.subcategory,
+            'colorVisible': characteristicsFields.color,
+            'sizeVisible': characteristicsFields.size,
+        }
 
         // Data for send to server
-        // const fieldValues = product_data(characteristicsFields.color, characteristicsFields.size)
-
+        const fieldValues = product_data(productData)
 
         // Checking on error
         if (checkinOnError(fieldValues) === 'photos') {
@@ -56,6 +63,7 @@ const PersonalCharact = observer(({ characteristicsFields }) => {
         }
 
         else if (checkinOnError(fieldValues)) {
+            addProduct(fieldValues)
             setIsVisibleSuccess(true)
         }
 

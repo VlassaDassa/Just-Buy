@@ -27,7 +27,7 @@ const Products = ({ products, likeShow=true, cartShow=true, onRoad=false, cartPa
                       key={'products' + product.id}
 
                       name={product.name}
-                      photo={product.product_photo}
+                      photo={product.product_photo[0].photo}
                       price={product.price}
                       rating={product.rating}
                       countFeedback={product.count_feedbacks}
