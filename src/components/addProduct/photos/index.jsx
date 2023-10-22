@@ -29,8 +29,10 @@ const Photos = () => {
         // Auto set main photo
         if (addPhotoLength > 0 && !firstClick) {
             setMainPhoto(addedPhoto[0].key)
+            addProductChecking.setMainPhoto(addedPhoto[0].key)
         }
 
+        
     }, [addedPhoto])
 
 
@@ -41,6 +43,7 @@ const Photos = () => {
     const handleMainPhoto = (photoId) => {
         setFirtClick(true)
         setMainPhoto(photoId)
+        addProductChecking.setMainPhoto(photoId)
     }
 
     const handleImageChange = (event, key) => {
@@ -75,9 +78,12 @@ const Photos = () => {
 
                         addProductChecking.addPhoto(file, counter)
 
+                        // Define main photo
                         if (addedPhoto.length === 0 && counter != mainPhoto) {
                             setMainPhoto(counter)
+                            addProductChecking.setMainPhoto(counter)
                         }
+                        
                     } 
                     
                     else {
@@ -100,22 +106,21 @@ const Photos = () => {
         if (addedPhoto.length > 0) {
             if (mainPhoto === keyToRemove) {
                 setMainPhoto(addedPhoto[0].key)
+                addProductChecking.setMainPhoto(addedPhoto[0].key)
             }
 
             if (keyToRemove === addedPhoto[0].key && addedPhoto.length > 1) {
                 setMainPhoto(addedPhoto[1].key)
+                addProductChecking.setMainPhoto(addedPhoto[1].key)
             }
         }
-
-       
-
 
 
         const updatedPhotos = addedPhoto.filter(photo => photo.key !== keyToRemove);
       
         setAddedPhoto(updatedPhotos);
         setPhotoCount(photoCount - 1);
-        addProductChecking.deletePhoto(setCouner(counter+1))
+        addProductChecking.deletePhoto(keyToRemove)
     };
 
 

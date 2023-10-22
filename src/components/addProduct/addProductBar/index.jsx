@@ -108,6 +108,8 @@ const AddProductBar = observer(() => {
                             characteristicsFields && selectedCategory.category_id !== "nonSelect" ?
                                 <PersonalCharact
                                     characteristicsFields={characteristicsFields}
+                                    selectedCategory={selectedCategory}
+                                    selectedSubcategory={selectedSubcategory}
                                 />
                             :
                             <>

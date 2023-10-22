@@ -8,28 +8,23 @@
 3. Test on the mobile device;
 4. Test on the desktop device;
 
-5. Correct divided on the columns;
-6. Markup button "Add photo" have incorrect height on add photo;
-7. Add "List" field in "Product" model;
+
+
 
 
 
 Остановился на:
-    Засунуть поле главного поля в основной объект, который отправляется на сервер
-    Добавить поле главного поля в продукт
-    Добавлять главное фото в модель продукта
-    Отображать главное фото в модели продукта
-
-    Ещё раз затестить на проверку ошибок;
-    Подумать о возможныъ ошибках;
+    Markup button "Add photo" have incorrect height on add photo;
+    
     Исправлять текущую страницу;
     Почистить код;
+
+    Cart теперь имеет количество;
+
+    Ещё раз затестить на проверку ошибок и Cart и addProduct;
     Вернуться на предыдущие страницы для исправления ошибок;
 
-    Данные обновляются только после перезапуска сервера;
-    Страница Cart сломалась;
-
-
+    
 
 
 
@@ -53,10 +48,13 @@ Reminder:
         - Remove the twitching on the changing categories;
 
     AddProduct:
-        - Add choice base photo; (А пока я буду брать первое попавшееся изображение)
+        - Correct divide on the columns, error if count fileds changing;
 
     Cart:
         - Set up count product;
         - Color and size;
 
 
+
+Future:
+    Тесты для каждой страницы, особенно для addProduct

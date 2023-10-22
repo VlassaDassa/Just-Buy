@@ -25,6 +25,7 @@ class AddProductChecking {
       photos: observable,
       addPhoto: action,
       deletePhoto: action,
+      setMainPhoto: action,
     });
   }
 
@@ -36,9 +37,21 @@ class AddProductChecking {
     this.inputRefs = {};
   }
 
-  addPhoto(file, id) {
-    this.photos[id] = file;
+  addPhoto(file, id, main=false) {
+    this.photos[id] = {
+      file: file,
+      main: main
+    };
   }
+
+  setMainPhoto(id) {
+    Object.keys(this.photos).forEach((key) => {
+      this.photos[key].main = false
+    })
+
+    this.photos[id].main = true
+  }
+
 
   deletePhoto(id) {
     delete this.photos[id]

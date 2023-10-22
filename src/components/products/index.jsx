@@ -9,7 +9,7 @@ import './index.scss';
 
 
 const Products = ({ products, likeShow=true, cartShow=true, onRoad=false, cartPage=false, cartPageOptions={} }) => {
-  
+  console.log(products)
 
   return (
       <div className="products">
@@ -27,7 +27,7 @@ const Products = ({ products, likeShow=true, cartShow=true, onRoad=false, cartPa
                       key={'products' + product.id}
 
                       name={product.name}
-                      photo={product.product_photo[0].photo}
+                      photo={product.main_photo}
                       price={product.price}
                       rating={product.rating}
                       countFeedback={product.count_feedbacks}

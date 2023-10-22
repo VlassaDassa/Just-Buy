@@ -162,11 +162,17 @@ export function addProduct(data) {
     formData.append('count', data.count);
     formData.append('subcategory', data.subcategory);
     formData.append('description', data.description);
-    formData.append('characteristics', data.characteristics);
+    formData.append('characteristics', JSON.stringify(data.characteristics));
+
 
     // Add photos
     data.photos.forEach((photo, index) => {
-      formData.append('product_photo', photo);
+      if (photo.main) {
+        formData.append('mainPhoto', photo.file)
+      }
+      else {
+        formData.append('product_photo', photo.file);
+      }
     });
 
 

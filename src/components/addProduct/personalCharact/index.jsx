@@ -1,6 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect, createRef } from "react";
 import { CSSTransition } from 'react-transition-group';
 import { observer } from 'mobx-react-lite';
+
 
 import SuccessMessage from "../../SuccessMessage";
 import Title from "../../title";
@@ -16,31 +17,36 @@ import { showError } from "../../../hooks/showError";
 
 
 
-const PersonalCharact = observer(({ characteristicsFields }) => {
-    const [characteristicValues, setCharacteristicValues] = useState({});
+const PersonalCharact = observer(({ characteristicsFields, selectedSubcategory, selectedCategory }) => {
     const [isVisibleSuccess, setIsVisibleSuccess] = useState(false)
+    const [charRefs, setCharRefs] = useState({});
 
-    const handleCharacterChange = (e, charactId) => {
-        const newValue = e.target.value;
-        setCharacteristicValues({
-            ...characteristicValues,
-            [charactId]: newValue,
+
+    const updateCharRefs = (fields) => {
+    const newCharRefs = {};
+        fields.forEach((char) => {
+            newCharRefs['personalChar_' + char.name] = createRef();
         });
+        setCharRefs(newCharRefs);
     };
 
-    
-    // Object for error checking
-    const inputRefs = {}
 
-    // Add ref to charactArray
-    characteristicsFields.fields.fields.map((field) => {
-        inputRefs['personalChar_' + field.name] = useRef()
-    })
-    
+    useEffect(() => {
     // Register refs
-    useRegisterInputRefs(inputRefs)
-    
-    
+        Object.keys(charRefs).forEach(fieldName => {
+            const inputRef = charRefs[fieldName];
+            addProductChecking.setInputRef(fieldName, inputRef.current);
+        });
+    }, [charRefs]);
+
+
+    useEffect(() => {
+        updateCharRefs(characteristicsFields.fields.fields);
+    }, [characteristicsFields, selectedSubcategory, selectedCategory]);
+
+
+
+
 
     // Error checking and add product
     const handleSaveBtn = (e) => {
@@ -56,6 +62,7 @@ const PersonalCharact = observer(({ characteristicsFields }) => {
 
         // Data for send to server
         const fieldValues = product_data(productData)
+        console.log(fieldValues)
 
         // Checking on error
         if (checkinOnError(fieldValues) === 'photos') {
@@ -84,12 +91,12 @@ const PersonalCharact = observer(({ characteristicsFields }) => {
                 <input
                     type="text"
                     className={defineErrorClass('personalChar_' + char.name)}
-                    onChange={(e) => handleCharacterChange(e, char.name)}
-                    ref={inputRefs['personalChar_' + char.name]}
+                    ref={charRefs['personalChar_' + char.name]}
                 />
             </div>
         ));
     };
+
 
     return (
         <>
@@ -107,12 +114,14 @@ const PersonalCharact = observer(({ characteristicsFields }) => {
 
                 <div className="column_wrapper">
                     <div className="left_column">
-                        {/* TODO falsche division  */}
+                        {/* TODO неверное деление */}
+                        {/* {renderCharact(0, Math.ceil(characteristicsFields.fields.fields.length/2))} */}
                         {renderCharact(0, 5)}
 
                     </div>
                     <div className="right_column">
-                        {/* TODO falsche division  */}
+                        {/* TODO неверное деление */}
+                        {/* {renderCharact(Math.ceil(characteristicsFields.fields.fields.length/2), characteristicsFields.fields.fields.length)} */}
                         {renderCharact(5, 10)}
                     </div>
                 </div>
