@@ -90,17 +90,34 @@ export const containsNumber = (value) => {
 }
 
 
+function hasEmptyValue(obj) {
+  for (const key in obj) {
+    const value = obj[key];
 
-function isObjectEmpty(obj) {
-    return Object.values(obj).some(value => value === "");
+    if (value === "") {
+      return true;
+    } else if (typeof value === "object") {
+      if (hasEmptyValue(value)) {
+        return true;
+      }
+    } else if (Array.isArray(value)) {
+      for (const item of value) {
+        if (typeof item === "object" && hasEmptyValue(item)) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
 }
 
 
 // Checking on eror on the page "AddProduct"
 export const checkinOnError = (values) => {
-    const conditionalExpression = !isObjectEmpty(values) && 
-                                values.description.length > 300
+    const conditionalExpression = !hasEmptyValue(values) && 
+                                values.description.length > 300 
 
+    console.log(values)
     if (addProductChecking.countPhotos > 0) {
         if (conditionalExpression) {
             return true

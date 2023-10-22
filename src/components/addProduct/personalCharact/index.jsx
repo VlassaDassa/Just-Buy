@@ -6,7 +6,6 @@ import { observer } from 'mobx-react-lite';
 import SuccessMessage from "../../SuccessMessage";
 import Title from "../../title";
 
-import useRegisterInputRefs from "../../../hooks/useRegisterInputRefs";
 import addProductChecking from '../../../store/addProductChecking';
 import { checkinOnError, defineErrorClass, product_data } from "../../../services/services";
 import { addProduct } from "../../../api/fetchData";
@@ -20,10 +19,11 @@ import { showError } from "../../../hooks/showError";
 const PersonalCharact = observer(({ characteristicsFields, selectedSubcategory, selectedCategory }) => {
     const [isVisibleSuccess, setIsVisibleSuccess] = useState(false)
     const [charRefs, setCharRefs] = useState({});
+    const [counter, setCounter] = useState(0)
 
 
     const updateCharRefs = (fields) => {
-    const newCharRefs = {};
+        const newCharRefs = {};
         fields.forEach((char) => {
             newCharRefs['personalChar_' + char.name] = createRef();
         });
@@ -31,8 +31,8 @@ const PersonalCharact = observer(({ characteristicsFields, selectedSubcategory, 
     };
 
 
-    useEffect(() => {
     // Register refs
+    useEffect(() => {
         Object.keys(charRefs).forEach(fieldName => {
             const inputRef = charRefs[fieldName];
             addProductChecking.setInputRef(fieldName, inputRef.current);
@@ -52,6 +52,7 @@ const PersonalCharact = observer(({ characteristicsFields, selectedSubcategory, 
     const handleSaveBtn = (e) => {
         e.preventDefault()
         addProductChecking.setBtnClicked(true);
+        setCounter(counter+1)
         
         const productData = {
             'categoryId': characteristicsFields.category,
@@ -62,7 +63,6 @@ const PersonalCharact = observer(({ characteristicsFields, selectedSubcategory, 
 
         // Data for send to server
         const fieldValues = product_data(productData)
-        console.log(fieldValues)
 
         // Checking on error
         if (checkinOnError(fieldValues) === 'photos') {
@@ -114,15 +114,11 @@ const PersonalCharact = observer(({ characteristicsFields, selectedSubcategory, 
 
                 <div className="column_wrapper">
                     <div className="left_column">
-                        {/* TODO неверное деление */}
-                        {/* {renderCharact(0, Math.ceil(characteristicsFields.fields.fields.length/2))} */}
-                        {renderCharact(0, 5)}
+                        {renderCharact(0, Math.ceil(characteristicsFields.fields.fields.length/2))}
 
                     </div>
                     <div className="right_column">
-                        {/* TODO неверное деление */}
-                        {/* {renderCharact(Math.ceil(characteristicsFields.fields.fields.length/2), characteristicsFields.fields.fields.length)} */}
-                        {renderCharact(5, 10)}
+                        {renderCharact(Math.ceil(characteristicsFields.fields.fields.length/2), characteristicsFields.fields.fields.length)}
                     </div>
                 </div>
 

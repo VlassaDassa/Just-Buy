@@ -83,9 +83,7 @@ const Photos = () => {
                             setMainPhoto(counter)
                             addProductChecking.setMainPhoto(counter)
                         }
-                        
                     } 
-                    
                     else {
                         showError('Достигнуто максимальное количество фотографий (5)')
                     }

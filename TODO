@@ -1,32 +1,18 @@
 1. Fix disadvantages:
-    - Check CTRL + SHIFT + F // TODO;
-     
-2. API;
-
-
+    - Затестить на ошибки;
+    - Поискать баги;
+    - Исправить высоту контейнера. При добавлении и удалении фотографии она разная;
+    - Найти недостатки в вёрстке и исправить;
+    - Вернуться на Cart и посмотреть в Reminder;
+    - Вернуться на предыдущие страницы, поискать, что можно поправить там;
 
 3. Test on the mobile device;
 4. Test on the desktop device;
 
 
 
-
-
-
 Остановился на:
-    Markup button "Add photo" have incorrect height on add photo;
-    
-    Исправлять текущую страницу;
-    Почистить код;
-
-    Cart теперь имеет количество;
-
-    Ещё раз затестить на проверку ошибок и Cart и addProduct;
-    Вернуться на предыдущие страницы для исправления ошибок;
-
-    
-
-
+    - Опять ебанутые ошибки, заключающиеся в том, что в fieldValues остаются прежние значения
 
 
 Reminder:
@@ -47,12 +33,9 @@ Reminder:
     Mobile menu:
         - Remove the twitching on the changing categories;
 
-    AddProduct:
-        - Correct divide on the columns, error if count fileds changing;
-
     Cart:
         - Set up count product;
-        - Color and size;
+        - Choicing color and size;
 
 
 

@@ -34,6 +34,7 @@ const AddProductBar = observer(() => {
 
     // Inital values for fields "Category" and "Subcategory"
     useEffect(() => {
+        addProductChecking.resetInputRefs();
         if (catWithSubcat && catWithSubcat.length > 0) {
 
             const categoriesArray = catWithSubcat.map(category => ({
