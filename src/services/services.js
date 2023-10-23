@@ -90,34 +90,35 @@ export const containsNumber = (value) => {
 }
 
 
-function hasEmptyValue(obj) {
+function hasNoEmptyValues(obj) {
   for (const key in obj) {
-    const value = obj[key];
+    if (key !== "photos" && obj.hasOwnProperty(key)) {
+      const value = obj[key];
 
-    if (value === "") {
-      return true;
-    } else if (typeof value === "object") {
-      if (hasEmptyValue(value)) {
-        return true;
-      }
-    } else if (Array.isArray(value)) {
-      for (const item of value) {
-        if (typeof item === "object" && hasEmptyValue(item)) {
-          return true;
+      if (value === "") {
+        return false; 
+      } else if (typeof value === "object") {
+        if (!hasNoEmptyValues(value)) {
+          return false; 
+        }
+      } else if (Array.isArray(value)) {
+        for (const item of value) {
+          if (typeof item === "object" && !hasNoEmptyValues(item)) {
+            return false; 
+          }
         }
       }
     }
   }
-  return false;
+  return true;
 }
 
 
 // Checking on eror on the page "AddProduct"
 export const checkinOnError = (values) => {
-    const conditionalExpression = !hasEmptyValue(values) && 
+    const conditionalExpression = hasNoEmptyValues(values) && 
                                 values.description.length > 300 
 
-    console.log(values)
     if (addProductChecking.countPhotos > 0) {
         if (conditionalExpression) {
             return true
@@ -137,7 +138,7 @@ export const defineErrorClass = (fieldName) => {
     if (addProductChecking.btnClicked) {
         const value = addProductChecking?.inputRefs[fieldName]?.value;
       
-        if (value === '' || (fieldName === 'description' && value.length < 300)) {
+        if (value === '' || (fieldName === 'description' && (value && value.length < 300))) {
             return 'general_characteristics__input error';
         }
     }

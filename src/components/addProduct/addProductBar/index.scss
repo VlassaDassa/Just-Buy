@@ -326,14 +326,13 @@ select {
     background: $secondary;
     box-shadow: $_box_shadow;
     border-radius: 5px;
-    padding: 4px;
     margin-bottom: 20px;
+    overflow: hidden;
 
     padding-top: calc(100% * (328/246));
     position: relative;
     
     cursor: pointer;
-    position: relative;
 
     &:hover {
         .wrapper_photo__photo {
@@ -379,6 +378,11 @@ select {
     top: 0;
     left: 0;
 
+    width: 100%;
+    height: 100%;
+
+    border-radius: 5px;
+
     transition: all 0.1s ease-in-out;
 }
 
@@ -404,11 +408,11 @@ select {
     justify-content: center;
     align-items: center;
     position: relative;
+    cursor: pointer;
 
     &:before {
         content: "";
-        display: block;
-        padding-top: calc(100% * (328/246));
+        padding-top: calc(100% * (328/242));
     }
 }
 
@@ -427,13 +431,6 @@ select {
     display: none;
 }
 
-
-.wrapper_photo__photo {
-    width: 100%;
-    height: 100%;
-
-    border-radius: 5px;
-}
 
 
 /* Plus */
@@ -491,7 +488,7 @@ select {
 
     .add_product__color.circle,
     .add_product__trash {
-        right: 10px;
+        right: 15px;
         width: 30px;
         height: 30px;
     }
@@ -568,9 +565,6 @@ select {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .wrapper_photo {
-        margin-bottom: 1px;
-    }
 
     .add_products_container {
         width: 100%;

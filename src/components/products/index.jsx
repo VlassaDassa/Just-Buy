@@ -9,7 +9,6 @@ import './index.scss';
 
 
 const Products = ({ products, likeShow=true, cartShow=true, onRoad=false, cartPage=false, cartPageOptions={} }) => {
-  console.log(products)
 
   return (
       <div className="products">

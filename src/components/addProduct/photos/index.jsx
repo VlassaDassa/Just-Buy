@@ -31,8 +31,6 @@ const Photos = () => {
             setMainPhoto(addedPhoto[0].key)
             addProductChecking.setMainPhoto(addedPhoto[0].key)
         }
-
-        
     }, [addedPhoto])
 
 
@@ -40,11 +38,13 @@ const Photos = () => {
         photoField.current.click();
     };
     
+    
     const handleMainPhoto = (photoId) => {
         setFirtClick(true)
         setMainPhoto(photoId)
         addProductChecking.setMainPhoto(photoId)
     }
+
 
     const handleImageChange = (event, key) => {
         const file = event.target?.files[0];
@@ -125,7 +125,7 @@ const Photos = () => {
     return (
         <div className="photos">
 
-            <div onClick={handleAddPhotoClick} className="wrapper_photo wrapper_photo--plus">
+            <div onClick={handleAddPhotoClick} className="wrapper_photo--plus">
                 <div className="wrapper_photo__plus">
                 </div>
             </div>

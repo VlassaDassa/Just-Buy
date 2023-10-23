@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect, createRef } from "react";
+import React, { useState, useEffect, createRef } from "react";
 import { CSSTransition } from 'react-transition-group';
 import { observer } from 'mobx-react-lite';
-
+import { useNavigate } from 'react-router-dom';
 
 import SuccessMessage from "../../SuccessMessage";
 import Title from "../../title";
@@ -17,10 +17,12 @@ import { showError } from "../../../hooks/showError";
 
 
 const PersonalCharact = observer(({ characteristicsFields, selectedSubcategory, selectedCategory }) => {
-    const [isVisibleSuccess, setIsVisibleSuccess] = useState(false)
+    const [isVisibleSuccess, setIsVisibleSuccess] = useState(false);
     const [charRefs, setCharRefs] = useState({});
-    const [counter, setCounter] = useState(0)
+    const [counter, setCounter] = useState(0);
+    const [btnDisabled, setBtnDisabled] = useState(false);
 
+    const navigate = useNavigate()
 
     const updateCharRefs = (fields) => {
         const newCharRefs = {};
@@ -40,12 +42,10 @@ const PersonalCharact = observer(({ characteristicsFields, selectedSubcategory, 
     }, [charRefs]);
 
 
+    // Update characteristics refs
     useEffect(() => {
         updateCharRefs(characteristicsFields.fields.fields);
     }, [characteristicsFields, selectedSubcategory, selectedCategory]);
-
-
-
 
 
     // Error checking and add product
@@ -64,14 +64,35 @@ const PersonalCharact = observer(({ characteristicsFields, selectedSubcategory, 
         // Data for send to server
         const fieldValues = product_data(productData)
 
+
+        // Clear old fields
+        const new_char = []
+        characteristicsFields.fields.fields.forEach((field) => {
+            new_char.push('personalChar_' + field.name)
+        })
+        Object.keys(fieldValues.characteristics).forEach((key) => {
+            if (key.includes('personalChar')) {
+                if (!new_char.includes(key)) {
+                    delete fieldValues.characteristics[key]
+                }
+            }
+        })
+
+
         // Checking on error
         if (checkinOnError(fieldValues) === 'photos') {
             showError('Недостаточно фотографий')
         }
 
         else if (checkinOnError(fieldValues)) {
+            setBtnDisabled(true)
+
             addProduct(fieldValues)
             setIsVisibleSuccess(true)
+            
+            setTimeout(() => {
+                navigate('/index')
+            }, 1500)
         }
 
         else {
@@ -126,6 +147,8 @@ const PersonalCharact = observer(({ characteristicsFields, selectedSubcategory, 
                 <div className="button_wrapper">
                     <button className="button_wrapper__button"
                         onClick={handleSaveBtn}
+                        disabled={btnDisabled}
+
                     >
                         Сохранить
                     </button>

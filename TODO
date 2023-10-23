@@ -1,20 +1,3 @@
-1. Fix disadvantages:
-    - Затестить на ошибки;
-    - Поискать баги;
-    - Исправить высоту контейнера. При добавлении и удалении фотографии она разная;
-    - Найти недостатки в вёрстке и исправить;
-    - Вернуться на Cart и посмотреть в Reminder;
-    - Вернуться на предыдущие страницы, поискать, что можно поправить там;
-
-3. Test on the mobile device;
-4. Test on the desktop device;
-
-
-
-Остановился на:
-    - Опять ебанутые ошибки, заключающиеся в том, что в fieldValues остаются прежние значения
-
-
 Reminder:
     General:
         - Remove the twitching on the transitions by pages;
@@ -22,6 +5,7 @@ Reminder:
         - Add favicon;
         - Add "title" for all pages;
         - Finish fillin in the fields;
+        - Sort components in folders;
 
     Profile:
         - Remove the twitching on the change delivery point;
@@ -36,6 +20,16 @@ Reminder:
     Cart:
         - Set up count product;
         - Choicing color and size;
+        - На телефоне проблема с определинем карты, пишет undefined, если добавить карту и выбрать её;
+        - При покупке товара, уменьшать количество у цвета, у размера, у товара целиком, в зависимости от того, какой товар;
+    
+    addProduct:
+        - Number of sizes and count colors not related this is logic error;
+        - Function "DefineErrors" skip "Size" and "Color" fields;
+
+    Index:
+        - Number of all products not correct, if remove products, because request cached;
+
 
 
 
