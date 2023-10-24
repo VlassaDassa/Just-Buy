@@ -1,30 +1,32 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
+
 import useRequest from "../../../hooks/useRequest";
 import { getDeliverySlider } from "../../../api/fetchData";
 
 
 
+
+
+
 const PhotoSlider = () => {
-
-
-
     const [data, isLoading, error] = useRequest(() => getDeliverySlider());
     const [pointPhoto, setPointPhoto] = useState([]);
-    const [currentSlider, setCurrentSlider] = useState(1);
+    const [currentSlider, setCurrentSlider] = useState(0);
 
     
     useEffect(() => {
         if (data) {
             setPointPhoto(prevpointPhoto => [ ...prevpointPhoto, ...data])
         }
-        
     }, [data, isLoading])
 
+
+    // Scale and move image
     const handleMouseMove = (event) => {
         const windowWidth = window.innerWidth;
     
         if (windowWidth > 768) {
-          const photo = event.currentTarget; // Используем currentTarget вместо event.target
+          const photo = event.currentTarget;
           const rect = photo.getBoundingClientRect();
           const x = event.clientX - rect.left;
           const y = event.clientY - rect.top;
@@ -34,14 +36,9 @@ const PhotoSlider = () => {
     
           photo.style.transformOrigin = `${offsetX * 100}% ${offsetY * 100}%`;
         }
-      };
+    };
     
 
-    const nextSlide = () => {
-        setCurrentSlider(currentSlider => (currentSlider + 1 === 3 ? 0 : currentSlider + 1));
-    }
-    
-    
     return (
        
         <div className="location__photo_slider">
@@ -57,13 +54,10 @@ const PhotoSlider = () => {
                             onClick={() => setCurrentSlider(number)}
                             alt="..."
                         />
-                
                     ))}
-            
-                
-
             </div>
-                    
+
+
             <div className="location__photo_pgn">
                 {pointPhoto && pointPhoto.length !== 0 &&
                     [0, 1, 2].map((number) => (
@@ -78,16 +72,8 @@ const PhotoSlider = () => {
                     ))
                 }
             </div>
-
-            <button className="mobile_map__button">
-                Выбрать пункт выдачи
-            </button>
         </div>
-                
         )
-    
-
-    
 }
 
 export default PhotoSlider;

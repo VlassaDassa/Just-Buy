@@ -32,4 +32,6 @@ export const API_ROUTES = {
     getColors: API_BASE_URL + 'get_colors/',
     getSizes: API_BASE_URL + 'get_sizes/',
     addProduct: API_BASE_URL + 'add_product/',
+
+    getDeliveryPoint: API_BASE_URL + 'get_delivery_point/',
 }

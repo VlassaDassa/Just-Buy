@@ -9,8 +9,8 @@ import Loader from '../../loader';
 import { getAllDeliveryPoints } from '../../../api/fetchData';
 import useRequest from '../../../hooks/useRequest';
 
-import './index.scss';
 import placemark from './../../../assets/images/map/placemark.svg'
+import './index.scss';  
 
 
 

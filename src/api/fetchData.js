@@ -182,3 +182,9 @@ export function addProduct(data) {
       },
     });
 }
+
+
+// Get particular delivery point
+export function getDeliveryPoint(deliveryPointId) {
+  return axios.get(API_ROUTES.getDeliveryPoint + deliveryPointId + '/')
+}

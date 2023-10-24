@@ -1,8 +1,6 @@
 @import '../../../assets/styles/variables';
 
 
-/* feedback */
-
 .delivery_point_feedback {
     margin-top: 60px;
 
@@ -14,13 +12,9 @@
 .delivery_point_feedback_item,
 .delivery_point_feedback__btn {
     box-shadow: $_box_shadow;
-    border-radius: 25px;
+    border-radius: 10px;
     background: $base;
 }
-
-
-   
-
 
 
 .delivery_point_feedback_item__score_ico,
@@ -43,8 +37,6 @@
     font-weight: $thin;
 }
 
-// 
-
 
 .delivery_point_feedback__numerical_rating {
     font-size: 24px;
@@ -55,7 +47,6 @@
 .delivery_point_feedback__count {
     font-size: 16px;
 }
-
 
 
 .delivery_point_feedback_item {
@@ -122,5 +113,3 @@
         padding: 17px 15px;
     }
 }
-
-/* ./feedback */

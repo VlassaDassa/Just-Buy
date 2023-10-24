@@ -5,10 +5,12 @@
 /* info */
 .delivery_point_info,
 .mobile_delivery_point_info {
-    margin-top: 180px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    margin: 100px 0;
+    margin-top: 200px;
 }
 
 .mobile_delivery_point_info {
@@ -84,6 +86,4 @@
         margin-bottom: 100px;
     }
 }
-
-
 /* ./info */

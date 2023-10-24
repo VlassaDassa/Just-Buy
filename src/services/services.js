@@ -326,3 +326,7 @@ export const product_data = (productData) => {
 }
 
 
+// Date formatting
+export const dateFormatting = (date, curSep='-', newSep='/') => ( date.replace(new RegExp(curSep, 'g'), newSep) )
+
+
