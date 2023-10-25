@@ -81,12 +81,6 @@ export function deleteBankCard(id)  {
 }
 
 
-// Receiving delivery slider
-export const getDeliverySlider = () => {
-  return axios.get(API_ROUTES.getDeliverySlider);
-}
-
-
 // Receiving comments stars
 export const getCommentsStars = () => {
   return axios.get(API_ROUTES.getCommentsStars);

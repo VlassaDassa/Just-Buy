@@ -11,8 +11,12 @@ import FeedbackItem from './feedbackItem';
 
 
 function FeedbackList({ feedbacks, rating }) {
-    const [range, setRange] = useState({'start': 0, 'end': 3})
+    const range = 3
+    const [end, setEnd] = useState(range)
 
+    function showMore() {
+      setEnd(end+range)
+    }
 
     return (
       <div>
@@ -20,19 +24,20 @@ function FeedbackList({ feedbacks, rating }) {
 
         <div className="delivery_point_feedback__items">
             {
-
-              feedbacks?.slice(range.start, range.end)?.map((feedback) => (
+              feedbacks?.slice(0, end)?.map((feedback) => (
                 <FeedbackItem key={feedback.id} feedback={feedback} />
               ))
-
             }
             
         </div>
 
-
-        <button className="delivery_point_feedback__btn">
-            Показать больше
-        </button>
+        {feedbacks?.length > end ?
+            <button className="delivery_point_feedback__btn" onClick={showMore}>
+                Показать больше
+            </button>
+        :
+            null
+        }
 
       </div>
     );
@@ -41,6 +46,3 @@ function FeedbackList({ feedbacks, rating }) {
 export default FeedbackList;
 
 
-{/* <button className="delivery_point_feedback__btn" onClick={showMore} disabled>
-            Больше отзывов нет
-</button> */}

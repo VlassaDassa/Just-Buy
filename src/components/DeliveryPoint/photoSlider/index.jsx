@@ -1,25 +1,14 @@
-import React, { useState, useEffect } from "react";
-
-import useRequest from "../../../hooks/useRequest";
-import { getDeliverySlider } from "../../../api/fetchData";
+import React, { useState } from "react";
 
 
 
 
 
 
-const PhotoSlider = () => {
-    const [data, isLoading, error] = useRequest(() => getDeliverySlider());
-    const [pointPhoto, setPointPhoto] = useState([]);
-    const [currentSlider, setCurrentSlider] = useState(0);
 
-    
-    useEffect(() => {
-        if (data) {
-            setPointPhoto(prevpointPhoto => [ ...prevpointPhoto, ...data])
-        }
-    }, [data, isLoading])
-
+const PhotoSlider = ({ photosArray }) => {
+    const mainPhotoId = photosArray.find(item => String(item.id).includes('main')).id
+    const [currentPhoto, setCurrentPhoto] = useState(mainPhotoId)
 
     // Scale and move image
     const handleMouseMove = (event) => {
@@ -37,40 +26,38 @@ const PhotoSlider = () => {
           photo.style.transformOrigin = `${offsetX * 100}% ${offsetY * 100}%`;
         }
     };
-    
+
+
 
     return (
        
         <div className="location__photo_slider">
             <div className="location__photo_wrapper">
-                {pointPhoto && pointPhoto.length !== 0 &&
-                    [0, 1, 2].map((number) => (
-                        pointPhoto[number] &&
-                        <img
-                            onMouseMove={handleMouseMove}
-                            src={pointPhoto[number].photo}
-                            key={number}
-                            className={`location__photo ${currentSlider === number ? "location__photo-selected" : ""}`}
-                            onClick={() => setCurrentSlider(number)}
-                            alt="..."
-                        />
-                    ))}
+
+                <img
+                    onMouseMove={handleMouseMove}
+                    src={photosArray.find(item => item.id === currentPhoto).photo}
+                    className='location__photo location__photo-selected'
+                />
+
             </div>
 
 
             <div className="location__photo_pgn">
-                {pointPhoto && pointPhoto.length !== 0 &&
-                    [0, 1, 2].map((number) => (
-                        pointPhoto[number] &&
+
+                {
+
+                    photosArray.map((item) => (
                         <img
-                            src={pointPhoto[number].photo}
-                            key={number}
-                            className={`location__photo_pgn_item ${currentSlider === number ? "location__photo_pgn_item-selected" : ""}`}
-                            onClick={() => setCurrentSlider(number)}
-                            alt="..."
+                            key={item.id}
+                            src={item.photo}
+                            onClick={() => setCurrentPhoto(item.id)}
+                            className={`location__photo_pgn_item ${currentPhoto === item.id ? "location__photo_pgn_item-selected" : ""}`}
                         />
                     ))
+
                 }
+                
             </div>
         </div>
         )
