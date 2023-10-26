@@ -1,21 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import './index.scss';
 
-import point_photo from './../../../assets/images/product_card/book_1.jpg';
 
 
 
 
+const DesktopDeliveryPoints = ({ point }) => {
 
-const DesktopDeliveryPoints = ({point}) => {
-
-  
 
   return (
     <div className={Object.keys(point).length ? 'point' : 'point point--hidden'}>
-        <a href="#">
+        <Link to={'/delivery_point/' + point.id}>
             <div className="point__image_wrapper">
-                <img className="point__image" src={point.photo} />
+                <img className="point__image" src={point.main_photo} />
             </div>
 
             <div className="point__description">
@@ -31,7 +30,7 @@ const DesktopDeliveryPoints = ({point}) => {
                 </div>
 
             </div>
-        </a>
+        </Link>
     </div> 
   )
 }

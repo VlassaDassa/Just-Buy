@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import Title from '../../title';
 import Loader from '../../loader';
 import NoSection from '../../noSection';
 
 import useRequest from '../../../hooks/useRequest';
-import { getAllDeliveryPoints } from '../../../api/fetchData';
-
+import { getCurrentDeliveryPoint } from '../../../api/fetchData';
 
 import './index.scss';
 
@@ -15,14 +15,15 @@ import './index.scss';
 
 
 const CurrentDeliveryPoint = () => {
-    const [data, loading, error] = useRequest(() => getAllDeliveryPoints())
+    const [data, loading, error] = useRequest(() => getCurrentDeliveryPoint())
     const [point, setPoint] = useState({})
 
     useEffect(() => {
-        if (data) {
+        if (data && data.length > 0 && !loading) {
             setPoint(data[0])
         }
     }, [data])
+
 
     const loadingCondition = Object.keys(point).length > 0 && !loading
     
@@ -33,11 +34,11 @@ const CurrentDeliveryPoint = () => {
             {
                 !loading && Object.keys(point).length > 0 ?
                     <div className="current_delivery_point__item">
-                        <a href="#">
+                        <Link to={'/delivery_point/' + point.delivery_point_id} >
                             <div className="current_delivery_point__img_wrapper">
                                 {
                                     loadingCondition ?
-                                        <img src={point.photo} className="current_delivery_point__img" />
+                                        <img src={point.main_photo} className="current_delivery_point__img" />
                                     :
                                     <Loader additionalClass='currentDeliveyLoader' />
                                 }
@@ -68,7 +69,7 @@ const CurrentDeliveryPoint = () => {
                                     <p className="products__number_rating">{loadingCondition ? point.rating : '4'}</p>
                                 </div>
                             </div>
-                        </a>
+                        </Link>
                     </div>
                 :
                     <NoSection message="Выберите пункт выдачи" />

@@ -34,4 +34,6 @@ export const API_ROUTES = {
     addProduct: API_BASE_URL + 'add_product/',
 
     getDeliveryPoint: API_BASE_URL + 'get_delivery_point/',
+    getStatusDeliveryPoint: API_BASE_URL + 'status_delivery_point/',
+    choiceDeliveryPoint: API_BASE_URL + 'choice_delivery_point/',
 }

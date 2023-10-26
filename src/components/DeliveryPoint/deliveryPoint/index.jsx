@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from 'react-router-dom';
 
 import Location from "../location";
 import Info from "../info";
-import Feedbacks from "../feedbacks.jsx"
+import Feedbacks from "../feedbacks.jsx";
+import critical_error from "../../../store/critical_error";
 
 import useRequest from "../../../hooks/useRequest";
 import { getDeliveryPoint } from "../../../api/fetchData";
@@ -14,7 +16,7 @@ import "./index.scss";
 
 
 const DeliveryPointBar = () => {
-    const deliveryPointId = 1;
+    const { deliveryPointId } = useParams();
     const [data, loading, error] = useRequest(() => getDeliveryPoint(deliveryPointId), [])
     const [pointData, setPointData] = useState({})
     const [photosArray, setPhotosArray] = useState([])
@@ -22,7 +24,7 @@ const DeliveryPointBar = () => {
 
     // Initial data
     useEffect(() => {
-        if (data && !loading) {
+        if (data && data.length > 0 && !loading) {
             setPointData(data[0])
 
             // Formatted data for slider
@@ -41,9 +43,14 @@ const DeliveryPointBar = () => {
                                 ]
 
             setPhotosArray(sortedPhotos)
-
         }
+
     }, [data, loading])
+
+
+    if (data && Object.keys(data).length === 0 && !loading) {
+        critical_error.toggleShow(true)
+    }
 
 
 
@@ -54,6 +61,7 @@ const DeliveryPointBar = () => {
                 coordX={pointData?.coord_x} 
                 coordY={pointData?.coord_y} 
                 photosArray={photosArray}
+                deliveryPointId={deliveryPointId}
             />
 
             <Info city={pointData?.city} schedule={pointData?.schedule} address={pointData?.address} />
@@ -62,4 +70,6 @@ const DeliveryPointBar = () => {
         </>
     )
 }
+
+    
 export default DeliveryPointBar;

@@ -15,6 +15,6 @@ export const publicRoutes = [
 
     {path: '/add_product', component: AddProduct, exact: true},
     {path: '/cart', component: Cart, exact: true},
-    {path: '/delivery_point', component: DeliveryPoint, exact: true},
+    {path: '/delivery_point/:deliveryPointId', component: DeliveryPoint, exact: true},
 
 ]

@@ -11,7 +11,7 @@ import "./index.scss";
 
 
 
-const Location = ({ address, coordX, coordY, photosArray }) => {
+const Location = ({ address, coordX, coordY, photosArray, deliveryPointId }) => {
     return (
         <section className="location">
             <Title title={'Пункт выдачи'} />
@@ -24,7 +24,7 @@ const Location = ({ address, coordX, coordY, photosArray }) => {
                         null
                 }
                 
-                <CurrentMap address={address} coordX={coordX} coordY={coordY} />
+                <CurrentMap address={address} coordX={coordX} coordY={coordY} deliveryPointId={deliveryPointId} />
             </div> 
         </section>
     )

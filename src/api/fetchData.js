@@ -182,3 +182,17 @@ export function addProduct(data) {
 export function getDeliveryPoint(deliveryPointId) {
   return axios.get(API_ROUTES.getDeliveryPoint + deliveryPointId + '/')
 }
+
+
+// Get status delivery point
+export function getStatusDeliveryPoint(deliveryPointId) {
+  return axios.get(API_ROUTES.getStatusDeliveryPoint + deliveryPointId + '/')
+}
+
+
+// Choice delivery point
+export function choiceDeliveryPoint(deliveryPointId) {
+  return axios.put(API_ROUTES.choiceDeliveryPoint + deliveryPointId + '/')
+}
+
+

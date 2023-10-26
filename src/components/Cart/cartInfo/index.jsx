@@ -153,7 +153,7 @@ const CartInfo = ({ totalCount, totalPrice, products, setProducts }) => {
                     </>
                 }
                 
-                <Link to="/delivery_point" className="cart_info__btn cart_point__btn-edit">Изменить</Link>
+                <Link to="/profile" className="cart_info__btn cart_point__btn-edit">Изменить</Link>
             </div>
         </section>
     )

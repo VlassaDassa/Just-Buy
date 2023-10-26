@@ -135,6 +135,15 @@ ymaps {
 }
 
 
+.map__buttonDisabled {
+    opacity: 0.5;
+    cursor: unset;
+
+    &:hover {
+        background: $accent;
+    }
+}
+
 
 @media (max-width: 768px) {
     .mapWrapper {
