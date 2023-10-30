@@ -7,6 +7,7 @@ import auth from '../../store/auth';
 import overlay from '../../store/overlay';
 import noScroll from '../../store/noScroll';
 import linkBankCard from '../../store/linkBankCard';
+import mobileMap from '../../store/mobileMap';
 
 
 
@@ -21,6 +22,7 @@ const Overlay = observer(() => {
       overlay.toggleShow()
       noScroll.toggleScroll(true)
       linkBankCard.toggleShow(false)
+      mobileMap.toggleShow(false)
     }
 
     return (

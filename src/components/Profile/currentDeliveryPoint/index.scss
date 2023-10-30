@@ -10,7 +10,7 @@
 
 
 .current_delivery_point__item {
-    height: 400px;
+    height: 390px;
     width: 250px;
     
     background: $base;
@@ -37,6 +37,12 @@
 
     margin-bottom: 25px;
     position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
 }
 
 
@@ -73,7 +79,7 @@
 
 .current_delivery_point__description {
     font-weight: $light;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 

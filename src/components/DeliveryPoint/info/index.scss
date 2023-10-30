@@ -50,10 +50,51 @@
 }
 
 
-@media (max-width: 768px) {
+.openMapBtn {
+    display: none;
+    font-size: 20px;
+    font-weight: $regular;
+    color: $white;
+    background: $accent;
+    border-radius: 10px;
+
+    padding: 15px 30px;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease-in-out;
+
+    position: relative;
+
+    &:hover {
+        background: rgba($accent, 0.8)
+    }
+}
+
+
+.delivery_point_infoMobile {
+    display: none;
+    flex-direction: column;
+
+    width: 100%;
+}
+
+
+@media (max-width: 1024px) {
     .delivery_point_info {
         display: none;
         margin: auto 0;
+    }
+
+
+    .openMapBtn {
+        display: block;
+    }
+
+    .delivery_point_infoMobile { 
+        display: flex;   
     }
 
 
@@ -70,6 +111,20 @@
 }
 
 
+@media (max-width: 700px) {
+    .delivery_point_infoMobile { 
+        display: none;   
+    }
+
+
+    .delivery_point_info {
+        display: block;
+        margin: 100px 0;
+        margin-top: 150px;
+    }
+}
+
+
 @media (max-width: 600px) {
     .mobile_delivery_point_info {
         display: none;
@@ -77,8 +132,6 @@
 
     .delivery_point_info {
         display: block;
-
-        margin-top: 50px;
     }
 
     .delivery_point_info__btn {

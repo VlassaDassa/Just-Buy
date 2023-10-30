@@ -19,7 +19,7 @@ function FeedbackList({ feedbacks, rating }) {
     }
 
     return (
-      <div>
+      <div className='feedbacks'>
         <RatingPoint rating={rating} countFeedbacks={feedbacks?.length} />
 
         <div className="delivery_point_feedback__items">

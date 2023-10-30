@@ -108,6 +108,21 @@
     }
 }
 
+
+@media (max-width: 1024px) {
+    .feedbacks {
+        margin-top: 200px;
+    }
+}
+
+
+@media (max-width: 700px) {
+    .feedbacks {
+        margin-top: 0px;
+    }
+}
+
+
 @media (max-width: 600px) {
     .delivery_point_feedback__header {
         padding: 17px 15px;

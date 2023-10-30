@@ -3,6 +3,7 @@ import React from "react";
 import PhotoSlider from "../photoSlider";
 import Title from "../../title";
 import CurrentMap from "../currentMap";
+import Info from "../info";
 
 import "./index.scss";
 
@@ -11,7 +12,18 @@ import "./index.scss";
 
 
 
-const Location = ({ address, coordX, coordY, photosArray, deliveryPointId }) => {
+const Location = ({ 
+        address,
+
+        coordX,
+        coordY,
+        photosArray,
+        deliveryPointId,
+
+        city,
+        schedule,
+    }) => {
+
     return (
         <section className="location">
             <Title title={'Пункт выдачи'} />
@@ -24,7 +36,21 @@ const Location = ({ address, coordX, coordY, photosArray, deliveryPointId }) => 
                         null
                 }
                 
-                <CurrentMap address={address} coordX={coordX} coordY={coordY} deliveryPointId={deliveryPointId} />
+                <CurrentMap 
+                    address={address} 
+                    coordX={coordX} 
+                    coordY={coordY} 
+                    deliveryPointId={deliveryPointId}
+                />
+
+                <Info 
+                    city={city}
+                    schedule={schedule}
+                    address={address}
+
+                    mobile={true}
+                />
+
             </div> 
         </section>
     )

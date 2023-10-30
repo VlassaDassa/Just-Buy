@@ -100,9 +100,10 @@
 }
 
 
-@media (max-width: 600px) {
-    .location {
-        margin-top: 50px;
+@media(max-width: 1024px) {
+    .location_wrapper {
+        display: flex;
+        column-gap: 50px;
     }
 }
 
@@ -115,5 +116,12 @@
     .location {
         margin-bottom: 100px;
 
+    }
+}
+
+
+@media (max-width: 600px) {
+    .location {
+        margin-top: 50px;
     }
 }

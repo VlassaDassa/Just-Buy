@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { observer } from 'mobx-react-lite';
 import { CSSTransition } from 'react-transition-group';
-import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
+import { YMaps, Map, Placemark, Button } from '@pbe/react-yandex-maps';
 
 import placemark from './../../../assets/images/map/placemark.svg'
 import Loader from '../../loader';
@@ -9,6 +10,8 @@ import SuccessMessage from "../../SuccessMessage";
 import { getStatusDeliveryPoint, choiceDeliveryPoint } from '../../../api/fetchData';
 import useRequest from '../../../hooks/useRequest';
 import { showError } from '../../../hooks/showError';
+import mobileMap from '../../../store/mobileMap';
+import overlay from '../../../store/overlay';
 
 import { MAP_API } from '../../../secrets';
 
@@ -18,11 +21,12 @@ import './index.scss';
 
 
 
-const CurrentMap = ({ address, coordX, coordY, deliveryPointId }) => {
+const CurrentMap = observer(({ address, coordX, coordY, deliveryPointId }) => {
   const [data, loading, error] = useRequest(() => getStatusDeliveryPoint(deliveryPointId), [])
   const [statusDeliveryPoint, setStatusDeliveryPoint] = useState(false)
   const [loadingChoice, setLoadingChoice] = useState(false)
   const [isVisibleSuccess, setIsVisibleSuccess] = useState(false)
+
 
 
   useEffect(() => {
@@ -30,6 +34,12 @@ const CurrentMap = ({ address, coordX, coordY, deliveryPointId }) => {
       setStatusDeliveryPoint(data.exists)
     }
   }, [data, loading])
+
+
+  function showMobileMap() {
+    overlay.toggleShow(false)
+    mobileMap.toggleShow(false)
+  }
 
 
   // Choice delivery point
@@ -44,7 +54,7 @@ const CurrentMap = ({ address, coordX, coordY, deliveryPointId }) => {
 
 
   return (
-    <div className="mapWrapper">
+    <div className={mobileMap.show ? 'mapWrapper' : 'mapWrapper mapWrapperHidden'}>
         <CSSTransition
           in={isVisibleSuccess}
           key={'transSuccessMessage'}
@@ -75,6 +85,15 @@ const CurrentMap = ({ address, coordX, coordY, deliveryPointId }) => {
                   />
                 </Map>
             </YMaps>
+
+            {
+              mobileMap.show ?
+                <button className="closeMobileMap" onClick={showMobileMap}>
+                  закрыть
+                </button>
+              :
+                null
+            }
         </div>
         
         {
@@ -83,18 +102,22 @@ const CurrentMap = ({ address, coordX, coordY, deliveryPointId }) => {
                 Текущий пункт выдачи
               </button>
             :
-              <button className="map__button" onClick={choicePoint} disabled={loadingChoice}>
-                {
+              
+                (
                   loadingChoice ?
-                    <Loader />
+                    <button className="map__button btnIsLoading" onClick={choicePoint} disabled={loadingChoice}>
+                      Выбрать пункт выдачи
+                      <Loader additionalClass='btnLoader' />
+                    </button>
+                    
                   :
-                    'Выбрать пункт выдачи'
-                }
-              </button>
+                    <button className="map__button" onClick={choicePoint} disabled={loadingChoice}>Выбрать пункт выдачи</button>
+                )
+              
         }
         
     </div> 
   )
-}
+})
 
 export default CurrentMap;

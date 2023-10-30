@@ -22,6 +22,7 @@ const DeliveryPointBar = () => {
     const [photosArray, setPhotosArray] = useState([])
 
 
+
     // Initial data
     useEffect(() => {
         if (data && data.length > 0 && !loading) {
@@ -62,6 +63,9 @@ const DeliveryPointBar = () => {
                 coordY={pointData?.coord_y} 
                 photosArray={photosArray}
                 deliveryPointId={deliveryPointId}
+
+                city={pointData?.city}
+                schedule={pointData?.schedule}
             />
 
             <Info city={pointData?.city} schedule={pointData?.schedule} address={pointData?.address} />

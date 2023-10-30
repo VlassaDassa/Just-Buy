@@ -16,6 +16,8 @@
     top: -15px;
 
     overflow: hidden;
+
+    z-index: 99;
 }
 
 .map {
@@ -94,24 +96,6 @@ ymaps {
     }
 }
 
-.map__btn_close {
-    display: none;
-
-    font-size: 20px;
-    font-weight: $regular;
-    color: $white;
-    background: $accent;
-    border-radius: 25px;
-
-    padding: 7px 15px;
-
-    position: absolute;
-    bottom: 10px;
-
-    z-index: 1;
-    left: 50%;
-    transform: translateX(-50%);
-}
 
 
 .mapWrapper.hidden {
@@ -145,15 +129,47 @@ ymaps {
 }
 
 
-@media (max-width: 768px) {
+.closeMobileMap {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    font-size: 20px;
+    font-weight: $regular;
+    color: $white;
+    background: $accent;
+    border-radius: 5px;
+
+    padding: 15px 30px;
+
+    display: none;
+}
+
+
+@media (max-width: 1024px) {
+    .closeMobileMap {
+        display: block;
+    }
+
+    
+    .location_wrapper {
+        position: relative;
+    }
+
+
     .mapWrapper {
         position: absolute;
         width: 100%;
     }
 
 
+    .mapWrapperHidden {
+        display: none;
+    }
+
+
     #map {
-        height: 500px;
+        height: 550px;
         position: relative;
     }
 
