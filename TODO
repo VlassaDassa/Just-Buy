@@ -3,8 +3,9 @@ Reminder:
         - Remove the twitching on the transitions by pages;
         - Make the overlay hide smoothly;
         - Finish fillin in the fields;
-        - Sort components in folders;
         - Там, где надпись не вмещается, добавить всплывающую подсказку при наведении;
+        - Склонения цифровые;
+        - Разграничение в API
 
     Profile:
         - Remove the twitching on the change delivery point;
@@ -24,25 +25,21 @@ Reminder:
         - На телефоне проблема с определинем карты, пишет undefined, если добавить карту и выбрать её;
         - При покупке товара, уменьшать количество у цвета, у размера, у товара целиком, в зависимости от того, какой товар;
         - В корзине потёк футер;
-        - При изменении пункта выдачи должно кидать на страницу Profile;
-        - Сломалась покупка, ошибку см. в консоли сервера;
     
     addProduct:
         - Number of sizes and count colors not related this is logic error;
         - Function "DefineErrors" skip "Size" and "Color" fields;
-        - На сервере нужно сделать подсчёт рейтинга;
 
     Index:
         - Number of all products not correct, if remove products, because request cached;
 
     Delivery Point:
-        - Кривое отображение информации. Плохое определение в модели;
         - На сервере нужно сделать подсчёт рейтинга;
-        - Возможность писать комментарий;
+        - Возможность писать комментарий popup;
         - Съехал Loader в компонентке CurrentMap;
 
     Product:
-        - Возможность писать комментарий;
+        - Возможность писать комментарий popup;
 
     Component feedbacks:
         - Адаптировать;

@@ -50,8 +50,9 @@ const CartInfo = ({ totalCount, totalPrice, products, setProducts }) => {
         const sendData = {
             'products': [],
             'bank_card_id': currentCard.id,
-            'delivery_point_id': currentPoint.id,
+            'delivery_point_id': currentPoint.delivery_point_id,
         }
+
         purchased_goods.map((item) => {
             sendData['products'].push({
                 'product_id': item.id,

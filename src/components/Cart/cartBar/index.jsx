@@ -8,7 +8,6 @@ import NoSection from "../../General/noSection";
 import useRequest from "./../../../hooks/useRequest";
 import { getCartProducts, removeCartProduct } from "./../../../api/fetchData";
 
-
 import "./index.scss";
 
 

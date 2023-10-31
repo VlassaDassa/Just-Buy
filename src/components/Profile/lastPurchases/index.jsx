@@ -9,7 +9,6 @@ import NoSection from '../../General/noSection';
 import useRequest from '../../../hooks/useRequest';
 import { getProducts } from '../../../api/fetchData';
 
-
 import './index.scss';
 
 

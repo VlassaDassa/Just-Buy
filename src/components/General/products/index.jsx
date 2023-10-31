@@ -16,7 +16,7 @@ const Products = ({ products, likeShow=true, cartShow=true, onRoad=false, cartPa
         component={null}
        >
           {
-              products.map((product) => (
+              products?.map((product) => (
                   <CSSTransition
                       key={'trans' + product.id}
                       timeout={500}
