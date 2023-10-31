@@ -4,19 +4,20 @@ import { useLocation } from 'react-router-dom';
 
 import { observer } from 'mobx-react-lite';
 
-import CriticalErrorMessage from './components/criricalErrorMessage';
-import ErrorMessage from './components/errorMessage';
+import CriticalErrorMessage from './components/General/criticalErrorMessage'
+import ErrorMessage from './components/General/errorMessage';
+
 import AppRouter from './components/AppRouter';
-import Footer from './components/footer';
-import Header from './components/header';
-import Menu from './components/menu';
-import Overlay from './components/overlay';
-import ToUp from './components/toUp';
-import Auth from './components/auth';
-import MobileSearchBar from './components/mobileSearchBar';
-import MenuMobile from './components/menuMobile';
+import Footer from './components/General/footer';
+import Header from './components/General/header';
+import Menu from './components/General/menu';
+import Overlay from './components/General/overlay';
+import ToUp from './components/General/toUp';
+import Auth from './components/General/auth';
+import MobileSearchBar from './components/General/mobileSearchBar';
+import MenuMobile from './components/General/menuMobile';
 import noScroll from './store/noScroll';
-import GlobalLoader from './components/globalLoader';
+import GlobalLoader from './components/General/globalLoader';
 
 import critical_error from './store/critical_error';
 

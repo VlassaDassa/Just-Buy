@@ -1,0 +1,92 @@
+@import '../../../../assets/styles/variables';
+
+
+
+
+
+
+
+
+.delivery_point_feedback_item {
+    background: $base;
+    border-radius: 5px;
+
+    min-height: calc(150px - 80px);
+
+    padding: 30px 50px 50px 30px;
+
+    width: calc(100% - 80px);
+
+    position: relative;
+    overflow: hidden;
+}
+
+
+.delivery_point_feedback_item + .delivery_point_feedback_item{
+    margin-top: 30px;
+}
+
+
+.feedbackItemCircle {
+    background: #565656;
+    border-radius: 50%;
+    
+    position: absolute;
+    left: -40px;
+    top: -40px;
+
+    width: 200px;
+    height: 200px;
+
+    z-index: 0;
+}
+
+
+.delivery_point_feedback_item__content {
+    max-width: 540px;
+
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+
+    margin-left: 150px;
+    margin-top: 20px;
+}
+
+
+.delivery_point_feedback_item__header {
+    position: absolute;
+    z-index: 1;
+}
+
+
+.delivery_point_feedback_item__name {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+
+.delivery_point_feedback_item__score {
+    font-size: 64px;
+    font-weight: 600;
+
+    color: #A4A4A4;
+}
+
+
+.feedbackScoreCircle {
+    border-radius: 50%;
+    background: #FFB800;
+
+    width: 45px;
+    height: 45px;
+}
+
+
+.feedbackScoreHeader {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+
+    margin-bottom: 15px;
+}

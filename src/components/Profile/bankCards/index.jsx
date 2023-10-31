@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 
 import MobileBankCards from '../mobileBankCards';
 import DesktopBankCards from '../desktopBankCards';
-import Title from '../../title';
+import Title from './../../General/title';
 import NoBankCards from '../noBankCards';
 import LinkBankCard from '../linkBankCard';
 

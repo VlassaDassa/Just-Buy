@@ -3,8 +3,8 @@ import { CSSTransition } from 'react-transition-group';
 import { observer } from 'mobx-react-lite';
 import { useNavigate } from 'react-router-dom';
 
-import SuccessMessage from "../../SuccessMessage";
-import Title from "../../title";
+import SuccessMessage from "./../../General/successMessage";
+import Title from "./../../General/title";
 
 import addProductChecking from '../../../store/addProductChecking';
 import { checkinOnError, defineErrorClass, product_data } from "../../../services/services";

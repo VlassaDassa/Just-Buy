@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Loader from '../../loader';
+import Loader from '../../General/loader';
 import DesktopCardItem from '../desktopCardItem';
 
 import overlay from '../../../store/overlay';

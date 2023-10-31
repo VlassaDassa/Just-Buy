@@ -1,7 +1,7 @@
 import React from 'react';
 
 import MobileCardItem from '../mobileCardItem';
-import Loader from '../../loader';
+import Loader from '../../General/loader';
 
 import overlay from '../../../store/overlay';
 import linkBankCard from '../../../store/linkBankCard';

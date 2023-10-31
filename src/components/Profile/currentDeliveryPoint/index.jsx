@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import Title from '../../title';
-import Loader from '../../loader';
-import NoSection from '../../noSection';
+import Title from './../../General/title';
+import Loader from '../../General/loader';
+import NoSection from '../../General/noSection';
 
 import useRequest from '../../../hooks/useRequest';
 import { getCurrentDeliveryPoint } from '../../../api/fetchData';

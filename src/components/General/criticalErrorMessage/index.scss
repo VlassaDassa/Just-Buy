@@ -1,0 +1,292 @@
+@import './../../../assets/styles/variables';
+
+
+
+.criticalErrorMessage {
+    width: 400px;
+    font-size: 32px;
+    font-weight: $regular;
+
+    background: $secondary;
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+}
+
+
+.textWrapper {
+    width: 400px;
+    margin: auto;
+    margin-top: 200px;
+}
+
+
+.causeError {
+    text-align: center;
+}
+
+
+.errorTitle {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    column-gap: 8px;
+
+    transform: rotate(10deg);
+    margin-bottom: 30px;
+}
+
+
+.letter {
+    font-size: 96px;
+    font-weight: $semi_bold;
+    text-shadow: 0px 0px 9px rgba(0, 0, 0, 0.25);
+
+    color: #C57480;
+}
+
+
+.letter2 {
+    transform: rotate(-7deg);
+}
+
+.letter3 {
+    transform: rotate(-12deg);
+    position: relative;
+    top: 15px;
+}
+
+.letter4 {
+    transform: rotate(4deg);
+    position: relative;
+    bottom: 15px;
+}
+
+.letter5 {
+    transform: rotate(-1.5deg);
+    position: relative;
+    top: 15px;
+}
+
+.letter6 {
+    transform: rotate(-9.5deg);
+    position: relative;
+    bottom: 15px;
+}
+
+.letter1 {
+    height: 96px;
+}
+
+
+.line {
+    width: 100%;
+    height: 5px;
+    background: #363636;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+    transform: rotate(4.5deg);
+    border-radius: 20px;
+
+    margin-bottom: 30px;
+}
+
+
+.causeError {
+    color: #9C9C9C;
+    font-weight: $regular;
+}
+
+
+.hole1 {
+    position: absolute;
+    top: 500px;
+    right: 50px;
+    width: 600px;
+    height: 600px;
+}
+
+
+.hole2 {
+    position: absolute;
+    top: 400px;
+    left: 100px;
+
+    width: 400px;
+    height: 400px;
+}
+
+
+.hole3 {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+
+    width: 100px;
+    height: 100px;
+}
+
+
+.hole4 {
+    position: absolute;
+    top: 100px;
+    right: 100px;
+
+    width: 150px;
+    height: 150px;
+}
+
+@media (max-width: 1280px) {
+    .hole1 {
+        position: absolute;
+        top: 500px;
+        right: 50px;
+        width: 400px;
+        height: 400px;
+    }
+    
+    
+    .hole2 {
+        position: absolute;
+        top: 400px;
+        left: 100px;
+    
+        width: 200px;
+        height: 200px;
+    }
+    
+    
+    .hole3 {
+        position: absolute;
+        top: 100px;
+        left: 100px;
+    
+        width: 50px;
+        height: 50px;
+    }
+    
+    
+    .hole4 {
+        position: absolute;
+        top: 100px;
+        right: 100px;
+    
+        width: 75px;
+        height: 75px;
+    }
+}
+
+
+@media (max-width: 800px) {
+    .hole1 {
+        position: absolute;
+        top: 500px;
+        right: 50px;
+        width: 300px;
+        height: 300px;
+    }
+    
+    
+    .hole2 {
+        position: absolute;
+        top: 500px;
+        left: 100px;
+    
+        width: 150px;
+        height: 150px;
+    }
+    
+    
+    .hole3 {
+        position: absolute;
+        top: 50px;
+        left: 200px;
+    
+        width: 50px;
+        height: 50px;
+    }
+    
+    
+    .hole4 {
+        position: absolute;
+        top: 25px;
+        right: 100px;
+    
+        width: 75px;
+        height: 75px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .causeError {
+        text-align: center;
+        font-size: 20px;
+    }
+    
+    
+    .errorTitle {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        column-gap: 8px;
+    
+        transform: rotate(10deg);
+        margin-bottom: 30px;
+    }
+
+    .letter {
+        font-size: 48px;
+    }
+
+
+    .letter1 {
+        height: 48px;
+    }
+
+
+    .textWrapper {
+        width: 300px;
+        margin: auto;
+        margin-top: 200px;
+    }
+
+
+    .hole1 {
+        position: absolute;
+        top: 350px;
+        right: 50px;
+        width: 100px;
+        height: 100px;
+    }
+    
+    
+    .hole2 {
+        position: absolute;
+        top: 400px;
+        left: 100px;
+    
+        width: 50px;
+        height: 50px;
+    }
+    
+    
+    .hole3 {
+        position: absolute;
+        top: 50px;
+        left: 50px;
+    
+        width: 100px;
+        height: 100px;
+    }
+    
+    
+    .hole4 {
+        position: absolute;
+        top: 50px;
+        right: 100px;
+    
+        width: 50px;
+        height: 50px;
+    }
+}

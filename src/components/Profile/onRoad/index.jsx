@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import Title from '../../title';
-import Products from '../../products';
-import NoSection from '../../noSection';
+import Title from './../../General/title';
+import Products from '../../General/products';
+import NoSection from '../../General/noSection';
 
 import useRequest from '../../../hooks/useRequest';
 import { getProducts } from '../../../api/fetchData';

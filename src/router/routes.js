@@ -1,8 +1,8 @@
-import Index from "../pages/index";
-import Profile from "../pages/profile";
-import AddProduct from "../pages/addProduct";
-import Cart from "../pages/cart";
-import DeliveryPoint from "../pages/deliveryPoint";
+import Index from "../pages/Index";
+import Profile from "../pages/Profile";
+import AddProduct from "../pages/AddProduct";
+import Cart from "../pages/Cart";
+import DeliveryPoint from "../pages/DeliveryPoint";
 
 
 

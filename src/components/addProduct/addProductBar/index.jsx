@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 import GeneralCharact from '../generalCharact';
 import Photos from '../photos';
 import PersonalCharact from '../personalCharact';
-import Title from '../../title';
+import Title from './../../General/title';
 
 import useRequest from '../../../hooks/useRequest';
 import { getCatWithSubcat, getCharacteristicsFields } from '../../../api/fetchData';

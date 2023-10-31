@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-import Title from '../../title';
-import Products from '../../products';
-import ShowYet from '../../showYet';
-import Loader from '../../loader';
-import NoSection from '../../noSection';
+import Title from './../../General/title';
+import Products from '../../General/products';
+import ShowYet from './../../General/showYet';
+import Loader from '../../General/loader';
+import NoSection from '../../General/noSection';
 
 import useRequest from '../../../hooks/useRequest';
 import { getProducts } from '../../../api/fetchData';

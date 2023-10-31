@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { MAP_API } from '../../../secrets';
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 
-import Title from '../../title';
+import Title from './../../General/title';
 import DeliveryPoint from '../deliveryPoint';
-import Loader from '../../loader';
+import Loader from '../../General/loader';
 
 import { getAllDeliveryPoints } from '../../../api/fetchData';
 import useRequest from '../../../hooks/useRequest';

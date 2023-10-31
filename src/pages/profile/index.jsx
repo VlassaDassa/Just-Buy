@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import ProfileBar from '../../components/Profile/profileBar';
 import MediumProfileBar from '../../components/Profile/mediumProfileBar';
@@ -12,6 +12,13 @@ import BankCards from '../../components/Profile/bankCards';
 
 
 const Profile = () => {
+
+
+  useEffect(() => {
+    document.title = 'Профиль'
+  }, [])
+
+
   return (
     <main className='profile'>
         <div className="container">

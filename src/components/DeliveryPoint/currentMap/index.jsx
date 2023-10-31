@@ -4,8 +4,8 @@ import { CSSTransition } from 'react-transition-group';
 import { YMaps, Map, Placemark, Button } from '@pbe/react-yandex-maps';
 
 import placemark from './../../../assets/images/map/placemark.svg'
-import Loader from '../../loader';
-import SuccessMessage from "../../SuccessMessage";
+import Loader from './../../General/loader';
+import SuccessMessage from './../../General/successMessage'
 
 import { getStatusDeliveryPoint, choiceDeliveryPoint } from '../../../api/fetchData';
 import useRequest from '../../../hooks/useRequest';

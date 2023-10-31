@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import Location from "../location";
 import Info from "../info";
-import Feedbacks from "../feedbacks.jsx";
+import Feedbacks from './../../General/feedBacks'
 import critical_error from "../../../store/critical_error";
 
 import useRequest from "../../../hooks/useRequest";

@@ -1,0 +1,48 @@
+@import './../../../../assets/styles/variables';
+
+
+
+.delivery_point_feedback__header {
+    display: flex;
+    column-gap: 10px;
+
+    height: 40px;
+
+    margin-bottom: 40px;
+}
+
+
+.ratingWrapper, .countFeedbacksWrapper {
+    background: $base;
+    border-radius: 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 12px;
+}
+
+
+.ratingWrapper {
+    column-gap: 10px;
+
+    font-size: 32px;
+    font-weight: 600;
+}
+
+
+.countFeedbacksWrapper {
+    font-size: 20px;
+    color: #797979;
+    font-weight: 400;
+}
+
+
+.ratingCircle {
+    border-radius: 50%;
+    background: #FFB800;
+
+    width: 22px;
+    height: 22px;
+}

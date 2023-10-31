@@ -1,0 +1,157 @@
+@import './../../../assets/styles/variables';
+
+
+
+.preview__wrapper {
+    margin-top: 40px;
+
+    overflow: hidden;
+    padding-top: calc(100% * (350/1600));
+    position: relative;
+    background: $gray;
+    border-radius: 50px;
+
+    background-color: #7000FF;
+    background: linear-gradient(
+      100deg,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(255, 255, 255, .5) 50%,
+      rgba(255, 255, 255, 0) 60%
+    ) #7000FF;
+    background-size: 200% 100%;
+    background-position-x: 180%;
+    animation: 1s loading ease-in-out infinite;
+}
+
+
+@keyframes loading {
+    to {
+        background-position-x: -20%;
+    }
+}
+
+
+.preview__photo-big,
+.preview__photo-medium,
+.preview__photo-small {
+    width: 100%;
+    position: absolute;
+    height: auto;
+    top: 0;
+    left: 0;
+
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.preview__photo-medium,
+.preview__photo-small {
+    display: none;
+}
+
+
+
+.preview__pagination {
+    display: flex;
+    justify-content: center;
+
+    align-items: center;
+
+    column-gap: 25px;
+    margin-top: 25px;
+}
+
+
+.preview__pagination-item {
+    width: 50px;
+    height: 6px;
+
+    background: rgba($white, 0.5);
+    border-radius: 25px;
+
+    cursor: pointer;
+}
+
+
+.preview__pagination-item-current {
+    background: rgba($white, 1);
+}
+
+
+
+@media (max-width: 1024px) {
+    .preview__photo-big {
+        display: none;
+    }
+
+    .preview__photo-medium {
+        display: block;
+    }
+
+    .preview__wrapper {
+        padding-top: calc(100% * (575/1140));
+    }
+}
+
+
+@media (max-width: 1024px) {
+    .preview__photo-big,
+    .preview__photo-medium,
+    .preview__photo-small,
+    .preview_loading,
+    .preview__wrapper {
+        border-radius: 25px;
+    } 
+}
+
+
+@media (max-width: 600px) {
+    .preview__photo-medium {
+        display: none;
+    }
+
+    .preview__photo-small {
+        display: block;
+    }
+
+    .preview__wrapper {
+        padding-top: calc(100% * (600/768));
+    }
+}
+
+
+@media (max-width: 768px) {
+    .preview__pagination {
+        margin-top: 30px;
+    }
+
+    .preview {
+        margin-bottom: 50px;
+    }
+
+    .preview__wrapper {
+        margin-top: 20px;
+    }
+}
+
+
+/* Transition group */
+.fade-enter {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.fade-enter-active {
+    opacity: 1;
+}
+
+.fade-exit {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+    display: none;
+}
+
+.fade-exit-active {
+    opacity: 0;
+}
+/* ./Transition group */

@@ -1,18 +1,7 @@
-1. изменить дизайн комментариев и сделать их общим компонентом;
-
-
-Можно начать исправлять ошибки;
-
-
 Reminder:
-    Перед внедрением TypeScript нужно почистить код, исправить ошибки и раскидать компоненты по папкам;
-    Вообще нужно неплохо так почистить всё;
-
     General:
         - Remove the twitching on the transitions by pages;
         - Make the overlay hide smoothly;
-        - Add favicon;
-        - Add "title" for all pages;
         - Finish fillin in the fields;
         - Sort components in folders;
         - Там, где надпись не вмещается, добавить всплывающую подсказку при наведении;
@@ -54,6 +43,9 @@ Reminder:
 
     Product:
         - Возможность писать комментарий;
+
+    Component feedbacks:
+        - Адаптировать;
 
 
 

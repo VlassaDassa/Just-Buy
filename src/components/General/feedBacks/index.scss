@@ -1,0 +1,29 @@
+@import './../../../assets/styles/variables';
+
+
+
+
+.feedbacks {
+    max-width: 800px;
+}
+
+
+.delivery_point_feedback__btn {
+    display: block;
+
+    padding: 10px 25px;
+    background: $accent;
+    border-radius: 5px;
+    box-shadow: $_box_shadow;
+    
+    text-align: center;
+
+    margin: 0 auto;
+    margin-top: 30px;
+
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        background: rgba($accent, 0.7);
+    }
+}

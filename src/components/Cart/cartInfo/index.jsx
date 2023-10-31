@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 
-import SuccessMessage from "../../SuccessMessage";
+import SuccessMessage from './../../General/successMessage';
 
 import { showError } from "../../../hooks/showError";
 import { getCurrentBankCard, getCurrentDeliveryPoint, sendPurchasedGoods } from "../../../api/fetchData";

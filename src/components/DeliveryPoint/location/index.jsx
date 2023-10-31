@@ -1,9 +1,9 @@
 import React from "react";
 
-import PhotoSlider from "../photoSlider";
-import Title from "../../title";
-import CurrentMap from "../currentMap";
-import Info from "../info";
+import PhotoSlider from "./../photoSlider";
+import Title from './../../General/title';
+import CurrentMap from "./../currentMap";
+import Info from "./../info";
 
 import "./index.scss";
 

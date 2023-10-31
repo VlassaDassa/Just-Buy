@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-import CartInfo from "../cartInfo";
-import Products from "../../products";
-import { showError } from "../../../hooks/showError";
-import NoSection from "../../noSection";
+import CartInfo from "./../cartInfo";
+import Products from './../../General/products';
+import { showError } from "./../../../hooks/showError";
+import NoSection from "../../General/noSection";
 
-import useRequest from "../../../hooks/useRequest";
-import { getCartProducts, removeCartProduct } from "../../../api/fetchData";
+import useRequest from "./../../../hooks/useRequest";
+import { getCartProducts, removeCartProduct } from "./../../../api/fetchData";
 
 
 import "./index.scss";
