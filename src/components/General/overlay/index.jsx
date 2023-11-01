@@ -27,7 +27,7 @@ const Overlay = observer(() => {
 
     return (
       <div 
-          className={`overlay ${overlay.show ? '' : 'overlay--hidden'}`}
+          className="overlay"
           onClick={off_overlay}
       >
 

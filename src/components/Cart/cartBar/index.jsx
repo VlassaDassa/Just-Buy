@@ -6,7 +6,7 @@ import { showError } from "./../../../hooks/showError";
 import NoSection from "../../General/noSection";
 
 import useRequest from "./../../../hooks/useRequest";
-import { getCartProducts, removeCartProduct } from "./../../../api/fetchData";
+import { getCartProducts, removeCartProduct } from "./../../../api/cartAPI";
 
 import "./index.scss";
 

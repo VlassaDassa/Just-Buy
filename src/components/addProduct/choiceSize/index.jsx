@@ -5,7 +5,7 @@ import { containsNumber } from "../../../services/services";
 import useRegisterInputRefs from "../../../hooks/useRegisterInputRefs";
 import { defineErrorClass } from '../../../services/services';
 import useRequest from '../../../hooks/useRequest';
-import { getSizes } from '../../../api/fetchData';
+import { getSizes } from '../../../api/addProductAPI';
 
 import trash from '../../../assets/images/cart/trash.svg';
 

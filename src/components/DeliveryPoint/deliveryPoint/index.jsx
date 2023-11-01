@@ -7,7 +7,7 @@ import Feedbacks from './../../General/feedBacks'
 import critical_error from "../../../store/critical_error";
 
 import useRequest from "../../../hooks/useRequest";
-import { getDeliveryPoint } from "../../../api/fetchData";
+import { getDeliveryPoint } from "../../../api/deliveryPointAPI";
 
 import "./index.scss";
 

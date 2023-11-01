@@ -6,7 +6,7 @@ import Loader from '../../General/loader';
 import NoSection from '../../General/noSection';
 
 import useRequest from '../../../hooks/useRequest';
-import { getCurrentDeliveryPoint } from '../../../api/fetchData';
+import { getCurrentDeliveryPoint } from '../../../api/deliveryPointAPI';
 
 import './index.scss';
 

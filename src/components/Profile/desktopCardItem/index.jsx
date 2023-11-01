@@ -1,15 +1,13 @@
 import React from 'react';
 
-
 import trashIcon from './../../../assets/images/profile/trash.svg';
 import checkIcon from './../../../assets/images/bankIcons/circle_check.svg';
 
 import { hiddenNumberCard } from '../../../services/services';
-
-import { deleteBankCard, updateStatusBankCard } from '../../../api/fetchData';
+import { deleteBankCard, updateStatusBankCard } from '../../../api/profileAPI';
+import { showError } from '../../../hooks/showError';
 
 import './index.scss';
-import { showError } from '../../../hooks/showError';
 
 
 

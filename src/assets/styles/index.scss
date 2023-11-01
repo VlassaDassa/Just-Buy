@@ -269,21 +269,43 @@ body {
 
 
 /* Overlay animation */
-.overlaytrans-exit {
-    opacity: 0;
-  }
+// .overlaytrans-exit {
+//     opacity: 1;
+// }
   
-.overlaytrans-exit-active {
-    opacity: 0;
-    transition: all 0.3s ease-in;
-}
+// .overlaytrans-exit-active {
+//     opacity: 0;
+//     transition: all 0.3s ease-in-out;
+// }
   
+// .overlaytrans-enter {
+//     opacity: 0;
+// }
+  
+// .overlaytrans-enter-active {
+//     opacity: 1;
+//     transition: all 0.3s ease-in-out;
+// }
+
+
+
+
 .overlaytrans-enter {
     opacity: 0;
 }
-  
+
 .overlaytrans-enter-active {
     opacity: 1;
-    transition: all 0.3s ease-out;
+    transition: opacity 300ms;
+}
+
+.overlaytrans-exit {
+    opacity: 1;
+    transition: opacity 300ms;
+}
+
+.overlaytrans-exit-active {
+    opacity: 0;
+    transition: opacity 300ms;
 }
 /* ./Overlay animation */

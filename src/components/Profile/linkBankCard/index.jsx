@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 import linkBankCard from '../../../store/linkBankCard';
 import overlay from '../../../store/overlay';
 
-import { addBankCard } from '../../../api/fetchData';
+import { addBankCard } from '../../../api/profileAPI';
 import { showError } from '../../../hooks/showError';
 
 import { addSpaceToNChARS, onlyNumbers, detectCardType, getFileObject } from '../../../services/services';

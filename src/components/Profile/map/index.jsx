@@ -6,7 +6,7 @@ import Title from './../../General/title';
 import DeliveryPoint from '../deliveryPoint';
 import Loader from '../../General/loader';
 
-import { getAllDeliveryPoints } from '../../../api/fetchData';
+import { getAllDeliveryPoints } from '../../../api/profileAPI';
 import useRequest from '../../../hooks/useRequest';
 
 import placemark from './../../../assets/images/map/placemark.svg'

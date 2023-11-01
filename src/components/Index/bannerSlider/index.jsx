@@ -3,7 +3,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './index.scss';
 
 import useRequest from '../../../hooks/useRequest';
-import { getSliderPhoto } from '../../../api/fetchData';
+import { getSliderPhoto } from '../../../api/indexAPI';
 import { showError } from '../../../hooks/showError';
 
 

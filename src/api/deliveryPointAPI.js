@@ -23,6 +23,11 @@ export function choiceDeliveryPoint(deliveryPointId) {
 }
 
 
+// Getting current delivery pount
+export const getCurrentDeliveryPoint = () => {
+    return axios.get(API_ROUTES.deliveryPoint.getCurrentPoint);
+  }
+
 
   
 

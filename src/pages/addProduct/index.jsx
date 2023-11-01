@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import AddProductBar from "./../../components/AddProduct/addProductBar";
+import AddProductBar from "./../../components/addProduct/addProductBar";
 
 
 

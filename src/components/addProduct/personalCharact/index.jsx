@@ -8,7 +8,7 @@ import Title from "./../../General/title";
 
 import addProductChecking from '../../../store/addProductChecking';
 import { checkinOnError, defineErrorClass, product_data } from "../../../services/services";
-import { addProduct } from "../../../api/fetchData";
+import { addProduct } from "../../../api/addProductAPI";
 
 import { showError } from "../../../hooks/showError";
 

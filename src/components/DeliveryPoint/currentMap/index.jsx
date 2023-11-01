@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import { CSSTransition } from 'react-transition-group';
-import { YMaps, Map, Placemark, Button } from '@pbe/react-yandex-maps';
+import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 
 import placemark from './../../../assets/images/map/placemark.svg'
 import Loader from './../../General/loader';
 import SuccessMessage from './../../General/successMessage'
 
-import { getStatusDeliveryPoint, choiceDeliveryPoint } from '../../../api/fetchData';
+import { getStatusDeliveryPoint, choiceDeliveryPoint } from '../../../api/deliveryPointAPI';
+
 import useRequest from '../../../hooks/useRequest';
 import { showError } from '../../../hooks/showError';
 import mobileMap from '../../../store/mobileMap';

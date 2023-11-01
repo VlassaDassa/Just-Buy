@@ -8,7 +8,7 @@ import NoBankCards from '../noBankCards';
 import LinkBankCard from '../linkBankCard';
 
 import useRequest from '../../../hooks/useRequest';
-import { getAllBankCards } from '../../../api/fetchData';
+import { getAllBankCards } from '../../../api/profileAPI';
 
 import './index.scss';
 

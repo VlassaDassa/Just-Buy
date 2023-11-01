@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { getNoun } from '../../../../services/services';
+
 import "./index.scss";
 
 
@@ -7,8 +9,6 @@ import "./index.scss";
 
 
 const RatingPoint = ({ rating, countFeedbacks }) => {
-
-
     return (
         <div className="delivery_point_feedback__header">
 
@@ -18,7 +18,7 @@ const RatingPoint = ({ rating, countFeedbacks }) => {
             </div>
 
             <div className="countFeedbacksWrapper">
-                {countFeedbacks} отзывов
+                {countFeedbacks + ' ' + getNoun(parseInt(countFeedbacks), 'отзыв', 'отзыва', 'отзывов')}
             </div>
 
         </div>

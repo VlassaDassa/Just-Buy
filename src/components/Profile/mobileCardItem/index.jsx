@@ -2,7 +2,7 @@ import React from 'react';
 
 import { hiddenNumberCard } from '../../../services/services';
 
-import { deleteBankCard, updateStatusBankCard } from '../../../api/fetchData';
+import { deleteBankCard, updateStatusBankCard } from '../../../api/profileAPI';
 import { showError } from '../../../hooks/showError';
 
 import circleCheck from './../../../assets/images/bankIcons/circle_check.svg';

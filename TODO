@@ -1,52 +1,64 @@
-Поправить ошибки из-за нового положения API
+Перед внедрением TypeScript, нужно сделать вывода и залатать дыры в знаниях;
+
 
 Reminder:
-    General:
-        - Remove the twitching on the transitions by pages;
-        - Make the overlay hide smoothly;
-        - Finish fillin in the fields;
-        - Там, где надпись не вмещается, добавить всплывающую подсказку при наведении;
-        - Склонения цифровые;
-        - Разграничение в API
 
-    Profile:
-        - Remove the twitching on the change delivery point;
-        - Make it possible choicing city;
-        - Ужасные отступы между секциями;
-        - Банковские карты отсутп побольше на мобилке;
-
-    Desktop menu:
-        - Remove the twitching on the changing categories;
-    
-    Mobile menu:
-        - Remove the twitching on the changing categories;
-
-    Cart:
-        - Set up count product;
-        - Choicing color and size;
-        - На телефоне проблема с определинем карты, пишет undefined, если добавить карту и выбрать её;
-        - При покупке товара, уменьшать количество у цвета, у размера, у товара целиком, в зависимости от того, какой товар;
-        - В корзине потёк футер;
-    
     addProduct:
         - Number of sizes and count colors not related this is logic error;
         - Function "DefineErrors" skip "Size" and "Color" fields;
 
+
+    Cart:
+        - На телефоне проблема с определением банковской карты, пишет undefined, если добавить карту и выбрать её;
+        - Выбор цвета и размера;
+        - Настроить покупку отталкиваясь от количества продукта;
+        - При покупке товара, уменьшать количество у цвета, у размера, у товара целиком, в зависимости от того, какой товар;
+        - Возможность вписать количество, а не тыкать мышкой;
+    
+
     Index:
         - Number of all products not correct, if remove products, because request cached;
 
+
     Delivery Point:
+        - Съехал Loader в компонентке CurrentMap;
         - На сервере нужно сделать подсчёт рейтинга;
         - Возможность писать комментарий popup;
-        - Съехал Loader в компонентке CurrentMap;
+
 
     Product:
         - Возможность писать комментарий popup;
+
 
     Component feedbacks:
         - Адаптировать;
 
 
+    General:
+        - Remove the twitching on the transitions by pages;
+
+
+    Profile:
+        - Remove the twitching on the change delivery point;
+        - После создания модели пользователя, нужно вернуться на Profile и сделать:
+            - Make it possible choicing city;
+            - Перемещение центра карты в выбранный город;
+
+
+    Desktop menu:
+        - Remove the twitching on the changing categories;
+    
+
+    Mobile menu:
+        - Remove the twitching on the changing categories;
+
+
 
 Future:
     Тесты для каждой страницы, особенно для addProduct
+
+
+
+
+
+

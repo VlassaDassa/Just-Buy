@@ -7,7 +7,7 @@ import Loader from '../../General/loader';
 import NoSection from '../../General/noSection';
 
 import useRequest from '../../../hooks/useRequest';
-import { getProducts } from '../../../api/fetchData';
+import { getProducts } from '../../../api/generalAPI';
 
 import './index.scss';
 

@@ -7,7 +7,7 @@ import PersonalCharact from '../personalCharact';
 import Title from './../../General/title';
 
 import useRequest from '../../../hooks/useRequest';
-import { getCatWithSubcat, getCharacteristicsFields } from '../../../api/fetchData';
+import { getCatWithSubcat, getCharacteristicsFields } from '../../../api/addProductAPI';
 import { showError } from '../../../hooks/showError';
 import addProductChecking from '../../../store/addProductChecking';
 

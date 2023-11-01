@@ -5,7 +5,10 @@ import { CSSTransition } from 'react-transition-group';
 import SuccessMessage from './../../General/successMessage';
 
 import { showError } from "../../../hooks/showError";
-import { getCurrentBankCard, getCurrentDeliveryPoint, sendPurchasedGoods } from "../../../api/fetchData";
+import { sendPurchasedGoods } from "../../../api/cartAPI";
+import { getCurrentBankCard } from "../../../api/profileAPI";
+import { getCurrentDeliveryPoint } from "../../../api/deliveryPointAPI";
+
 import useRequest from "../../../hooks/useRequest";
 import { hiddenNumberCard } from "../../../services/services";
 

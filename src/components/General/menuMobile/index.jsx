@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
 
-import { getMenu, getMenuSubcategories } from '../../../api/fetchData';
+import { getMenu, getMenuSubcategories } from '../../../api/generalAPI';
 import useRequest from '../../../hooks/useRequest';
 import auth from '../../../store/auth';
 import overlay from '../../../store/overlay';

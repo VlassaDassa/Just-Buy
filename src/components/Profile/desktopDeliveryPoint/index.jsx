@@ -18,8 +18,8 @@ const DesktopDeliveryPoints = ({ point }) => {
             </div>
 
             <div className="point__description">
-                <p className="point__city">{point.city}</p>
-                <p className="point__address">{point.address}</p>
+                <p className="point__city" title={point.city}>{point.city}</p>
+                <p className="point__address" title={point.address}>{point.address}</p>
                 <p className="point__schedule">{point.schedule}</p>
 
                 <div className="products__rating">

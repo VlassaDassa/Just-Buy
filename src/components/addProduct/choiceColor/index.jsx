@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 import { containsNumber } from "../../../services/services";
 import useRegisterInputRefs from "../../../hooks/useRegisterInputRefs";
 import { defineErrorClass } from '../../../services/services';
-import { getColors } from '../../../api/fetchData';
+import { getColors } from '../../../api/addProductAPI';
 import useRequest from '../../../hooks/useRequest';
 
 import trash from '../../../assets/images/cart/trash.svg';

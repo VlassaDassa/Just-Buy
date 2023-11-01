@@ -7,7 +7,7 @@ import cartFill from './../../../assets/images/product_card/cart-fill.svg';
 import trash from './../../../assets/images/cart/trash.svg'
 import { showError } from './../../../hooks/showError';
 
-import { addCartProduct, removeCartProductFromProdId } from '../../../api/fetchData';
+import { addCartProduct, removeCartProductFromProdId } from './../../../api/cartAPI'
 
 import './index.scss';
 
@@ -110,7 +110,7 @@ const ProductCard = ({
 
                         <p className="products__price">{price} ₽</p>
 
-                        <p className="products__name"><a href="product.html">{name}</a></p>
+                        <p className="products__name"><a href="product.html" title={name}>{name}</a></p>
                         <div className="products__count">
                             <span className="products__count-plus" onClick={() => cartPageOptions.onIncrement(product_id)}></span>
 
@@ -163,7 +163,7 @@ const ProductCard = ({
                         </p>
 
                         <p className={`products__name`}>
-                            <a href="product.html">{name}</a>
+                            <a href="product.html" title={name}>{name}</a>
                         </p>
                     
                         <div className="products__rating">
