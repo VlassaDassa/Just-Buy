@@ -127,7 +127,6 @@ const ChoiceColor = observer(({
     
     return (
         <div className="small_column__row">
-
             <div className="general_characteristics__item_wrapper">
 
                 <label value={selectedField} onChange={handleFieldChange} className="general_characteristics__label" htmlFor="color">Цвет</label>

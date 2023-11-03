@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { CSSTransition } from 'react-transition-group';
 import { observer } from 'mobx-react-lite';
 
 import GeneralCharact from '../generalCharact';
 import Photos from '../photos';
 import PersonalCharact from '../personalCharact';
 import Title from './../../General/title';
+import RelateSizeAndColor from '../relateSizeAndColor';
 
 import useRequest from '../../../hooks/useRequest';
 import { getCatWithSubcat, getCharacteristicsFields } from '../../../api/addProductAPI';
 import { showError } from '../../../hooks/showError';
 import addProductChecking from '../../../store/addProductChecking';
+import relateSizeAndColor from '../../../store/relateSizeAndColor';
 
 import './index.scss';
 
@@ -88,6 +91,19 @@ const AddProductBar = observer(() => {
                     <Title title={'Добавить товар'} />
 
                     <Photos />
+
+                    <CSSTransition
+                        in={relateSizeAndColor.show}
+                        unmountOnExit
+                        key={'overlaytrans'}
+                        timeout={500}
+                        classNames="overlaytrans"
+                    >
+                        <RelateSizeAndColor />
+                    </CSSTransition>
+
+
+
 
                     <form action="." className="add_prod_form__form">
                         <GeneralCharact

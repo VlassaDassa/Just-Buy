@@ -1,0 +1,29 @@
+@import '../../../assets/styles/variables';
+
+
+
+.button {
+    padding: 0 50px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: $accent;
+    border-radius: 5px;
+
+    font-size: 20px;
+    font-weight: $semi_bold;
+
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        background: rgba($accent, 0.7);
+    }
+}
+
+
+.relateButton {
+    margin-top: 30px;
+}

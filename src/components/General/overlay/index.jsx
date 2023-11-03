@@ -8,6 +8,7 @@ import overlay from '../../../store/overlay';
 import noScroll from '../../../store/noScroll';
 import linkBankCard from '../../../store/linkBankCard';
 import mobileMap from '../../../store/mobileMap';
+import relateSizeAndColor from '../../../store/relateSizeAndColor';
 
 
 
@@ -23,6 +24,7 @@ const Overlay = observer(() => {
       noScroll.toggleScroll(true)
       linkBankCard.toggleShow(false)
       mobileMap.toggleShow(false)
+      relateSizeAndColor.toggleShow(false)
     }
 
     return (

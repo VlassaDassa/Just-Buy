@@ -4,6 +4,10 @@ import { observer } from 'mobx-react-lite';
 import ChoiceSize from '../choiceSize';
 import ChoiceColor from '../choiceColor';
 
+import relateSizeAndColor from '../../../store/relateSizeAndColor';
+import overlay from '../../../store/overlay';
+
+
 
 
 
@@ -47,6 +51,22 @@ const ChoiceField = observer(({
         newSizeFields.splice(index, 1)
         setSizeFields(newSizeFields)
     };
+
+
+    const openRelateSizeColor = () => {
+        relateSizeAndColor.toggleShow(true)
+        overlay.toggleShow(true)
+    }
+
+
+    if (colorFieldVisible && characteristicsFields.color && sizeFieldVisible && characteristicsFields.size) {
+        return (
+            <div className="relateSizeAndColor">
+                <label className="general_characteristics__label">Размер и цвет</label>
+                <p className="openRelateSizeAndColor" onClick={openRelateSizeColor}>Настроить</p>
+            </div>
+        )
+    }
 
     
     return (

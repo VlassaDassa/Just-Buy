@@ -1,12 +1,13 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
-import './index.scss';
 
 import Login from './../login';
 import Reg from './../reg';
 
 import auth from '../../../store/auth';
 import overlay from '../../../store/overlay';
+
+import './index.scss';
 
 
 
