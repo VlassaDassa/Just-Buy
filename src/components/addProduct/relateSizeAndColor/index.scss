@@ -4,12 +4,16 @@
 
 
 .relateSizeColor {
+    display: block;
+
     width: calc((100% - 50px) / 1.5);
     padding: 25px;
 
     box-shadow: $_box_shadow;
     background: $base;
     border-radius: 5px;
+
+    max-height: 600px;
 
     position: fixed;
     top: 50%;
@@ -18,54 +22,47 @@
     z-index: 99;
     
     transform: translate(-50%, -50%);
+
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 
-.relateInputWrapper {
+.relateSizeColor::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+  
+.relateSizeColor::-webkit-scrollbar-thumb {
+    background: transparent;
+    border: none;
+}
+
+
+.relateBtnsWrapper {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    column-gap: 25px;
-
-    width: 100%;
-
-    overflow: hidden;
+    column-gap: 20px;
 }
 
 
-.relateInputWrapper + .relateInputWrapper {
-    margin-top: 35px;
+.relateSizeColorHidden {
+    display: none;
 }
 
 
-.relateFieldWrapper {
-    width: calc((100% / 2) - 50px);
-    overflow: hidden;
+@media (max-width: 1024px) {
+    .relateSizeColor {
+        width: calc((100% - 50px) / 1.1);
+    }
 }
 
 
-.relateIcon {
-    position: relative;
-    top: 13px;
+@media (max-width: 660px) {
+    .relateBtnsWrapper {
+        width: 100%;
+        justify-content: center;
+    }
 }
-
-
-#relateSize,
-#relateColor,
-#relateCount {
-    width: calc(100% - 12px);
-
-    margin-top: 5px;
-    font-size: 20px;
-}
-
-
-.relateLabel {
-    font-size: 24px;
-}
-
-
-
 
 

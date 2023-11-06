@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx';
 
 
 
-class LinkBankCardStore {
+class SendToCart {
     show = false
     constructor() {
         makeAutoObservable(this)
@@ -13,5 +13,5 @@ class LinkBankCardStore {
     }
 }
 
-export default new LinkBankCardStore()
+export default new SendToCart()
 

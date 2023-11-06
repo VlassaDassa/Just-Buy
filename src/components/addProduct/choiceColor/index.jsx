@@ -123,8 +123,6 @@ const ChoiceColor = observer(({
         }
     };
 
-
-    
     return (
         <div className="small_column__row">
             <div className="general_characteristics__item_wrapper">
@@ -144,8 +142,8 @@ const ChoiceColor = observer(({
                         ))
                     }
                 </select>
-
             </div>
+
 
             <div className="general_characteristics__item_wrapper">
                 <label className="general_characteristics__label" htmlFor="count">Количество</label>
@@ -155,7 +153,7 @@ const ChoiceColor = observer(({
                     type="text"
                     id="count"
                     ref={inputRefs['countColor_' + index]}
-                    className={defineErrorClass('choiceColor_' + index)}
+                    className={defineErrorClass('countColor_' + index)}
                 />
             </div>
 

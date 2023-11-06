@@ -154,7 +154,7 @@ const ChoiceSize = observer(({
                     type="text" 
                     id="count" 
                     ref={inputRefs['countSize_' + index]}
-                    className={defineErrorClass('choiceSize_' + index)}
+                    className={defineErrorClass('countSize_' + index)}
                 />
             </div>
 

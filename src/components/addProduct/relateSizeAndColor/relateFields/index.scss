@@ -1,0 +1,91 @@
+@import './../../../../assets/styles/variables';
+
+
+
+.relateInputWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    column-gap: 25px;
+
+    width: 100%;
+
+    overflow: hidden;
+}
+
+
+.relateInputWrapper + .relateInputWrapper {
+    margin-top: 35px;
+}
+
+
+.relateFieldWrapper {
+    width: calc((100% / 2) - 50px);
+    overflow: hidden;
+}
+
+
+.relateIcon {
+    position: relative;
+    top: 13px;
+    right: 6px;
+}
+
+
+#relateSize,
+#relateColor,
+#relateCount {
+    width: calc(100% - 12px);
+
+    margin-top: 5px;
+    font-size: 20px;
+}
+
+
+.relateLabel {
+    font-size: 24px;
+}
+
+
+@media (max-width: 800px) {
+    .relateInputWrapper {
+        column-gap: 5px;
+    }
+}
+
+
+@media (max-width: 660px) {
+    .relateIcon {
+        display: none;
+    }
+
+    .relateInputWrapper {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        left: 0px;
+        row-gap: 25px;
+
+        padding-bottom: 25px;
+
+        border-bottom: 5px solid #686868;
+    }
+
+    #relateSize,
+    #relateColor {
+        width: 100%;
+
+        margin-top: 10px;
+        font-size: 20px;
+    }
+
+    #relateCount {
+        margin-top: 10px;
+    }
+
+    .relateFieldWrapper {
+        width: 100%;
+        overflow: hidden;
+    }
+}

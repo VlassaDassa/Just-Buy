@@ -1,47 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import Title from '../../General/title';
 import Button from '../../General/button';
 import CloseBtn from '../../General/closeBtn';
+import RelateFields from './relateFields';
 
 import relateSizeAndColor from '../../../store/relateSizeAndColor';
 import overlay from '../../../store/overlay';
-
-import useRequest from '../../../hooks/useRequest';
-import { getColors } from '../../../api/addProductAPI';
-import { getSizes } from '../../../api/addProductAPI';
-
-import chainIco from './../../../assets/images/add_product/chain.svg';
+import addProductChecking from '../../../store/addProductChecking';
 
 import './index.scss';
 
 
 
 
-const RelateSizeAndColor = () => {
-    const [colors, setColors] = useState([])
-    const [sizes, setSizes] = useState([])
-    
-    const [dataColors, loadingColors, errorColors] = useRequest(() => getColors(), [])
-    const [dataSizes, loadingSizes, errorSizes] = useRequest(() => getSizes(), [])
+const RelateSizeAndColor = ({ show, characteristicsFields }) => {
+    const [countFields, setCountFields] = useState(1)
 
-
-    // Set colors
-    useEffect(() => {
-        if (dataColors && loadingColors) {
-            setColors(dataColors)
-        }
-    }, [dataColors, loadingColors])
-
-
-    // Set sizes
-    useEffect(() => {
-        if (dataSizes && loadingSizes) {
-            setSizes(dataSizes)
-        }
-    }, [dataSizes, loadingSizes])
-
-    
 
     const closeRelateSizeColor = () => {
         relateSizeAndColor.toggleShow(false)
@@ -49,57 +24,38 @@ const RelateSizeAndColor = () => {
     }
 
 
+    const addField = () => {
+        setCountFields(countFields + 1)
+    }
+
+
+    const deleteField = () => {
+        if (countFields - 1 > 0) {
+            addProductChecking.deleteRelate(countFields - 1)
+            setCountFields(countFields - 1)
+        }
+    }
+
+
+
     return (
-        <div className="relateSizeColor">
+        <div className={show ? 'relateSizeColor' : 'relateSizeColor relateSizeColorHidden'}>
             <CloseBtn additionalClass={'relateCloseBtn'} handler={closeRelateSizeColor} />
 
-            <Title title={"Цвет и размер"} />
+            <Title title={"Цвет и размер"} additionalClass={'relateTitle'} />
+            
 
-            <div className="relateInputWrapper">
-
-                <div className="relateFieldWrapper">
-                    <label className="relateLabel" htmlFor="relateSize">Размер</label>
-                    <input type="text" id="relateSize" className="general_characteristics__input" />
-                </div>
-
-                <img src={chainIco} className="relateIcon" />
-                
-                <div className="relateFieldWrapper">
-                    <label className="relateLabel" htmlFor="relateColor">Цвет</label>
-                    <input type="text" id="relateColor" className="general_characteristics__input" />
-                </div>
-                
-                <img src={chainIco} className="relateIcon" />
-
-                <div className="relateFieldWrapper">
-                    <label className="relateLabel" htmlFor="relateCount">Количество</label>
-                    <input type="text" id="relateCount" className="general_characteristics__input" />
-                </div>                
+            {
+                Array.from({ length: countFields }, (_, index) => (
+                    <RelateFields key={'relateFields_' + index} index={index} characteristicsFields={characteristicsFields} />
+                ))
+            }
+            
+          
+            <div className="relateBtnsWrapper">
+                <Button additionalClass='relateButton' text="Добавить" handler={addField} />
+                <Button additionalClass='relateButton deleteRelateButton' text="Удалить" handler={deleteField} />
             </div>
-
-            <div className="relateInputWrapper">
-
-                <div className="relateFieldWrapper">
-                    <label className="relateLabel" htmlFor="relateSize">Размер</label>
-                    <input type="text" id="relateSize" className="general_characteristics__input" />
-                </div>
-
-                <img src={chainIco} className="relateIcon" />
-                
-                <div className="relateFieldWrapper">
-                    <label className="relateLabel" htmlFor="relateColor">Цвет</label>
-                    <input type="text" id="relateColor" className="general_characteristics__input" />
-                </div>
-                
-                <img src={chainIco} className="relateIcon" />
-
-                <div className="relateFieldWrapper">
-                    <label className="relateLabel" htmlFor="relateCount">Количество</label>
-                    <input type="text" id="relateCount" className="general_characteristics__input" />
-                </div>                
-            </div>
-
-            <Button additionalClass='relateButton' />
         </div>
     );
 }

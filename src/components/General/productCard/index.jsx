@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
+import { observer } from 'mobx-react-lite';
+
+import { showError } from './../../../hooks/showError';
+
+import sendToCart from '../../../store/sendToCart';
+import overlay from '../../../store/overlay';
+import noScroll from '../../../store/noScroll';
 
 import heart from './../../../assets/images/product_card/heart.svg';
 import heartFill from './../../../assets/images/product_card/heart-small-fill.svg';
 import cartImg from './../../../assets/images/product_card/cart.svg';
 import cartFill from './../../../assets/images/product_card/cart-fill.svg';
 import trash from './../../../assets/images/cart/trash.svg'
-import { showError } from './../../../hooks/showError';
 
 import { addCartProduct, removeCartProductFromProdId } from './../../../api/cartAPI'
 
@@ -15,7 +21,7 @@ import './index.scss';
 
 
 
-const ProductCard = ({
+const ProductCard = observer(({
         name,
         photo,
         price,
@@ -52,18 +58,22 @@ const ProductCard = ({
 
 
     const addToCart = (product_id) => {
-        addCartProduct(product_id)
-        .then(response => {
-            if (response.status !== 200) {
-                showError('Ошибка при добавлении товара')
-            }
-            else {
-                setCart(true)
-            }
-            })
-        .catch(error => {
-            showError('Ошибка при добавлении товара')
-        })
+        // addCartProduct(product_id)
+        // .then(response => {
+        //     if (response.status !== 200) {
+        //         showError('Ошибка при добавлении товара')
+        //     }
+        //     else {
+        //         setCart(true)
+        //     }
+        //     })
+        // .catch(error => {
+        //     showError('Ошибка при добавлении товара')
+        // })
+
+        sendToCart.toggleShow(true)
+        overlay.toggleShow(true)
+        noScroll.toggleScroll(false)
     }
 
 
@@ -220,6 +230,6 @@ const ProductCard = ({
             {onRoad && <p className="products__awaiting_text">Ожидается 3 сентября</p>}
         </div>
     )
-}
+})
 
 export default ProductCard;

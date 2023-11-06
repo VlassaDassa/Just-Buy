@@ -114,22 +114,79 @@ function hasNoEmptyValues(obj) {
 }
 
 
+// Checking object on key, which starting with some kind of word
+function hasFieldsStartingWith(object, prefix) {
+  for (const key in object) {
+      if (key.startsWith(prefix)) {
+          return true;
+      }
+  }
+  return false;
+}
+
+
+// Checking for dublicates combinations
+function checkColorSizeCombinations(data) {
+  const combinations = new Set();
+
+  // For relate sizes, colors and counts
+  if (hasFieldsStartingWith(data['characteristics'], 'relate')) {
+    
+    for (let i = 0; data['characteristics'][`relateInput_${i}`]; i++) {
+        const color = data['characteristics'][`relateInput_${i}`].color;
+        const size = data['characteristics'][`relateInput_${i}`].size;
+        const combination = `${color}_${size}`;
+        if (combinations.has(combination)) {
+            return true; 
+        }
+        combinations.add(combination);
+    }
+  }
+
+  // For colors
+  if (hasFieldsStartingWith(data['characteristics'], 'color')) {
+    for (const item of data.characteristics.color) {
+        if (combinations.has(item.selectColor)) {
+            return true; 
+        }
+        combinations.add(item.selectColor);
+    }
+  }
+
+  // For sizes
+  if (hasFieldsStartingWith(data['characteristics'], 'size')) {
+    for (const item of data.characteristics.size) {
+        if (combinations.has(item.selectSize)) {
+            return true; 
+        }
+        combinations.add(item.selectSize);
+    }
+  }
+
+  return false; 
+}
+
+
 // Checking on eror on the page "AddProduct"
 export const checkinOnError = (values) => {
-    const conditionalExpression = hasNoEmptyValues(values) && 
-                                values.description.length > 300 
+  const conditionalExpression = hasNoEmptyValues(values) && 
+                              values.description.length > 300 
 
-    if (addProductChecking.countPhotos > 0) {
-        if (conditionalExpression) {
-            return true
-        }
+  if (addProductChecking.countPhotos > 0) {
+      if (checkColorSizeCombinations(values)) {
+        return 'combination'
+      }
 
-        else {
-            return false
-        }
-    }
-    
-    return 'photos'
+      else if (conditionalExpression) {
+        return true
+      }
+
+      else {
+          return false
+      }
+  }
+  
+  return 'photos'
 }
 
 
@@ -137,12 +194,24 @@ export const checkinOnError = (values) => {
 export const defineErrorClass = (fieldName) => {
     if (addProductChecking.btnClicked) {
         const value = addProductChecking?.inputRefs[fieldName]?.value;
-      
+
         if (value === '' || (fieldName === 'description' && (value && value.length < 300))) {
             return 'general_characteristics__input error';
         }
     }
       
+    return 'general_characteristics__input';
+}
+
+
+// Define class for fields: 'color', 'size', 'count'
+export const defineClassForRelate = (value) => {
+    if (addProductChecking.btnClicked) {
+        if (value === '') {
+            return 'general_characteristics__input error';
+        }
+    }
+
     return 'general_characteristics__input';
 }
 
@@ -157,6 +226,8 @@ const calculateCount = (data) => {
         count += parseInt(item.countColor, 10);
       }
     });
+
+    return count;
   }
 
   if (data.size) {
@@ -165,15 +236,20 @@ const calculateCount = (data) => {
         count += parseInt(item.countSize, 10);
       }
     });
+
+    return count;
   }
 
-  if (data.color) {
-    return count
+  if (hasFieldsStartingWith(data, 'relate')){
+    for (const key in data) {
+      if (key.startsWith("relateInput_")) {
+          count += parseInt(data[key].count, 10);
+      }
+    }
+
+    return count;
   }
-  
-  if (data.size) {
-    return count
-  }
+
 
   return false;
 };
@@ -272,24 +348,31 @@ export const product_data = (productData) => {
     const inputRefs = toJS(addProductChecking.inputRefs);
     const photos = toJS(addProductChecking.photos);
 
+
     // Input refs
     Object.keys(inputRefs).map((fieldName) => {
         if (inputRefs[fieldName]?.value) {
             fieldValues[fieldName] = inputRefs[fieldName].value
         }
 
+        else if (fieldName.includes('relate')) {
+            fieldValues[fieldName] = inputRefs[fieldName]
+        }
+
         else {
             fieldValues[fieldName] = ''
         }
-    })  
+    })
 
-    if (colorVisible) {
+    
+    if (colorVisible && !sizeVisible) {
         delete fieldValues['count']
     }
 
-    if (sizeVisible) {
-        delete fieldValues['size']
+    if (sizeVisible && !colorVisible) {
+        delete fieldValues['count']
     }
+
 
     // Photos
     fieldValues['photos'] = []
@@ -309,19 +392,29 @@ export const product_data = (productData) => {
       delete groupedFields['size'];
     }
 
+    if (sizeVisible && colorVisible) {
+      delete groupedFields['size'];
+      delete groupedFields['color'];
+    }
+
     groupedFields['category'] = categoryId
     groupedFields['subcategory'] = subcategoryId
-
-
-    // Add "count" field
-    const count = calculateCount(groupedFields)
-    if (count !== false) {
-      groupedFields['count'] = count
-    }
+    
 
     // Preparing
     const sendData = transformObject(groupedFields)
 
+    // Add "count" field
+    if (!hasFieldsStartingWith(sendData.characteristics, 'relateInput_') || colorVisible || sizeVisible) {
+      const count = calculateCount(groupedFields)
+      if (count !== false) {
+        sendData['count'] = count
+      }
+      else {
+        delete sendData['count']
+      }
+    }
+    
     return sendData
 }
 
@@ -347,3 +440,5 @@ export function getNoun(number, one, two, five) {
   }
   return five;
 }
+
+

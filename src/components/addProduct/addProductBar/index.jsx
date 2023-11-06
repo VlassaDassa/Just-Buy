@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { CSSTransition } from 'react-transition-group';
 import { observer } from 'mobx-react-lite';
 
 import GeneralCharact from '../generalCharact';
@@ -92,18 +91,7 @@ const AddProductBar = observer(() => {
 
                     <Photos />
 
-                    <CSSTransition
-                        in={relateSizeAndColor.show}
-                        unmountOnExit
-                        key={'overlaytrans'}
-                        timeout={500}
-                        classNames="overlaytrans"
-                    >
-                        <RelateSizeAndColor />
-                    </CSSTransition>
-
-
-
+                    <RelateSizeAndColor show={relateSizeAndColor.show} characteristicsFields={characteristicsFields} />
 
                     <form action="." className="add_prod_form__form">
                         <GeneralCharact

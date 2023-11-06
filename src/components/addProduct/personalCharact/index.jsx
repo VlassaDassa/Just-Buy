@@ -64,29 +64,41 @@ const PersonalCharact = observer(({ characteristicsFields, selectedSubcategory, 
         // Data for send to server
         const fieldValues = product_data(productData)
 
-
         // Clear old fields
         const new_char = []
         characteristicsFields.fields.fields.forEach((field) => {
             new_char.push('personalChar_' + field.name)
         })
+
+        if (productData['colorVisible'] && productData['sizeVisible']) {
+            new_char.push('relate')
+        }
+
+
         Object.keys(fieldValues.characteristics).forEach((key) => {
-            if (key.includes('personalChar')) {
-                if (!new_char.includes(key)) {
-                    delete fieldValues.characteristics[key]
-                }
+            
+            if ((key.includes('personalChar') && !new_char.includes(key))) {
+                delete fieldValues.characteristics[key]
+            }
+
+            if ((key.includes('relate') && !new_char.includes('relate'))) {
+                delete fieldValues.characteristics[key]
             }
         })
 
-
+        
         // Checking on error
         if (checkinOnError(fieldValues) === 'photos') {
             showError('Недостаточно фотографий')
         }
 
-        else if (checkinOnError(fieldValues)) {
-            setBtnDisabled(true)
+        else if (checkinOnError(fieldValues) === 'combination') {
+            showError('Одинаковая комбинация размера и цвета')
+        }
 
+        else if (checkinOnError(fieldValues) === true) {
+            setBtnDisabled(true)
+            
             addProduct(fieldValues)
             setIsVisibleSuccess(true)
             

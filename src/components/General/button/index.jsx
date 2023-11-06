@@ -5,10 +5,19 @@ import './index.scss';
 
 
 
-const Button = ({ additionalClass="" }) => {
+const Button = ({ additionalClass="", text='', handler=null, disabled=true}) => {
     return (
-        <button className={'button' + ' ' + additionalClass}>
-            Добавить размер
+        <button
+            className={
+                disabled ?
+                    'button ' + additionalClass + ' disabled'
+                :
+                    'button ' + additionalClass
+            }
+            onClick={handler} 
+            disabled={disabled}
+        >
+            {text}
         </button>
     );
 }

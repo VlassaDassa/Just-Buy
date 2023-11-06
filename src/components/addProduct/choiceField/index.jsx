@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 
 import ChoiceSize from '../choiceSize';
 import ChoiceColor from '../choiceColor';
 
 import relateSizeAndColor from '../../../store/relateSizeAndColor';
+import addProductChecking from '../../../store/addProductChecking';
 import overlay from '../../../store/overlay';
 
 
@@ -36,13 +37,15 @@ const ChoiceField = observer(({
     }) => {
 
     const [firstClick, setFirstClick] = useState(false)
-    
 
+    
 
     const handleDeleteColorField = (index) => {
         const newColorFields = [...colorFields]
         newColorFields.splice(index, 1)
         setColorFields(newColorFields)
+
+        addProductChecking.deleteColor()
     };
 
 
@@ -50,6 +53,8 @@ const ChoiceField = observer(({
         const newSizeFields = [...sizeFields]
         newSizeFields.splice(index, 1)
         setSizeFields(newSizeFields)
+
+        addProductChecking.deleteSize()
     };
 
 
