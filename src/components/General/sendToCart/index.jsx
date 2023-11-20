@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 
-import Sizes from './sizes';
-import Colors from './colors';
+import SendToSizes from './sizes';
+import SendToColors from './colors';
 import Button from '../button';
 import CloseBtn from '../closeBtn';
 import Title from '../title';
@@ -17,8 +17,8 @@ import './index.scss';
 
 
 const SendToCart = observer(({ relateInputs }) => {
-  const [selectedColor, setSelectedColor] = useState(null)
-  const [selectedSize, setSelectedSize] = useState(null)
+  const [selectedColor, setSelectedColor] = useState('asd')
+  const [selectedSize, setSelectedSize] = useState('asds')
 
 
   const closeSendToCart = () => {
@@ -35,8 +35,8 @@ const SendToCart = observer(({ relateInputs }) => {
             <CloseBtn handler={closeSendToCart} />
 
             <div className="sendToCartWrapper">
-                <Sizes relateInputs={relateInputs} />
-                <Colors relateInputs={relateInputs} />
+                <SendToSizes relateInputs={relateInputs} selectedColor={selectedColor} setSelectedColor={setSelectedColor} />
+                <SendToColors relateInputs={relateInputs} selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
             </div>
             
 
