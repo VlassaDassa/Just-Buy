@@ -36,6 +36,8 @@ export const API_ROUTES = {
         removeCartProductFromProdId: API_BASE_URL + 'delete_cart_product_from_prod_id/',
         addCartProduct: API_BASE_URL + 'add_cart_product/',
         sendPurchasedGoods: API_BASE_URL + 'add_to_on_road/',
+        getRelateInputs: API_BASE_URL + 'get_relate_inputs/',
+        getSizes: API_BASE_URL + 'get_particular_sizes/',
     },
 
     deliveryPoint: {

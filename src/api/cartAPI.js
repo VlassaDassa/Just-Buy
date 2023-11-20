@@ -32,3 +32,21 @@ export const addCartProduct = (product_id) => {
 export function sendPurchasedGoods(data) {
     return axios.post(API_ROUTES.cart.sendPurchasedGoods, data)
 }
+
+
+// Get relate inputs
+export function getRelateInputs(productId) {
+    return axios.get(API_ROUTES.cart.getRelateInputs + productId + '/')
+}
+
+
+// Get sizes
+export function getSizes(sizes) {
+    var request = API_ROUTES.cart.getSizes
+
+    sizes.forEach((item) => {
+        request += item + '/'
+    })
+
+    return axios.get(request)
+}

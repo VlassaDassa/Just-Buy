@@ -27,6 +27,7 @@ const Overlay = observer(() => {
       mobileMap.toggleShow(false)
       relateSizeAndColor.toggleShow(false)
       sendToCart.toggleShow(false)
+      sendToCart.setProductId(null)
     }
 
     return (

@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
+import { CSSTransition } from 'react-transition-group';
+
+import SendToCart from '../sendToCart';
 
 import { showError } from './../../../hooks/showError';
 
 import sendToCart from '../../../store/sendToCart';
 import overlay from '../../../store/overlay';
 import noScroll from '../../../store/noScroll';
+
+import useRequest from '../../../hooks/useRequest';
+import { getRelateInputs } from '../../../api/cartAPI';
 
 import heart from './../../../assets/images/product_card/heart.svg';
 import heartFill from './../../../assets/images/product_card/heart-small-fill.svg';
@@ -55,6 +61,25 @@ const ProductCard = observer(({
 
     const [like, setLike] = useState([]);
     const [cart, setCart] = useState(is_in_cart);
+    
+    // For popup "Send to cart"
+    const [data, error, loading] = useRequest(() => getRelateInputs(product_id), [])
+    const [existsRelateInputs, setExistsRelateInputs] = useState(false)
+    const [relateInputs, setRelateInputs] = useState([])
+
+
+    useEffect(() => {
+        if (data && !loading) {
+            if (data.exists) {
+            setExistsRelateInputs(true)
+            setRelateInputs(data.relateInputs)
+            }
+
+            else {
+            setExistsRelateInputs(false)
+            }
+        }
+    }, [data, loading])
 
 
     const addToCart = (product_id) => {
@@ -72,6 +97,7 @@ const ProductCard = observer(({
         // })
 
         sendToCart.toggleShow(true)
+        sendToCart.setProductId(product_id)
         overlay.toggleShow(true)
         noScroll.toggleScroll(false)
     }
@@ -95,6 +121,18 @@ const ProductCard = observer(({
 
     return (
         <div className="products__item">
+
+            <CSSTransition
+                in={sendToCart.productId === product_id && sendToCart.show && existsRelateInputs}
+                unmountOnExit
+                key={'sendToCartTrans'}
+                timeout={500}
+                classNames="sendToCartTrans"
+            >
+                <SendToCart relateInputs={relateInputs} />
+            </CSSTransition>
+
+
             <div className={`products__photo_wrapper`}>
                 {
                     cartPage ?

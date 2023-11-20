@@ -3,9 +3,6 @@ import { observer } from 'mobx-react-lite';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import ProductCard from '../productCard';
-import SendToCart from '../sendToCart';
-
-import sendToCart from '../../../store/sendToCart';
 
 import './index.scss';
 
@@ -17,15 +14,7 @@ const Products = observer(({ products, likeShow=true, cartShow=true, onRoad=fals
   return (
       <div className="products">
 
-      <CSSTransition
-          in={sendToCart.show}
-          unmountOnExit
-          key={'sendToCartTrans'}
-          timeout={500}
-          classNames="sendToCartTrans"
-      >
-          <SendToCart />
-      </CSSTransition>
+      
 
 
        <TransitionGroup

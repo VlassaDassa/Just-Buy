@@ -16,11 +16,15 @@ import './index.scss';
 
 
 
-const SendToCart = observer(() => {
+const SendToCart = observer(({ relateInputs }) => {
+  const [selectedColor, setSelectedColor] = useState(null)
+  const [selectedSize, setSelectedSize] = useState(null)
+
 
   const closeSendToCart = () => {
     noScroll.toggleScroll(true)
     sendToCart.toggleShow(false)
+    sendToCart.setProductId(null)
     overlay.toggleShow(false)
   }
 
@@ -31,8 +35,8 @@ const SendToCart = observer(() => {
             <CloseBtn handler={closeSendToCart} />
 
             <div className="sendToCartWrapper">
-                <Sizes />
-                <Colors />
+                <Sizes relateInputs={relateInputs} />
+                <Colors relateInputs={relateInputs} />
             </div>
             
 
