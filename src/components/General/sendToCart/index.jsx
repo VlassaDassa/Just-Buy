@@ -28,29 +28,26 @@ const SendToCart = observer(({ relateInputs }) => {
     overlay.toggleShow(false)
   }
 
+  console.log(relateInputs)
+
+  if (relateInputs.length === 0) {
+    return null
+  }
+
   return (
         <div className="sendToCart">
-            {
-              relateInputs.length > 0 ? 
-                <>
-                  <Title title={'Добавить в корзину'} additionalClass='sendToCartTitle' />
+          <Title title={'Добавить в корзину'} additionalClass='sendToCartTitle' />
 
-                  <CloseBtn handler={closeSendToCart} />
+          <CloseBtn handler={closeSendToCart} />
 
-                  <div className="sendToCartWrapper">
+          <div className="sendToCartWrapper">
 
-                      <SendToSizes relateInputs={relateInputs} selectedColor={selectedColor} setSelectedColor={setSelectedColor} />
-                      <SendToColors relateInputs={relateInputs} selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
-                  </div>
+              <SendToSizes relateInputs={relateInputs} selectedColor={selectedColor} setSelectedColor={setSelectedColor} />
+              <SendToColors relateInputs={relateInputs} selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
+          </div>
 
 
-                  <Button text="В корзину" additionalClass='sendToCartBtn' />
-                </>
-              :
-                null
-            }
-
-            
+          <Button text="В корзину" additionalClass='sendToCartBtn' />
         </div>
   )
 })

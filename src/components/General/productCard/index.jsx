@@ -71,12 +71,12 @@ const ProductCard = observer(({
     useEffect(() => {
         if (data && !loading) {
             if (data.exists) {
-            setExistsRelateInputs(true)
-            setRelateInputs(data.relateInputs)
+                setExistsRelateInputs(true)
+                setRelateInputs(data.relateInputs)
             }
 
             else {
-            setExistsRelateInputs(false)
+                setExistsRelateInputs(false)
             }
         }
     }, [data, loading])
@@ -106,15 +106,15 @@ const ProductCard = observer(({
     const removeInCart = (product_id) => {
         removeCartProductFromProdId(product_id)
         .then(response => {
-        if (response.status !== 200) {
-            showError('Ошибка при удалении товара')
-        }
-        else {
-            setCart(false);
-        }
+            if (response.status !== 200) {
+                showError('Ошибка при удалении товара')
+            }
+            else {
+                setCart(false);
+            }
         })
         .catch(error => {
-        showError('Ошибка при удалении товара')
+            showError('Ошибка при удалении товара')
         })
     }
 
@@ -122,7 +122,7 @@ const ProductCard = observer(({
     return (
         <div className="products__item">
 
-            <CSSTransition
+            {/* <CSSTransition
                 in={sendToCart.productId === product_id && sendToCart.show && existsRelateInputs}
                 unmountOnExit
                 key={'sendToCartTrans'}
@@ -130,7 +130,10 @@ const ProductCard = observer(({
                 classNames="sendToCartTrans"
             >
                 <SendToCart relateInputs={relateInputs} />
-            </CSSTransition>
+            </CSSTransition> */}
+
+
+            <SendToCart relateInputs={relateInputs} />
 
 
 
