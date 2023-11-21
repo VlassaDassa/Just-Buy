@@ -30,6 +30,7 @@ const SendToCart = observer(() => {
   }, [sendToCart.relateInputs, selectedSize, selectedColor])
 
 
+
   useEffect(() => {
       if (selectedSize && !selectedColor) {
           setRelateInputs(toJS(sendToCart.relateInputs).filter(obj => obj.size === selectedSize))
@@ -41,6 +42,8 @@ const SendToCart = observer(() => {
   }, [selectedSize, selectedColor])
 
   console.log('Relate inputs: ', relateInputs)
+  console.log(selectedSize)
+  console.log(selectedColor)
 
 
   const closeSendToCart = () => {

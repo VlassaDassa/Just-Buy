@@ -13,6 +13,8 @@ import './index.scss';
 const Products = observer(({ products, likeShow = true, cartShow = true, onRoad = false, cartPage = false, cartPageOptions = {} }) => {
   return (
     <TransitionGroup className="products">
+      <SendToCart />
+
       {products?.map((product) => (
         <CSSTransition
           key={'trans' + product.id}

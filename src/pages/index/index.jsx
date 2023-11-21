@@ -6,7 +6,6 @@ import Products from './../../components/General/products';
 import ShowYet from './../../components/General/showYet';
 import AboutUs from './../../components/Index/aboutUs';
 import Loader from './../../components/General/loader';
-import Overlay from './../../components/General/products';
 import NoSection from './../../components/General/noSection';
 
 import useRequest from '../../hooks/useRequest';
@@ -45,6 +44,7 @@ const Index = () => {
                     <Title title={'Лучшие товары'}/>
                     
                       <Products
+                        key={'products'}
                         products={products}
                       />
 
@@ -72,8 +72,7 @@ const Index = () => {
                 </div>
             </section>
             <AboutUs />
-            
-            <Overlay />
+            тут уебан
         </div>
     )
 };
