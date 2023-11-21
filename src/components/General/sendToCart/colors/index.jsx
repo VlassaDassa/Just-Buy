@@ -8,13 +8,13 @@ import './index.scss';
 
 
 
-const Colors = observer(({ selectedColor, setSelectedColor }) => {
+const Colors = observer(({ relateInputs, selectedColor, setSelectedColor }) => {
 
 
   return (
     <div className="sendToCart-ColorsWrapper">
-        {toJS(sendToCart.relateInputs).length > 0 ?
-          [...new Set(toJS(sendToCart.relateInputs).map((item) => item.color))].map((item, index) => (
+        {relateInputs.length > 0 ?
+          [...new Set(relateInputs.map((item) => item.color))].map((item, index) => (
             <div 
               id={item}
               key={item} 

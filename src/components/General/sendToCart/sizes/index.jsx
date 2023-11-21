@@ -12,16 +12,16 @@ import './index.scss';
 
 
 
-const Sizes = observer(({ selectedSize, setSelectedSize }) => {
+const Sizes = observer(({ relateInputs, selectedSize, setSelectedSize }) => {
   const [isSizes, setIsSizes] = useState([])
 
   
   useEffect(() => {
-    if (toJS(sendToCart.relateInputs).length > 0) {
+    if (relateInputs.length > 0) {
         const fetchData = async () => {
           try {
             const sizesResponse = await getSizes(
-              toJS(sendToCart.relateInputs).map(item => item.size)
+              relateInputs.map(item => item.size)
             );
     
             if (sizesResponse.status !== 200) {
@@ -40,7 +40,7 @@ const Sizes = observer(({ selectedSize, setSelectedSize }) => {
 
         fetchData();
     }
-  }, [sendToCart.relateInputs]);
+  }, [relateInputs]);
 
 
 

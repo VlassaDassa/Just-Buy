@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
+import { toJS } from 'mobx';
 import { observer } from 'mobx-react-lite'; 
 
 import Sizes from './sizes';
@@ -22,6 +22,26 @@ const SendToCart = observer(() => {
   const [selectedSize, setSelectedSize] = useState(null)
   const [selectedColor, setSelectedColor] = useState(null)
 
+  const [relateInputs, setRelateInputs] = useState([])
+
+
+  useEffect(() => {
+      setRelateInputs(toJS(sendToCart.relateInputs))
+  }, [sendToCart.relateInputs, selectedSize, selectedColor])
+
+
+  useEffect(() => {
+      if (selectedSize && !selectedColor) {
+          setRelateInputs(toJS(sendToCart.relateInputs).filter(obj => obj.size === selectedSize))
+      }
+
+      else if (selectedColor && !selectedSize) {
+        setRelateInputs(toJS(sendToCart.relateInputs).filter(obj => obj.color === selectedColor))
+      }
+  }, [selectedSize, selectedColor])
+
+  console.log('Relate inputs: ', relateInputs)
+
 
   const closeSendToCart = () => {
       noScroll.toggleScroll(true)
@@ -41,8 +61,8 @@ const SendToCart = observer(() => {
 
           <div className="sendToCartWrapper">
 
-              <Sizes selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
-              <Colors selectedColor={selectedColor} setSelectedColor={setSelectedColor} />
+              <Sizes relateInputs={relateInputs} selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
+              <Colors relateInputs={relateInputs} selectedColor={selectedColor} setSelectedColor={setSelectedColor} />
 
           </div>
 

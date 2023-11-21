@@ -1,5 +1,5 @@
-// const API_BASE_URL = 'http://192.168.0.118:8000192.168.20.21:8000/api/';
-const API_BASE_URL = 'http://192.168.20.21:8000/api/';
+const API_BASE_URL = 'http://192.168.0.118:8000/api/';
+// const API_BASE_URL = 'http://192.168.20.21:8000/api/';
 // const API_BASE_URL = 'http://127.0.0.1:8000/api/';
 
 export const API_ROUTES = {
