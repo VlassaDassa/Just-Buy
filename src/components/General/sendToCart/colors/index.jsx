@@ -8,21 +8,21 @@ import './index.scss';
 
 
 
-const Colors = observer(() => {
+const Colors = observer(({ selectedColor, setSelectedColor }) => {
 
-  console.log(toJS(sendToCart.relateInputs))
 
   return (
     <div className="sendToCart-ColorsWrapper">
         {toJS(sendToCart.relateInputs).length > 0 ?
-          toJS(sendToCart.relateInputs).map((item, index) => {
+          [...new Set(toJS(sendToCart.relateInputs).map((item) => item.color))].map((item, index) => (
             <div 
-              id={item.color}
-              key={item.color + index} 
-              className="sendToCart-ColorsItem"
+              id={item}
+              key={item} 
+              className={selectedColor === item ? 'sendToCart-ColorsItem sendToCart-ColorsItem--selected' : 'sendToCart-ColorsItem'}
+              onClick={() => selectedColor === item ? setSelectedColor(null) : setSelectedColor(item)}
             >
             </div>
-          })
+          ))
 
           : null 
         }

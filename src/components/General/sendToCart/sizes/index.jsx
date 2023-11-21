@@ -12,7 +12,7 @@ import './index.scss';
 
 
 
-const Sizes = observer(() => {
+const Sizes = observer(({ selectedSize, setSelectedSize }) => {
   const [isSizes, setIsSizes] = useState([])
 
   
@@ -49,8 +49,9 @@ const Sizes = observer(() => {
         {isSizes.length > 0 ?
           isSizes.map((item, index) => (
               <div
-                className="sendToCart-SizesItem"
+                className={item.value === selectedSize ? 'sendToCart-SizesItem sendToCart-SizesItem--selected' : 'sendToCart-SizesItem'}
                 key={item.display_name + index}
+                onClick={() => item.value === selectedSize ? setSelectedSize(null) : setSelectedSize(item.value)}
               >
                 {item.display_name}
               </div>

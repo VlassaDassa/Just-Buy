@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { observer } from 'mobx-react-lite'; 
 
@@ -19,12 +19,16 @@ import './index.scss';
 
 
 const SendToCart = observer(() => {
+  const [selectedSize, setSelectedSize] = useState(null)
+  const [selectedColor, setSelectedColor] = useState(null)
+
+
   const closeSendToCart = () => {
-    noScroll.toggleScroll(true)
-    sendToCart.toggleShow(false)
-    sendToCart.setProductId(null)
-    overlay.toggleShow(false)
-    sendToCart.setRelateInputs([])
+      noScroll.toggleScroll(true)
+      sendToCart.toggleShow(false)
+      sendToCart.setProductId(null)
+      overlay.toggleShow(false)
+      sendToCart.setRelateInputs([])
   }
 
   const openCondition = sendToCart.relateInputs.length > 0 && sendToCart.productId && sendToCart.show
@@ -37,8 +41,8 @@ const SendToCart = observer(() => {
 
           <div className="sendToCartWrapper">
 
-              <Sizes />
-              <Colors />
+              <Sizes selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
+              <Colors selectedColor={selectedColor} setSelectedColor={setSelectedColor} />
 
           </div>
 

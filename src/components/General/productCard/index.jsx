@@ -73,8 +73,6 @@ const ProductCard = observer(({
         //     showError('Ошибка при добавлении товара')
         // })
 
-        
-
 
         // Request for get relate inputs
         try {
