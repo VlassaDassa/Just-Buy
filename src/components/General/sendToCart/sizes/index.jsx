@@ -8,15 +8,16 @@ import './index.scss';
 
 
 const SendToSizes = ({ relateInputs, selectedSize, setSelectedSize }) => {
-  console.log(selectedSize)
-  console.log(setSelectedSize)
-  console.log(relateInputs)
   const relateInputsCopy = JSON.parse(JSON.stringify(relateInputs));
 
   const [sizes, setSizes] = useState([])
   const [data, error, loading] = useRequest(() => getSizes(relateInputs.map(item => item.size)), []);
 
-  
+  if (!setSelectedSize) {
+    return null;
+  }
+
+
   // Values for sizes
   useEffect(() => {
     if (data && !loading) {
@@ -32,18 +33,14 @@ const SendToSizes = ({ relateInputs, selectedSize, setSelectedSize }) => {
   })
 
 
-  const bbb = (size) => {
-    setSelectedSize(size)
-  }
-
   return (
     <div className="sendToCart-SizesWrapper">
         {
-          sizes.map((item) => (
+          sizes.map((item, index) => (
             <div 
-              key={item.value} 
+              key={item.value + index} 
               className={item.value === selectedSize ? 'sendToCart-SizesItem sendToCart-SizesItem--selected' : 'sendToCart-SizesItem'}
-              onClick={() => bbb(item.value)}
+              onClick={() => setSelectedSize(item.value)}
             >
               {item.display_name}
             </div>

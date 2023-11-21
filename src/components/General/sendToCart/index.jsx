@@ -16,10 +16,10 @@ import './index.scss';
 
 
 
-const SendToCart = observer(({ relateInputs }) => {
-  const [selectedColor, setSelectedColor] = useState('asd')
-  const [selectedSize, setSelectedSize] = useState('asds')
 
+const SendToCart = observer(({ relateInputs }) => {
+  const [selectedColor, setSelectedColor] = useState(null)
+  const [selectedSize, setSelectedSize] = useState(null)
 
   const closeSendToCart = () => {
     noScroll.toggleScroll(true)
@@ -30,17 +30,27 @@ const SendToCart = observer(({ relateInputs }) => {
 
   return (
         <div className="sendToCart">
-            <Title title={'Добавить в корзину'} additionalClass='sendToCartTitle' />
+            {
+              relateInputs.length > 0 ? 
+                <>
+                  <Title title={'Добавить в корзину'} additionalClass='sendToCartTitle' />
 
-            <CloseBtn handler={closeSendToCart} />
+                  <CloseBtn handler={closeSendToCart} />
 
-            <div className="sendToCartWrapper">
-                <SendToSizes relateInputs={relateInputs} selectedColor={selectedColor} setSelectedColor={setSelectedColor} />
-                <SendToColors relateInputs={relateInputs} selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
-            </div>
+                  <div className="sendToCartWrapper">
+
+                      <SendToSizes relateInputs={relateInputs} selectedColor={selectedColor} setSelectedColor={setSelectedColor} />
+                      <SendToColors relateInputs={relateInputs} selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
+                  </div>
+
+
+                  <Button text="В корзину" additionalClass='sendToCartBtn' />
+                </>
+              :
+                null
+            }
+
             
-
-            <Button text="В корзину" additionalClass='sendToCartBtn' />
         </div>
   )
 })

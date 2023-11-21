@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import './index.scss';
 
@@ -9,24 +9,15 @@ import './index.scss';
 const SendToColors = ({ relateInputs, selectedColor, setSelectedColor }) => {
 
 
-  const bbb = (color) => {
-    setSelectedColor(color)
-  }
-
   return (
     <div className="sendToCart-ColorsWrapper">
-        {
-          relateInputs.map((item) => (
-            <div 
-              key={item.color} 
-              id={item.color} 
-              className={item.color === selectedColor ? 'sendToCart-ColorsItem sendToCart-ColorsItem--selected': 'sendToCart-ColorsItem'}
-              onClick={() => bbb(item.color)}
-            >
-
-            </div>
-          ))
-        }
+        <div 
+          key={item.color + index} 
+          id={item.color} 
+          className={item.color === selectedColor ? 'sendToCart-ColorsItem sendToCart-ColorsItem--selected': 'sendToCart-ColorsItem'}
+          onClick={() => setSelectedColor(item.color)}
+        >
+        </div>
     </div>
   )
 }

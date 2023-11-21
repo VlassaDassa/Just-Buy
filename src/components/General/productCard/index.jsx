@@ -133,6 +133,7 @@ const ProductCard = observer(({
             </CSSTransition>
 
 
+
             <div className={`products__photo_wrapper`}>
                 {
                     cartPage ?

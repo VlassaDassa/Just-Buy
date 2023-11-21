@@ -5,7 +5,7 @@ import './index.scss';
 
 
 
-const Button = ({ additionalClass="", text='', handler=null, disabled=true}) => {
+const Button = ({ additionalClass="", text='', handler=null, disabled=false}) => {
     return (
         <button
             className={
