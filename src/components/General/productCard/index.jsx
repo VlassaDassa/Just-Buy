@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { observer } from 'mobx-react-lite';
-import { CSSTransition } from 'react-transition-group';
-
-import SendToCart from '../sendToCart';
 
 import { showError } from './../../../hooks/showError';
 
@@ -10,16 +7,13 @@ import sendToCart from '../../../store/sendToCart';
 import overlay from '../../../store/overlay';
 import noScroll from '../../../store/noScroll';
 
-import useRequest from '../../../hooks/useRequest';
-import { getRelateInputs } from '../../../api/cartAPI';
-
 import heart from './../../../assets/images/product_card/heart.svg';
 import heartFill from './../../../assets/images/product_card/heart-small-fill.svg';
 import cartImg from './../../../assets/images/product_card/cart.svg';
 import cartFill from './../../../assets/images/product_card/cart-fill.svg';
 import trash from './../../../assets/images/cart/trash.svg'
 
-import { addCartProduct, removeCartProductFromProdId } from './../../../api/cartAPI'
+import { addCartProduct, removeCartProductFromProdId, getRelateInputs } from './../../../api/cartAPI'
 
 import './index.scss';
 
@@ -62,27 +56,10 @@ const ProductCard = observer(({
     const [like, setLike] = useState([]);
     const [cart, setCart] = useState(is_in_cart);
     
-    // For popup "Send to cart"
-    const [data, error, loading] = useRequest(() => getRelateInputs(product_id), [])
-    const [existsRelateInputs, setExistsRelateInputs] = useState(false)
-    const [relateInputs, setRelateInputs] = useState([])
+   
 
 
-    useEffect(() => {
-        if (data && !loading) {
-            if (data.exists) {
-                setExistsRelateInputs(true)
-                setRelateInputs(data.relateInputs)
-            }
-
-            else {
-                setExistsRelateInputs(false)
-            }
-        }
-    }, [data, loading])
-
-
-    const addToCart = (product_id) => {
+    const addToCart = async (product_id) => {
         // addCartProduct(product_id)
         // .then(response => {
         //     if (response.status !== 200) {
@@ -96,10 +73,38 @@ const ProductCard = observer(({
         //     showError('Ошибка при добавлении товара')
         // })
 
-        sendToCart.toggleShow(true)
-        sendToCart.setProductId(product_id)
-        overlay.toggleShow(true)
-        noScroll.toggleScroll(false)
+        
+
+
+        // Request for get relate inputs
+        try {
+            const response = await getRelateInputs(product_id);
+            if (response.status !== 200) {
+                showError('Ошибка при добавлении товара');
+                throw new Error('Ошибка при получении данных');
+            }
+            const relateInputs = await response.data;
+
+            if (relateInputs.exists) {
+                // Show popup "SendToCart", if product have sizes and colors
+                sendToCart.toggleShow(true)
+                sendToCart.setProductId(product_id)
+                sendToCart.setRelateInputs(relateInputs.relateInputs)
+
+                overlay.toggleShow(true)
+                noScroll.toggleScroll(false)
+            }
+
+            else {
+                // Add to cart, if product have only sizes or only colors
+                console.log('Just add to cart')
+            }
+            
+        } catch (error) {
+            showError('Ошибка при добавлении товара');
+            console.error(error);
+        }
+
     }
 
 
@@ -118,25 +123,8 @@ const ProductCard = observer(({
         })
     }
 
-
     return (
         <div className="products__item">
-
-            {/* <CSSTransition
-                in={sendToCart.productId === product_id && sendToCart.show && existsRelateInputs}
-                unmountOnExit
-                key={'sendToCartTrans'}
-                timeout={500}
-                classNames="sendToCartTrans"
-            >
-                <SendToCart relateInputs={relateInputs} />
-            </CSSTransition> */}
-
-
-            <SendToCart relateInputs={relateInputs} />
-
-
-
             <div className={`products__photo_wrapper`}>
                 {
                     cartPage ?

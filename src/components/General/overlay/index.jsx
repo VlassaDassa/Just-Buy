@@ -28,6 +28,7 @@ const Overlay = observer(() => {
       relateSizeAndColor.toggleShow(false)
       sendToCart.toggleShow(false)
       sendToCart.setProductId(null)
+      sendToCart.setRelateInputs([])
     }
 
     return (

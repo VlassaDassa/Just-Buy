@@ -1,53 +1,67 @@
 import React, { useState, useEffect } from 'react';
+import { observer } from 'mobx-react-lite'; 
+import { toJS } from 'mobx';
 
+import sendToCart from '../../../../store/sendToCart';
 import { getSizes } from '../../../../api/cartAPI';
-import useRequest from '../../../../hooks/useRequest';
+import { showError } from '../../../../hooks/showError';
 
 import './index.scss';
 
 
 
-const SendToSizes = ({ relateInputs, selectedSize, setSelectedSize }) => {
-  const relateInputsCopy = JSON.parse(JSON.stringify(relateInputs));
-
-  const [sizes, setSizes] = useState([])
-  const [data, error, loading] = useRequest(() => getSizes(relateInputs.map(item => item.size)), []);
-
-  if (!setSelectedSize) {
-    return null;
-  }
 
 
-  // Values for sizes
+const Sizes = observer(() => {
+  const [isSizes, setIsSizes] = useState([])
+
+  
   useEffect(() => {
-    if (data && !loading) {
-      setSizes(data)
+    if (toJS(sendToCart.relateInputs).length > 0) {
+        const fetchData = async () => {
+          try {
+            const sizesResponse = await getSizes(
+              toJS(sendToCart.relateInputs).map(item => item.size)
+            );
+    
+            if (sizesResponse.status !== 200) {
+              showError('Ошибка при добавлении товара');
+              throw new Error('Ошибка при добавлении товара');
+            }
+
+            const sizesData = await sizesResponse.data;
+            setIsSizes(sizesData)
+
+          } catch (error) {
+            showError('Ошибка при добавлении товара');
+            console.error(error);
+          }
+        };
+
+        fetchData();
     }
-  }, [data, loading])
+  }, [sendToCart.relateInputs]);
 
-
-  // Formatting size
-  relateInputsCopy.forEach((item, index) => {
-    var newSize = sizes.find(sizeItem => sizeItem.value === item.size)
-    relateInputsCopy[index].size = newSize
-  })
 
 
   return (
     <div className="sendToCart-SizesWrapper">
-        {
-          sizes.map((item, index) => (
-            <div 
-              key={item.value + index} 
-              className={item.value === selectedSize ? 'sendToCart-SizesItem sendToCart-SizesItem--selected' : 'sendToCart-SizesItem'}
-              onClick={() => setSelectedSize(item.value)}
-            >
-              {item.display_name}
-            </div>
-          ))
+        {isSizes.length > 0 ?
+          isSizes.map((item, index) => (
+              <div
+                className="sendToCart-SizesItem"
+                key={item.display_name + index}
+              >
+                {item.display_name}
+              </div>
+            ))
+
+          : null
+
         }
     </div>
   )
-}
+})
 
-export default SendToSizes;
+
+export default Sizes;
