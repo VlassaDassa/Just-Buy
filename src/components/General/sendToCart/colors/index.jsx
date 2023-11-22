@@ -5,7 +5,19 @@ import './index.scss';
 
 
 
-const Colors = observer(({ colors, selectedColor, setSelectedColor }) => {
+const Colors = observer(({ colors, selectedSize, selectedColor, setSelectedColor }) => {
+
+  const choiceColor = (item) => {
+      if (selectedSize && selectedColor && selectedColor !== item) return;
+
+      if (selectedColor === item) {
+          setSelectedColor(null)
+      }
+
+      else {
+        setSelectedColor(item)
+      }
+  }
 
 
   return (
@@ -16,7 +28,7 @@ const Colors = observer(({ colors, selectedColor, setSelectedColor }) => {
               id={item}
               key={item} 
               className={selectedColor === item ? 'sendToCart-ColorsItem sendToCart-ColorsItem--selected' : 'sendToCart-ColorsItem'}
-              onClick={() => selectedColor === item ? setSelectedColor(null) : setSelectedColor(item)}
+              onClick={() => choiceColor(item)}
             >
             </div>
           ))

@@ -10,10 +10,10 @@ import './index.scss';
 
 
 
-const Sizes = observer(({ sizes, selectedSize, setSelectedSize }) => {
+const Sizes = observer(({ sizes, selectedSize, selectedColor, setSelectedSize }) => {
   const [isSizes, setIsSizes] = useState([])
 
-  
+
   useEffect(() => {
     if (sizes && sizes.length > 0) {
         const fetchData = async () => {
@@ -41,6 +41,19 @@ const Sizes = observer(({ sizes, selectedSize, setSelectedSize }) => {
   }, [sizes]);
 
 
+  const choiceSize = (item) => {
+    if (selectedSize && selectedColor && selectedSize !== item) return;
+
+    if (selectedSize === item) {
+      setSelectedSize(null)
+    }
+
+    else {
+      setSelectedSize(item)
+    }
+}
+
+
 
   return (
     <div className="sendToCart-SizesWrapper">
@@ -49,7 +62,7 @@ const Sizes = observer(({ sizes, selectedSize, setSelectedSize }) => {
               <div
                 className={item.value === selectedSize ? 'sendToCart-SizesItem sendToCart-SizesItem--selected' : 'sendToCart-SizesItem'}
                 key={item.display_name + index}
-                onClick={() => item.value === selectedSize ? setSelectedSize(null) : setSelectedSize(item.value)}
+                onClick={() => choiceSize(item.value)}
               >
                 {item.display_name}
               </div>

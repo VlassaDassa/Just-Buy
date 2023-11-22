@@ -60,19 +60,7 @@ const ProductCard = observer(({
 
 
     const addToCart = async (product_id) => {
-        // addCartProduct(product_id)
-        // .then(response => {
-        //     if (response.status !== 200) {
-        //         showError('Ошибка при добавлении товара')
-        //     }
-        //     else {
-        //         setCart(true)
-        //     }
-        //     })
-        // .catch(error => {
-        //     showError('Ошибка при добавлении товара')
-        // })
-
+        
 
         // Request for get relate inputs
         try {
@@ -95,7 +83,18 @@ const ProductCard = observer(({
 
             else {
                 // Add to cart, if product have only sizes or only colors
-                console.log('Just add to cart')
+                // addCartProduct(product_id)
+                // .then(response => {
+                //     if (response.status !== 200) {
+                //         showError('Ошибка при добавлении товара')
+                //     }
+                //     else {
+                //         setCart(true)
+                //     }
+                //     })
+                // .catch(error => {
+                //     showError('Ошибка при добавлении товара')
+                // })
             }
             
         } catch (error) {

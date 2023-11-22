@@ -67,13 +67,13 @@ const SendToCart = observer(() => {
 
           <div className="sendToCartWrapper">
 
-              <Sizes sizes={sizes} selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
-              <Colors colors={colors} selectedColor={selectedColor} setSelectedColor={setSelectedColor} />
+              <Sizes sizes={sizes} selectedSize={selectedSize} selectedColor={selectedColor} setSelectedSize={setSelectedSize} />
+              <Colors colors={colors} selectedSize={selectedSize} selectedColor={selectedColor} setSelectedColor={setSelectedColor} />
 
           </div>
 
 
-          <Button text="В корзину" additionalClass='sendToCartBtn' />
+          <Button text="В корзину" additionalClass='sendToCartBtn' disabled={!(selectedColor && selectedSize)} />
         </div>
   )
 })

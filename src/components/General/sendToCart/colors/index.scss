@@ -23,15 +23,12 @@
 
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-
-    &:hover {
-        transform: scale(1.1);
-    }
 }
 
 
 .sendToCart-ColorsItem--selected {
     transform: scale(0.8);
+    opacity: 0.3;
 }
 
 

@@ -127,6 +127,7 @@ const CartBar = () => {
     // Condition for button "All"
     const isAllChecked = products.length === 0 ? false : !products.some((product) => product?.isChecked !== true);
 
+
     return (
         <>
             <div className="cart__header">
