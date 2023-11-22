@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react-lite'; 
-import { toJS } from 'mobx';
 
-import sendToCart from '../../../../store/sendToCart';
 import { getSizes } from '../../../../api/cartAPI';
 import { showError } from '../../../../hooks/showError';
 
@@ -12,16 +10,16 @@ import './index.scss';
 
 
 
-const Sizes = observer(({ relateInputs, selectedSize, setSelectedSize }) => {
+const Sizes = observer(({ sizes, selectedSize, setSelectedSize }) => {
   const [isSizes, setIsSizes] = useState([])
 
   
   useEffect(() => {
-    if (relateInputs.length > 0) {
+    if (sizes && sizes.length > 0) {
         const fetchData = async () => {
           try {
             const sizesResponse = await getSizes(
-              relateInputs.map(item => item.size)
+              sizes
             );
     
             if (sizesResponse.status !== 200) {
@@ -40,7 +38,7 @@ const Sizes = observer(({ relateInputs, selectedSize, setSelectedSize }) => {
 
         fetchData();
     }
-  }, [relateInputs]);
+  }, [sizes]);
 
 
 

@@ -22,28 +22,31 @@ const SendToCart = observer(() => {
   const [selectedSize, setSelectedSize] = useState(null)
   const [selectedColor, setSelectedColor] = useState(null)
 
-  const [relateInputs, setRelateInputs] = useState([])
+  const [sizes, setSizes] = useState()
+  const [colors, setColors] = useState()
+
 
 
   useEffect(() => {
-      setRelateInputs(toJS(sendToCart.relateInputs))
-  }, [sendToCart.relateInputs, selectedSize, selectedColor])
+      setSizes(toJS(sendToCart.relateInputs).map((item) => item.size))
+      setColors(toJS(sendToCart.relateInputs).map((item) => item.color))
 
+  }, [sendToCart.relateInputs, selectedSize, selectedColor])
 
 
   useEffect(() => {
       if (selectedSize && !selectedColor) {
-          setRelateInputs(toJS(sendToCart.relateInputs).filter(obj => obj.size === selectedSize))
+          setSizes(toJS(sendToCart.relateInputs).map((item) => item.size))
+          setColors(toJS(sendToCart.relateInputs).filter(obj => obj.size === selectedSize)?.map((item) => item.color))
       }
 
       else if (selectedColor && !selectedSize) {
-        setRelateInputs(toJS(sendToCart.relateInputs).filter(obj => obj.color === selectedColor))
+          setColors(toJS(sendToCart.relateInputs).map((item) => item.color))
+          setSizes(toJS(sendToCart.relateInputs).filter(obj => obj.color === selectedColor)?.map((item) => item.size))
       }
+
   }, [selectedSize, selectedColor])
 
-  console.log('Relate inputs: ', relateInputs)
-  console.log(selectedSize)
-  console.log(selectedColor)
 
 
   const closeSendToCart = () => {
@@ -64,8 +67,8 @@ const SendToCart = observer(() => {
 
           <div className="sendToCartWrapper">
 
-              <Sizes relateInputs={relateInputs} selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
-              <Colors relateInputs={relateInputs} selectedColor={selectedColor} setSelectedColor={setSelectedColor} />
+              <Sizes sizes={sizes} selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
+              <Colors colors={colors} selectedColor={selectedColor} setSelectedColor={setSelectedColor} />
 
           </div>
 

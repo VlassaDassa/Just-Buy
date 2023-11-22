@@ -1,20 +1,17 @@
 import React from 'react';
-import { toJS } from 'mobx';
 import { observer } from 'mobx-react-lite';
-
-import sendToCart from '../../../../store/sendToCart';
 
 import './index.scss';
 
 
 
-const Colors = observer(({ relateInputs, selectedColor, setSelectedColor }) => {
+const Colors = observer(({ colors, selectedColor, setSelectedColor }) => {
 
 
   return (
     <div className="sendToCart-ColorsWrapper">
-        {relateInputs.length > 0 ?
-          [...new Set(relateInputs.map((item) => item.color))].map((item, index) => (
+        {colors && colors.length > 0 ?
+          [...new Set(colors)].map((item, index) => (
             <div 
               id={item}
               key={item} 
