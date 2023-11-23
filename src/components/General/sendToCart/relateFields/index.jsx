@@ -5,7 +5,11 @@ import { observer } from 'mobx-react-lite';
 import Sizes from './../sizes';
 import Colors from './../colors';
 import Button from './../../button';
+import { showError } from '../../../../hooks/showError';
+import overlay from '../../../../store/overlay';
+import noScroll from '../../../../store/noScroll';
 
+import { addCartProduct } from '../../../../api/cartAPI';
 import sendToCart from './../../../../store/sendToCart';
 
 import './../index.scss';
@@ -13,7 +17,7 @@ import './../index.scss';
 
 
 
-const RelateFields = observer(() => {
+const RelateFields = observer(({ inCart, setInCart }) => {
     const [selectedSize, setSelectedSize] = useState(null)
     const [selectedColor, setSelectedColor] = useState(null)
 
@@ -27,7 +31,8 @@ const RelateFields = observer(() => {
 
     }, [sendToCart.relateInputs, selectedSize, selectedColor])
 
-
+    
+    // Clear old values
     useEffect(() => {
             setSelectedSize(null)
             setSelectedColor(null)
@@ -50,9 +55,43 @@ const RelateFields = observer(() => {
 
     // Send data to server
     const addToCart = () => {
-        console.log(`Add to cart product - ${sendToCart.productId}. Fielsd: ${selectedColor} and ${selectedSize}`)
-    }
+        const data = {
+            'product_id': toJS(sendToCart.productId),
+            'relateInputs': {
+                'color': selectedColor,
+                'size': selectedSize,
+            },
+            'count': toJS(sendToCart.relateInputs).find((item) => item.color === selectedColor && item.size === selectedSize).count,
+        }
 
+        addCartProduct(data)
+            .then(response => {
+                if (response.status !== 200) {
+                    showError('Ошибка при добавлении товара')
+                    return
+                }
+
+                else {
+                    setInCart([...inCart, toJS(sendToCart.productId)])
+
+                    noScroll.toggleScroll(true)
+                    overlay.toggleShow(false)
+
+                    sendToCart.toggleShow(false)
+                    sendToCart.setProductId(null)
+
+                    sendToCart.setRelateInputs([])
+                    sendToCart.setColors([])
+                    sendToCart.setSizes([])
+                }
+            })
+            .catch(error => {
+                showError('Ошибка при добавлении товара')
+                console.error(error)
+                return
+            })
+        
+    }
 
 
     return (

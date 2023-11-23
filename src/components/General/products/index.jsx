@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
@@ -11,9 +11,24 @@ import './index.scss';
 
 
 const Products = observer(({ products, likeShow = true, cartShow = true, onRoad = false, cartPage = false, cartPageOptions = {} }) => {
+  const [inCart, setInCart] = useState()
+
+
+  // Defining products, who in cart
+  useEffect(() => {
+      if (products.length > 0) {
+          const inCartArray = products
+            .filter(item => item.is_in_cart)
+            .map(item => item.id);
+          
+            setInCart(inCartArray)
+      }
+  }, [products])
+
+
   return (
     <TransitionGroup className="products">
-      <SendToCart />
+      <SendToCart inCart={inCart} setInCart={setInCart} />
 
       {products?.map((product) => (
         <CSSTransition
@@ -29,7 +44,8 @@ const Products = observer(({ products, likeShow = true, cartShow = true, onRoad 
             rating={product.rating}
             countFeedback={product.count_feedbacks}
             product_id={product.id}
-            is_in_cart={product.is_in_cart}
+            inCart={inCart}
+            setInCart={setInCart}
             likeShow={likeShow}
             cartShow={cartShow}
             onRoad={onRoad}

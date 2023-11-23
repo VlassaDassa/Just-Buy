@@ -23,8 +23,8 @@ export const removeCartProductFromProdId = (product_id) => {
 
 
 // Adding cart product
-export const addCartProduct = (product_id) => {
-    return axios.post(API_ROUTES.cart.addCartProduct + product_id + '/');
+export const addCartProduct = (data) => {
+    return axios.post(API_ROUTES.cart.addCartProduct, data);
 }
 
 

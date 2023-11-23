@@ -17,7 +17,7 @@ import './index.scss';
 
 
 
-const SendToCart = observer(() => {
+const SendToCart = observer(({ inCart, setInCart }) => {
 
   const closeSendToCart = () => {
       noScroll.toggleScroll(true)
@@ -48,9 +48,9 @@ const SendToCart = observer(() => {
 
             {
                 toJS(sendToCart.relateInputs).length > 0 ?
-                    <RelateFields />
+                    <RelateFields inCart={inCart} setInCart={setInCart} />
                 :
-                    <SizeOrColor />
+                    <SizeOrColor inCart={inCart} setInCart={setInCart} />
             }
             
 

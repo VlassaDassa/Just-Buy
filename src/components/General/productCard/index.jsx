@@ -28,7 +28,8 @@ const ProductCard = observer(({
         rating,
         countFeedback,
         product_id,
-        is_in_cart,
+        inCart,
+        setInCart,
 
         likeShow,
         cartShow,
@@ -54,7 +55,6 @@ const ProductCard = observer(({
     const activeMobileLike = 'products__icon products__icon-small products__icon-like active'
 
     const [like, setLike] = useState([]);
-    const [cart, setCart] = useState(is_in_cart);
     
    
     const addToCart = async (product_id) => {
@@ -72,19 +72,23 @@ const ProductCard = observer(({
 
             // Just add to cart, because product have not sizes or colors
             if (!colorsAndSizes['exists']) {
-                console.log('Just add to cart')
-                // addCartProduct(product_id)
-                // .then(response => {
-                //     if (response.status !== 200) {
-                //         showError('Ошибка при добавлении товара')
-                //     }
-                //     else {
-                //         setCart(true)
-                //     }
-                //     })
-                // .catch(error => {
-                //     showError('Ошибка при добавлении товара')
-                // })
+                const data = {
+                    'count': colorsAndSizes.count,
+                    'product_id': product_id,
+                }
+
+                addCartProduct(data)
+                .then(response => {
+                    if (response.status !== 200) {
+                        showError('Ошибка при добавлении товара')
+                    }
+                    else {
+                        setInCart([...inCart, product_id])
+                    }
+                    })
+                .catch(error => {
+                    showError('Ошибка при добавлении товара')
+                })
             }
 
 
@@ -135,7 +139,7 @@ const ProductCard = observer(({
                 showError('Ошибка при удалении товара')
             }
             else {
-                setCart(false);
+                setInCart(inCart.filter(item => item !== product_id))
             }
         })
         .catch(error => {
@@ -203,10 +207,10 @@ const ProductCard = observer(({
                             
                             {cartShow &&
                                 <img 
-                                    src={cart ? cartFill: cartImg} 
-                                    className={cart ? defaultCartClass: activeCartClass}
+                                    src={inCart?.includes(product_id) ? cartFill: cartImg} 
+                                    className={inCart?.includes(product_id) ? defaultCartClass: activeCartClass}
                                     onClick={() => {
-                                        if (cart) {
+                                        if (inCart?.includes(product_id)) {
                                             removeInCart(product_id)
                                         }
                                         else {
@@ -243,9 +247,9 @@ const ProductCard = observer(({
                         {cartShow && likeShow && 
                             <div className="products__mobile_btn">
                                 <button 
-                                    className={cart ? activeMobileCart : defaultMobileCart}
+                                    className={inCart?.includes(product_id) ? activeMobileCart : defaultMobileCart}
                                     onClick={() => {
-                                        if (cart) {
+                                        if (inCart?.includes(product_id)) {
                                             removeInCart(product_id)
                                         }
                                         else {
