@@ -35,8 +35,8 @@ export function sendPurchasedGoods(data) {
 
 
 // Get relate inputs
-export function getRelateInputs(productId) {
-    return axios.get(API_ROUTES.cart.getRelateInputs + productId + '/')
+export function getSizesAndColors(productId) {
+    return axios.get(API_ROUTES.cart.getSizesAndColors + productId + '/')
 }
 
 

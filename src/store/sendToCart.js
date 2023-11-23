@@ -5,6 +5,8 @@ import { makeAutoObservable } from 'mobx';
 class SendToCart {
     show = false
     productId = null
+    colors = []
+    sizes = []
     relateInputs = []
     constructor() {
         makeAutoObservable(this)
@@ -22,6 +24,13 @@ class SendToCart {
         this.relateInputs = relateInputs
     }
 
+    setSizes(sizes) {
+        this.sizes = sizes
+    }
+
+    setColors(colors) {
+        this.colors = colors
+    }
 }
 
 export default new SendToCart()

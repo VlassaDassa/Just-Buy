@@ -13,7 +13,7 @@ import cartImg from './../../../assets/images/product_card/cart.svg';
 import cartFill from './../../../assets/images/product_card/cart-fill.svg';
 import trash from './../../../assets/images/cart/trash.svg'
 
-import { addCartProduct, removeCartProductFromProdId, getRelateInputs } from './../../../api/cartAPI'
+import { addCartProduct, removeCartProductFromProdId, getSizesAndColors } from './../../../api/cartAPI'
 
 import './index.scss';
 
@@ -57,32 +57,22 @@ const ProductCard = observer(({
     const [cart, setCart] = useState(is_in_cart);
     
    
-
-
     const addToCart = async (product_id) => {
-        
 
         // Request for get relate inputs
         try {
-            const response = await getRelateInputs(product_id);
+            const response = await getSizesAndColors(product_id);
+            
             if (response.status !== 200) {
                 showError('Ошибка при добавлении товара');
                 throw new Error('Ошибка при получении данных');
             }
-            const relateInputs = await response.data;
+            const colorsAndSizes = await response.data;
 
-            if (relateInputs.exists) {
-                // Show popup "SendToCart", if product have sizes and colors
-                sendToCart.toggleShow(true)
-                sendToCart.setProductId(product_id)
-                sendToCart.setRelateInputs(relateInputs.relateInputs)
 
-                overlay.toggleShow(true)
-                noScroll.toggleScroll(false)
-            }
-
-            else {
-                // Add to cart, if product have only sizes or only colors
+            // Just add to cart, because product have not sizes or colors
+            if (!colorsAndSizes['exists']) {
+                console.log('Just add to cart')
                 // addCartProduct(product_id)
                 // .then(response => {
                 //     if (response.status !== 200) {
@@ -96,12 +86,45 @@ const ProductCard = observer(({
                 //     showError('Ошибка при добавлении товара')
                 // })
             }
-            
+
+
+            // Show popup for colors
+            else if (colorsAndSizes['exists_colors']) {
+                sendToCart.toggleShow(true)
+                sendToCart.setProductId(product_id)
+                sendToCart.setColors(colorsAndSizes.colors)
+
+                overlay.toggleShow(true)
+                noScroll.toggleScroll(false)
+            }
+
+
+            // Show popup for sizes
+            else if (colorsAndSizes['exists_sizes']) {
+                sendToCart.toggleShow(true)
+                sendToCart.setProductId(product_id)
+                sendToCart.setSizes(colorsAndSizes.sizes)
+
+                overlay.toggleShow(true)
+                noScroll.toggleScroll(false)
+            }
+
+
+            // Show popup "SendToCart", if product have sizes and colors
+            else if (colorsAndSizes['exists_relateInputs']) {
+                sendToCart.toggleShow(true)
+                sendToCart.setProductId(product_id)
+                sendToCart.setRelateInputs(colorsAndSizes.relateInputs)
+
+                overlay.toggleShow(true)
+                noScroll.toggleScroll(false)
+            }
+
+
         } catch (error) {
             showError('Ошибка при добавлении товара');
             console.error(error);
         }
-
     }
 
 

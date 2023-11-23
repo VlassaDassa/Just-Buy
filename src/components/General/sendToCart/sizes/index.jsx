@@ -51,7 +51,7 @@ const Sizes = observer(({ sizes, selectedSize, selectedColor, setSelectedSize })
     else {
       setSelectedSize(item)
     }
-}
+  }
 
 
 

@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { toJS } from 'mobx';
 import { observer } from 'mobx-react-lite'; 
 
-import Sizes from './sizes';
-import Colors from './colors';
-import Button from '../button';
+import RelateFields from './relateFields';
+import SizeOrColor from './sizeOrColor';
 import CloseBtn from '../closeBtn';
 import Title from '../title';
 
@@ -19,61 +18,42 @@ import './index.scss';
 
 
 const SendToCart = observer(() => {
-  const [selectedSize, setSelectedSize] = useState(null)
-  const [selectedColor, setSelectedColor] = useState(null)
-
-  const [sizes, setSizes] = useState()
-  const [colors, setColors] = useState()
-
-
-
-  useEffect(() => {
-      setSizes(toJS(sendToCart.relateInputs).map((item) => item.size))
-      setColors(toJS(sendToCart.relateInputs).map((item) => item.color))
-
-  }, [sendToCart.relateInputs, selectedSize, selectedColor])
-
-
-  useEffect(() => {
-      if (selectedSize && !selectedColor) {
-          setSizes(toJS(sendToCart.relateInputs).map((item) => item.size))
-          setColors(toJS(sendToCart.relateInputs).filter(obj => obj.size === selectedSize)?.map((item) => item.color))
-      }
-
-      else if (selectedColor && !selectedSize) {
-          setColors(toJS(sendToCart.relateInputs).map((item) => item.color))
-          setSizes(toJS(sendToCart.relateInputs).filter(obj => obj.color === selectedColor)?.map((item) => item.size))
-      }
-
-  }, [selectedSize, selectedColor])
-
-
 
   const closeSendToCart = () => {
       noScroll.toggleScroll(true)
+      overlay.toggleShow(false)
+
       sendToCart.toggleShow(false)
       sendToCart.setProductId(null)
-      overlay.toggleShow(false)
+
       sendToCart.setRelateInputs([])
+      sendToCart.setColors([])
+      sendToCart.setSizes([])
   }
 
-  const openCondition = sendToCart.relateInputs.length > 0 && sendToCart.productId && sendToCart.show
-                          
+
+  const openCondition = (sendToCart.productId && sendToCart.show) && 
+                        (
+                            sendToCart.relateInputs.length > 0 || 
+                            sendToCart.sizes.length > 0 || 
+                            sendToCart.colors.length > 0
+                        )
+                         
+                        
   return (
         <div className={openCondition ? 'sendToCart sendToCart--show' : 'sendToCart'}>
-          <Title title={'Добавить в корзину'} additionalClass='sendToCartTitle' />
+            <Title title={'Добавить в корзину'} additionalClass='sendToCartTitle' />
 
-          <CloseBtn handler={closeSendToCart} />
+            <CloseBtn handler={closeSendToCart} />
 
-          <div className="sendToCartWrapper">
+            {
+                toJS(sendToCart.relateInputs).length > 0 ?
+                    <RelateFields />
+                :
+                    <SizeOrColor />
+            }
+            
 
-              <Sizes sizes={sizes} selectedSize={selectedSize} selectedColor={selectedColor} setSelectedSize={setSelectedSize} />
-              <Colors colors={colors} selectedSize={selectedSize} selectedColor={selectedColor} setSelectedColor={setSelectedColor} />
-
-          </div>
-
-
-          <Button text="В корзину" additionalClass='sendToCartBtn' disabled={!(selectedColor && selectedSize)} />
         </div>
   )
 })

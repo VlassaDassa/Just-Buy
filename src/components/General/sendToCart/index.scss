@@ -17,6 +17,8 @@
     display: none;
     width: auto;
     max-width: 640px;
+
+    min-width: 400px;
 }
 
 
@@ -43,7 +45,10 @@
 
     .sendToCart {
         width: 60%;
+        min-width: unset;
     }
+
+    
 }
 
 
