@@ -46,3 +46,32 @@
     width: 22px;
     height: 22px;
 }
+
+
+.ratingContainer {
+    display: flex;
+    column-gap: 10px;
+
+    height: 40px;
+
+    margin-bottom: 40px;
+}
+
+
+@media (max-width: 545px) {
+    .delivery_point_feedback__header {
+        flex-direction: column;
+        column-gap: 0px;
+        margin-bottom: 40px;
+        height: auto;
+    }
+
+    .ratingContainer {
+        display: flex;
+        column-gap: 10px;
+    
+        height: 40px;
+    
+        margin-bottom: 20px;
+    }
+}

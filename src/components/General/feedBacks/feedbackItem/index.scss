@@ -44,6 +44,7 @@
 
 .delivery_point_feedback_item__content {
     max-width: 540px;
+    height: auto;
 
     font-size: 20px;
     font-weight: 400;
@@ -51,6 +52,11 @@
 
     margin-left: 150px;
     margin-top: 20px;
+
+    word-wrap: break-word;
+     overflow-wrap: break-word;
+    
+    overflow: hidden;
 }
 
 
@@ -89,4 +95,73 @@
     column-gap: 15px;
 
     margin-bottom: 15px;
+}
+
+
+@media (max-width: 600px) {
+    .delivery_point_feedback_item__header {
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        column-gap: 20px;
+    }
+
+
+    .feedbackItemCircle {
+        display: none;
+    }
+
+    
+    .delivery_point_feedback_item__content {
+        width: 100%;
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+
+
+    .delivery_point_feedback_item__score{
+        font-size: 20px;
+    }
+
+
+    .feedbackScoreCircle {
+        width: 15px;
+        height: 15px;
+    }
+
+
+    .feedbackScoreHeader {
+        column-gap: 5px;
+        margin-bottom: 0px;
+    }
+
+
+    .delivery_point_feedback_item__name {
+        font-size: 24px;
+    }
+
+
+    .delivery_point_feedback_item {
+        padding: 30px 50px 30px 30px;
+    }
+}
+
+
+@media (max-width: 485px) {
+    .delivery_point_feedback_item {
+        padding: 15px 15px 15px 15px;
+        width: calc(100% - 30px);
+    }
+
+    .delivery_point_feedback_item__content {
+        font-size: 18px;
+    }
+}
+
+
+@media (max-width: 485px) {
+    .delivery_point_feedback_item__content {
+        font-size: 16px;
+    }
 }

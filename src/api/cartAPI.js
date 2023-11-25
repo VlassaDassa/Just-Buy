@@ -50,3 +50,9 @@ export function getSizes(sizes) {
 
     return axios.get(request)
 }
+
+
+// Add comment
+export function addComment(data) {
+    return axios.post(API_ROUTES.cart.addComment, data)
+}

@@ -39,6 +39,7 @@ export const API_ROUTES = {
         sendPurchasedGoods: API_BASE_URL + 'add_to_on_road/',
         getSizesAndColors: API_BASE_URL + 'get_sizes_and_colors/',
         getSizes: API_BASE_URL + 'get_particular_sizes/',
+        addComment: API_BASE_URL + 'add_delivery_point_comment/',
     },
 
     deliveryPoint: {

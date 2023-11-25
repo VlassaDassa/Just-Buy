@@ -4,10 +4,10 @@ import './index.scss';
 
 
 
-const SuccessMessage = ({ message, setIsVisibleSuccess }) => {
+const SuccessMessage = ({ message, setIsVisibleSuccess, additionalClass='' }) => {
 
   return (
-    <div className="successMessage">
+    <div className={'successMessage ' + additionalClass}>
         <span className="crossSuccess" onClick={() => setIsVisibleSuccess(false)} >×</span>
         { message }
     </div>

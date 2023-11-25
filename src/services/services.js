@@ -10,6 +10,8 @@ import jcb from './../assets/images/bankIcons/jcb.svg';
 import visa from './../assets/images/bankIcons/visa.svg';
 import question from './../assets/images/bankIcons/question.svg';
 
+import { maxPrice } from '../fakeVar';
+
 
 
 
@@ -170,7 +172,8 @@ function checkColorSizeCombinations(data) {
 // Checking on eror on the page "AddProduct"
 export const checkinOnError = (values) => {
   const conditionalExpression = hasNoEmptyValues(values) && 
-                              values.description.length > 300 
+                              values.description.length > 300 &&
+                              parseInt(values.price) <= maxPrice
 
   if (addProductChecking.countPhotos > 0) {
       if (checkColorSizeCombinations(values)) {
@@ -195,7 +198,7 @@ export const defineErrorClass = (fieldName) => {
     if (addProductChecking.btnClicked) {
         const value = addProductChecking?.inputRefs[fieldName]?.value;
 
-        if (value === '' || (fieldName === 'description' && (value && value.length < 300))) {
+        if (value === '' || (fieldName === 'description' && (value && value.length < 300)) || (fieldName === 'price' && (value && value > 50000))) {
             return 'general_characteristics__input error';
         }
     }

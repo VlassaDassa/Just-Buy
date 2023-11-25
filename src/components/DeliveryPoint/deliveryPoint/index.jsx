@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 
 import Location from "../location";
+
 import Info from "../info";
 import Feedbacks from './../../General/feedBacks'
 import critical_error from "../../../store/critical_error";
@@ -20,7 +21,6 @@ const DeliveryPointBar = () => {
     const [data, loading, error] = useRequest(() => getDeliveryPoint(deliveryPointId), [])
     const [pointData, setPointData] = useState({})
     const [photosArray, setPhotosArray] = useState([])
-
 
 
     // Initial data
@@ -54,7 +54,6 @@ const DeliveryPointBar = () => {
     }
 
 
-
     return (
         <>
             <Location 
@@ -70,7 +69,8 @@ const DeliveryPointBar = () => {
 
             <Info city={pointData?.city} schedule={pointData?.schedule} address={pointData?.address} />
 
-            <Feedbacks feedbacks={pointData?.comments} rating={pointData?.rating} />
+
+            <Feedbacks feedbacks={pointData?.comments} rating={pointData?.rating} objectId={deliveryPointId} />
         </>
     )
 }

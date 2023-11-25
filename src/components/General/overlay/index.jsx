@@ -10,6 +10,7 @@ import linkBankCard from '../../../store/linkBankCard';
 import mobileMap from '../../../store/mobileMap';
 import relateSizeAndColor from '../../../store/relateSizeAndColor';
 import sendToCart from '../../../store/sendToCart';
+import sendFeedback from '../../../store/sendFeedback';
 
 
 
@@ -29,6 +30,7 @@ const Overlay = observer(() => {
       sendToCart.toggleShow(false)
       sendToCart.setProductId(null)
       sendToCart.setRelateInputs([])
+      sendFeedback.toggleShow(false)
     }
 
     return (

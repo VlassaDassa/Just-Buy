@@ -27,3 +27,60 @@
         background: rgba($accent, 0.7);
     }
 }
+
+
+/* Transition */
+.sendFeedbackTransition-exit {
+    opacity: 1;
+}
+  
+.sendFeedbackTransition-exit-active {
+    opacity: 0;
+    transition: all 0.3s ease-in;
+}
+  
+.sendFeedbackTransition-enter {
+    opacity: 0;
+}
+  
+.sendFeedbackTransition-enter-active {
+    opacity: 1;
+    transition: all 0.3s ease-out;
+}
+/* ./Transition */
+
+
+/* Transition */
+.success-exit {
+    top: 50%;
+    display: none;
+}
+  
+.success-exit-active {
+    top: -100%;
+    transition: all 500ms ease-in;
+}
+  
+.success-enter {
+    top: -100%;
+}
+  
+.success-enter-active {
+    top: 50%;
+    transition: all 500ms ease-out;
+}
+/* ./Transition */
+
+
+@media (max-width: 1024px) {
+    .feedbacks {
+        margin-top: 200px;
+    }
+}
+
+
+@media (max-width: 700px) {
+    .feedbacks {
+        margin-top: 100px;
+    }
+}

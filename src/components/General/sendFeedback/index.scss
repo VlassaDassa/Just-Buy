@@ -1,0 +1,71 @@
+@import './../../../assets/styles/variables';
+
+
+
+.sendFeedback {
+    position: fixed;
+    z-index: 999;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    background: #2F2F2F;
+    box-shadow: $_box_shadow;
+    border-radius: 10px;
+    padding: 100px 60px 70px 60px;
+
+    width: auto;
+    max-width: 720px;
+
+    min-width: 320px;
+}
+
+
+.sendFeedbackInput {
+    width: 600px;
+    height: 170px;
+    border-radius: 20px;
+
+    padding: 20px;
+
+    margin-bottom: 10px;
+
+    font-size: 20px;
+    font-weight: $semi_bold;
+    color: rgba($base, 0.8);
+}
+
+
+.sendFeedbackButton {
+    width: 170px;
+    height: 50px;
+
+    border-radius: 20px;
+
+    background: $accent;
+
+    display: block;
+    margin-left: auto;
+    transition: all 0.1s ease-in-out;
+
+    &:hover {
+        background: rgba($accent, 0.9);
+    }
+}
+
+
+
+
+
+@media (max-width: 800px) {
+    .sendFeedback {
+        padding: 60px 30px 30px 30px;
+
+        width: calc(100% - 60px);
+    }
+
+
+    .sendFeedbackInput {
+        width: calc(100% - 40px);
+    }
+}

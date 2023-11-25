@@ -93,7 +93,7 @@ const PersonalCharact = observer(({ characteristicsFields, selectedSubcategory, 
         }
 
         else if (checkinOnError(fieldValues) === 'combination') {
-            showError('Одинаковая комбинация размера и цвета')
+            showError('Одинаковая комбинация')
         }
 
         else if (checkinOnError(fieldValues) === true) {

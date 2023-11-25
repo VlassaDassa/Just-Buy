@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
+import { CSSTransition } from 'react-transition-group';
+import { observer } from 'mobx-react-lite';
 
 import RatingPoint from "./ratingPoint";
 import FeedbackItem from './feedbackItem';
+import SendFeedback from "../../General/sendFeedback";
+import SuccessMessage from '../successMessage';
+
+import sendFeedback from '../../../store/sendFeedback';
 
 import './index.scss';
 
@@ -10,16 +16,40 @@ import './index.scss';
 
 
 
-function Feedbacks({ feedbacks, rating }) {
+const Feedbacks = observer(({ feedbacks, rating, objectId }) => {
     const range = 3
     const [end, setEnd] = useState(range)
+
+    const [isVisibleSuccess, setIsVisibleSuccess] = useState(false)
+
 
     function showMore() {
       setEnd(end+range)
     }
 
     return (
-      <div className='feedbacks'>
+      <section className='feedbacks'>
+
+        <CSSTransition
+          in={isVisibleSuccess}
+          key={'transSuccessMessage'}
+          timeout={4000}
+          classNames="success"
+        >
+          <SuccessMessage message={'Отзыв добавлен!'} setIsVisibleSuccess={setIsVisibleSuccess} />
+        </CSSTransition>
+
+        <CSSTransition
+            in={sendFeedback.show}
+            key={'sendFeedbackTransition'}
+            unmountOnExit
+            timeout={300}
+            classNames="sendFeedbackTransition"
+        > 
+            <SendFeedback objectId={objectId} isVisibleSuccess={isVisibleSuccess} setIsVisibleSuccess={setIsVisibleSuccess} />
+        </CSSTransition>
+
+
         <RatingPoint rating={rating} countFeedbacks={feedbacks?.length} />
 
         <div className="delivery_point_feedback__items">
@@ -39,9 +69,9 @@ function Feedbacks({ feedbacks, rating }) {
             null
         }
 
-      </div>
+      </section>
     );
-}
+})
 
 export default Feedbacks;
 

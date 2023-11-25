@@ -1,0 +1,29 @@
+@import './../../../../assets/styles/variables';
+
+
+
+
+
+.sendFeedbackScore {
+    display: flex;
+    column-gap: 15px;
+    margin-bottom: 20px;
+}
+
+
+.sendFeedbackCircle {
+    width: 25px;
+    height: 25px;
+
+    border-radius: 50%;
+    background: #71706E;
+
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+}
+
+
+.sendFeedbackCircle--selected {
+    background: #FFB800;
+}
+
