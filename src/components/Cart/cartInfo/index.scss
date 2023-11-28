@@ -1,233 +1,52 @@
-@import '../../../assets/styles/variables';
+@import './../../../assets/styles/variables';
 
 
 
-.cart_info {
-    display: flex;
-    justify-content: space-between;
-    column-gap: 20px;
-    margin-top: 50px;
+
+.cartInfo {
+    margin-top: 20px;
+    margin-bottom: 50px;
 }
 
 
-.cart_info__item-wrapper {
-    background: $base;
-    box-shadow: $_box_shadow;
-    padding: 15px 40px;
-    width: 500px;
+.cartInfoStickyWrapper {
+    position: sticky;
+    top: 0;
+
     display: flex;
     flex-direction: column;
-
-    p {
-        display: flex;
-        column-gap: 10px;
-
-        &:last-of-type {
-            margin-bottom: 30px;
-        }
-    }
+    row-gap: 10px;
 }
 
 
-.cart_info_price__count_prod,
-.cart_info_price__count,
-.cart_info_price__total_price,
-.cart_info_price__price,
-.cart_info_bank_card__bank_card,
-.cart_point__city,
-.cart_point__address {
-    font-size: 24px;
-    text-align: left;
-}
+.cartInfoItem {
+    width: calc(100% - 14px);
 
+    padding: 7px;
 
-.no_point {
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-.cart_info_bank_card__bank_card {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-.cart_info__title {
-    font-size: 32px;
-    font-weight: $extra_ligth;
-    text-align: center;
-
-    margin-bottom: 25px;
-}
-
-
-.cart_info__title-bank {
-    margin-bottom: 0px;
-}
-
-
-.cart_info_price__count_prod {
-    margin-bottom: 15px;
-}
-
-
-.cart_info_price__count,
-.cart_info_price__price {
-    font-weight: $semi_bold;
-}
-
-
-.cart_info__btn {
-    background: $accent;
+    background: $base;
     border-radius: 10px;
-    font-size: 24px;
-    color: white;
-    font-weight: $regular;
-    padding: 5px 50px;
-    margin-top: auto; 
-    margin-bottom: 10px; 
-    align-self: center; 
+}
 
-    transition: all 0.3s ease-in-out;
 
-    &:hover {
-        background: rgba($accent, 0.8);
+
+@media (min-width: 900px) {
+    .cartInfo {
+        margin-top: 43px;
+        width: 45%;
     }
 }
 
 
-.cart_info_bank_card__bank_card {
-    justify-content: center;
-
-    margin: 37px 0;
-}
-
-
-.cart_point__city {
-    margin-bottom: 15px;
-}
-
-
-.boldCity,
-.boldAddress {
-    font-weight: $semi_bold;
-}
-
-
-.btnNoActive {
-    cursor: unset;
-    opacity: 0.5;
-
-    &:hover {
-        background: $accent;
-    }
-}
-
-
-.no_point {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 15px;
-}
-
-
-@media (max-width: 1600px) {
-    .cart_info_price__count_prod,
-    .cart_info_price__count,
-    .cart_info_price__total_price,
-    .cart_info_price__price,
-    .cart_info_bank_card__bank_card,
-    .cart_point__city,
-    .cart_point__address {
-        font-size: 20px;
-    }
-}
-
-
-@media (max-width: 1440px) {
-    .cart_info {
-        display: block;
+@media (min-width: 1440px) {
+    .cartInfo {
         margin-top: 50px;
+        width: 45%;
+
+        row-gap: 20px;
     }
 
-    .cart_info__item-wrapper {
-        width: 600px;
-        margin-bottom: 20px;
-    }
-
-    .cart_info_price__count_prod,
-    .cart_info_price__count,
-    .cart_info_price__total_price,
-    .cart_info_price__price,
-    .cart_info_bank_card__bank_card,
-    .cart_point__city,
-    .cart_point__address {
-        font-size: 28px;
+    .cartInfoItem {
+        padding: 20px 10px;
     }
 }
-
-
-@media (max-width: 1024px) {
-    .cart_info__item-wrapper {
-        width: calc(100% - 40px * 2);
-    }
-}
-
-
-@media (max-width: 600px) {
-    .cart_info_price__count_prod,
-    .cart_info_price__count,
-    .cart_info_price__total_price,
-    .cart_info_price__price,
-    .cart_info_bank_card__bank_card,
-    .cart_point__city,
-    .cart_point__address {
-        font-size: 24px;
-    }
-}
-
-
-@media (max-width: 450px) {
-    .cart_info_price__count_prod,
-    .cart_info_price__count,
-    .cart_info_price__total_price,
-    .cart_info_price__price,
-    .cart_info_bank_card__bank_card,
-    .cart_point__city,
-    .cart_point__address {
-        font-size: 18px;
-    }
-
-    .cart_info__title {
-        font-size: 28px;
-    }  
-}
-
-
-
-/* Transition group */
-.success-exit {
-    top: 50%;
-    display: none;
-}
-  
-.success-exit-active {
-    top: -50%;
-    transition: all 500ms ease-in;
-}
-  
-/* Пример стиля для плавного появления */
-.success-enter {
-    top: -50%;
-}
-  
-.success-enter-active {
-    top: 50%;
-    transition: all 500ms ease-out;
-}
-/* ./Transition group */

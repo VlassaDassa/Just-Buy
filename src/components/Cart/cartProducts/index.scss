@@ -1,0 +1,63 @@
+@import './../../../assets/styles/variables';
+
+
+
+.cartProductsWrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+
+.cartSelectAll {
+    display: inline-flex;
+    align-items: center;
+    column-gap: 5px;
+
+    margin-bottom: 20px;
+
+    cursor: pointer;
+}
+
+
+.checkmarkContainer {
+    height: 23px;
+    width: 23px;
+
+    background: $base;
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@media (min-width: 1440px) {
+    .cartProductsWrapper {
+        row-gap: 20px;
+    }
+}
+
+
+@media (min-width: 900px) {
+    .cartProductsWrapper {
+        width: 120%;
+    }
+}
+
+
+@media (min-width: 1024px) {
+    .checkmarkContainer {
+        width: 30px;
+        height: 30px;
+    }
+
+    .selectAll-checkmark {
+        width: 16px;
+    }
+}
+
+
+
+

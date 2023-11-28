@@ -1,0 +1,22 @@
+@import './../../../assets/styles/variables';
+
+
+
+.cartInfoTitle {
+    font-size: 20px;
+    font-weight: $semi_bold;
+}
+
+
+@media (min-width: 1280px) {
+    .cartInfoTitle {
+        font-size: 22px;
+    }
+}
+
+
+@media (min-width: 1440px) {
+    .cartInfoTitle {
+        font-size: 24px;
+    }
+}

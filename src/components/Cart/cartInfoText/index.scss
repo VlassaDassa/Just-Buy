@@ -1,0 +1,25 @@
+@import './../../../assets/styles/variables';
+
+
+
+.cartInfoText {
+    font-size: 16px;
+    color: #BCBABA;
+    font-weight: $medium;
+
+    margin: 15px 0; 
+}
+
+
+@media (min-width: 1280px) {
+    .cartInfoText {
+        font-size: 18px;
+    }
+}
+
+
+@media (min-width: 1440px) {
+    .cartInfoText {
+        font-size: 20px;
+    }
+}

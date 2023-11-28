@@ -1,0 +1,41 @@
+@import './../../../assets/styles/variables';
+
+
+
+.cartInfoButton {
+    width: 100%;
+    height: 30px;
+
+    border-radius: 5px;
+    background-color: $accent;
+
+    color: white;
+    font-size: 14px;
+    font-weight: $semi_bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+@media (min-width: 1280px) {
+    .cartInfoButton {
+        font-size: 16px;
+
+        cursor: pointer;
+        transition: background-color 0.1s ease-in-out;
+
+        &:hover {
+            background: rgba($accent, 0.8);
+        }
+    }
+}
+
+
+@media (min-width: 1440px) {
+    .cartInfoButton {
+        height: 40px;
+        font-size: 20px;
+    }
+}
