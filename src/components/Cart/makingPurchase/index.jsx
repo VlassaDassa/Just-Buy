@@ -6,9 +6,7 @@ import './index.scss';
 
 
 
-
-
-const MakingPurchase = () => {
+const MakingPurchase = ({ selectedProducts }) => {
 
 
 
@@ -17,7 +15,7 @@ const MakingPurchase = () => {
                 <CartInfoButton text={'Перейти к покупке'} />
 
                 <div className="purchaseRow countProducts">
-                    <span className="purchaseRow-text">Товары, 4 шт</span>
+                    <span className="purchaseRow-text">Товары, {selectedProducts.length} шт</span>
                     <span className="purchaseRow-text">1554 ₽</span>
                 </div>
 

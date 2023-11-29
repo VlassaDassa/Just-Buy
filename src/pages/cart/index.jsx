@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import Title from "../../components/General/title";
 import CartProducts from "../../components/Cart/cartProducts";
@@ -10,12 +10,12 @@ import './index.scss';
 
 
 const Cart = () => {
+    const [countProducts, setCountProducts] = useState(0)
+    const [selectedProducts, setSelectedProducts] = useState([])
     
     useEffect(() => {
         document.title = 'Корзина'
     }, [])
-
-
 
 
     return (
@@ -23,13 +23,17 @@ const Cart = () => {
             <div className="container">
                 <div className="cart-TitleWrapper">
                     <Title title="Корзина" additionalClass="cartTitle" />
-                    <span className="cartTitle-countProducts">4</span>
+                    <span className="cartTitle-countProducts">{countProducts}</span>
                 </div>
 
 
                 <div className="cartContainer">
-                    <CartProducts />
-                    <CartInfo />
+                    <CartProducts 
+                        setCountProducts={setCountProducts} 
+                        selectedProducts={selectedProducts} 
+                        setSelectedProducts={setSelectedProducts}
+                    />
+                    <CartInfo selectedProducts={selectedProducts} />
                 </div>
 
             </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import MakingPurchase from '../makingPurchase';
 import DeliveryPoint from '../deliveryPoint';
@@ -10,14 +10,12 @@ import './index.scss';
 
 
 
-const CartInfo = () => {
-    const [isSticky, setIsSticky] = useState(false);
-
+const CartInfo = ({ selectedProducts }) => {
 
     return (
             <div className='cartInfo'>
                 <div className='cartInfoStickyWrapper'>
-                    <MakingPurchase />
+                    <MakingPurchase selectedProducts={selectedProducts} />
                     <DeliveryPoint />
                     <PaymentMethod />
                 </div>
