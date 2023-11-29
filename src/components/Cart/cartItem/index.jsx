@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-import testImg from './../../../assets/images/product_card/book_1.jpg';
 import arrow from './../../../assets/images/cart/arrow.svg';
 import trash from './../../../assets/images/cart/trash.svg';
 import checkmark from './../../../assets/images/cart/checkmark.svg';
@@ -12,14 +11,48 @@ import './index.scss';
 
 const CartItem = ({
         photo, size, size_value, color_value, count, name, price, product_id,
-        selectedProducts, setSelectedProducts
+        selectedProducts, setSelectedProducts, totalValues, setTotalValues,
+        cartProducts, setCartProducts,
     }) => {
+    
+    const [currentCount, setCurrentCount] = useState(0)
 
+    
+    const calcPrice = currentCount !== 0 ? price * currentCount : price // Цена с учётом количества
     const formattedPrice = new Intl.NumberFormat('ru-RU', {
         style: 'currency',
         currency: 'RUB',
         minimumFractionDigits: 0
-    }).format(price);
+    }).format(calcPrice);
+
+
+    // Измненение общей цены и общего количества продуктов при изменении локального количества и выбранных продуктов
+    useEffect(() => {
+        setTotalValues(prevTotalValues => {
+            if (selectedProducts.includes(product_id)) {
+                return {
+                    ...prevTotalValues,
+                    ['prod' + product_id]: {
+                        'count': currentCount,
+                        'price': price * currentCount,
+                    }
+                };
+
+            }
+            
+            else {
+                return {
+                    ...prevTotalValues,
+                    ['prod' + product_id]: {
+                        'count': 0,
+                        'price': 0,
+                    }
+                };
+            }
+        });
+    }, [currentCount, selectedProducts]);
+
+    
 
 
     const handleSelectProd = () => {
@@ -31,6 +64,47 @@ const CartItem = ({
             setSelectedProducts([...selectedProducts, product_id])
         }
     }
+
+    const handleIncrementCount = () => {
+        if (currentCount + 1 > count) return
+
+        setCurrentCount(currentCount + 1)
+    }
+
+    const handleDecrementCount = () => {
+        if (currentCount - 1 === 0) return
+
+        setCurrentCount(currentCount - 1)
+    }
+
+
+    const handleInputCount = (event) => {
+        const currentValue = parseInt(event.target.value)
+        
+        if (currentValue > count) return
+
+        if (currentValue) { 
+            setCurrentCount(currentValue);
+            return 
+        }
+
+        setCurrentCount(0)
+    }
+
+
+    const handleDeleteProduct = () => {
+        setCartProducts(cartProducts.filter((item) => item.id !== product_id))
+        setSelectedProducts(selectedProducts.filter((item) => item !== product_id))
+
+        setTotalValues({
+            ...totalValues,
+            ['prod' + product_id]: {
+                'count': 0,
+                'price': 0,
+            }
+        })
+    }
+
 
 
     return (
@@ -54,10 +128,24 @@ const CartItem = ({
                         <label className="labelForCount" htmlFor="cartItemCount">Количество</label>
                         
                         <div className="cartItemCountWrapper">
-                            <input autoComplete="off" type="asd" className="cartItemCount" placeholder='0' maxLength={4} id="cartItemCount" />
+                            <input 
+                                autoComplete="off" 
+                                type="asd" 
+                                className="cartItemCount" 
+                                placeholder='0' 
+                                maxLength={4} 
+                                id="cartItemCount"
 
-                            <div className="cartItem-plus"><img src={arrow} className="cartItem-arrowRight"/></div>
-                            <div className="cartItem-minus"><img src={arrow} className="cartItem-arrowLeft"/></div>
+                                value={currentCount}
+                                onChange={handleInputCount}
+                            />
+
+                            <div className="cartItem-plus" onClick={handleIncrementCount}>
+                                <img src={arrow} className="cartItem-arrowRight"/>
+                            </div>
+                            <div className="cartItem-minus" onClick={handleDecrementCount}>
+                                <img src={arrow} className="cartItem-arrowLeft"/>
+                            </div>
                         </div>
                         
                         {
@@ -78,7 +166,7 @@ const CartItem = ({
                                 null
                         }
                     </div>
-                    <div className="cartItemDelete">
+                    <div className="cartItemDelete" onClick={handleDeleteProduct}>
                         <img src={trash} className='cartItem-trashIco' />
                     </div>
                 </div>

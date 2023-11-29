@@ -10,8 +10,10 @@ import './index.scss';
 
 
 const Cart = () => {
-    const [countProducts, setCountProducts] = useState(0)
+    const [countProducts, setCountProducts] = useState(0)           // Количество экземпляров продуктов, не считая счётчик внутри
+    const [totalValues, setTotalValues] = useState({})                 // Общее количество, основанное на счётчике внутри
     const [selectedProducts, setSelectedProducts] = useState([])
+
     
     useEffect(() => {
         document.title = 'Корзина'
@@ -32,8 +34,11 @@ const Cart = () => {
                         setCountProducts={setCountProducts} 
                         selectedProducts={selectedProducts} 
                         setSelectedProducts={setSelectedProducts}
+
+                        totalValues={totalValues}
+                        setTotalValues={setTotalValues}
                     />
-                    <CartInfo selectedProducts={selectedProducts} />
+                    <CartInfo totalValues={totalValues} />
                 </div>
 
             </div>

@@ -13,7 +13,7 @@ import './index.scss';
 
 
 
-const CartProducts = ({ setCountProducts, selectedProducts, setSelectedProducts }) => {
+const CartProducts = ({ setCountProducts, selectedProducts, setSelectedProducts, totalValues, setTotalValues }) => {
     const [data, loading, error] = useRequest(() => getCartProducts(), [])
     const [cartProducts, setCartProducts] = useState([])
 
@@ -21,9 +21,14 @@ const CartProducts = ({ setCountProducts, selectedProducts, setSelectedProducts 
     useEffect(() => {
         if (data && !loading) {
             setCartProducts(data)
-            setCountProducts(data.length)
+            
         }
     }, [data, loading])
+
+
+    useEffect(() => {
+        setCountProducts(cartProducts.length)
+    }, [cartProducts])
 
 
     const handleSelectAll = () => {
@@ -39,8 +44,8 @@ const CartProducts = ({ setCountProducts, selectedProducts, setSelectedProducts 
 
     return (
             <div>
-                <div className="cartSelectAll">
-                    <div className="checkmarkContainer" onClick={handleSelectAll}>
+                <div className="cartSelectAll"  onClick={handleSelectAll}>
+                    <div className="checkmarkContainer">
                         {
                             cartProducts.length > 0 && cartProducts.length === selectedProducts.length ?
                                 <img src={checkmark} className="selectAll-checkmark" />
@@ -70,6 +75,12 @@ const CartProducts = ({ setCountProducts, selectedProducts, setSelectedProducts 
 
                                 selectedProducts={selectedProducts} 
                                 setSelectedProducts={setSelectedProducts}
+
+                                totalValues={totalValues}
+                                setTotalValues={setTotalValues}
+
+                                cartProducts={cartProducts}
+                                setCartProducts={setCartProducts}
                             />
                         ))
                     :

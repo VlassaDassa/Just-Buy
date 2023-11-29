@@ -10,12 +10,12 @@ import './index.scss';
 
 
 
-const CartInfo = ({ selectedProducts }) => {
+const CartInfo = ({ totalValues }) => {
 
     return (
             <div className='cartInfo'>
                 <div className='cartInfoStickyWrapper'>
-                    <MakingPurchase selectedProducts={selectedProducts} />
+                    <MakingPurchase totalValues={totalValues} />
                     <DeliveryPoint />
                     <PaymentMethod />
                 </div>
