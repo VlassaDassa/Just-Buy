@@ -4,13 +4,16 @@ import arrow from './../../../assets/images/cart/arrow.svg';
 import trash from './../../../assets/images/cart/trash.svg';
 import checkmark from './../../../assets/images/cart/checkmark.svg';
 
+import { showError } from '../../../hooks/showError';
+import { removeCartProduct } from '../../../api/cartAPI';
+
 import './index.scss';
 
 
 
 
 const CartItem = ({
-        photo, size, size_value, color_value, count, name, price, product_id,
+        photo, size, size_value, color_value, count, name, price, item_id, product_id,
         selectedProducts, setSelectedProducts, totalValues, setTotalValues,
         cartProducts, setCartProducts,
     }) => {
@@ -29,10 +32,10 @@ const CartItem = ({
     // Измненение общей цены и общего количества продуктов при изменении локального количества и выбранных продуктов
     useEffect(() => {
         setTotalValues(prevTotalValues => {
-            if (selectedProducts.includes(product_id)) {
+            if (selectedProducts.includes(item_id)) {
                 return {
                     ...prevTotalValues,
-                    ['prod' + product_id]: {
+                    ['prod' + item_id]: {
                         'count': currentCount,
                         'price': price * currentCount,
                     }
@@ -43,7 +46,7 @@ const CartItem = ({
             else {
                 return {
                     ...prevTotalValues,
-                    ['prod' + product_id]: {
+                    ['prod' + item_id]: {
                         'count': 0,
                         'price': 0,
                     }
@@ -56,12 +59,12 @@ const CartItem = ({
 
 
     const handleSelectProd = () => {
-        if (selectedProducts.includes(product_id)) {
-            setSelectedProducts(selectedProducts.filter(item => item !== product_id))
+        if (selectedProducts.includes(item_id)) {
+            setSelectedProducts(selectedProducts.filter(item => item !== item_id))
         }
 
         else {
-            setSelectedProducts([...selectedProducts, product_id])
+            setSelectedProducts([...selectedProducts, item_id])
         }
     }
 
@@ -93,15 +96,27 @@ const CartItem = ({
 
 
     const handleDeleteProduct = () => {
-        setCartProducts(cartProducts.filter((item) => item.id !== product_id))
-        setSelectedProducts(selectedProducts.filter((item) => item !== product_id))
-
-        setTotalValues({
-            ...totalValues,
-            ['prod' + product_id]: {
-                'count': 0,
-                'price': 0,
+        removeCartProduct(item_id).then(response => {
+            if (response.status !== 200) {
+                showError('Не удалось удалить продукт')
+                return
             }
+
+            setCartProducts(cartProducts.filter((item) => item.id !== item_id))
+            setSelectedProducts(selectedProducts.filter((item) => item !== item_id))
+
+            setTotalValues({
+                ...totalValues,
+                ['prod' + item_id]: {
+                    'count': 0,
+                    'price': 0,
+                }
+            })
+        })
+        .catch(error => {
+            showError('Не удалось удалить продукт')
+            consolse.error(error)
+            return
         })
     }
 
@@ -160,7 +175,7 @@ const CartItem = ({
                 <div className="cartItem-buttons">
                     <div className="cartItemSelect" onClick={handleSelectProd}>
                         {
-                            selectedProducts.includes(product_id) ?
+                            selectedProducts.includes(item_id) ?
                                 <img src={checkmark} className="cartItem-checkmarkIco" />
                             :
                                 null

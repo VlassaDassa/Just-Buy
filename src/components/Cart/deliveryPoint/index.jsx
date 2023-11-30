@@ -10,14 +10,14 @@ import './index.scss';
 
 
 
-const DeliveryPoint = () => {
+const DeliveryPoint = ({ curDelPoint }) => {
 
 
     return (
             <div className="cartInfoItem">
                 <CartInfoTitle text={'Пункт выдачи'} />
 
-                <CartInfoText text={'Конаково, Пр-кт Ленина д.38'} />
+                <CartInfoText text={curDelPoint.length > 0 ? curDelPoint[0].city + ' , ' + curDelPoint[0].address : 'Конаково, Проспект Ленина'} />
 
                 <CartInfoButton text={'Изменить'} />
             </div>

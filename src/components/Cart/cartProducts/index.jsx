@@ -71,7 +71,9 @@ const CartProducts = ({ setCountProducts, selectedProducts, setSelectedProducts,
                                 count={item.count}
                                 name={item.name}
                                 price={item.price}
-                                product_id={item.id}
+                                
+                                item_id={item.id}
+                                product_id={item.product_id}
 
                                 selectedProducts={selectedProducts} 
                                 setSelectedProducts={setSelectedProducts}

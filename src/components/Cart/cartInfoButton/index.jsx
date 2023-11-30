@@ -5,9 +5,10 @@ import './index.scss';
 
 
 
-const CartInfoButton = ({ text }) => {
+const CartInfoButton = ({ text, disabled=false }) => {
+    
     return (
-            <button className="cartInfoButton">
+            <button className={disabled ? 'cartInfoButton cartInfoButton--disabled' : 'cartInfoButton'} disabled={disabled}>
                 {text}
             </button>
     )

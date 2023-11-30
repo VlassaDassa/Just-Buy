@@ -18,6 +18,9 @@
     justify-content: center;
 }
 
+.cartInfoButton--disabled {
+    opacity: 0.5;
+}
 
 @media (min-width: 1280px) {
     .cartInfoButton {
@@ -30,6 +33,15 @@
             background: rgba($accent, 0.8);
         }
     }
+
+    .cartInfoButton--disabled {
+        opacity: 0.5;
+
+        &:hover {
+            background: $accent;
+        }
+    }
+    
 }
 
 
