@@ -13,7 +13,6 @@ import './index.scss';
 const Products = observer(({ products, likeShow = true, cartShow = true, onRoad = false }) => {
   const [inCart, setInCart] = useState()
 
-
   // Defining products, who in cart
   useEffect(() => {
       if (products.length > 0) {
@@ -31,28 +30,31 @@ const Products = observer(({ products, likeShow = true, cartShow = true, onRoad 
       <SendToCart inCart={inCart} setInCart={setInCart} />
 
       {products?.map((product) => (
-        <CSSTransition
-          key={'trans' + product.id}
-          timeout={500}
-          classNames="prod"
-        >
-          <ProductCard
-            key={'product' + product.id}
-            name={product.name}
-            photo={product.main_photo}
-            price={product.price}
-            rating={product.rating}
-            countFeedback={product.count_feedbacks}
-            product_id={product.id}
-            inCart={inCart}
-            setInCart={setInCart}
-            likeShow={likeShow}
-            cartShow={cartShow}
-            onRoad={onRoad}
-            isChecked={product.isChecked}
-            count={product.count}
-          />
-        </CSSTransition>
+        product.characteristics.in_stock ?
+            <CSSTransition
+                key={'trans' + product.id}
+                timeout={500}
+                classNames="prod"
+            >
+                <ProductCard
+                    key={'product' + product.id}
+                    name={product.name}
+                    photo={product.main_photo}
+                    price={product.price}
+                    rating={product.rating}
+                    countFeedback={product.count_feedbacks}
+                    product_id={product.id}
+                    inCart={inCart}
+                    setInCart={setInCart}
+                    likeShow={likeShow}
+                    cartShow={cartShow}
+                    onRoad={onRoad}
+                    isChecked={product.isChecked}
+                    count={product.count}
+                />
+            </CSSTransition>
+          :
+            null
       ))}
     </TransitionGroup>
   );

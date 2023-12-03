@@ -60,9 +60,13 @@ const MakingPurchase = ({
                 );
                 
                 setTotalValues(updatedTotalValues);
-                setSendData({})
+                setSendData([])
 
-                setIsVisibleSuccess(true)
+                setTimeout(() => {
+                    setIsVisibleSuccess(true)
+                }, 200)
+
+                setIsVisibleSuccess(false)
             })
 
             .catch(error => {

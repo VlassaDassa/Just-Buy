@@ -87,6 +87,7 @@ const PersonalCharact = observer(({ characteristicsFields, selectedSubcategory, 
         })
 
         
+        
         // Checking on error
         if (checkinOnError(fieldValues) === 'photos') {
             showError('Недостаточно фотографий')
@@ -99,6 +100,7 @@ const PersonalCharact = observer(({ characteristicsFields, selectedSubcategory, 
         else if (checkinOnError(fieldValues) === true) {
             setBtnDisabled(true)
             
+            fieldValues['characteristics']['in_stock'] = true
             addProduct(fieldValues)
             setIsVisibleSuccess(true)
             
