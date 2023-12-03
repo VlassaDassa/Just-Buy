@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import CartInfoTitle from '../cartInfoTitle';
 import CartInfoButton from '../cartInfoButton';
@@ -31,13 +32,13 @@ const PaymentMethod = ({ curBankCard }) => {
                     :
                         <>
                             <img src={bankIco} className="paymentMethod-bankIco" />
-                            <CartInfoText text={'455*****9136'} />
+                            <CartInfoText text={'Не выбрано'} />
                         </>
                     }
                     
                 </div>
-
-                <CartInfoButton text={'Изменить'} />
+                
+                <Link to='/profile'><CartInfoButton text={'Изменить'} /></Link>
             </div>
     )
 }

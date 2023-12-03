@@ -35,8 +35,6 @@ const ProductCard = observer(({
         cartShow,
         onRoad,
 
-        cartPage,
-        cartPageOptions,
         isChecked,
         count,
     }) => {
@@ -150,134 +148,101 @@ const ProductCard = observer(({
     return (
         <div className="products__item">
             <div className={`products__photo_wrapper`}>
-                {
-                    cartPage ?
-                        <>
-                            <img src={trash} className="products__mobile_trash" onClick={() => cartPageOptions.onRemove(product_id)} />
-
-                            <label className="cart__checkbox cart__checkbox_item">
-                                <input type="checkbox" onClick={cartPageOptions.calculateTotal} name={name} onChange={cartPageOptions.handleChange} checked={isChecked || false} />
-                                <span className="cart__checkmark cart__checkmark_item"></span>
-                            </label>
-                        </>
-                    :
-                        null
-                }
                 <a href="product.html">
                     <img className="products__photo" src={photo} />
                 </a>
             </div>
 
-            {
-                cartPage ?
-                    <div className="products__description">
+            <div className="products__description">
+                <div className="products__icons">
 
-                        <p className="products__price">{price} ₽</p>
-
-                        <p className="products__name"><a href="product.html" title={name}>{name}</a></p>
-                        <div className="products__count">
-                            <span className="products__count-plus" onClick={() => cartPageOptions.onIncrement(product_id)}></span>
-
-                            <span className="products__count_text">{count}</span>
-
-                            <span className="products__count-minus" onClick={() => cartPageOptions.onDecrement(product_id)}></span>
-
-                            <img src={trash} className="products__count-ico" onClick={() => cartPageOptions.onRemove(product_id)}/>
-                        </div>
-
-                    </div>
-                :
-                    <div className="products__description">
-                        <div className="products__icons">
-
-                            {likeShow &&
-                                <img 
-                                    src={like.includes(product_id) ? heartFill: heart} 
-                                    className={like.includes(product_id) ? defaultLikeClass: activeLikeClass}
-                                    onClick={() => {
-                                        if (like.includes(product_id)) {
-                                            setLike(like.filter(item => item !== product_id));
-                                        }
-                                        else {
-                                            setLike([...like, product_id]);
-                                        }
-                                    }}
-                                />
-                            }
-                            
-                            {cartShow &&
-                                <img 
-                                    src={inCart?.includes(product_id) ? cartFill: cartImg} 
-                                    className={inCart?.includes(product_id) ? defaultCartClass: activeCartClass}
-                                    onClick={() => {
-                                        if (inCart?.includes(product_id)) {
-                                            removeInCart(product_id)
-                                        }
-                                        else {
-                                            addToCart(product_id)
-                                        }
-                                    }}
-                                />
-                            }
-                        </div>
-                        
-
-                        <p className={`products__price`}>
-                            {price} ₽
-                        </p>
-
-                        <p className={`products__name`}>
-                            <a href="product.html" title={name}>{name}</a>
-                        </p>
+                    {likeShow &&
+                        <img 
+                            src={like.includes(product_id) ? heartFill: heart} 
+                            className={like.includes(product_id) ? defaultLikeClass: activeLikeClass}
+                            onClick={() => {
+                                if (like.includes(product_id)) {
+                                    setLike(like.filter(item => item !== product_id));
+                                }
+                                else {
+                                    setLike([...like, product_id]);
+                                }
+                            }}
+                        />
+                    }
                     
-                        <div className="products__rating">
+                    {cartShow &&
+                        <img 
+                            src={inCart?.includes(product_id) ? cartFill: cartImg} 
+                            className={inCart?.includes(product_id) ? defaultCartClass: activeCartClass}
+                            onClick={() => {
+                                if (inCart?.includes(product_id)) {
+                                    removeInCart(product_id)
+                                }
+                                else {
+                                    addToCart(product_id)
+                                }
+                            }}
+                        />
+                    }
+                </div>
+                
 
-                                <div className={`rating__item`}>
-                                    <div className="products__circle"></div>
-                                    <p className="products__number_rating">{rating}</p>
-                                </div>
-                        
-                            
-                            <div className={`products__count_feedback`}>
-                                <p className="count_feedback__number">{countFeedback}</p>
-                                <p className="count_feedback__text">отзывов</p>
-                            </div>
+                <p className={`products__price`}>
+                    {price} ₽
+                </p>
+
+                <p className={`products__name`}>
+                    <a href="product.html" title={name}>{name}</a>
+                </p>
+            
+                <div className="products__rating">
+
+                        <div className={`rating__item`}>
+                            <div className="products__circle"></div>
+                            <p className="products__number_rating">{rating}</p>
                         </div>
+                
+                    
+                    <div className={`products__count_feedback`}>
+                        <p className="count_feedback__number">{countFeedback}</p>
+                        <p className="count_feedback__text">отзывов</p>
+                    </div>
+                </div>
+                
+                {cartShow && likeShow && 
+                    <div className="products__mobile_btn">
+                        <button 
+                            className={inCart?.includes(product_id) ? activeMobileCart : defaultMobileCart}
+                            onClick={() => {
+                                if (inCart?.includes(product_id)) {
+                                    removeInCart(product_id)
+                                }
+                                else {
+                                    addToCart(product_id)
+                                }
+                            }}
+                        >
+                            В корзину
+                        </button>
                         
-                        {cartShow && likeShow && 
-                            <div className="products__mobile_btn">
-                                <button 
-                                    className={inCart?.includes(product_id) ? activeMobileCart : defaultMobileCart}
-                                    onClick={() => {
-                                        if (inCart?.includes(product_id)) {
-                                            removeInCart(product_id)
-                                        }
-                                        else {
-                                            addToCart(product_id)
-                                        }
-                                    }}
-                                >
-                                    В корзину
-                                </button>
-                                
-                                <img 
-                                    className={like.includes(product_id) ? activeMobileLike : defaultMobileLike}
-                                    src={like.includes(product_id) ? heartFill: heart} 
-                                    onClick={() => {
-                                        if (like.includes(product_id)) {
-                                        setLike(like.filter(item => item !== product_id));
-                                        }
-                                        else {
-                                        setLike([...like, product_id]);
-                                        }
-                                    }}
-                                />
-                                
-                            </div>
-                        }
+                        <img 
+                            className={like.includes(product_id) ? activeMobileLike : defaultMobileLike}
+                            src={like.includes(product_id) ? heartFill: heart} 
+                            onClick={() => {
+                                if (like.includes(product_id)) {
+                                setLike(like.filter(item => item !== product_id));
+                                }
+                                else {
+                                setLike([...like, product_id]);
+                                }
+                            }}
+                        />
                         
                     </div>
-            }
+                }
+                
+            </div>
 
             
             

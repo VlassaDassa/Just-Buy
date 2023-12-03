@@ -15,10 +15,10 @@ import './index.scss';
 const CartItem = ({
         photo, size, size_value, color_value, count, name, price, item_id, product_id,
         selectedProducts, setSelectedProducts, totalValues, setTotalValues,
-        cartProducts, setCartProducts,
+        cartProducts, setCartProducts, sendData, setSendData
     }) => {
     
-    const [currentCount, setCurrentCount] = useState(0)
+    const [currentCount, setCurrentCount] = useState(1)
 
     
     const calcPrice = currentCount !== 0 ? price * currentCount : price // Цена с учётом количества
@@ -27,6 +27,7 @@ const CartItem = ({
         currency: 'RUB',
         minimumFractionDigits: 0
     }).format(calcPrice);
+
 
 
     // Измненение общей цены и общего количества продуктов при изменении локального количества и выбранных продуктов
@@ -54,8 +55,34 @@ const CartItem = ({
             }
         });
     }, [currentCount, selectedProducts]);
-
     
+    
+
+    // Изменение данных для отправки на сервер
+    useEffect(() => {
+        if (selectedProducts.includes(item_id)) {
+            setSendData(prevData => {
+                const existingItemIndex = prevData.findIndex(item => item.item_id === item_id);
+              
+                if (existingItemIndex !== -1) {
+                    prevData[existingItemIndex] = { ...prevData[existingItemIndex], total_count: currentCount, total_price: currentCount * price, color: cartProducts.find(item => item_id === item.id).color_value, size: cartProducts.find(item => item_id === item.id).size };
+                }
+                
+                else {
+                    prevData.push({ 'product_id': product_id, 'item_id': item_id, 'total_count': currentCount, 'total_price': currentCount * price, color: cartProducts.find(item => item_id === item.id).color_value, size: cartProducts.find(item => item_id === item.id).size });
+                }
+              
+                return [...prevData];
+            });
+        }
+
+        else {
+            setSendData(prevData => prevData.filter((item) => item.item_id !== item_id))
+        }
+
+    }, [currentCount, selectedProducts])
+
+
 
 
     const handleSelectProd = () => {
@@ -68,11 +95,13 @@ const CartItem = ({
         }
     }
 
+
     const handleIncrementCount = () => {
         if (currentCount + 1 > count) return
 
         setCurrentCount(currentCount + 1)
     }
+
 
     const handleDecrementCount = () => {
         if (currentCount - 1 === 0) return
@@ -104,6 +133,7 @@ const CartItem = ({
 
             setCartProducts(cartProducts.filter((item) => item.id !== item_id))
             setSelectedProducts(selectedProducts.filter((item) => item !== item_id))
+            setSendData(prevData => prevData.filter((item) => item.item_id !== item_id))
 
             setTotalValues({
                 ...totalValues,

@@ -10,7 +10,7 @@ import './index.scss';
 
 
 
-const Products = observer(({ products, likeShow = true, cartShow = true, onRoad = false, cartPage = false, cartPageOptions = {} }) => {
+const Products = observer(({ products, likeShow = true, cartShow = true, onRoad = false }) => {
   const [inCart, setInCart] = useState()
 
 
@@ -49,8 +49,6 @@ const Products = observer(({ products, likeShow = true, cartShow = true, onRoad 
             likeShow={likeShow}
             cartShow={cartShow}
             onRoad={onRoad}
-            cartPage={cartPage}
-            cartPageOptions={cartPageOptions}
             isChecked={product.isChecked}
             count={product.count}
           />

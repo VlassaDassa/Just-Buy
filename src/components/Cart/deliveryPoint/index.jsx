@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import CartInfoTitle from '../cartInfoTitle';
 import CartInfoButton from '../cartInfoButton';
@@ -17,9 +18,9 @@ const DeliveryPoint = ({ curDelPoint }) => {
             <div className="cartInfoItem">
                 <CartInfoTitle text={'Пункт выдачи'} />
 
-                <CartInfoText text={curDelPoint.length > 0 ? curDelPoint[0].city + ' , ' + curDelPoint[0].address : 'Конаково, Проспект Ленина'} />
-
-                <CartInfoButton text={'Изменить'} />
+                <CartInfoText text={curDelPoint.length > 0 ? curDelPoint[0].city + ' , ' + curDelPoint[0].address : 'Не выбрано'} />
+                
+                <Link to='/profile'><CartInfoButton text={'Изменить'} /></Link>
             </div>
     )
 }

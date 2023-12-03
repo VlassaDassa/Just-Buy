@@ -14,8 +14,8 @@ import './index.scss';
 
 
 
-const CartInfo = ({ totalValues }) => {
-    const [dataDeliveryPoint, loadingDeliveryPooint, errorDeliveryPooint] = useRequest(() => getCurrentDeliveryPoint(), [])
+const CartInfo = ({ totalValues, setTotalValues, sendData, setSendData, cartProducts, setCartProducts, setIsVisibleSuccess, selectedProducts, setSelectedProducts }) => {
+    const [dataDeliveryPoint, loadingDeliveryPooint, errorDeliveryPoint] = useRequest(() => getCurrentDeliveryPoint(), [])
     const [dataBankCard, laodingBankCard, errorBankCard]= useRequest(() => getCurrentBankCard(), [])
 
     const [curDelPoint, setCurDelPoint] = useState({})
@@ -24,8 +24,10 @@ const CartInfo = ({ totalValues }) => {
     const [existsDelPoint, setExistsDelPoint] = useState(false)
     const [existsBankCard, setExistsBankCard] = useState(false)
 
+
+    
     useEffect(() => {
-        if (dataDeliveryPoint && !loadingDeliveryPooint) {
+        if (dataDeliveryPoint && dataDeliveryPoint.length > 0 && !loadingDeliveryPooint) {
             setCurDelPoint(dataDeliveryPoint)
             setExistsDelPoint(true)
         }
@@ -33,19 +35,38 @@ const CartInfo = ({ totalValues }) => {
 
 
     useEffect(() => {
-        if (dataBankCard && !laodingBankCard) {
+        if (dataBankCard && dataBankCard.length > 0 && !laodingBankCard) {
             setCurBankCard(dataBankCard)
             setExistsBankCard(true)
         }
     }, [dataBankCard, laodingBankCard])
 
-    
-    
 
+    
     return (
             <div className='cartInfo'>
                 <div className='cartInfoStickyWrapper'>
-                    <MakingPurchase totalValues={totalValues} existsDelPoint={existsDelPoint} existsBankCard={existsBankCard} />
+                    <MakingPurchase 
+                        totalValues={totalValues}
+                        setTotalValues={setTotalValues}
+
+                        existsDelPoint={existsDelPoint} 
+                        existsBankCard={existsBankCard}
+
+                        curDelPoint={curDelPoint} 
+                        curBankCard={curBankCard}
+
+                        sendData={sendData}
+                        setSendData={setSendData}
+
+                        cartProducts={cartProducts}
+                        setCartProducts={setCartProducts}
+
+                        setIsVisibleSuccess={setIsVisibleSuccess}
+
+                        selectedProducts={selectedProducts}
+                        setSelectedProducts={setSelectedProducts}
+                    />
                     <DeliveryPoint curDelPoint={curDelPoint} />
                     <PaymentMethod curBankCard={curBankCard} />
                 </div>

@@ -13,15 +13,13 @@ import './index.scss';
 
 
 
-const CartProducts = ({ setCountProducts, selectedProducts, setSelectedProducts, totalValues, setTotalValues }) => {
+const CartProducts = ({ setCountProducts, selectedProducts, setSelectedProducts, totalValues, setTotalValues, sendData, setSendData, cartProducts, setCartProducts }) => {
     const [data, loading, error] = useRequest(() => getCartProducts(), [])
-    const [cartProducts, setCartProducts] = useState([])
-
+    
 
     useEffect(() => {
         if (data && !loading) {
             setCartProducts(data)
-            
         }
     }, [data, loading])
 
@@ -83,6 +81,9 @@ const CartProducts = ({ setCountProducts, selectedProducts, setSelectedProducts,
 
                                 cartProducts={cartProducts}
                                 setCartProducts={setCartProducts}
+
+                                sendData={sendData}
+                                setSendData={setSendData}
                             />
                         ))
                     :
