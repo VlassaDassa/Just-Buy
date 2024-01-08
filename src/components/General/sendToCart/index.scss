@@ -14,17 +14,12 @@
     border-radius: 10px;
     padding: 25px;
 
-    display: none;
     width: auto;
     max-width: 640px;
 
     min-width: 400px;
 }
 
-
-.sendToCart--show {
-    display: block;
-}
 
 
 .sendToCartWrapper {
@@ -40,6 +35,7 @@
 @media (max-width: 767px) {
     .sendToCartWrapper {
         flex-direction: column;
+        align-items: unset;
         row-gap: 30px;
     }
 
@@ -57,3 +53,26 @@
         width: 85%;
     }
 }
+
+
+/* Transition group */
+.sendToCartTransition-exit {
+    opacity: 1;
+    display: none;
+}
+  
+.sendToCartTransition-exit-active {
+    opacity: 0;
+    transition: opacity 150ms ease-in;
+}
+  
+  /* Пример стиля для плавного появления */
+.sendToCartTransition-enter {
+    opacity: 0;
+}
+  
+.sendToCartTransition-enter-active {
+    opacity: 1;
+    transition: opacity 150ms ease-out;
+}
+/* ./Transition group */

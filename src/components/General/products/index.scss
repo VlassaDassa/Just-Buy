@@ -86,24 +86,5 @@
 
 
 
-/* Transition for sendToCart */
-.sendToCartTrans-exit {
-    opacity: 1;
-    display: none;
-}
-  
-.sendToCartTrans-exit-active {
-    opacity: 0;
-    transition: opacity 500ms ease-in;
-}
-  
-.sendToCartTrans-enter {
-    opacity: 0;
-}
-  
-.sendToCartTrans-enter-active {
-    opacity: 1;
-    transition: opacity 500ms ease-out;
-}
-/* ./Transition for sendToCart */
+
 

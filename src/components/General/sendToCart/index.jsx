@@ -1,6 +1,7 @@
 import React from 'react';
 import { toJS } from 'mobx';
 import { observer } from 'mobx-react-lite'; 
+import { CSSTransition } from 'react-transition-group';
 
 import RelateFields from './relateFields';
 import SizeOrColor from './sizeOrColor';
@@ -32,29 +33,34 @@ const SendToCart = observer(({ inCart, setInCart }) => {
   }
 
 
-  const openCondition = (sendToCart.productId && sendToCart.show) && 
-                        (
-                            sendToCart.relateInputs.length > 0 || 
-                            sendToCart.sizes.length > 0 || 
-                            sendToCart.colors.length > 0
-                        )
-                         
-                        
+  const openCondition = (sendToCart.productId ?? false) && sendToCart.show &&
+    (sendToCart.relateInputs.length > 0 || sendToCart.sizes.length > 0 || sendToCart.colors.length > 0);
+    
+  console.log(openCondition)
+
   return (
-        <div className={openCondition ? 'sendToCart sendToCart--show' : 'sendToCart'}>
-            <Title title={'Добавить в корзину'} additionalClass='sendToCartTitle' />
+        <CSSTransition
+            key={'sendToCartTransition'}
+            timeout={250}
+            classNames="sendToCartTransition"
+            in={openCondition}
+            unmountOnExit
+        >
+            <div className='sendToCart'>
+                <Title title={'Добавить в корзину'} additionalClass='sendToCartTitle' />
 
-            <CloseBtn handler={closeSendToCart} />
+                <CloseBtn handler={closeSendToCart} />
 
-            {
-                toJS(sendToCart.relateInputs).length > 0 ?
-                    <RelateFields inCart={inCart} setInCart={setInCart} />
-                :
-                    <SizeOrColor inCart={inCart} setInCart={setInCart} />
-            }
-            
+                {
+                    toJS(sendToCart.relateInputs).length > 0 ?
+                        <RelateFields inCart={inCart} setInCart={setInCart} />
+                    :
+                        <SizeOrColor inCart={inCart} setInCart={setInCart} />
+                }
+                
 
-        </div>
+            </div>
+        </CSSTransition>
   )
 })
 

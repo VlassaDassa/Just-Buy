@@ -29,13 +29,7 @@ const OnRoad = () => {
     return (
         <section className="on_road">
             <Title title="В пути"/>
-
-            {
-              !loading && products.length > 0 ?
-                <Products products={products} onRoad={true} likeShow={false} cartShow={false} />
-              :
-                <NoSection message="Нет доставок" />
-            }
+            <Products products={products} onRoad={true} likeShow={false} cartShow={false} />
 
             
         </section>

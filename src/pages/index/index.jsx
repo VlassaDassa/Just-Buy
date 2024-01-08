@@ -6,7 +6,6 @@ import Products from './../../components/General/products';
 import ShowYet from './../../components/General/showYet';
 import AboutUs from './../../components/Index/aboutUs';
 import Loader from './../../components/General/loader';
-import NoSection from './../../components/General/noSection';
 
 import useRequest from '../../hooks/useRequest';
 import { getProducts } from '../../api/generalAPI';
@@ -23,7 +22,6 @@ const Index = () => {
     const countProduct = 5;
     const [data, loading, error] = useRequest(() => getProducts(startLimit, currentPage), [currentPage]);
     
-
     useEffect(() => {
       document.title = 'Главная'
     }, [])
@@ -31,9 +29,11 @@ const Index = () => {
 
     useEffect(() => {
       if (data) {
-        setProducts(prevProducts => [...prevProducts, ...data.products])
+        const uniqueProductIds = new Set(products.map(product => product.id));
+        const newProducts = data.products.filter(product => !uniqueProductIds.has(product.id));
+        setProducts(prevProducts => [...prevProducts, ...newProducts]);
       }
-    }, [data, loading])
+    }, [data, loading]);
 
 
     return (
@@ -44,14 +44,13 @@ const Index = () => {
                     <Title title={'Лучшие товары'}/>
                     
                       <Products
-                        key={'products'}
                         products={products}
                       />
 
                       {(loading) ? (
                         <Loader /> )
                         :
-                        (!loading && products.length > 0 && data && currentPage + countProduct <= data.count_products) &&
+                        (!loading && products.length > 0 && data && currentPage <= data.count_products) &&
                           <ShowYet
                             key={'btn'}
                             btnText={"Показать ещё"}
@@ -61,18 +60,10 @@ const Index = () => {
                             setStartLimit={setStartLimit}
                           />
                       }
-
-                    {
-                      !loading && products.length <= 0 ?
-                        <NoSection message="Нет товаров" />
-                      :
-                        null
-                    }
                     
                 </div>
             </section>
             <AboutUs />
-            тут уебан
         </div>
     )
 };

@@ -4,6 +4,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import ProductCard from '../productCard';
 import SendToCart from '../sendToCart';
+import NoSection from '../noSection';
 
 import './index.scss';
 
@@ -24,19 +25,23 @@ const Products = observer(({ products, likeShow = true, cartShow = true, onRoad 
       }
   }, [products])
 
+  
+  const showNoSection = products?.map((product) => product.characteristics.in_stock).includes(true);
 
   return (
     <TransitionGroup className="products">
       <SendToCart inCart={inCart} setInCart={setInCart} />
-
-      {products?.map((product) => (
-        product.characteristics.in_stock ?
-            <CSSTransition
-                key={'trans' + product.id}
-                timeout={500}
-                classNames="prod"
-            >
-                <ProductCard
+      
+      {showNoSection ? (
+          <>
+            {products?.map((product) =>
+              product.characteristics.in_stock ? (
+                <CSSTransition
+                  key={'trans' + product.id}
+                  timeout={500}
+                  classNames="prod"
+                >
+                  <ProductCard
                     key={'product' + product.id}
                     name={product.name}
                     photo={product.main_photo}
@@ -51,11 +56,19 @@ const Products = observer(({ products, likeShow = true, cartShow = true, onRoad 
                     onRoad={onRoad}
                     isChecked={product.isChecked}
                     count={product.count}
-                />
-            </CSSTransition>
-          :
-            null
-      ))}
+                  />
+                </CSSTransition>
+              ) : null
+            )}
+          </>
+        ) 
+        :
+        (
+          <NoSection message={'Товаров нет...'} />
+        )
+      }
+
+    
     </TransitionGroup>
   );
 });

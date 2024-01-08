@@ -70,6 +70,7 @@
 
 @media (max-width: 767px) {
     .sendToCart-ColorsWrapper {
+        grid-template-columns: repeat(auto-fit,minmax(60px,0fr));
         width: 250px;
         position: relative;
         left: 0;

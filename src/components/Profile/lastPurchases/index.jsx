@@ -52,12 +52,6 @@ const LastPurchases = () => {
                 />
             }
 
-            {
-                !loading && products.length <= 0 ?
-                    <NoSection message="Нет товаров" />
-                :
-                    null
-            }
 
         </section>
     )
