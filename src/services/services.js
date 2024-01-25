@@ -444,3 +444,16 @@ export function getNoun(number, one, two, five) {
   return five;
 }
 
+// Проверка на пустоту объекта
+export const isEmpty = (obj) => Object.keys(obj).length === 0;
+
+
+// Хотя бы одна пустая строка в полях объекта
+export function isObjectNotEmpty(obj) {
+  for (const key in obj) {
+      if (obj.hasOwnProperty(key) && obj[key] === "") {
+          return false;
+      }
+  }
+  return true;
+}

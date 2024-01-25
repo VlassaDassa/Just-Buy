@@ -1,0 +1,73 @@
+@import './../../../../assets/styles/variables';
+
+
+
+
+
+.country_code {
+    height: 50px;
+    position: relative;
+}
+
+.country_code__background {
+    border-radius: 20px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    height: 50px;
+    width: 60px;
+
+    background: #CCCCCC;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#phone_number {
+    padding-left: 70px;
+    width: calc(100% - 80px);
+}
+
+
+.country_code__img_wrapper {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    background: $gray;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.country_code__img {
+    width: 65px;
+    height: 65px;
+}
+
+.placeholder_wrapper {
+    position: relative;
+}
+
+
+.placeholder_phone_number {
+    position: absolute;
+    left: 70px;
+    color: $secondary;
+    font-weight: $regular;
+
+    bottom: 15px;
+    pointer-events: none;
+    text-align: right;
+
+    width: 160px;
+}

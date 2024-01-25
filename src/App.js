@@ -23,6 +23,7 @@ import critical_error from './store/critical_error';
 
 import menu from './store/menu';
 import overlay from './store/overlay';
+import auth from './store/auth';
 
 import './../src/assets/styles/_reset.scss'
 import './../src/assets/styles/index.scss'
@@ -84,7 +85,17 @@ const App = observer(() => {
 
       <MenuMobile />
 
-      <Auth />
+      <CSSTransition
+        in={auth.show}
+        unmountOnExit
+        key={'AuthTransh'}
+        timeout={300}
+        classNames="overlaytrans"
+      >
+        <Auth />
+      </CSSTransition>
+
+      
       
       <CSSTransition
         in={overlay.show}

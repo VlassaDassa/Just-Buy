@@ -1,0 +1,37 @@
+@import './../../../../assets/styles/variables';
+
+
+
+
+
+
+
+.auth_wrapper__error-icon {
+    height: 25px;
+    width: 6px;
+
+    position: absolute;
+
+    top: 50px;
+    right: 10px;
+}
+
+
+.auth_wrapper__error {
+    height: 40px;
+    width: 100%;
+
+    background: $errorColor;
+    text-align: center;
+    font-weight: $medium;
+    border-radius: 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.auth_wrapper__error-text {
+    font-size: 18px;
+}

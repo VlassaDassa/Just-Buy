@@ -22,7 +22,7 @@ const Overlay = observer(() => {
       menu.toggleShow(false)
       menu.toggleSubcategoryShow(false)
       auth.toggleShow(false)
-      overlay.toggleShow()
+      overlay.toggleShow(false)
       noScroll.toggleScroll(true)
       linkBankCard.toggleShow(false)
       mobileMap.toggleShow(false)

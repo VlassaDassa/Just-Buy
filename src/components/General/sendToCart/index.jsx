@@ -36,8 +36,6 @@ const SendToCart = observer(({ inCart, setInCart }) => {
   const openCondition = (sendToCart.productId ?? false) && sendToCart.show &&
     (sendToCart.relateInputs.length > 0 || sendToCart.sizes.length > 0 || sendToCart.colors.length > 0);
     
-  console.log(openCondition)
-
   return (
         <CSSTransition
             key={'sendToCartTransition'}
