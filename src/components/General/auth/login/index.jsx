@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik } from 'formik';
 import * as yup from "yup";
 
-import auth from '../../../../store/auth';
+import auth from '../../../../store/authForm';
 import { isEmpty } from '../../../../services/services';
 import { isObjectNotEmpty } from '../../../../services/services';
 
+import { loginUser } from '../../../../api/auth';
+
 import AuthInput from '../authInput';
 import AuthButton from '../authButton';
+import AuthServerError from '../authServerError';
+
+import { updateLocalStorage } from '../../../../services/services';
 
 
 
@@ -38,16 +43,45 @@ const validationSchema = yup.object().shape({
 
 
 
-const Login = () => {
+const Login = ({ toggleAuth }) => {
+    const [loginError, setLoginError] = useState()
 
-    const handleSubmitForm = (values) => {
-        console.log('[Form data]: ', values)
+
+    const handleSubmitForm = (values, resetForm) => {
+        loginUser({
+            username: values.login,
+            password: values.password,
+        })
+
+        .then(response => {
+            if (response.status != 200) { setLoginError('Ошибка на сервере'); return }
+
+            if (!(response.data.access && response.data.refresh)) { setLoginError('Ошибка на сервере'); return }
+
+            // Успешная авторизация
+            setLoginError(null)
+            localStorage.setItem('accessToken', response.data.access);
+            localStorage.setItem('refreshToken', response.data.refresh);
+            updateLocalStorage() // Установка username и user_id
+            
+
+            // Очистка и закрытие
+            resetForm()
+            toggleAuth()
+        })
+
+
+        .catch(error => { setLoginError('Неизвестная ошибка'); console.error('Error: ', error) })
     }
 
 
     return (
         <div className='login'>
             <div className="auth__title">Авторизация</div>
+
+            {
+                loginError ? <AuthServerError errorText={loginError} /> : null
+            }
             
             <Formik
                 initialValues={{
@@ -64,6 +98,7 @@ const Login = () => {
                     touched,
                     handleChange,
                     handleBlur,
+                    resetForm,
                 }) => (
                     <>
                         {                    
@@ -100,7 +135,7 @@ const Login = () => {
                             <AuthButton 
                                 buttonText={'Войти'}
                                 className={'auth_buttons__button auth_buttons__login_button'}
-                                handler={() => handleSubmitForm(values)}
+                                handler={() => handleSubmitForm(values, resetForm)}
 
                                 disabled={!isEmpty(errors) || !isObjectNotEmpty(values)}
                             />

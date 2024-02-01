@@ -10,6 +10,11 @@ export const API_ROUTES = {
         getProducts: API_BASE_URL + 'products/',
     },
 
+    auth: {
+        registerUser: API_BASE_URL + 'register/',
+        loginUser: API_BASE_URL + 'login/',
+    },
+
     index: {
         getSliderPhoto: API_BASE_URL + 'slider/',
     },

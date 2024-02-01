@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik } from 'formik';
 import * as yup from "yup";
 
-import auth from '../../../../store/auth';
+import auth from '../../../../store/authForm.js';
 import { isEmpty } from '../../../../services/services';
 import { isObjectNotEmpty } from '../../../../services/services';
+import { registerUser } from '../../../../api/auth.js';
 
 import AuthInput from '../authInput';
 import AuthPhoneInput from '../authPhoneInput';
 import AuthButton from '../authButton';
+import AuthServerError from '../authServerError';
 
+import { updateLocalStorage } from '../../../../services/services';
 
 
 // Поля формы
@@ -41,6 +44,7 @@ const listRegInputs = [
 
 ]
 
+
 // Схема валидации полей формы
 const validationSchema = yup.object().shape({
     login_reg: yup.string().required("Обязательное поле").min(5, 'Не менее 5 символов'),
@@ -54,15 +58,47 @@ const validationSchema = yup.object().shape({
 
 
 
-const Reg = () => {
-    
-    const handleSubmitForm = (values) => {
-        console.log('[Form data]: ', values)
+const Reg = ({ toggleAuth }) => {
+    const [regError, setRegError] = useState()
+
+
+    const handleSubmitForm = (values, resetForm) => {
+        registerUser({
+            username: values.login_reg,
+            password: values.password_reg,
+            phone_number: values.phoneNumber,
+        })
+
+        .then(response => {
+            if (response.status != 201) { setRegError('Ошибка на сервере'); return }
+
+            if (!(response.data.access && response.data.refresh && response.data.user_id)) { setRegError('Ошибка на сервере'); return }
+
+            // Успешная регистрация
+            setRegError(null)
+            localStorage.setItem('accessToken', response.data.access);
+            localStorage.setItem('refreshToken', response.data.refresh);
+            updateLocalStorage() // Установка username и user_id
+
+
+            // Очистка формы и её скрытие
+            resetForm()
+            toggleAuth()
+
+        })
+
+        .catch(error => { setRegError(error.response.data.error[0]) })
     }
+
 
     return (
         <div className='reg'>
             <div className="auth__title">Регистрация</div>
+
+            {
+                regError ? <AuthServerError errorText={regError} /> : null
+            }
+            
 
             <Formik
                 initialValues={{
@@ -81,6 +117,7 @@ const Reg = () => {
                     touched,
                     handleChange,
                     handleBlur,
+                    resetForm,
                 }) => (
                     <>
                         {                    
@@ -132,7 +169,7 @@ const Reg = () => {
                             <AuthButton 
                                 buttonText={'Регистрация'}
                                 className={'auth_buttons__button auth_buttons__reg_button'}
-                                handler={() => handleSubmitForm(values)}
+                                handler={() => handleSubmitForm(values, resetForm)}
 
                                 disabled={!isEmpty(errors) || !isObjectNotEmpty(values)}
                             />

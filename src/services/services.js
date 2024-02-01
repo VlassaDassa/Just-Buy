@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { toJS } from "mobx";
+import { jwtDecode } from "jwt-decode";
 
 import addProductChecking from '../store/addProductChecking';
 
@@ -457,3 +458,11 @@ export function isObjectNotEmpty(obj) {
   }
   return true;
 }
+
+
+export const updateLocalStorage = () => {
+    if (!localStorage.getItem('accessToken') || !localStorage.getItem('refreshToken')) return;
+
+    localStorage.setItem('user_id', jwtDecode(localStorage.getItem('accessToken')).user_id);
+    localStorage.setItem('username', jwtDecode(localStorage.getItem('accessToken')).username);
+} 

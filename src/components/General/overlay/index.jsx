@@ -3,7 +3,7 @@ import './index.scss';
 import { observer } from 'mobx-react-lite';
 
 import menu from '../../../store/menu';
-import auth from '../../../store/auth';
+import auth from '../../../store/authForm';
 import overlay from '../../../store/overlay';
 import noScroll from '../../../store/noScroll';
 import linkBankCard from '../../../store/linkBankCard';

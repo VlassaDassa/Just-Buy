@@ -23,10 +23,12 @@ import critical_error from './store/critical_error';
 
 import menu from './store/menu';
 import overlay from './store/overlay';
-import auth from './store/auth';
+import auth from './store/authForm';
 
 import './../src/assets/styles/_reset.scss'
 import './../src/assets/styles/index.scss'
+
+import { updateLocalStorage } from './services/services';
 
 
 
@@ -44,6 +46,9 @@ const App = observer(() => {
   
 
   useEffect(() => {
+    // Определение авторизации
+    updateLocalStorage()
+
     window.scrollTo(0, 0);
     noScroll.toggleScroll(false)
     setHiddenGlobalLoader(false)
@@ -55,6 +60,7 @@ const App = observer(() => {
     }, 1000)
     
   }, [location])
+
 
 
   // Critical error

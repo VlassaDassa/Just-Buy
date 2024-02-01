@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { getMenu, getMenuSubcategories } from '../../../api/generalAPI';
 import useRequest from '../../../hooks/useRequest';
-import auth from '../../../store/auth';
+import auth from '../../../store/authForm';
 import overlay from '../../../store/overlay';
 
 import mobileMenu from '../../../store/mobileMenu';
