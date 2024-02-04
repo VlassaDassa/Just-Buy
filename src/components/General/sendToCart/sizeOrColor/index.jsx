@@ -32,6 +32,7 @@ const SizeOrColor = observer(({ inCart, setInCart }) => {
     const sendData = () => {
         const data = {
             'product_id': toJS(sendToCart.productId),
+            'user_id': localStorage.getItem('user_id')
         }
 
         if (selectedColor) {

@@ -20,6 +20,7 @@ import noScroll from './store/noScroll';
 import GlobalLoader from './components/General/globalLoader';
 
 import critical_error from './store/critical_error';
+import { updateLocalStorage } from './services/services';
 
 import menu from './store/menu';
 import overlay from './store/overlay';
@@ -28,7 +29,6 @@ import auth from './store/authForm';
 import './../src/assets/styles/_reset.scss'
 import './../src/assets/styles/index.scss'
 
-import { updateLocalStorage } from './services/services';
 
 
 

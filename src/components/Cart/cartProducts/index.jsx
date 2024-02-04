@@ -14,7 +14,7 @@ import './index.scss';
 
 
 const CartProducts = ({ setCountProducts, selectedProducts, setSelectedProducts, totalValues, setTotalValues, sendData, setSendData, cartProducts, setCartProducts }) => {
-    const [data, loading, error] = useRequest(() => getCartProducts(), [])
+    const [data, loading, error] = useRequest(() => getCartProducts(localStorage.getItem('user_id')), [])
     
 
     useEffect(() => {

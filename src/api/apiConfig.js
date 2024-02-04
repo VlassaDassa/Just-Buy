@@ -13,6 +13,7 @@ export const API_ROUTES = {
     auth: {
         registerUser: API_BASE_URL + 'register/',
         loginUser: API_BASE_URL + 'login/',
+        logoutUser: API_BASE_URL + 'logout/',
     },
 
     index: {
@@ -29,11 +30,15 @@ export const API_ROUTES = {
 
     profile: {
         getAllDeliveryPoints: API_BASE_URL + 'all_delivery_points/',
-        getAllBankCards: API_BASE_URL + 'all_bank_cards/',
-        addBankCard: API_BASE_URL + 'add_bank_card/',
-        deleteBankCard: API_BASE_URL + 'delete_bank_card/',
-        updateStatusBankCard: API_BASE_URL + 'update_bank_card/',
-        getCurrentBankCard: API_BASE_URL + 'get_current_card/',
+        getUserBankCards: API_BASE_URL + 'get_user_bank_cards/',
+        addBankCard: API_BASE_URL + 'add_bank_card/', 
+        deleteBankCard: API_BASE_URL + 'delete_bank_card/', 
+        updateStatusBankCard: API_BASE_URL + 'update_bank_card/', 
+        getCurrentBankCard: API_BASE_URL + 'get_current_card/', 
+
+        getUserInfo: API_BASE_URL + 'get_user_info/', 
+        getUserPurchases: API_BASE_URL + 'get_user_purchases/',
+        getUserOnRoad: API_BASE_URL + 'get_user_on_road/',
     },
 
     cart: {
@@ -44,13 +49,14 @@ export const API_ROUTES = {
         sendPurchasedGoods: API_BASE_URL + 'add_to_on_road/',
         getSizesAndColors: API_BASE_URL + 'get_sizes_and_colors/',
         getSizes: API_BASE_URL + 'get_particular_sizes/',
-        addComment: API_BASE_URL + 'add_delivery_point_comment/',
+        addCommentDeliveryPoint: API_BASE_URL + 'add_delivery_point_comment/',
     },
-
+    
     deliveryPoint: {
         getDeliveryPoint: API_BASE_URL + 'get_delivery_point/',
-        getStatusDeliveryPoint: API_BASE_URL + 'status_delivery_point/',
         choiceDeliveryPoint: API_BASE_URL + 'choice_delivery_point/',
-        getCurrentPoint: API_BASE_URL + 'get_current_point/',
+        // getCurrentPoint: API_BASE_URL + 'get_current_point/', Было
+        getUserDeliveryPoint: API_BASE_URL + 'get_user_delivery_point/', // Стало
+        getUserCommentExistPoint: API_BASE_URL + 'get_user_comment_exist_point/', 
     }
 }

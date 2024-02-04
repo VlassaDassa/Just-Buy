@@ -85,7 +85,7 @@ const LinkBankCard = observer(({ setScheduleRender, scheduleRender, setNewCardLo
             data.append('main_card', false);
             data.append('bank_ico', file);
       
-            const response = await addBankCard(data);
+            const response = await addBankCard(data, localStorage.getItem('user_id'));
             if (response.status === 200) {
               setScheduleRender(!scheduleRender);
             }

@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import Title from './../../General/title';
 import Products from '../../General/products';
-import NoSection from '../../General/noSection';
-
+import { getUserOnRoad } from '../../../api/profileAPI';
 import useRequest from '../../../hooks/useRequest';
-import { getProducts } from '../../../api/generalAPI';
 
 import './index.scss';
 
@@ -14,9 +12,7 @@ import './index.scss';
 
 
 const OnRoad = () => {
-    const [currentPage, setCurrentPage] = useState(2);
-    const [startLimit, setStartLimit] = useState(0)
-    const [data, loading, error] = useRequest(() => getProducts(startLimit, currentPage), [currentPage]);
+    const [data, loading, error] = useRequest(() => getUserOnRoad(localStorage.getItem('user_id')), []);
     const [products, setProducts] = useState([])
 
     useEffect(() => {

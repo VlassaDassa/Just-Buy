@@ -12,7 +12,8 @@ import "./index.scss";
 
 
 
-const Location = ({ 
+const Location = ({
+        owners,
         address,
 
         coordX,
@@ -36,7 +37,8 @@ const Location = ({
                         null
                 }
                 
-                <CurrentMap 
+                <CurrentMap
+                    owners={owners}
                     address={address} 
                     coordX={coordX} 
                     coordY={coordY} 

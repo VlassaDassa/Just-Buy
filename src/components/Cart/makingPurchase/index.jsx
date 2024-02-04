@@ -39,10 +39,10 @@ const MakingPurchase = ({
 
 
     const sendToServer = () => {
-        const delPointId = curDelPoint.length > 0 ? curDelPoint[0].id : null 
+        const delPointId = curDelPoint ? curDelPoint.delivery_point_id : null 
         const bankCardId = curBankCard.length > 0 ? curBankCard[0].id : null
-        var readyData = {'prod_data': sendData, 'bank_card_id': bankCardId, 'delivery_point_id': delPointId}
-
+        var readyData = {'prod_data': sendData, 'bank_card_id': bankCardId, 'delivery_point_id': delPointId, 'user_id': localStorage.getItem('user_id')}
+        console.log(readyData)
         sendPurchasedGoods(readyData)
             .then(response => {
                 if (response.status !== 200) {

@@ -5,8 +5,12 @@ import { API_ROUTES } from './apiConfig';
 
 
 // Receiving cart products
-export const getCartProducts = () => {
-    return axios.get(API_ROUTES.cart.getCartProducts);
+export const getCartProducts = (userId) => {
+    return axios.get(API_ROUTES.cart.getCartProducts + userId + '/', {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    });
 }
 
 
@@ -24,13 +28,21 @@ export const removeCartProductFromProdId = (product_id) => {
 
 // Adding cart product
 export const addCartProduct = (data) => {
-    return axios.post(API_ROUTES.cart.addCartProduct, data);
+    return axios.post(API_ROUTES.cart.addCartProduct, data, {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    });
 }
 
 
 // Send purchased goods to the server
 export function sendPurchasedGoods(data) {
-    return axios.post(API_ROUTES.cart.sendPurchasedGoods, data)
+    return axios.post(API_ROUTES.cart.sendPurchasedGoods, data, {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    })
 }
 
 
@@ -52,9 +64,6 @@ export function getSizes(sizes) {
 }
 
 
-// Add comment
-export function addComment(data) {
-    return axios.post(API_ROUTES.cart.addComment, data)
-}
+
 
 

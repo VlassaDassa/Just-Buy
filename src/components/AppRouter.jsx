@@ -28,7 +28,6 @@ import CriticalErrorMessage from './../components/General/criticalErrorMessage'
 
 
 const AppRouter = () => {
-  const isAuthenticated = true;
 
   return (
       <Routes>
@@ -41,7 +40,7 @@ const AppRouter = () => {
               />
           ))}
 
-          {isAuthenticated && privateRoutes.map((route) => (
+          {localStorage.getItem('user_id') && privateRoutes.map((route) => (
               <Route
                   key={route.path}
                   path={route.path}

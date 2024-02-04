@@ -8,7 +8,7 @@ import NoBankCards from '../noBankCards';
 import LinkBankCard from '../linkBankCard';
 
 import useRequest from '../../../hooks/useRequest';
-import { getAllBankCards } from '../../../api/profileAPI';
+import { getUserBankCards } from '../../../api/profileAPI';
 
 import './index.scss';
 
@@ -21,7 +21,7 @@ const BankCards = observer(() => {
     const [mainCard, setMainCard] = useState(false)
     const [newCardLoading, setNewCardLoading] = useState(false)
     const [scheduleRender, setScheduleRender] = useState(false)
-    const [data, loading, error] = useRequest(() => getAllBankCards(), [scheduleRender])
+    const [data, loading, error] = useRequest(() => getUserBankCards(localStorage.getItem('user_id')), [scheduleRender])
 
     useEffect(() => {
         if (data && !loading) {

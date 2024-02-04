@@ -85,6 +85,8 @@ const Reg = ({ toggleAuth }) => {
             resetForm()
             toggleAuth()
 
+            window.location.reload()
+
         })
 
         .catch(error => { setRegError(error.response.data.error[0]) })

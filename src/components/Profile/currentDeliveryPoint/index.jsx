@@ -15,12 +15,12 @@ import './index.scss';
 
 
 const CurrentDeliveryPoint = () => {
-    const [data, loading, error] = useRequest(() => getCurrentDeliveryPoint())
+    const [data, loading, error] = useRequest(() => getCurrentDeliveryPoint(localStorage.getItem('user_id')))
     const [point, setPoint] = useState({})
 
     useEffect(() => {
-        if (data && data.length > 0 && !loading) {
-            setPoint(data[0])
+        if (data && !loading) {
+            setPoint(data)
         }
     }, [data])
 

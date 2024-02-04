@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
+
+import { ProfileMenu } from './profileMenu';
 
 import menu from '../../../store/menu';
 import auth from '../../../store/authForm';
@@ -14,14 +17,16 @@ import burger from './../../../assets/images/header/burger.svg';
 import profile from './../../../assets/images/header/profile.svg';
 import cart from './../../../assets/images/header/cart.svg';
 
-import { authVar } from '../../../fakeVar';
-
 import './index.scss';
 
 
 
 
 const Header = () => {
+    const [showProfileMenu, setShowProfileMenu] = useState(false)
+    const ref = useRef();
+    const refIco = useRef();
+
     function toggleMenu() {
         menu.toggleShow()
         overlay.toggleShow()
@@ -42,6 +47,23 @@ const Header = () => {
         mobileMenu.toggleShow()
         noScroll.toggleScroll()
     }
+
+
+    // Закрытие ProfileMenu при клике вне его
+    const handleClickOutside = (event) => {
+        if (ref.current && !ref.current.contains(event.target) && !refIco.current.contains(event.target)) {
+            setShowProfileMenu(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+    
+        return () => {
+          document.removeEventListener('mousedown', handleClickOutside);
+        }
+
+    }, []);
 
 
     return (
@@ -70,16 +92,25 @@ const Header = () => {
 
                             <li 
                                 className="header__icons-item header__icons-profile"
-                                onClick={authVar ? null : toggleAuth}
+                                ref={refIco}
                             >
                                 {
-                                    authVar ?
-                                        <Link to="/profile"><img src={profile} /></Link>      
+                                    localStorage.getItem('user_id') ?
+                                        <img src={profile} onClick={() => setShowProfileMenu(!showProfileMenu)} />
                                     :
-                                        <img src={profile} />
+                                        <img src={profile} onClick={toggleAuth} />
                                 }
-                                
                             </li>
+                            
+                            <CSSTransition
+                                in={showProfileMenu}
+                                key={'profileMenuTransition'}
+                                timeout={400}
+                                classNames="profileMenuTransition"
+                                unmountOnExit
+                            >
+                                <ProfileMenu ref={ref} setShowProfileMenu={setShowProfileMenu} />
+                            </CSSTransition>
 
                             <li className="header__icons-item header__icons-cart"><Link to="/cart"><img src={cart} /></Link></li>
 

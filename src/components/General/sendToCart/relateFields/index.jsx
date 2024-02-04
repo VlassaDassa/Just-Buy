@@ -57,6 +57,7 @@ const RelateFields = observer(({ inCart, setInCart }) => {
     const addToCart = () => {
         const data = {
             'product_id': toJS(sendToCart.productId),
+            'user_id': localStorage.getItem('user_id'),
             'relateInputs': {
                 'color': selectedColor,
                 'size': selectedSize,

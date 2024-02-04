@@ -5,13 +5,13 @@ import { showError } from './../../../hooks/showError';
 
 import sendToCart from '../../../store/sendToCart';
 import overlay from '../../../store/overlay';
+import authForm from '../../../store/authForm';
 import noScroll from '../../../store/noScroll';
 
 import heart from './../../../assets/images/product_card/heart.svg';
 import heartFill from './../../../assets/images/product_card/heart-small-fill.svg';
 import cartImg from './../../../assets/images/product_card/cart.svg';
 import cartFill from './../../../assets/images/product_card/cart-fill.svg';
-import trash from './../../../assets/images/cart/trash.svg'
 
 import { addCartProduct, removeCartProductFromProdId, getSizesAndColors } from './../../../api/cartAPI'
 
@@ -53,11 +53,21 @@ const ProductCard = observer(({
     const activeMobileLike = 'products__icon products__icon-small products__icon-like active'
 
     const [like, setLike] = useState([]);
-    
+
+    function toggleAuth() {
+        authForm.toggleShow()
+        overlay.toggleShow()
+    }
    
     const addToCart = async (product_id) => {
 
-        // Request for get relate inputs
+        // Если пользователь не авторизован показывать форму авторизации
+        if (!localStorage.getItem('user_id')) {
+            toggleAuth();
+            return;
+        }
+
+        // Получение связанных полей
         try {
             const response = await getSizesAndColors(product_id);
             
@@ -68,11 +78,12 @@ const ProductCard = observer(({
             const colorsAndSizes = await response.data;
 
 
-            // Just add to cart, because product have not sizes or colors
+            // Просто добавление товара
             if (!colorsAndSizes['exists']) {
                 const data = {
                     'count': colorsAndSizes.count,
                     'product_id': product_id,
+                    'user_id': localStorage.getItem('user_id'),
                 }
 
                 addCartProduct(data)
@@ -145,6 +156,21 @@ const ProductCard = observer(({
         })
     }
 
+
+    const addToLike = () => {
+        if (!localStorage.getItem('user_id')) {
+            toggleAuth();
+            return;
+        }
+
+        if (like.includes(product_id)) {
+            setLike(like.filter(item => item !== product_id));
+        }
+        else {
+            setLike([...like, product_id]);
+        }
+    }
+
     return (
         <div className="products__item">
             <div className={`products__photo_wrapper`}>
@@ -160,14 +186,7 @@ const ProductCard = observer(({
                         <img 
                             src={like.includes(product_id) ? heartFill: heart} 
                             className={like.includes(product_id) ? defaultLikeClass: activeLikeClass}
-                            onClick={() => {
-                                if (like.includes(product_id)) {
-                                    setLike(like.filter(item => item !== product_id));
-                                }
-                                else {
-                                    setLike([...like, product_id]);
-                                }
-                            }}
+                            onClick={addToLike}
                         />
                     }
                     
@@ -229,14 +248,7 @@ const ProductCard = observer(({
                         <img 
                             className={like.includes(product_id) ? activeMobileLike : defaultMobileLike}
                             src={like.includes(product_id) ? heartFill: heart} 
-                            onClick={() => {
-                                if (like.includes(product_id)) {
-                                setLike(like.filter(item => item !== product_id));
-                                }
-                                else {
-                                setLike([...like, product_id]);
-                                }
-                            }}
+                            onClick={addToLike}
                         />
                         
                     </div>

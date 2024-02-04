@@ -56,7 +56,8 @@ const DeliveryPointBar = () => {
 
     return (
         <>
-            <Location 
+            <Location
+                owners={pointData?.owners}
                 address={pointData?.address} 
                 coordX={pointData?.coord_x} 
                 coordY={pointData?.coord_y} 

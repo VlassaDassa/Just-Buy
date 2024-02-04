@@ -68,6 +68,8 @@ const Login = ({ toggleAuth }) => {
             // Очистка и закрытие
             resetForm()
             toggleAuth()
+
+            window.location.reload()
         })
 
 

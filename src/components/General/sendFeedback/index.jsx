@@ -6,9 +6,8 @@ import ScoreFeedback from './scoreFeedback';
 
 import sendFeedback from '../../../store/sendFeedback';
 import overlay from '../../../store/overlay';
-import { username } from '../../../fakeVar';
 import { showError } from '../../../hooks/showError';
-import { addComment } from '../../../api/cartAPI';
+import { addCommentDeliveryPoint } from '../../../api/deliveryPointAPI';
 
 import './index.scss';
 
@@ -29,7 +28,8 @@ const SendFeedback = observer(({ objectId, isVisibleSuccess, setIsVisibleSuccess
 
     const sendToServer = () => {
         const data = {
-            'username': username,
+            'username': localStorage.getItem('username'),
+            'user_id': localStorage.getItem('user_id'),
             'rating': selectedScore + 1,
             'content': content,
             'deliveryPointId': objectId,
@@ -37,7 +37,7 @@ const SendFeedback = observer(({ objectId, isVisibleSuccess, setIsVisibleSuccess
 
         if (content.length < 100) { showError('Недостаточно символов'); return }
 
-        addComment(data)
+        addCommentDeliveryPoint(data)
             .then(response => {
                 if (response.status !== 200) { showError('Ошибка при добавлении отзыва'); closeSendFeedback(); return }
                 setIsVisibleSuccess(true)

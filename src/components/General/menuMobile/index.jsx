@@ -64,10 +64,10 @@ const MenuMobile = observer(() => {
                     <ul>
                         <li 
                             className="mobile_menu-item mobile_menu-profile"
-                            onClick={authVar ? null : () => {toggleAuth(); close()}}
+                            onClick={localStorage.getItem('user_id') ? null : () => {toggleAuth(); close()}}
                         >
                             {
-                                authVar ?
+                                localStorage.getItem('user_id') ?
                                     <Link onClick={close} to="/profile"><img src={profile} /></Link>      
                                 :
                                     <img src={profile} />

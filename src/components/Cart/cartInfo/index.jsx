@@ -15,8 +15,8 @@ import './index.scss';
 
 
 const CartInfo = ({ totalValues, setTotalValues, sendData, setSendData, cartProducts, setCartProducts, setIsVisibleSuccess, selectedProducts, setSelectedProducts }) => {
-    const [dataDeliveryPoint, loadingDeliveryPooint, errorDeliveryPoint] = useRequest(() => getCurrentDeliveryPoint(), [])
-    const [dataBankCard, laodingBankCard, errorBankCard]= useRequest(() => getCurrentBankCard(), [])
+    const [dataDeliveryPoint, loadingDeliveryPooint, errorDeliveryPoint] = useRequest(() => getCurrentDeliveryPoint(localStorage.getItem('user_id')), [])
+    const [dataBankCard, laodingBankCard, errorBankCard]= useRequest(() => getCurrentBankCard(localStorage.getItem('user_id')), [])
 
     const [curDelPoint, setCurDelPoint] = useState({})
     const [curBankCard, setCurBankCard] = useState({})
@@ -27,7 +27,7 @@ const CartInfo = ({ totalValues, setTotalValues, sendData, setSendData, cartProd
 
     
     useEffect(() => {
-        if (dataDeliveryPoint && dataDeliveryPoint.length > 0 && !loadingDeliveryPooint) {
+        if (dataDeliveryPoint && !loadingDeliveryPooint) {
             setCurDelPoint(dataDeliveryPoint)
             setExistsDelPoint(true)
         }
@@ -42,7 +42,6 @@ const CartInfo = ({ totalValues, setTotalValues, sendData, setSendData, cartProd
     }, [dataBankCard, laodingBankCard])
 
 
-    
     return (
             <div className='cartInfo'>
                 <div className='cartInfoStickyWrapper'>

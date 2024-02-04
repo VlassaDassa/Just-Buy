@@ -22,36 +22,40 @@ import './index.scss';
 
 
 
-const CurrentMap = observer(({ address, coordX, coordY, deliveryPointId }) => {
-  const [data, loading, error] = useRequest(() => getStatusDeliveryPoint(deliveryPointId), [])
-  const [statusDeliveryPoint, setStatusDeliveryPoint] = useState(false)
-  const [loadingChoice, setLoadingChoice] = useState(false)
-  const [isVisibleSuccess, setIsVisibleSuccess] = useState(false)
+const CurrentMap = observer(({ owners, address, coordX, coordY, deliveryPointId }) => {
+    const [statusDeliveryPoint, setStatusDeliveryPoint] = useState(false)
+    const [loadingChoice, setLoadingChoice] = useState(false)
+    const [isVisibleSuccess, setIsVisibleSuccess] = useState(false)
 
 
+    useEffect(() => {
+        if (owners) setStatusDeliveryPoint(owners.includes(parseInt(localStorage.getItem('user_id'))))
+    }, [owners])
+    
 
-  useEffect(() => {
-    if (data && !loading) {
-      setStatusDeliveryPoint(data.exists)
+    function showMobileMap() {
+        overlay.toggleShow(false)
+        mobileMap.toggleShow(false)
     }
-  }, [data, loading])
 
 
-  function showMobileMap() {
-    overlay.toggleShow(false)
-    mobileMap.toggleShow(false)
-  }
+    // Choice delivery point
+    function choicePoint() {
+        setLoadingChoice(true)
 
+        choiceDeliveryPoint(localStorage.getItem('user_id'), deliveryPointId)
+        .then((response) => {
 
-  // Choice delivery point
-  function choicePoint() {
-    setLoadingChoice(true)
+          if (response.status != 200) { showError('Ошибка при выборе пункта'); return }
 
-    choiceDeliveryPoint(deliveryPointId)
-    .then((response) => {setIsVisibleSuccess(true); setStatusDeliveryPoint(true)})
-    .catch((error) => showError(message='Ошибка при выборе пункта'))
-    .finally(() => setLoadingChoice(false))
-  }
+          setIsVisibleSuccess(true)
+          setStatusDeliveryPoint(true)
+
+        })
+
+        .catch((error) => { showError('Ошибка при выборе пункта'); console.error(error) })
+        .finally(() => setLoadingChoice(false))
+    }
 
 
   return (
@@ -97,7 +101,7 @@ const CurrentMap = observer(({ address, coordX, coordY, deliveryPointId }) => {
             }
         </div>
         
-        {
+        {localStorage.getItem('user_id') ? (
             statusDeliveryPoint ?
               <button className="map__button map__buttonDisabled" disabled>
                 Текущий пункт выдачи
@@ -114,8 +118,14 @@ const CurrentMap = observer(({ address, coordX, coordY, deliveryPointId }) => {
                   :
                     <button className="map__button" onClick={choicePoint} disabled={loadingChoice}>Выбрать пункт выдачи</button>
                 )
+          )
+
+          : null
               
         }
+        
+
+     
         
     </div> 
   )

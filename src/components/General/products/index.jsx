@@ -6,24 +6,32 @@ import ProductCard from '../productCard';
 import SendToCart from '../sendToCart';
 import NoSection from '../noSection';
 
+import { getCartProducts } from '../../../api/cartAPI';
+
 import './index.scss';
 
 
 
 
 const Products = observer(({ products, likeShow = true, cartShow = true, onRoad = false }) => {
-  const [inCart, setInCart] = useState()
+  const [inCart, setInCart] = useState([])
+
 
   // Defining products, who in cart
   useEffect(() => {
-      if (products.length > 0) {
-          const inCartArray = products
-            .filter(item => item.is_in_cart)
-            .map(item => item.id);
-          
-            setInCart(inCartArray)
-      }
+      
+      if (!localStorage.getItem('user_id')) return;
+
+      getCartProducts(localStorage.getItem('user_id'))
+      .then(response => {
+            if (response.data.length < 0) return;
+              setInCart(response.data.map(item => item.product_id))
+      })
+      .catch(error => console.error(error))
+
   }, [products])
+
+  
 
   
   const showNoSection = products?.map((product) => product.characteristics.in_stock).includes(true);
@@ -34,15 +42,15 @@ const Products = observer(({ products, likeShow = true, cartShow = true, onRoad 
       
       {showNoSection ? (
           <>
-            {products?.map((product) =>
+            {products?.map((product, index) =>
               product.characteristics.in_stock ? (
                 <CSSTransition
-                  key={'trans' + product.id}
+                  key={'trans' + product.id + index}
                   timeout={500}
                   classNames="prod"
                 >
                   <ProductCard
-                    key={'product' + product.id}
+                    key={'product' + product.id + index}
                     name={product.name}
                     photo={product.main_photo}
                     price={product.price}

@@ -88,7 +88,31 @@
     max-width: calc(100% - 700px); 
     width: 600px; 
   
-  }
+}
+
+
+
+/* Transition */
+.profileMenuTransition-exit {
+    opacity: 1;
+}
+  
+.profileMenuTransition-exit-active {
+    opacity: 0;
+    transition: all 0.1s ease-in;
+}
+  
+.profileMenuTransition-enter {
+    opacity: 0;
+}
+  
+.profileMenuTransition-enter-active {
+    opacity: 1;
+    transition: all 0.1s ease-out;
+}
+/* ./Transition */
+
+
 
 
 

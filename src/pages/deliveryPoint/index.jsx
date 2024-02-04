@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
+
 import DeliveryPointBar from "../../components/DeliveryPoint/deliveryPoint";
+
+
 
 
 const DeliveryPoint = () => {

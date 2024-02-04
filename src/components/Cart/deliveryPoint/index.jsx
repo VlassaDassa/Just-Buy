@@ -18,7 +18,7 @@ const DeliveryPoint = ({ curDelPoint }) => {
             <div className="cartInfoItem">
                 <CartInfoTitle text={'Пункт выдачи'} />
 
-                <CartInfoText text={curDelPoint.length > 0 ? curDelPoint[0].city + ' , ' + curDelPoint[0].address : 'Не выбрано'} />
+                <CartInfoText text={curDelPoint ? curDelPoint.city + ' , ' + curDelPoint.address : 'Не выбрано'} />
                 
                 <Link to='/profile'><CartInfoButton text={'Изменить'} /></Link>
             </div>
