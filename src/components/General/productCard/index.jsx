@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 
-import { showError } from './../../../hooks/showError';
+import { addCartProduct, removeCartProductFromProdId, getSizesAndColors } from './../../../api/cartAPI'
 
+import { showError } from './../../../hooks/showError';
 import sendToCart from '../../../store/sendToCart';
 import overlay from '../../../store/overlay';
 import authForm from '../../../store/authForm';
 import noScroll from '../../../store/noScroll';
+import { updateTokens } from '../../../services/services';
 
 import heart from './../../../assets/images/product_card/heart.svg';
 import heartFill from './../../../assets/images/product_card/heart-small-fill.svg';
 import cartImg from './../../../assets/images/product_card/cart.svg';
 import cartFill from './../../../assets/images/product_card/cart-fill.svg';
 
-import { addCartProduct, removeCartProductFromProdId, getSizesAndColors } from './../../../api/cartAPI'
 
 import './index.scss';
 
@@ -96,6 +97,10 @@ const ProductCard = observer(({
                     }
                     })
                 .catch(error => {
+                    // Обновление refresh Token при истечении годности AccessToken
+                    if (error.response.status == 401) updateTokens()
+
+                    console.error(error)
                     showError('Ошибка при добавлении товара')
                 })
             }
@@ -172,7 +177,7 @@ const ProductCard = observer(({
     }
 
     return (
-        <div className="products__item">
+        <div className={onRoad ? "products__item products__item--onRoad" : 'products__item'}>
             <div className={`products__photo_wrapper`}>
                 <a href="product.html">
                     <img className="products__photo" src={photo} />

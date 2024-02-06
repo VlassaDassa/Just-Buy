@@ -3,6 +3,7 @@ import { toJS } from "mobx";
 import { jwtDecode } from "jwt-decode";
 
 import addProductChecking from '../store/addProductChecking';
+import { refreshToken } from '../api/auth';
 
 import masterCard from './../assets/images/bankIcons/mastercard.svg';
 import discover from './../assets/images/bankIcons/discover.svg';
@@ -460,9 +461,26 @@ export function isObjectNotEmpty(obj) {
 }
 
 
+// Обновление данных в localStorage
 export const updateLocalStorage = () => {
     if (!localStorage.getItem('accessToken') || !localStorage.getItem('refreshToken')) return;
 
     localStorage.setItem('user_id', jwtDecode(localStorage.getItem('accessToken')).user_id);
     localStorage.setItem('username', jwtDecode(localStorage.getItem('accessToken')).username);
+} 
+
+
+// Обновление токенов при ошибке 401
+export const updateTokens = () => {
+  refreshToken(localStorage.getItem('refreshToken'))
+  .then(response => {
+      const newAccessToken = response.data.access;
+      const newRefreshToken = response.data.refresh;
+      localStorage.setItem('accessToken', newAccessToken)
+      localStorage.setItem('refreshToken', newRefreshToken)
+      window.location.reload()
+  })
+  .catch(error => {
+      console.error('Ошибка при обновлении токена:', error);
+  })
 } 

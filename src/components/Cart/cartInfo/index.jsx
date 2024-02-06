@@ -16,7 +16,7 @@ import './index.scss';
 
 const CartInfo = ({ totalValues, setTotalValues, sendData, setSendData, cartProducts, setCartProducts, setIsVisibleSuccess, selectedProducts, setSelectedProducts }) => {
     const [dataDeliveryPoint, loadingDeliveryPooint, errorDeliveryPoint] = useRequest(() => getCurrentDeliveryPoint(localStorage.getItem('user_id')), [])
-    const [dataBankCard, laodingBankCard, errorBankCard]= useRequest(() => getCurrentBankCard(localStorage.getItem('user_id')), [])
+    const [dataBankCard, laodingBankCard, errorBankCard]= useRequest(() => getCurrentBankCard(localStorage.getItem('user_id')), []) 
 
     const [curDelPoint, setCurDelPoint] = useState({})
     const [curBankCard, setCurBankCard] = useState({})
@@ -27,7 +27,7 @@ const CartInfo = ({ totalValues, setTotalValues, sendData, setSendData, cartProd
 
     
     useEffect(() => {
-        if (dataDeliveryPoint && !loadingDeliveryPooint) {
+        if (dataDeliveryPoint && Object.keys(dataDeliveryPoint).length > 0 && !loadingDeliveryPooint) {
             setCurDelPoint(dataDeliveryPoint)
             setExistsDelPoint(true)
         }

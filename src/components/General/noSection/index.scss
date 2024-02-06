@@ -18,6 +18,12 @@
     margin-top: 100px;
 }
 
+.noSection--feedbacks {
+    text-align: left;
+    margin: 70px 0;
+}
+
+
 @media (max-width: 1130px) {
     .cartNoSect {
         width: 100%;
@@ -35,5 +41,9 @@
 @media (max-width: 600px) {
     .noSection {
         font-size: 32px;
+    }
+
+    .noSection--feedbacks {
+        text-align: center;
     }
 }

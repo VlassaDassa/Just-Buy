@@ -6,6 +6,7 @@ import ScoreFeedback from './scoreFeedback';
 
 import sendFeedback from '../../../store/sendFeedback';
 import overlay from '../../../store/overlay';
+import { updateTokens } from '../../../services/services';
 import { showError } from '../../../hooks/showError';
 import { addCommentDeliveryPoint } from '../../../api/deliveryPointAPI';
 
@@ -48,6 +49,9 @@ const SendFeedback = observer(({ objectId, isVisibleSuccess, setIsVisibleSuccess
             })
             
             .catch(error => {
+                // Обновление refresh Token при истечении годности AccessToken
+                if (error.response.status == 401) updateTokens()
+                
                 showError('Ошибка при добавлении отзыва')
                 closeSendFeedback();
                 console.error(error)

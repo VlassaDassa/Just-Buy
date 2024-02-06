@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import { getUserInfo } from '../../../api/profileAPI';
-
+import { updateTokens } from '../../../services/services';
 import { showError } from '../../../hooks/showError';
 
 import like from './../../../assets/images/profile/like.svg';
@@ -23,6 +23,9 @@ const MobileProfileBar = () => {
             setUserData(response.data)
         })
         .catch(error => {
+            // Обновление refresh Token при истечении годности AccessToken
+            if (error.response.status == 401) updateTokens()
+
             console.error(error)
             showError('Серверная ошибка')
         })

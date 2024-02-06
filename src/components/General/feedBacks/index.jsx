@@ -6,6 +6,7 @@ import RatingPoint from "./ratingPoint";
 import FeedbackItem from './feedbackItem';
 import SendFeedback from "../../General/sendFeedback";
 import SuccessMessage from '../successMessage';
+import NoSection from '../noSection';
 
 import sendFeedback from '../../../store/sendFeedback';
 
@@ -53,10 +54,12 @@ const Feedbacks = observer(({ feedbacks, rating, objectId }) => {
         <RatingPoint rating={rating} countFeedbacks={feedbacks?.length} />
 
         <div className="delivery_point_feedback__items">
-            {
-              feedbacks?.slice(0, end)?.map((feedback) => (
-                <FeedbackItem key={feedback.id} feedback={feedback} />
-              ))
+            {feedbacks?.length <= 0 ?
+                <NoSection message={'Комментариев нет'} additionalClass={'noSection--feedbacks'} />
+              :
+                feedbacks?.slice(0, end)?.map((feedback) => (
+                  <FeedbackItem key={feedback.id} feedback={feedback} />
+                ))
             }
             
         </div>

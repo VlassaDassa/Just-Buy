@@ -10,6 +10,11 @@
     text-align: center;
     border: 2px solid $white;
     border-radius: 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
     
     font-size: 24px;
     font-weight: $regular;
@@ -41,4 +46,9 @@
 
 .auth__close_button:hover {
     color: $gray;
+}
+
+
+.authIco {
+    height: 30px;    
 }

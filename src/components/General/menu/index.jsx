@@ -11,8 +11,6 @@ import './index.scss';
 
 
 
-
-
 const Menu = observer(() => {
     const [categories, loading, error] = useRequest(() => getMenu(), [])
     const [subcategory, setSubcategory] = useState(0)

@@ -8,6 +8,7 @@ import Button from './../../button';
 import { showError } from '../../../../hooks/showError';
 import overlay from '../../../../store/overlay';
 import noScroll from '../../../../store/noScroll';
+import { updateTokens } from '../../../../services/services';
 
 import { addCartProduct } from '../../../../api/cartAPI';
 import sendToCart from './../../../../store/sendToCart';
@@ -65,7 +66,7 @@ const RelateFields = observer(({ inCart, setInCart }) => {
             'count': toJS(sendToCart.relateInputs).find((item) => item.color === selectedColor && item.size === selectedSize).count,
         }
 
-        addCartProduct(data)
+        addCartProduct(data) 
             .then(response => {
                 if (response.status !== 200) {
                     showError('Ошибка при добавлении товара')
@@ -87,9 +88,11 @@ const RelateFields = observer(({ inCart, setInCart }) => {
                 }
             })
             .catch(error => {
+                // Обновление refresh Token при истечении годности AccessToken
+                if (error.response.status == 401) updateTokens()
+
                 showError('Ошибка при добавлении товара')
                 console.error(error)
-                return
             })
         
     }

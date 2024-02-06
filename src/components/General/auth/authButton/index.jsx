@@ -1,11 +1,13 @@
 import React from 'react';
 
+import telegramIco from './../../../../assets/images/auth/telegram.svg'
+
 import './index.scss';
 
 
 
 
-const AuthButton = ({buttonText, className, handler=null, disabled=false}) => {
+const AuthButton = ({buttonText, className, handler=null, disabled=false, telegram=false}) => {
 
 
     
@@ -17,6 +19,10 @@ const AuthButton = ({buttonText, className, handler=null, disabled=false}) => {
             disabled={disabled}
         >
             {buttonText}
+
+            {
+                telegram ? <img src={telegramIco} className="authIco" /> : null
+            }
         </button>
     )
 }

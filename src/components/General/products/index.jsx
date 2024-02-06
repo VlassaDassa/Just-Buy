@@ -7,6 +7,7 @@ import SendToCart from '../sendToCart';
 import NoSection from '../noSection';
 
 import { getCartProducts } from '../../../api/cartAPI';
+import { updateTokens } from '../../../services/services';
 
 import './index.scss';
 
@@ -19,7 +20,6 @@ const Products = observer(({ products, likeShow = true, cartShow = true, onRoad 
 
   // Defining products, who in cart
   useEffect(() => {
-      
       if (!localStorage.getItem('user_id')) return;
 
       getCartProducts(localStorage.getItem('user_id'))
@@ -27,8 +27,12 @@ const Products = observer(({ products, likeShow = true, cartShow = true, onRoad 
             if (response.data.length < 0) return;
               setInCart(response.data.map(item => item.product_id))
       })
-      .catch(error => console.error(error))
-
+      .catch(error => {
+        // Обновление refresh Token при истечении годности AccessToken
+        if (error.response.status == 401) updateTokens()
+        
+        console.error(error)
+      }) 
   }, [products])
 
   

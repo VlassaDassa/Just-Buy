@@ -17,6 +17,9 @@
     position: relative;
 }
 
+.products__item--onRoad {
+    margin: 0 22px 52px ;
+}
 
 .products__awaiting_text {
     position: absolute;
@@ -381,6 +384,11 @@
         border-radius: 15px;
     }
 
+    .products__item--onRoad {
+        margin: 0 11px 52px ;
+    }
+
+
     .products {
         display: flex;
         flex-wrap: wrap;
@@ -403,6 +411,10 @@
         padding: 5px;
     
         border-radius: 15px;
+    }
+
+    .products__item--onRoad {
+        margin: 0 11px 52px ;
     }
 
 
@@ -439,6 +451,10 @@
         border-radius: 15px;
     }
 
+    .products__item--onRoad {
+        margin: 0 11px 52px ;
+    }
+
     .products {
         display: flex;
         flex-wrap: wrap;
@@ -461,6 +477,10 @@
         padding: 5px;
     
         border-radius: 15px;
+    }
+
+    .products__item--onRoad {
+        margin: 0 11px 52px ;
     }
 
     .products__price {
@@ -575,6 +595,10 @@
     
         border-radius: 15px;
         position: relative;
+    }
+
+    .products__item--onRoad {
+        margin: 0 2px 62px ;
     }
 
     .products {

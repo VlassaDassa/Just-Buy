@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { logoutUser } from '../../../../api/auth';
 import { showError } from '../../../../hooks/showError';
+import { updateTokens } from '../../../../services/services';
 
 import logout from './../../../../assets/images/header/logout.svg';
 import profile from './../../../../assets/images/header/profile.svg';
@@ -29,6 +30,9 @@ export const ProfileMenu = forwardRef((props, ref) => {
             window.location.href = "/"
         })
         .catch(error => {
+            // Обновление refresh Token при истечении годности AccessToken
+            if (error.response.status == 401) updateTokens()
+
             console.error('Error: ', error)
             showError('Неизвестная ошибка')
         })

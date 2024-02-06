@@ -46,7 +46,6 @@ const validationSchema = yup.object().shape({
 const Login = ({ toggleAuth }) => {
     const [loginError, setLoginError] = useState()
 
-
     const handleSubmitForm = (values, resetForm) => {
         loginUser({
             username: values.login,
@@ -64,7 +63,6 @@ const Login = ({ toggleAuth }) => {
             localStorage.setItem('refreshToken', response.data.refresh);
             updateLocalStorage() // Установка username и user_id
             
-
             // Очистка и закрытие
             resetForm()
             toggleAuth()
@@ -73,7 +71,16 @@ const Login = ({ toggleAuth }) => {
         })
 
 
-        .catch(error => { setLoginError('Неизвестная ошибка'); console.error('Error: ', error) })
+        .catch(error => {
+                if (error.status == 401) {
+                    setLoginError('Неверные данные')
+                    console.error('Error: ', error) 
+                    return
+                }
+
+                setLoginError('Неверные данные')
+                console.error('Error: ', error) 
+            })
     }
 
 
@@ -140,6 +147,15 @@ const Login = ({ toggleAuth }) => {
                                 handler={() => handleSubmitForm(values, resetForm)}
 
                                 disabled={!isEmpty(errors) || !isObjectNotEmpty(values)}
+                            />
+
+                            <AuthButton 
+                                buttonText={'Через телеграм'}
+                                className={'auth_buttons__button auth_buttons__tg_button'}
+                                handler={null}
+
+                                disabled={true}
+                                telegram={true}
                             />
                         </div>
 

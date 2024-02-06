@@ -61,7 +61,6 @@ const validationSchema = yup.object().shape({
 const Reg = ({ toggleAuth }) => {
     const [regError, setRegError] = useState()
 
-
     const handleSubmitForm = (values, resetForm) => {
         registerUser({
             username: values.login_reg,
@@ -72,14 +71,13 @@ const Reg = ({ toggleAuth }) => {
         .then(response => {
             if (response.status != 201) { setRegError('Ошибка на сервере'); return }
 
-            if (!(response.data.access && response.data.refresh && response.data.user_id)) { setRegError('Ошибка на сервере'); return }
+            if (!(response.data.access && response.data.refresh)) { setRegError('Ошибка на сервере'); return }
 
             // Успешная регистрация
             setRegError(null)
             localStorage.setItem('accessToken', response.data.access);
             localStorage.setItem('refreshToken', response.data.refresh);
             updateLocalStorage() // Установка username и user_id
-
 
             // Очистка формы и её скрытие
             resetForm()
@@ -174,6 +172,15 @@ const Reg = ({ toggleAuth }) => {
                                 handler={() => handleSubmitForm(values, resetForm)}
 
                                 disabled={!isEmpty(errors) || !isObjectNotEmpty(values)}
+                            />
+
+                            <AuthButton 
+                                buttonText={'Через телеграм'}
+                                className={'auth_buttons__button auth_buttons__tg_button'}
+                                handler={null}
+
+                                disabled={true}
+                                telegram={true}
                             />
                         </div>
 

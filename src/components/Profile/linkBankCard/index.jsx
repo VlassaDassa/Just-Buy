@@ -6,6 +6,7 @@ import overlay from '../../../store/overlay';
 
 import { addBankCard } from '../../../api/profileAPI';
 import { showError } from '../../../hooks/showError';
+import { updateTokens } from '../../../services/services';
 
 import { addSpaceToNChARS, onlyNumbers, detectCardType, getFileObject } from '../../../services/services';
 
@@ -96,6 +97,10 @@ const LinkBankCard = observer(({ setScheduleRender, scheduleRender, setNewCardLo
             showError('Ошибка при добавлении карты')
           }
         } catch (error) {
+            // Обновление refresh Token при истечении годности AccessToken
+            if (error.response.status == 401) updateTokens()
+
+            console.error(error)
             showError('Ошибка при добавлении карты')
         }
         setNewCardLoading(false);

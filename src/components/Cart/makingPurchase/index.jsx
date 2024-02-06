@@ -3,6 +3,7 @@ import React from 'react';
 import CartInfoButton from '../cartInfoButton';
 import { sendPurchasedGoods } from '../../../api/cartAPI';
 import { showError } from '../../../hooks/showError';
+import { updateTokens } from '../../../services/services';
 
 import './index.scss';
 
@@ -42,7 +43,6 @@ const MakingPurchase = ({
         const delPointId = curDelPoint ? curDelPoint.delivery_point_id : null 
         const bankCardId = curBankCard.length > 0 ? curBankCard[0].id : null
         var readyData = {'prod_data': sendData, 'bank_card_id': bankCardId, 'delivery_point_id': delPointId, 'user_id': localStorage.getItem('user_id')}
-        console.log(readyData)
         sendPurchasedGoods(readyData)
             .then(response => {
                 if (response.status !== 200) {
@@ -70,6 +70,9 @@ const MakingPurchase = ({
             })
 
             .catch(error => {
+                // Обновление refresh Token при истечении годности AccessToken
+                if (error.response.status == 401) updateTokens() 
+
                 showError('Не удалось оформить покупку')
                 console.error(error)
             })

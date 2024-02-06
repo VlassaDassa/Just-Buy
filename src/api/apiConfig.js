@@ -14,6 +14,7 @@ export const API_ROUTES = {
         registerUser: API_BASE_URL + 'register/',
         loginUser: API_BASE_URL + 'login/',
         logoutUser: API_BASE_URL + 'logout/',
+        refreshToken: API_BASE_URL + 'token/refresh/',
     },
 
     index: {

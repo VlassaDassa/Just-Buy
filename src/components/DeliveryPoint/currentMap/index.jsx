@@ -7,12 +7,12 @@ import placemark from './../../../assets/images/map/placemark.svg'
 import Loader from './../../General/loader';
 import SuccessMessage from './../../General/successMessage'
 
-import { getStatusDeliveryPoint, choiceDeliveryPoint } from '../../../api/deliveryPointAPI';
+import { choiceDeliveryPoint } from '../../../api/deliveryPointAPI';
 
-import useRequest from '../../../hooks/useRequest';
 import { showError } from '../../../hooks/showError';
 import mobileMap from '../../../store/mobileMap';
 import overlay from '../../../store/overlay';
+import { updateTokens } from '../../../services/services';
 
 import { MAP_API } from '../../../secrets';
 
@@ -53,7 +53,14 @@ const CurrentMap = observer(({ owners, address, coordX, coordY, deliveryPointId 
 
         })
 
-        .catch((error) => { showError('Ошибка при выборе пункта'); console.error(error) })
+        .catch((error) => { 
+            // Обновление refresh Token при истечении годности AccessToken
+            if (error.response.status == 401) updateTokens()
+
+            showError('Ошибка при выборе пункта');
+            console.error(error);
+          })
+
         .finally(() => setLoadingChoice(false))
     }
 

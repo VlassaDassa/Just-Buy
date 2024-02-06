@@ -36,13 +36,14 @@ const Index = () => {
     }, [data, loading]);
 
 
+
     return (
         <div>
             <BannerSlider />
             <section className="best_products">
                 <div className="container">
                     <Title title={'Лучшие товары'}/>
-                    
+
                       <Products
                         products={products}
                       />

@@ -74,7 +74,7 @@ const App = observer(() => {
       <GlobalLoader hiddenGlobalLoader={hiddenGlobalLoader}/>
 
       <ErrorMessage message={'Сделать менеджер ошибок и отображать этот компонент из App.js'} />
-    
+
       <CSSTransition
         in={menu.show}
         unmountOnExit
@@ -101,7 +101,6 @@ const App = observer(() => {
         <Auth />
       </CSSTransition>
 
-      
       
       <CSSTransition
         in={overlay.show}

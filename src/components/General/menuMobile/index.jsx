@@ -3,10 +3,12 @@ import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
 
 import { getMenu, getMenuSubcategories } from '../../../api/generalAPI';
+import { logoutUser } from '../../../api/auth';
+import { showError } from '../../../hooks/showError';
 import useRequest from '../../../hooks/useRequest';
 import auth from '../../../store/authForm';
 import overlay from '../../../store/overlay';
-
+import { updateTokens } from '../../../services/services';
 import mobileMenu from '../../../store/mobileMenu';
 import noScroll from '../../../store/noScroll';
 
@@ -14,7 +16,7 @@ import arrow_left from './../../../assets/images/mobile_menu/arrow_left.svg';
 import profile from './../../../assets/images/header/profile.svg';
 import cart from './../../../assets/images/header/cart.svg';
 
-import { authVar } from '../../../fakeVar';
+import logoutIco from './../../../assets/images/header/logout.svg'
 
 import './index.scss';
 
@@ -45,7 +47,29 @@ const MenuMobile = observer(() => {
         noScroll.toggleScroll()
     }
 
-    
+    const handleLogOut = () => {
+        logoutUser(localStorage.getItem('refreshToken'))
+        .then(response => {
+            if (response.status != 200) {
+                showError('Неизвестная ошибка')
+            }
+
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
+            localStorage.removeItem('user_id');
+            localStorage.removeItem('username');
+
+            window.location.href = "/"
+        })
+        .catch(error => {
+            // Обновление refresh Token при истечении годности AccessToken
+            if (error.response.status == 401) updateTokens()
+
+            console.error('Error: ', error)
+            showError('Неизвестная ошибка')
+        })
+    }
+
 
     return (
         <div className={`mobile_menu ${mobileMenu.show ? "mobile_menu-hidden" : ""}`}>
@@ -74,6 +98,13 @@ const MenuMobile = observer(() => {
                             }
                         </li>
                         <li className="mobile_menu-item mobile_menu-cart"><Link to="/cart" onClick={close}><img src={cart} /></Link></li>
+
+                        {
+                            localStorage.getItem('user_id') ?
+                                <li className="mobile_menu-item mobile_menu-logout"><img src={logoutIco} className='logoutIcoMobile' onClick={handleLogOut} /></li>
+                            :
+                                null
+                        }
                     </ul>
                 </nav>
 

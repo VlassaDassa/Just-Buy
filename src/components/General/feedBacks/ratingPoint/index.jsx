@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 
 import { getNoun } from '../../../../services/services';
 import Button from './../../button';
-import { authVar } from '../../../../fakeVar';
 
 import overlay from '../../../../store/overlay';
 import critical_error from '../../../../store/critical_error';

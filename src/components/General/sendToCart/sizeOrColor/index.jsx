@@ -10,6 +10,7 @@ import { showError } from '../../../../hooks/showError';
 import { addCartProduct } from '../../../../api/cartAPI';
 import overlay from '../../../../store/overlay';
 import noScroll from '../../../../store/noScroll';
+import { updateTokens } from '../../../../services/services';
 
 import './../index.scss';
 
@@ -65,6 +66,10 @@ const SizeOrColor = observer(({ inCart, setInCart }) => {
                 sendToCart.setSizes([])
             })
             .catch(error => {
+                // Обновление refresh Token при истечении годности AccessToken
+                if (error.response.status == 401) updateTokens()
+
+                console.error(error)
                 showError('Ошибка при добавлении товара')
             })
     }

@@ -7,7 +7,6 @@ import Loader from '../../General/loader';
 
 import useRequest from '../../../hooks/useRequest';
 import { getUserPurchases } from '../../../api/profileAPI';
-import { getProducts } from '../../../api/generalAPI';
 
 import './index.scss';
 
@@ -20,7 +19,6 @@ const LastPurchases = () => {
     const [currentPage, setCurrentPage] = useState(5);
     const [startLimit, setStartLimit] = useState(0)
     const countProduct = 5;
-    // const [datasd, loadingsd, errorsd] = useRequest(() => getProducts(startLimit, currentPage), [currentPage]);
     const [data, loading, error] = useRequest(() => getUserPurchases(startLimit, currentPage, localStorage.getItem('user_id')), [currentPage]);
     const [products, setProducts] = useState([])
 
