@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { useLocation } from 'react-router-dom';
 
@@ -34,6 +34,7 @@ import './../src/assets/styles/index.scss'
 
 const App = observer(() => {
   const [hiddenGlobalLoader, setHiddenGlobalLoader] = useState(false)
+  const [show, setShow] = useState(false)
 
   if (noScroll.scroll) {
     document.body.classList.remove('no-scroll')
@@ -43,22 +44,24 @@ const App = observer(() => {
   }
 
   const location = useLocation();
+
   
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    setHiddenGlobalLoader(false)
+
     // Определение авторизации
     updateLocalStorage()
-
+  
     window.scrollTo(0, 0);
     noScroll.toggleScroll(false)
-    setHiddenGlobalLoader(false)
     
-
     setTimeout(() => {
       noScroll.toggleScroll(true)
       setHiddenGlobalLoader(true)
     }, 1000)
-    
+
+    return () => { setHiddenGlobalLoader(false) }
   }, [location])
 
 
@@ -73,7 +76,7 @@ const App = observer(() => {
     <div className="App">
       <GlobalLoader hiddenGlobalLoader={hiddenGlobalLoader}/>
 
-      <ErrorMessage message={'Сделать менеджер ошибок и отображать этот компонент из App.js'} />
+      <ErrorMessage message={'Ошибка'} />
 
       <CSSTransition
         in={menu.show}

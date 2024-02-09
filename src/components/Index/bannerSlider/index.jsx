@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import './index.scss';
 
 import useRequest from '../../../hooks/useRequest';
 import { getSliderPhoto } from '../../../api/indexAPI';
 import { showError } from '../../../hooks/showError';
 
+import './index.scss';
 
 
 
@@ -17,9 +17,10 @@ const BannerSlider = () => {
     const [isInterval, setIsInterval] = useState(null)
     
     
-     if (error.code === "ERR_NETWORK") {
+    if (error.code === "ERR_NETWORK") {
         showError('Слайдер не виден из-за неполадок на сервере')
-     }
+    }
+
 
     // Change size
     useEffect(() => {
@@ -39,7 +40,7 @@ const BannerSlider = () => {
                 },
             ])
         }
-    }, [loader, currentSlider])
+    }, [loader, currentSlider, sliderPhotos])
 
 
     // Changing a photos every 0.3s
@@ -47,7 +48,7 @@ const BannerSlider = () => {
         if (sliderPhotos && sliderPhotos.length > 0 && !error) {
             startSlider()
         }
-    }, [loader]);
+    }, [sliderPhotos]);
 
 
     const startSlider = () => {
