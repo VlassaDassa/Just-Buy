@@ -98,7 +98,7 @@ const ProductCard = observer(({
                     })
                 .catch(error => {
                     // Обновление refresh Token при истечении годности AccessToken
-                    if (error.response.status == 401) updateTokens()
+                    if (error?.response?.status == 401) updateTokens()
 
                     console.error(error)
                     showError('Ошибка при добавлении товара')

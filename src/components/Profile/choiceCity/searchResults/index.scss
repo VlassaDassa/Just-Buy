@@ -1,0 +1,28 @@
+@import './../../../../assets/styles/variables';
+
+
+
+.choiceCity-searchResultsContainer {
+    margin-top: 50px;
+}
+
+
+.choiceCity-searchResultsTitle {
+    font-size: 20px;
+
+    font-weight: $medium;
+}
+
+
+.choicePointLoader {
+    position: relative;
+
+    left: 100px;
+
+    width: 30px;
+    height: 30px;
+
+    margin: 0;
+    margin-top: 52px;
+    margin-bottom: 0px;
+}

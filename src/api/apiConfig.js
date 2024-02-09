@@ -1,6 +1,5 @@
 const API_BASE_URL = 'http://192.168.0.118:8000/api/';
-// const API_BASE_URL = 'http://192.168.20.21:8000/api/';
-// const API_BASE_URL = 'http://127.0.0.1:8000/api/';
+
 
 export const API_ROUTES = {
     general: {
@@ -40,6 +39,8 @@ export const API_ROUTES = {
         getUserInfo: API_BASE_URL + 'get_user_info/', 
         getUserPurchases: API_BASE_URL + 'get_user_purchases/',
         getUserOnRoad: API_BASE_URL + 'get_user_on_road/',
+
+        getCoordinatesCity: 'https://geocode-maps.yandex.ru/1.x/',
     },
 
     cart: {
@@ -56,8 +57,7 @@ export const API_ROUTES = {
     deliveryPoint: {
         getDeliveryPoint: API_BASE_URL + 'get_delivery_point/',
         choiceDeliveryPoint: API_BASE_URL + 'choice_delivery_point/',
-        // getCurrentPoint: API_BASE_URL + 'get_current_point/', Было
-        getUserDeliveryPoint: API_BASE_URL + 'get_user_delivery_point/', // Стало
+        getUserDeliveryPoint: API_BASE_URL + 'get_user_delivery_point/',
         getUserCommentExistPoint: API_BASE_URL + 'get_user_comment_exist_point/', 
     }
 }

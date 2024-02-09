@@ -31,7 +31,7 @@ export const ProfileMenu = forwardRef((props, ref) => {
         })
         .catch(error => {
             // Обновление refresh Token при истечении годности AccessToken
-            if (error.response.status == 401) updateTokens()
+            if (error?.response?.status == 401) updateTokens()
 
             console.error('Error: ', error)
             showError('Неизвестная ошибка')

@@ -50,7 +50,7 @@ const SendFeedback = observer(({ objectId, isVisibleSuccess, setIsVisibleSuccess
             
             .catch(error => {
                 // Обновление refresh Token при истечении годности AccessToken
-                if (error.response.status == 401) updateTokens()
+                if (error?.response?.status == 401) updateTokens()
                 
                 showError('Ошибка при добавлении отзыва')
                 closeSendFeedback();

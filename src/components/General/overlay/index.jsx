@@ -11,8 +11,7 @@ import mobileMap from '../../../store/mobileMap';
 import relateSizeAndColor from '../../../store/relateSizeAndColor';
 import sendToCart from '../../../store/sendToCart';
 import sendFeedback from '../../../store/sendFeedback';
-
-
+import choiceCity from '../../../store/choiceCity';
 
 
 
@@ -31,6 +30,7 @@ const Overlay = observer(() => {
       sendToCart.setProductId(null)
       sendToCart.setRelateInputs([])
       sendFeedback.toggleShow(false)
+      choiceCity.toggleShow(false)
     }
 
     return (

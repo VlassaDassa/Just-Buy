@@ -89,7 +89,7 @@ const RelateFields = observer(({ inCart, setInCart }) => {
             })
             .catch(error => {
                 // Обновление refresh Token при истечении годности AccessToken
-                if (error.response.status == 401) updateTokens()
+                if (error?.response?.status == 401) updateTokens()
 
                 showError('Ошибка при добавлении товара')
                 console.error(error)

@@ -1,0 +1,35 @@
+@import './../../../../assets/styles/variables';
+
+
+
+.choiceCity-searchBarContainer {
+    position: relative;
+
+    width: 100%;
+}
+
+
+.choiceCity-searchBarInput {
+    width: calc(100% - 28px);
+    height: 50px;
+
+    border-radius: 10px;
+    padding: 0 14px;
+
+    font-size: 20px;
+    font-weight: $medium;
+
+    transition: color 0.3s ease-in-out;
+}
+
+
+.choiceCity-clearInput {
+    color: $base;
+}
+
+
+.choiceCity-searchBarInput--typing {
+    color: rgba($base, 0.7)
+}
+
+

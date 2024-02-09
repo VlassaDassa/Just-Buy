@@ -55,7 +55,7 @@ const CurrentMap = observer(({ owners, address, coordX, coordY, deliveryPointId 
 
         .catch((error) => { 
             // Обновление refresh Token при истечении годности AccessToken
-            if (error.response.status == 401) updateTokens()
+            if (error?.response?.status == 401) updateTokens()
 
             showError('Ошибка при выборе пункта');
             console.error(error);

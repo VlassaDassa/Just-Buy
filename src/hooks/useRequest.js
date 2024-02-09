@@ -21,7 +21,7 @@ export default function (request, dependencies = []) {
             critical_error.toggleShow(true)
 
             // Обновление refresh Token при истечении годности AccessToken
-            if (error.response.status == 401) updateTokens() 
+            if (error?.response?.status == 401) updateTokens() 
         })
         .finally(() => setIsLoading(false))
     }, dependencies)

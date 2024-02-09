@@ -6,9 +6,9 @@ import YandexMap from '../map';
 
 
 
-const ChoicePoint = () => {
+const ChoicePoint = ({ coord }) => {
   return (
-    <YandexMap />
+    <YandexMap coord={coord} />
   )
 }
 

@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Title from './../../General/title';
 import Loader from '../../General/loader';
 import NoSection from '../../General/noSection';
-
-import useRequest from '../../../hooks/useRequest';
-import { getCurrentDeliveryPoint } from '../../../api/deliveryPointAPI';
 
 import './index.scss';
 
@@ -14,16 +11,7 @@ import './index.scss';
 
 
 
-const CurrentDeliveryPoint = () => {
-    const [data, loading, error] = useRequest(() => getCurrentDeliveryPoint(localStorage.getItem('user_id'))) 
-    const [point, setPoint] = useState({})
-
-    useEffect(() => {
-        if (data && !loading) {
-            setPoint(data)
-        }
-    }, [data])
-
+const CurrentDeliveryPoint = ({ point, loading }) => {
 
     const loadingCondition = Object.keys(point).length > 0 && !loading
     

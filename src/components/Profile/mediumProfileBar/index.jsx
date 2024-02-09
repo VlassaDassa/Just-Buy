@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { observer } from 'mobx-react-lite';
 
 import { getUserInfo } from '../../../api/profileAPI';
 
 import { showError } from '../../../hooks/showError';
 import { updateTokens } from '../../../services/services';
+import choiceCity from '../../../store/choiceCity'; 
+import overlay from '../../../store/overlay';
 
 import like from './../../../assets/images/profile/like.svg';
 import location from './../../../assets/images/profile/location.svg';
@@ -15,9 +18,9 @@ import './index.scss';
 
 
 
-const MediumProfileBar = () => {
-
+const MediumProfileBar = observer(({ city }) => {
     const [userData, setUserData] = useState({})
+    const [userCity, setUserCity] = useState()
 
     useEffect(() => {
 
@@ -28,13 +31,27 @@ const MediumProfileBar = () => {
         })
         .catch(error => {
             // Обновление refresh Token при истечении годности AccessToken
-            if (error.response.status == 401) updateTokens()
+            if (error?.response?.status == 401) updateTokens()
 
             console.error(error)
             showError('Серверная ошибка')
         })
 
     }, [])
+
+
+    // Выбор города
+    useEffect(() => {
+        if (!choiceCity.cityName) { setUserCity(city); return }
+
+        setUserCity(choiceCity.cityName)
+    }, [choiceCity.cityName, city])
+
+
+    const openChoiceCity = () => {
+        choiceCity.toggleShow(true)
+        overlay.toggleShow(true)
+    }
 
 
     return (
@@ -56,13 +73,13 @@ const MediumProfileBar = () => {
                         </a>
                     </p>
             
-                    <div className="profile_bar__location_wrapper">
+                    <div className="profile_bar__location_wrapper" onClick={openChoiceCity}>
                         <img src={location} className="icon profile_bar__location_img" />
-                        <p className="profile_bar__city">{userData.city}</p>
+                        <p className="profile_bar__city">{userCity}</p>
                     </div>
                 </div>
             </section>
     )
-}
+})
 
 export default MediumProfileBar;

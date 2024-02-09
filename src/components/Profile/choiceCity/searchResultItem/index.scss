@@ -1,0 +1,66 @@
+@import './../../../../assets/styles/variables';
+
+
+
+.choiceCity-searchResultItemWrapper {
+    display: flex;
+    align-items: center;
+
+    column-gap: 10px;
+
+    margin-top: 20px;
+}
+
+
+.choiceCity-searchResultItem {
+    background: $secondary;
+    border-radius: 10px;
+
+    padding: 0 20px;
+    
+    height: 70px;
+
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: $medium;
+
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+
+.choiceCity-searchResultItemBtn {
+    width: 70px;
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: $white;
+    border-radius: 10px;
+
+    cursor: pointer;
+    transition: background-color 0.1s ease-in-out;
+
+    &:hover {
+        background-color: rgba($white, 0.9);
+    }
+
+    &:active {
+        transform: scale(0.9);
+    }
+}
+
+
+@media (max-width: 600px) {
+    .choiceCity-searchResultItem {
+        width: 100%;
+    }
+
+    .choiceCity-searchResultItemBtn {
+        display: none;
+    }
+}

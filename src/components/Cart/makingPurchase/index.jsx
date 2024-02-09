@@ -71,7 +71,7 @@ const MakingPurchase = ({
 
             .catch(error => {
                 // Обновление refresh Token при истечении годности AccessToken
-                if (error.response.status == 401) updateTokens() 
+                if (error?.response?.status == 401) updateTokens() 
 
                 showError('Не удалось оформить покупку')
                 console.error(error)

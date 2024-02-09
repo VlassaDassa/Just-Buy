@@ -98,7 +98,7 @@ const LinkBankCard = observer(({ setScheduleRender, scheduleRender, setNewCardLo
           }
         } catch (error) {
             // Обновление refresh Token при истечении годности AccessToken
-            if (error.response.status == 401) updateTokens()
+            if (error?.response?.status == 401) updateTokens()
 
             console.error(error)
             showError('Ошибка при добавлении карты')
