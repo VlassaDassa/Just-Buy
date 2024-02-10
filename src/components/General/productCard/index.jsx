@@ -15,7 +15,6 @@ import heartFill from './../../../assets/images/product_card/heart-small-fill.sv
 import cartImg from './../../../assets/images/product_card/cart.svg';
 import cartFill from './../../../assets/images/product_card/cart-fill.svg';
 
-
 import './index.scss';
 
 
@@ -35,9 +34,6 @@ const ProductCard = observer(({
         likeShow,
         cartShow,
         onRoad,
-
-        isChecked,
-        count,
     }) => {
     
 

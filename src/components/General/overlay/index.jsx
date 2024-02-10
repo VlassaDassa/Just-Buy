@@ -1,5 +1,4 @@
 import React from 'react'
-import './index.scss';
 import { observer } from 'mobx-react-lite';
 
 import menu from '../../../store/menu';
@@ -12,6 +11,8 @@ import relateSizeAndColor from '../../../store/relateSizeAndColor';
 import sendToCart from '../../../store/sendToCart';
 import sendFeedback from '../../../store/sendFeedback';
 import choiceCity from '../../../store/choiceCity';
+
+import './index.scss';
 
 
 

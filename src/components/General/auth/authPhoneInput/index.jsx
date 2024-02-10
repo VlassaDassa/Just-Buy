@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import AuthError from '../authError';
-    import InputMask from 'react-input-mask';
+import InputMask from 'react-input-mask';
 
 import questionIco from './../../../../assets/images/auth/question.svg';
 import kzIco from './../../../../assets/images/auth/kz_flag.png';

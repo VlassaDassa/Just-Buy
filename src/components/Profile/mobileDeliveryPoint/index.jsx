@@ -6,9 +6,7 @@ import './index.scss';
 
 
 
-
 const MobileDeliveryPoint = ({point}) => {
-
 
   
   return (

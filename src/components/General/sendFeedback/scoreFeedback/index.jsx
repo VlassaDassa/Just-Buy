@@ -8,10 +8,7 @@ import './index.scss';
 const ScoreFeedback = ({ selectedScore, setSelectedScore }) => {
     const [hoverScore, setHoverScore] = useState(null)
     
-
-
     return (
-
         <div className="sendFeedbackScore">
             {
                 [...Array(5)].map((item, index) => (

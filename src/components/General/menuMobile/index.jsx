@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
 
@@ -28,13 +28,23 @@ import './index.scss';
 const MenuMobile = observer(() => {
     const [selectedCategory, setSelectedCategory] = useState({category_id: 1, category_name: 'Книги'});
     const [categories, loading, error] = useRequest(getMenu, [])
-    const [subCategories, loadingSub, errorSub] = useRequest(() => getMenuSubcategories(selectedCategory.category_id), [selectedCategory.category_id])
+    const [subCategories, setSubcategories] = useState([])
     const [hideMobileCategory, setHideMobileCategory] = useState(false)
+    const [data, loadingSub, errorSub] = useRequest(() => getMenuSubcategories(selectedCategory.category_id), [selectedCategory.category_id])
+
+
+    useEffect(() => {
+        if (data && setSubcategories.length > 0 && !loadingSub) {
+            setSubcategories(data) 
+        }
+    }, [data, loadingSub])
 
 
     const select_category = (category) => {
-        setHideMobileCategory(true)
         setSelectedCategory(category)
+        setTimeout(() => {
+            setHideMobileCategory(true)
+        }, 10)
     };
 
     function toggleAuth() {
@@ -69,6 +79,7 @@ const MenuMobile = observer(() => {
             showError('Неизвестная ошибка')
         })
     }
+
 
 
     return (
@@ -112,7 +123,7 @@ const MenuMobile = observer(() => {
                     {!hideMobileCategory ? 
                         (categories && categories.map((category) => (
                             <li 
-                                key={category.id}
+                                key={category.id + 'cat'}
                                 data-menu-id={category.id} className="mobile_menu__item"
                                 onClick={() => select_category({
                                     category_id: category.id,
@@ -130,25 +141,24 @@ const MenuMobile = observer(() => {
                         <div className="mobile_menu__title">
                             <img className="mobile_menu__img"
                                 src={arrow_left} 
-                                onClick={() => setHideMobileCategory(false)}
+                                onClick={() => {setHideMobileCategory(false)}}
                             />
                             <h1>{selectedCategory.category_name}</h1>
                         </div>
                         
-                        {subCategories.length != 0
-                        ?
-                        
+                        {subCategories.length > 0 ?
+
                             subCategories.map((subcategory) => (
                                 <li 
-                                    key={subcategory.id}
+                                    key={subcategory.id + 'subcat'}
                                     data-subcategory-id={subcategory.id}
                                     className="mobile_menu__item"
                                 >
                                     <span>{subcategory.subcategory_name}</span>
                                 </li>
                             ))
-                        :
-                            <div className="subcategory_none">Подкатегорий пока нет...</div>
+                        : (!loading ? null : 
+                            <div className="subcategory_none">Подкатегорий пока нет...</div>)
                         }
                     </>
                     )}

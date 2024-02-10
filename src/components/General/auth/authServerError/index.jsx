@@ -3,8 +3,7 @@ import React from 'react';
 import './index.scss'
 
 
-// Как authError, только здесь хранятся ошибки, получаемые с сервера
-
+// Как authError, только здесь ошибки, получаемые с сервера
 const AuthServerError = ({ errorText=null }) => {
     return (
         <>

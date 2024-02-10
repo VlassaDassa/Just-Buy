@@ -10,9 +10,9 @@ import { updateTokens } from '../../../services/services';
 
 import { addSpaceToNChARS, onlyNumbers, detectCardType, getFileObject } from '../../../services/services';
 
-import './index.scss';
-
 import questionIcon from './../../../assets/images/bankIcons/question.svg';
+
+import './index.scss';
 
 
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 
 import ChoiceSize from '../choiceSize';
@@ -7,7 +7,6 @@ import ChoiceColor from '../choiceColor';
 import relateSizeAndColor from '../../../store/relateSizeAndColor';
 import addProductChecking from '../../../store/addProductChecking';
 import overlay from '../../../store/overlay';
-
 
 
 

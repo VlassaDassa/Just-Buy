@@ -4,8 +4,6 @@ import YandexMap from '../map';
 
 
 
-
-
 const ChoicePoint = ({ coord }) => {
   return (
     <YandexMap coord={coord} />

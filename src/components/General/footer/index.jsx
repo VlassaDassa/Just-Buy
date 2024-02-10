@@ -15,7 +15,6 @@ import youtubeIco from './../../../assets/images/footer/youtube.svg';
 const Footer = () => {
 
 
-
     return (
         <footer className="footer" id="footer">
             <div className="container">

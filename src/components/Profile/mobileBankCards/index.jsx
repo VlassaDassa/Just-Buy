@@ -9,6 +9,8 @@ import linkBankCard from '../../../store/linkBankCard';
 import './index.scss';
 
 
+
+
 const MobileBankCards = ({ cards, setCards, newCardLoading, mainCard, setMainCard }) => {
 
     const openLinkBankCard = () => {

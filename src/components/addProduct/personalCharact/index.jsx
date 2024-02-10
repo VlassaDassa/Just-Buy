@@ -162,7 +162,6 @@ const PersonalCharact = observer(({ characteristicsFields, selectedSubcategory, 
                     <button className="button_wrapper__button"
                         onClick={handleSaveBtn}
                         disabled={btnDisabled}
-
                     >
                         Сохранить
                     </button>

@@ -14,7 +14,6 @@ import './index.scss';
 
 
 
-
 const LastPurchases = () => {
     const [currentPage, setCurrentPage] = useState(5);
     const [startLimit, setStartLimit] = useState(0)

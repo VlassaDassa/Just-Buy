@@ -46,6 +46,7 @@ const DesktopCardItem = ({ card, cards, setCards, mainCard, setMainCard }) => {
         })
         .catch(error => {
           showError('Ошибка при выборе карты')
+          console.error(error)
         })
     }
 

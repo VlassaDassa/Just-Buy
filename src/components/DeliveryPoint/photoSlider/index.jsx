@@ -5,7 +5,6 @@ import React, { useState } from "react";
 
 
 
-
 const PhotoSlider = ({ photosArray }) => {
     const mainPhotoId = photosArray.find(item => String(item.id).includes('main')).id
     const [currentPhoto, setCurrentPhoto] = useState(mainPhotoId)

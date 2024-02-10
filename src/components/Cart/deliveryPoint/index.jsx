@@ -5,7 +5,6 @@ import CartInfoTitle from '../cartInfoTitle';
 import CartInfoButton from '../cartInfoButton';
 import CartInfoText from '../cartInfoText';
 
-import './index.scss';
 
 
 
