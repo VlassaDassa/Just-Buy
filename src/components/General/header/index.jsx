@@ -36,6 +36,7 @@ const Header = () => {
     function toggleAuth() {
         auth.toggleShow()
         overlay.toggleShow()
+        noScroll.toggleScroll(false)
     }
 
     function toggleMobileSearchbar() {

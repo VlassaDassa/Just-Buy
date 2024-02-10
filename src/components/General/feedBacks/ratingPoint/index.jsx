@@ -16,11 +16,10 @@ import "./index.scss";
 
 
 
-const RatingPoint = observer(({ rating, countFeedbacks }) => {
+const RatingPoint = observer(({ rating, countFeedbacks, isVisibleSuccess }) => {
     const [hiddenSendCommentBtn, setHiddenSendCommentBtn] = useState(true)
     const { deliveryPointId } = useParams()
     
-
     useEffect(() => {
         const userId = localStorage.getItem('user_id')
         if (!userId) { setHiddenSendCommentBtn(true); return }
@@ -59,7 +58,7 @@ const RatingPoint = observer(({ rating, countFeedbacks }) => {
             
 
             {
-                !hiddenSendCommentBtn ?
+                !hiddenSendCommentBtn && !isVisibleSuccess ?
                     <Button text={'Написать отзыв'} handler={openSendFeedback} />
                 :
                     null

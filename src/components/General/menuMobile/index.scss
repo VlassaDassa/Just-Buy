@@ -26,7 +26,6 @@
 .mobile_menu__icons {
     display: flex;
     justify-content: space-around;
-    column-gap: 100px;
 
     padding: 15px 0;
     margin: 15px 0;
@@ -41,6 +40,8 @@
         column-gap: 100px;
     }
 }
+
+
 
 
 .mobile_menu__title {
@@ -98,4 +99,18 @@
 
 .mobile_menu__img-decorate {
     height: 40px;
+}
+
+
+@media (max-width: 400px) {
+    .mobile_menu__icons {
+        display: flex;
+        justify-content: space-around;
+    
+        ul {
+            display: flex;
+            justify-content: space-around;
+            column-gap: 50px;
+        }
+    }
 }

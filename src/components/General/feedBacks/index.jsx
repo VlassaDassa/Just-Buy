@@ -51,7 +51,7 @@ const Feedbacks = observer(({ feedbacks, rating, objectId }) => {
         </CSSTransition>
 
 
-        <RatingPoint rating={rating} countFeedbacks={feedbacks?.length} />
+        <RatingPoint rating={rating} countFeedbacks={feedbacks?.length} isVisibleSuccess={isVisibleSuccess} />
 
         <div className="delivery_point_feedback__items">
             {feedbacks?.length <= 0 ?

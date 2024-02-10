@@ -50,11 +50,12 @@ const MenuMobile = observer(() => {
     function toggleAuth() {
         auth.toggleShow()
         overlay.toggleShow()
+        noScroll.toggleScroll(false)
     }
 
     function close() {
         mobileMenu.toggleShow()
-        noScroll.toggleScroll()
+        noScroll.toggleScroll(true)
     }
 
     const handleLogOut = () => {
@@ -99,7 +100,7 @@ const MenuMobile = observer(() => {
                     <ul>
                         <li 
                             className="mobile_menu-item mobile_menu-profile"
-                            onClick={localStorage.getItem('user_id') ? null : () => {toggleAuth(); close()}}
+                            onClick={localStorage.getItem('user_id') ? null : () => {toggleAuth(); mobileMenu.toggleShow()}}
                         >
                             {
                                 localStorage.getItem('user_id') ?

@@ -40,8 +40,6 @@
     margin-top: 30px;
 }
 
-
-
   
 
 @media (max-width: 768px) {
@@ -56,4 +54,17 @@
         width: calc(100% - 60px);
         padding: 20px 30px;
     }
+}
+
+@media (max-width: 400px) {
+    .auth {
+        top: 0px;
+        position: absolute;
+        border-radius: 0px;
+        width: calc(100% - 60px);
+        height: 80vh;
+        padding-bottom: 100px;
+        overflow-y: scroll;
+    }
+    
 }

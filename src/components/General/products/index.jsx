@@ -14,7 +14,7 @@ import './index.scss';
 
 
 
-const Products = observer(({ products, likeShow = true, cartShow = true, onRoad = false }) => {
+const Products = observer(({ products, likeShow=true, cartShow=true, onRoad=false }) => {
   const [inCart, setInCart] = useState([])
 
 
@@ -47,7 +47,7 @@ const Products = observer(({ products, likeShow = true, cartShow = true, onRoad 
       {showNoSection ? (
           <>
             {products?.map((product, index) =>
-              product.characteristics.in_stock ? (
+              product.characteristics.in_stock || onRoad ? (
                 <CSSTransition
                   key={'trans' + product.id + index}
                   timeout={500}

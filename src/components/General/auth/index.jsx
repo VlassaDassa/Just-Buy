@@ -6,6 +6,7 @@ import Reg from './reg';
 
 import auth from '../../../store/authForm';
 import overlay from '../../../store/overlay';
+import noScroll from '../../../store/noScroll';
 
 import AuthButton from './authButton';
 
@@ -19,6 +20,8 @@ const Auth = observer(() => {
     function toggleAuth() {
         auth.toggleShow()
         overlay.toggleShow()
+        noScroll.toggleScroll(true)
+        
     }
 
     return (
